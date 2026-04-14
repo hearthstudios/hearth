@@ -1,3 +1,5 @@
+# HEARTH™ — Netlify Configuration
+# Clean URLs: /programs → /programs.html etc.
 
 [[redirects]]
   from = "/programs"
@@ -50,8 +52,13 @@
   status = 200
 
 [[redirects]]
-  from = "/programs/youth-in-film"
-  to = "/prog-youth-in-film.html"
+  from = "/collab-hub"
+  to = "/collab-hub.html"
+  status = 200
+
+[[redirects]]
+  from = "/music-supervision"
+  to = "/music-supervision.html"
   status = 200
 
 [[redirects]]
@@ -70,6 +77,11 @@
   status = 200
 
 [[redirects]]
+  from = "/programs/youth-in-film"
+  to = "/prog-youth-in-film.html"
+  status = 200
+
+[[redirects]]
   from = "/programs/mentoring"
   to = "/prog-mentoring.html"
   status = 200
@@ -77,16 +89,6 @@
 [[redirects]]
   from = "/programs/showcases"
   to = "/prog-showcases.html"
-  status = 200
-
-[[redirects]]
-  from = "/music-supervision"
-  to = "/music-supervision.html"
-  status = 200
-
-[[redirects]]
-  from = "/collab-hub"
-  to = "/collab-hub.html"
   status = 200
 
 [build]
