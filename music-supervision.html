@@ -1275,14 +1275,12 @@ document.getElementById('musicSubmitBtn').addEventListener('click', async functi
   var stems  = document.getElementById('mf_stems').value;
   var excl   = document.getElementById('mf_exclusivity').value;
   var rc     = document.getElementById('mf_rights_contact').value.trim();
-  var confirm= document.getElementById('mf_rights_confirm').checked;
-
+  var rights = document.getElementById('mf_rights_confirm').checked;
   if(!artist||!email||!title1||!link1||!genre||!inst||!vocal||!expl||!lyrics||!stems||!excl||!rc){
     alert('Please complete all required fields (marked with *).'); return;
   }
-  if(!confirm){ alert('Rights confirmation is required before submission.'); return; }
-
-  var fields = {
+  if(!rights){ alert('Rights confirmation is required before submission.'); return; }
+  var musicFields = {
     'Artist': artist,
     'Artist Contact Email': email,
     'Artist Phone': document.getElementById('mf_phone').value.trim(),
@@ -1307,105 +1305,24 @@ document.getElementById('musicSubmitBtn').addEventListener('click', async functi
     'Exclusivity': excl,
     'Rights Holder Contact': rc
   };
-  // Remove empty strings
-  Object.keys(fields).forEach(k=>{ if(!fields[k]) delete fields[k]; });
-
+  Object.keys(musicFields).forEach(function(k){ if(!musicFields[k]) delete musicFields[k]; });
   try {
     var r = await fetch('/.netlify/functions/airtable', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({base:'appKsSNFxrW7R8nfs', table:'tblJzxn2bQag54qMD', fields})
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({base: 'appKsSNFxrW7R8nfs', table: 'tblJzxn2bQag54qMD', fields: musicFields})
     });
-    if(!r.ok){ var e=await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.')); return; }
-
-    // Newsletter opt-in
+    if(!r.ok){ var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.')); return; }
     if(document.getElementById('mf_newsletter').checked && email){
+      var subFields = {'Email': email, 'Name': artist, 'I am a…': 'Musician'};
       await fetch('/.netlify/functions/airtable', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields})
-      })
+        body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields: subFields})
       });
     }
-
     document.getElementById('musicForm').style.display='none';
     document.getElementById('musicConfirm').style.display='block';
-  } catch(ex) { alert('Network error — please check your connection and try again.'); }
-});
-</script>
-
-<script>
-document.getElementById('musicSubmitBtn').addEventListener('click', async function(){
-  var artist = document.getElementById('mf_artist').value.trim();
-  var email  = document.getElementById('mf_email').value.trim();
-  var title1 = document.getElementById('mf_title1').value.trim();
-  var link1  = document.getElementById('mf_link1').value.trim();
-  var genre  = document.getElementById('mf_genre').value;
-  var instr  = document.getElementById('mf_instruments').value;
-  var vocal  = document.getElementById('mf_vocal').value;
-  var expl   = document.getElementById('mf_explicit').value;
-  var lyrics = document.getElementById('mf_lyrics').value;
-  var stems  = document.getElementById('mf_stems').value;
-  var excl   = document.getElementById('mf_exclusivity').value;
-  var rights = document.getElementById('mf_rights_contact').value.trim();
-  var confirm= document.getElementById('mf_rights_confirm').checked;
-
-  if(!artist||!email||!title1||!link1||!genre||!instr||!vocal||!expl||!lyrics||!stems||!excl||!rights){
-    alert('Please fill in all required fields (marked with *).'); return;
-  }
-  if(!confirm){ alert('Rights confirmation is required before submission.'); return; }
-
-  var fields = {
-    'Artist': artist,
-    'Artist Contact Email': email,
-    'Artist Phone': document.getElementById('mf_phone').value.trim(),
-    'Song Title': title1,
-    'Primary Streaming Link': link1,
-    'Portfolio or Website Link': document.getElementById('mf_portfolio').value.trim(),
-    'Track Title 2': document.getElementById('mf_title2').value.trim(),
-    'Streaming Link 2': document.getElementById('mf_link2').value.trim(),
-    'Track Title 3': document.getElementById('mf_title3').value.trim(),
-    'Streaming Link 3': document.getElementById('mf_link3').value.trim(),
-    'Track Title 4': document.getElementById('mf_title4').value.trim(),
-    'Streaming Link 4': document.getElementById('mf_link4').value.trim(),
-    'Track Title 5': document.getElementById('mf_title5').value.trim(),
-    'Streaming Link 5': document.getElementById('mf_link5').value.trim(),
-    'Genre': genre,
-    'Approximate BPM': document.getElementById('mf_bpm').value || '',
-    'Primary Instruments': instr,
-    'Vocal Type': vocal,
-    'Explicit Content': expl,
-    'Lyrics Available': lyrics,
-    'Stems Available': stems,
-    'Exclusivity': excl,
-    'Rights Holder Contact': rights
-  };
-  // Remove empty optional fields
-  Object.keys(fields).forEach(k => { if(fields[k]==='') delete fields[k]; });
-
-  try {
-    var r = await fetch('/.netlify/functions/airtable', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({base: 'appKsSNFxrW7R8nfs', table: 'tblJzxn2bQag54qMD', fields})
-      })
-    });
-    if(r.ok) {
-      // Newsletter opt-in
-      if(document.getElementById('mf_newsletter').checked) {
-        await fetch('/.netlify/functions/airtable', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields})
-      })
-        });
-      }
-      document.getElementById('musicForm').style.display='none';
-      document.getElementById('musicConfirm').style.display='block';
-    } else {
-      var err = await r.json();
-      alert('Submission error: ' + (err.error && err.error.message ? err.error.message : 'Please try again.'));
-    }
   } catch(ex) { alert('Network error — please check your connection and try again.'); }
 });
 </script>
@@ -1465,152 +1382,5 @@ document.addEventListener('click',function(e){
 });
 </script>
 
-<script>
-document.getElementById('musicSubmitBtn').addEventListener('click', async function(){
-  var artist = document.getElementById('mf_artist').value.trim();
-  var email  = document.getElementById('mf_email').value.trim();
-  var title1 = document.getElementById('mf_title1').value.trim();
-  var link1  = document.getElementById('mf_link1').value.trim();
-  var genre  = document.getElementById('mf_genre').value;
-  var inst   = document.getElementById('mf_instruments').value;
-  var vocal  = document.getElementById('mf_vocal').value;
-  var expl   = document.getElementById('mf_explicit').value;
-  var lyrics = document.getElementById('mf_lyrics').value;
-  var stems  = document.getElementById('mf_stems').value;
-  var excl   = document.getElementById('mf_exclusivity').value;
-  var rc     = document.getElementById('mf_rights_contact').value.trim();
-  var confirm= document.getElementById('mf_rights_confirm').checked;
 
-  if(!artist||!email||!title1||!link1||!genre||!inst||!vocal||!expl||!lyrics||!stems||!excl||!rc){
-    alert('Please complete all required fields (marked with *).'); return;
-  }
-  if(!confirm){ alert('Rights confirmation is required before submission.'); return; }
-
-  var fields = {
-    'Artist': artist,
-    'Artist Contact Email': email,
-    'Artist Phone': document.getElementById('mf_phone').value.trim(),
-    'Song Title': title1,
-    'Primary Streaming Link': link1,
-    'Portfolio or Website Link': document.getElementById('mf_portfolio').value.trim(),
-    'Track Title 2': document.getElementById('mf_title2').value.trim(),
-    'Streaming Link 2': document.getElementById('mf_link2').value.trim(),
-    'Track Title 3': document.getElementById('mf_title3').value.trim(),
-    'Streaming Link 3': document.getElementById('mf_link3').value.trim(),
-    'Track Title 4': document.getElementById('mf_title4').value.trim(),
-    'Streaming Link 4': document.getElementById('mf_link4').value.trim(),
-    'Track Title 5': document.getElementById('mf_title5').value.trim(),
-    'Streaming Link 5': document.getElementById('mf_link5').value.trim(),
-    'Genre': genre,
-    'Approximate BPM': document.getElementById('mf_bpm').value || '',
-    'Primary Instruments': inst,
-    'Vocal Type': vocal,
-    'Explicit Content': expl,
-    'Lyrics Available': lyrics,
-    'Stems Available': stems,
-    'Exclusivity': excl,
-    'Rights Holder Contact': rc
-  };
-  // Remove empty strings
-  Object.keys(fields).forEach(k=>{ if(!fields[k]) delete fields[k]; });
-
-  try {
-    var r = await fetch('/.netlify/functions/airtable', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({base:'appKsSNFxrW7R8nfs', table:'tblJzxn2bQag54qMD', fields})
-    });
-    if(!r.ok){ var e=await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.')); return; }
-
-    // Newsletter opt-in
-    if(document.getElementById('mf_newsletter').checked && email){
-      await fetch('/.netlify/functions/airtable', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields})
-      })
-      });
-    }
-
-    document.getElementById('musicForm').style.display='none';
-    document.getElementById('musicConfirm').style.display='block';
-  } catch(ex) { alert('Network error — please check your connection and try again.'); }
-});
-</script>
-
-<script>
-document.getElementById('musicSubmitBtn').addEventListener('click', async function(){
-  var artist = document.getElementById('mf_artist').value.trim();
-  var email  = document.getElementById('mf_email').value.trim();
-  var title1 = document.getElementById('mf_title1').value.trim();
-  var link1  = document.getElementById('mf_link1').value.trim();
-  var genre  = document.getElementById('mf_genre').value;
-  var instr  = document.getElementById('mf_instruments').value;
-  var vocal  = document.getElementById('mf_vocal').value;
-  var expl   = document.getElementById('mf_explicit').value;
-  var lyrics = document.getElementById('mf_lyrics').value;
-  var stems  = document.getElementById('mf_stems').value;
-  var excl   = document.getElementById('mf_exclusivity').value;
-  var rights = document.getElementById('mf_rights_contact').value.trim();
-  var confirm= document.getElementById('mf_rights_confirm').checked;
-
-  if(!artist||!email||!title1||!link1||!genre||!instr||!vocal||!expl||!lyrics||!stems||!excl||!rights){
-    alert('Please fill in all required fields (marked with *).'); return;
-  }
-  if(!confirm){ alert('Rights confirmation is required before submission.'); return; }
-
-  var fields = {
-    'Artist': artist,
-    'Artist Contact Email': email,
-    'Artist Phone': document.getElementById('mf_phone').value.trim(),
-    'Song Title': title1,
-    'Primary Streaming Link': link1,
-    'Portfolio or Website Link': document.getElementById('mf_portfolio').value.trim(),
-    'Track Title 2': document.getElementById('mf_title2').value.trim(),
-    'Streaming Link 2': document.getElementById('mf_link2').value.trim(),
-    'Track Title 3': document.getElementById('mf_title3').value.trim(),
-    'Streaming Link 3': document.getElementById('mf_link3').value.trim(),
-    'Track Title 4': document.getElementById('mf_title4').value.trim(),
-    'Streaming Link 4': document.getElementById('mf_link4').value.trim(),
-    'Track Title 5': document.getElementById('mf_title5').value.trim(),
-    'Streaming Link 5': document.getElementById('mf_link5').value.trim(),
-    'Genre': genre,
-    'Approximate BPM': document.getElementById('mf_bpm').value || '',
-    'Primary Instruments': instr,
-    'Vocal Type': vocal,
-    'Explicit Content': expl,
-    'Lyrics Available': lyrics,
-    'Stems Available': stems,
-    'Exclusivity': excl,
-    'Rights Holder Contact': rights
-  };
-  // Remove empty optional fields
-  Object.keys(fields).forEach(k => { if(fields[k]==='') delete fields[k]; });
-
-  try {
-    var r = await fetch('/.netlify/functions/airtable', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({base: 'appKsSNFxrW7R8nfs', table: 'tblJzxn2bQag54qMD', fields})
-      })
-    });
-    if(r.ok) {
-      // Newsletter opt-in
-      if(document.getElementById('mf_newsletter').checked) {
-        await fetch('/.netlify/functions/airtable', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields})
-      })
-        });
-      }
-      document.getElementById('musicForm').style.display='none';
-      document.getElementById('musicConfirm').style.display='block';
-    } else {
-      var err = await r.json();
-      alert('Submission error: ' + (err.error && err.error.message ? err.error.message : 'Please try again.'));
-    }
-  } catch(ex) { alert('Network error — please check your connection and try again.'); }
-});
-</script>
 </body></html>

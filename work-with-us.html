@@ -1202,37 +1202,35 @@ document.addEventListener('click',function(e){
 </script>
 
 <script>
-async function submitToClients(extraFields){
+document.getElementById('clientSubmitBtn').addEventListener('click', async function(){
+  var name  = document.getElementById('cf_name').value.trim();
+  var email = document.getElementById('cf_email').value.trim();
+  if(!name||!email){ alert('Please enter your name and email.'); return; }
   var fields = {
     'Company Name': document.getElementById('cf_company').value.trim(),
-    'Primary Contact Name': document.getElementById('cf_name').value.trim(),
-    'Primary Contact Email': document.getElementById('cf_email').value.trim(),
+    'Primary Contact Name': name,
+    'Primary Contact Email': email,
     'Primary Contact Phone': document.getElementById('cf_phone').value.trim(),
     'City': document.getElementById('cf_city').value.trim(),
     'State': document.getElementById('cf_state').value.trim(),
     'Website': document.getElementById('cf_website').value.trim(),
     'How they found us': document.getElementById('cf_source').value,
-    'Services Interested in': document.getElementById('cf_service').value,
-    ...extraFields
+    'Services Interested in': document.getElementById('cf_service').value
   };
-  return await fetch('/.netlify/functions/airtable', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({base:'appyhjawc9vZ5DfWg', table:'tblR2B8QwzrCDwNKD', fields})
-    });
-}
-document.getElementById('clientSubmitBtn').addEventListener('click', async function(){
-  var name=document.getElementById('cf_name').value.trim();
-  var email=document.getElementById('cf_email').value.trim();
-  if(!name||!email){ alert('Please enter your name and email.'); return; }
+  Object.keys(fields).forEach(function(k){ if(!fields[k]) delete fields[k]; });
   try {
-    var r = await submitToClients({});
+    var r = await fetch('/.netlify/functions/airtable', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({base: 'appyhjawc9vZ5DfWg', table: 'tblR2B8QwzrCDwNKD', fields: fields})
+    });
     if(r.ok){
       document.getElementById('clientForm').style.display='none';
       document.getElementById('clientConfirm').style.display='block';
-    } else { var errData = await r.clone().text(); console.error('Airtable error:', errData); alert('Submission error. Please check console for details.'); }
-  } catch(e) { alert('Network error.'); }
-});
+    } else {
+      var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.'));
+    }
+  } catch(ex) { alert('Network error.'); }
 });
 </script>
 </body></html>

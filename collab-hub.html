@@ -1158,7 +1158,7 @@ document.getElementById('collabSubmitBtn').addEventListener('click', async funct
   var ustat  = document.getElementById('col_union_status').value;
   var uname  = document.getElementById('col_union_name').value.trim();
   if(!name||!loc||!contact||!ustat||!uname){
-    alert('Please complete all required fields (marked with *).'); return;
+    alert('Please complete all required fields.'); return;
   }
   var rate = document.getElementById('col_rate').value.trim();
   var flexible = document.getElementById('col_flexible').checked;
@@ -1175,70 +1175,62 @@ document.getElementById('collabSubmitBtn').addEventListener('click', async funct
     'Union Status': ustat,
     'Union Name': uname
   };
-  Object.keys(fields).forEach(k=>{ if(!fields[k]) delete fields[k]; });
+  Object.keys(fields).forEach(function(k){ if(!fields[k]) delete fields[k]; });
   try {
     var r = await fetch('/.netlify/functions/airtable', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({base:'appbtjsDW3xK8fi5u', table:'tblGE4QZ9m1VQfjlC', fields})
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({base: 'appbtjsDW3xK8fi5u', table: 'tblGE4QZ9m1VQfjlC', fields: fields})
     });
     if(r.ok){
       document.getElementById('collabForm').style.display='none';
       document.getElementById('collabConfirm').style.display='block';
     } else {
-      var e = await r.json();
-      alert('Error: '+(e.error&&e.error.message||'Please try again.'));
+      var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.'));
     }
-  } catch(ex) { alert('Network error — please check your connection.'); }
+  } catch(ex) { alert('Network error.'); }
 });
 </script>
 
 <script>
 document.getElementById('collabSubmitBtn').addEventListener('click', async function(){
-  var name   = document.getElementById('cb_name').value.trim();
-  var loc    = document.getElementById('cb_location').value.trim();
-  var contact= document.getElementById('cb_contact').value.trim();
-  var union_s= document.getElementById('cb_union_status').value;
-  var union_n= document.getElementById('cb_union_name').value.trim();
-
-  if(!name||!loc||!contact||!union_s||!union_n){
-    alert('Please fill in all required fields (marked with *).'); return;
+  var name   = document.getElementById('col_name').value.trim();
+  var loc    = document.getElementById('col_location').value.trim();
+  var contact= document.getElementById('col_contact').value.trim();
+  var ustat  = document.getElementById('col_union_status').value;
+  var uname  = document.getElementById('col_union_name').value.trim();
+  if(!name||!loc||!contact||!ustat||!uname){
+    alert('Please complete all required fields.'); return;
   }
-
+  var rate = document.getElementById('col_rate').value.trim();
+  var flexible = document.getElementById('col_flexible').checked;
   var fields = {
     'Name': name,
     'Location': loc,
     'Contact Information': contact,
-    'Roles Name': document.getElementById('cb_role').value,
-    'Skill Level': document.getElementById('cb_skill').value,
-    'Day Rate': document.getElementById('cb_rate').value ? Number(document.getElementById('cb_rate').value) : undefined,
-    'Flexible Day Rate': document.getElementById('cb_flexible').checked,
-    'Availability': document.getElementById('cb_avail').value.trim(),
-    'Portfolio Link': document.getElementById('cb_portfolio').value.trim(),
-    'Social Media Link(s)': document.getElementById('cb_social').value.trim(),
-    'Union Status': union_s,
-    'Union Name': union_n
+    'Roles Name': document.getElementById('col_role').value,
+    'Skill Level': document.getElementById('col_skill').value,
+    'Day Rate': rate + (flexible ? ' (Flexible)' : ''),
+    'Availability': document.getElementById('col_avail').value,
+    'Portfolio Link': document.getElementById('col_portfolio').value.trim(),
+    'Social Media Link(s)': document.getElementById('col_social').value.trim(),
+    'Union Status': ustat,
+    'Union Name': uname
   };
-  // Remove undefined/empty
-  Object.keys(fields).forEach(k => {
-    if(fields[k]===undefined||fields[k]==='') delete fields[k];
-  });
-
+  Object.keys(fields).forEach(function(k){ if(!fields[k]) delete fields[k]; });
   try {
     var r = await fetch('/.netlify/functions/airtable', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({base: 'appbtjsDW3xK8fi5u', table: 'tblGE4QZ9m1VQfjlC', fields})
-      })
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({base: 'appbtjsDW3xK8fi5u', table: 'tblGE4QZ9m1VQfjlC', fields: fields})
     });
-    if(r.ok) {
+    if(r.ok){
       document.getElementById('collabForm').style.display='none';
       document.getElementById('collabConfirm').style.display='block';
     } else {
-      var err = await r.json();
-      alert('Submission error: ' + (err.error && err.error.message ? err.error.message : 'Please try again.'));
+      var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.'));
     }
-  } catch(ex) { alert('Network error — please check your connection.'); }
+  } catch(ex) { alert('Network error.'); }
 });
 </script>
 </body></html>

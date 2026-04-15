@@ -1158,18 +1158,20 @@ document.getElementById('gatherBtn').addEventListener('click', async function(){
   var email = document.getElementById('gf_email').value.trim();
   var role  = document.getElementById('gf_role').value;
   if(!fname||!lname||!email){ alert('Please fill in all required fields.'); return; }
+  var fields = {'Email': email, 'Name': fname+' '+lname, 'I am a…': role};
   try {
     var r = await fetch('/.netlify/functions/airtable', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields})
-      })
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields: fields})
     });
     if(r.ok){
       document.getElementById('gatherForm').style.display='none';
       document.getElementById('gatherConfirm').style.display='block';
-    } else { var errData = await r.clone().text(); console.error('Airtable error:', errData); alert('Submission error. Please check console for details.'); }
-  } catch(e) { alert('Network error — please check your connection.'); }
+    } else {
+      var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.'));
+    }
+  } catch(ex) { alert('Network error.'); }
 });
 </script>
 </body></html>

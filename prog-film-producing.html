@@ -1107,22 +1107,24 @@ document.addEventListener('click',function(e){
 function openNotifyModal(){ document.getElementById('notifyModal').style.display='flex'; }
 function closeNotifyModal(){ document.getElementById('notifyModal').style.display='none'; }
 document.getElementById('notifySubmitBtn').addEventListener('click', async function(){
-  var name=document.getElementById('nf_name').value.trim();
-  var email=document.getElementById('nf_email').value.trim();
-  var role=document.getElementById('nf_role').value;
+  var name  = document.getElementById('nf_name').value.trim();
+  var email = document.getElementById('nf_email').value.trim();
+  var role  = document.getElementById('nf_role').value;
   if(!name||!email){ alert('Please enter your name and email.'); return; }
+  var fields = {'Email': email, 'Name': name, 'I am a…': role};
   try {
-    var r=await fetch('/.netlify/functions/airtable', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields})
-      })
+    var r = await fetch('/.netlify/functions/airtable', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields: fields})
     });
     if(r.ok){
       document.getElementById('notifyForm').style.display='none';
       document.getElementById('notifyConfirm').style.display='block';
-    } else { var errData = await r.clone().text(); console.error('Airtable error:', errData); alert('Submission error. Please check console for details.'); }
-  } catch(e) { alert('Network error.'); }
+    } else {
+      var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.'));
+    }
+  } catch(ex) { alert('Network error.'); }
 });
 </script>
 </body></html>
