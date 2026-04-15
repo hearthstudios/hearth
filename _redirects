@@ -1,5 +1,7 @@
 # HEARTH™ — Cloudflare Pages Redirects
-# Clean URLs — removes .html from all page paths
+# 200 = serve the target file at the requested URL (rewrite, no redirect)
+
+/                       /index.html                 200
 
 /programs               /programs.html              200
 /events                 /events.html                200
@@ -14,8 +16,7 @@
 /collab-hub             /collab-hub.html            200
 /music-supervision      /music-supervision.html     200
 /sponsorship            /sponsorship.html           200
-
-/work/live-event-production     /work-live-events.html          200
+/work/live-event-production     /work-live-events.html      200
 
 /programs/script-labs           /prog-script-labs.html          200
 /programs/music-residencies     /prog-music-residencies.html    200
@@ -31,3 +32,5 @@
 /events/film-pitch-night        /evt-film-pitch.html            200
 /events/acting-for-camera       /evt-acting-camera.html         200
 /events/annual-hearth           /evt-annual-hearth.html         200
+
+# Catch-all: any unmatched path → 404 page (CF Pages default)
