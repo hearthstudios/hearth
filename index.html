@@ -963,6 +963,44 @@ nav{position:sticky;top:5px;z-index:200;}
 }
 </style>
 
+
+<style>
+/* ── TRADEMARK SUPERSCRIPT ── */
+.tm { font-size: 0.55em; vertical-align: super; font-weight: 400; letter-spacing: 0; }
+
+/* ── FOOTER color fix (belt AND suspenders) ── */
+.fg-logo a, .fg-logo a:visited, .fg-logo a:link {
+  color: var(--white) !important;
+  text-decoration: none !important;
+}
+
+/* ── NAV Home link ── */
+.nav-home {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--stone);
+  text-decoration: none;
+  padding: 7px 13px;
+  transition: color 0.2s;
+}
+.nav-home:hover { color: var(--red); }
+.nav-home.active-page { color: var(--red); }
+
+/* ── MOBILE fixes ── */
+@media (max-width: 768px) {
+  /* Mentoring button fix */
+  .prog-notify-btn { width: 100% !important; display: block !important; }
+  /* Sticky sidebar unstick */
+  [style*="position:sticky"] { position: relative !important; top: auto !important; }
+  /* Event meta pills wrap */
+  .evt-meta { flex-wrap: wrap !important; }
+  /* About page grid collapse */
+  .about-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+  /* Values grid mobile */
+  .values-grid6 { grid-template-columns: 1fr !important; }
+}
+</style>
 </head>
 <body>
 <div class="brand-bar">
@@ -972,7 +1010,7 @@ nav{position:sticky;top:5px;z-index:200;}
 </div><nav>
   <a href="index.html" class="nav-logo">
     <svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg>
-    <span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH™</span>
+    <span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH<span class="tm">™</span></span>
   </a>
   <ul class="nav-menu"><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="work-with-us.html">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul>
   <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
@@ -997,13 +1035,20 @@ nav{position:sticky;top:5px;z-index:200;}
       <div><div class="stat-n">340+</div><div class="stat-l">Events</div></div>
     </div>
   </div>
-  <div class="hero-r">
+  <div class="hero-r" style="display:flex;flex-direction:column;gap:16px;padding:80px 80px 80px 32px;">
     <div class="hero-card">
       <div class="hc-label">// Now Accepting</div>
       <div class="hc-title">Music Supervision Sync Library</div>
-      <div class="hc-desc">We are now accepting original music for our curated sync library on a rolling basis. Licensed, diverse tracks for film, advertising, and branded content.</div>
+      <div class="hc-desc">We accept original music for our curated sync library on a rolling basis. Diverse, licensed tracks for film, documentary, and independent media.</div>
       <div class="pills"><span class="pill p-red">Music</span><span class="pill p-orange">Rolling Basis</span><span class="pill p-yellow">Sync Ready</span><span class="pill p-ash">Licensed</span></div>
       <a href="music-supervision.html" class="hc-cta">Submit Now! →</a>
+    </div>
+    <div class="hero-card">
+      <div class="hc-label">// Free for All Creators</div>
+      <div class="hc-title">Production Resources</div>
+      <div class="hc-desc">Templates, legal forms, and production tools built for independent filmmakers — free to download and use on your projects.</div>
+      <div class="pills"><span class="pill p-red">Templates</span><span class="pill p-orange">Legal Forms</span><span class="pill p-yellow">Free</span><span class="pill p-ash">9 Files</span></div>
+      <a href="resources.html" class="hc-cta">Browse Resources →</a>
     </div>
   </div>
 </section>
@@ -1016,7 +1061,7 @@ nav{position:sticky;top:5px;z-index:200;}
 <section class="page-section ps-white">
   <div class="section-label">What We Do</div>
   <h2 class="page-h2" style="margin-bottom:12px;">Everything under one <em>roof.</em></h2>
-  <p style="font-size:15px;line-height:1.75;color:var(--ash);max-width:560px;margin-bottom:0;">Film and media education, creative workshops, original storytelling, and cultural events — built specifically for creators who've been left out of the conversation.</p>
+  <p style="font-size:15px;line-height:1.75;color:var(--ash);max-width:560px;margin-bottom:0;">Film and media education, creative workshops, and cultural events — built specifically for underrepresented creators who deserve the tools to tell their stories.</p>
   <div class="services-grid">
     <div class="svc-tile"><span class="svc-icon">✍️</span><div class="svc-name">Talent Development</div><div class="svc-desc">Workshops, residencies, curriculum &amp; mentorship in film, music, and storytelling</div><a href="programs.html" class="svc-link">Explore Programs →</a></div>
     <div class="svc-tile"><span class="svc-icon">🎤</span><div class="svc-name">Live Events</div><div class="svc-desc">Cultural events, open mics, screenings, panels &amp; showcases for creative enrichment</div><a href="events.html" class="svc-link">Find Events →</a></div>
@@ -1051,7 +1096,7 @@ nav{position:sticky;top:5px;z-index:200;}
       <label>I am a...</label>
       <select name="role"><option>Artist / Creator</option><option>Filmmaker / Writer</option><option>Musician</option><option>Industry Professional</option><option>Brand / Organization</option></select>
       <button class="ns-submit" type="submit">Gather With Us →</button>
-      <p class="ns-note">Free forever. No spam. Unsubscribe anytime.<br><small style="color:var(--ash);">[PLACEHOLDER: Connect to Airtable or Beehiiv]</small></p>
+      <p class="ns-note">Free forever. No spam. Unsubscribe anytime.<br></p>
     </form>
   </div>
 </div>
@@ -1059,7 +1104,7 @@ nav{position:sticky;top:5px;z-index:200;}
 <footer>
   <div class="footer-grid">
     <div class="fg-brand">
-      <div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);">HEARTH™</a></div>
+      <div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;">HEARTH<span class="tm">™</span></a></div>
       <p class="fg-tagline">Where Voices Find Their Fire.</p>
       <div class="fg-social">
         <a href="https://www.instagram.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="Instagram">IG</a>
@@ -1114,15 +1159,16 @@ document.getElementById('gatherBtn').addEventListener('click', async function(){
   var role  = document.getElementById('gf_role').value;
   if(!fname||!lname||!email){ alert('Please fill in all required fields.'); return; }
   try {
-    var r = await fetch('https://api.airtable.com/v0/appdlPcw5190uENFf/tblYLycvNesUSAZYJ',{
-      method:'POST',
-      headers:{'Authorization':'Bearer patJXFC5QBpjYqxdQ','Content-Type':'application/json'},
-      body:JSON.stringify({fields:{'Email':email,'Name':fname+' '+lname,'I am a…':role}})
+    var r = await fetch('/.netlify/functions/airtable', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields})
+      })
     });
     if(r.ok){
       document.getElementById('gatherForm').style.display='none';
       document.getElementById('gatherConfirm').style.display='block';
-    } else { alert('Something went wrong — please try again.'); }
+    } else { var errData = await r.clone().text(); console.error('Airtable error:', errData); alert('Submission error. Please check console for details.'); }
   } catch(e) { alert('Network error — please check your connection.'); }
 });
 </script>

@@ -960,108 +960,208 @@ nav{position:sticky;top:5px;z-index:200;}
 }
 </style>
 
+
+<style>
+/* ── TRADEMARK SUPERSCRIPT ── */
+.tm { font-size: 0.55em; vertical-align: super; font-weight: 400; letter-spacing: 0; }
+
+/* ── FOOTER color fix (belt AND suspenders) ── */
+.fg-logo a, .fg-logo a:visited, .fg-logo a:link {
+  color: var(--white) !important;
+  text-decoration: none !important;
+}
+
+/* ── NAV Home link ── */
+.nav-home {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--stone);
+  text-decoration: none;
+  padding: 7px 13px;
+  transition: color 0.2s;
+}
+.nav-home:hover { color: var(--red); }
+.nav-home.active-page { color: var(--red); }
+
+/* ── MOBILE fixes ── */
+@media (max-width: 768px) {
+  /* Mentoring button fix */
+  .prog-notify-btn { width: 100% !important; display: block !important; }
+  /* Sticky sidebar unstick */
+  [style*="position:sticky"] { position: relative !important; top: auto !important; }
+  /* Event meta pills wrap */
+  .evt-meta { flex-wrap: wrap !important; }
+  /* About page grid collapse */
+  .about-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+  /* Values grid mobile */
+  .values-grid6 { grid-template-columns: 1fr !important; }
+}
+</style>
 </head>
 <body>
-<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH™</span></a><ul class="nav-menu"><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html" class="active-page">Community</a></li><li><a href="about.html">About</a></li><li><a href="work-with-us.html">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
+<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH<span class="tm">™</span></span></a><ul class="nav-menu"><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html" class="active-page">Community</a></li><li><a href="about.html">About</a></li><li><a href="work-with-us.html">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
 <main>
+
+<!-- HERO -->
 <div style="background:var(--stone);padding:90px 80px;position:relative;overflow:hidden;">
   <div style="position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(229,9,20,0.12),transparent 70%);pointer-events:none;"></div>
   <div style="position:relative;z-index:1;max-width:640px;">
     <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-bottom:18px;display:flex;align-items:center;gap:10px;"><span style="display:block;width:24px;height:1px;background:var(--orange);"></span>Community · Resources</div>
     <h1 style="font-family:'Besley',serif;font-weight:700;font-size:52px;color:var(--white);letter-spacing:-1.5px;line-height:1.07;margin-bottom:14px;">Tools for<br><em style="color:var(--orange);">makers.</em></h1>
-    <p style="font-size:15px;line-height:1.75;color:rgba(250,250,248,0.68);">Free templates, scripts, and production resources for the HEARTH™ community. Download, use, and create.</p>
+    <p style="font-size:15px;line-height:1.75;color:rgba(250,250,248,0.68);">Free scripts, templates, and production tools for the HEARTH™ community — made for independent filmmakers working with limited resources.</p>
   </div>
 </div>
 
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;padding:60px 80px;background:var(--white);">
+<div style="padding:60px 80px;background:var(--white);">
 
-    <!-- SCRIPT LIBRARY -->
-    <div>
-      <div class="section-label">Script Library</div>
-      <h3 style="font-family:'Besley',serif;font-weight:700;font-size:22px;color:var(--stone);margin-bottom:16px;">Scripts &amp; documents</h3>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="background:var(--paper);border-radius:3px;padding:16px 18px;">
-          <div style="font-family:'Besley',serif;font-weight:700;font-size:15px;color:var(--stone);margin-bottom:4px;">"Time Lock"</div>
-          <div style="font-size:12px;color:var(--ash);margin-bottom:8px;">Short Film · Youth in Film · Drama</div>
-          <a href="[PLACEHOLDER-PDF]" style="font-size:12px;color:var(--red);font-weight:500;text-decoration:none;" target="_blank">Download PDF → [PLACEHOLDER]</a>
-        </div>
-        <div style="background:var(--paper);border-radius:3px;padding:16px 18px;">
-          <div style="font-family:'Besley',serif;font-weight:700;font-size:15px;color:var(--stone);margin-bottom:4px;">"Transplants — Pilot"</div>
-          <div style="font-size:12px;color:var(--ash);margin-bottom:8px;">TV Pilot · Limited Series · Drama</div>
-          <a href="[PLACEHOLDER-PDF]" style="font-size:12px;color:var(--red);font-weight:500;text-decoration:none;" target="_blank">Download PDF → [PLACEHOLDER]</a>
-        </div>
-        <div style="background:var(--paper);border-radius:3px;padding:16px 18px;border-left:3px solid var(--red);">
-          <div style="font-family:'Besley',serif;font-weight:700;font-size:14px;color:var(--stone);margin-bottom:4px;">Talent Release Form</div>
-          <div style="font-size:12px;color:var(--ash);margin-bottom:8px;">Legal · Cast &amp; On-Screen Participants</div>
-          <a href="resources/HEARTH_Talent_Release_Form.docx" download style="font-size:12px;color:var(--red);font-weight:500;text-decoration:none;">Download .docx ↓</a>
-        </div>
-        <div style="background:var(--paper);border-radius:3px;padding:16px 18px;border-left:3px solid var(--red);">
-          <div style="font-family:'Besley',serif;font-weight:700;font-size:14px;color:var(--stone);margin-bottom:4px;">Location Agreement</div>
-          <div style="font-size:12px;color:var(--ash);margin-bottom:8px;">Legal · Filming Locations</div>
-          <a href="resources/HEARTH_Location_Agreement.docx" download style="font-size:12px;color:var(--red);font-weight:500;text-decoration:none;">Download .docx ↓</a>
-        </div>
-        <div style="background:var(--paper);border-radius:3px;padding:16px 18px;border-left:3px solid var(--red);">
-          <div style="font-family:'Besley',serif;font-weight:700;font-size:14px;color:var(--stone);margin-bottom:4px;">Post-Production Delivery Checklist</div>
-          <div style="font-size:12px;color:var(--ash);margin-bottom:8px;">Festival Submission &amp; Distribution Readiness</div>
-          <a href="resources/HEARTH_PostProduction_Delivery_Checklist.docx" download style="font-size:12px;color:var(--red);font-weight:500;text-decoration:none;">Download .docx ↓</a>
-        </div>
+  <!-- ── SECTION 1: SCRIPT LIBRARY ── -->
+  <div style="margin-bottom:60px;">
+    <div class="section-label">Script Library</div>
+    <h2 class="page-h2" style="margin-bottom:6px;">Scripts &amp; <em>screenplays.</em></h2>
+    <p style="font-size:14px;color:var(--ash);margin-bottom:24px;">Original scripts from HEARTH™ productions, available for study and creative reference.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+      <div style="background:var(--paper);border-radius:3px;padding:20px;border-left:3px solid var(--red);">
+        <div style="font-family:'Besley',serif;font-weight:700;font-size:16px;color:var(--stone);margin-bottom:4px;">"Time Lock"</div>
+        <div style="font-size:12px;color:var(--ash);margin-bottom:12px;">Short Film · Youth in Film · Drama/Thriller</div>
+        <a href="[PLACEHOLDER-PDF-TIME-LOCK]" style="font-size:12px;color:var(--red);font-weight:500;text-decoration:none;" target="_blank" rel="noopener noreferrer">Download PDF → [Add when available]</a>
+      </div>
+      <div style="background:var(--paper);border-radius:3px;padding:20px;border-left:3px solid var(--red);">
+        <div style="font-family:'Besley',serif;font-weight:700;font-size:16px;color:var(--stone);margin-bottom:4px;">"Transplants — Pilot"</div>
+        <div style="font-size:12px;color:var(--ash);margin-bottom:12px;">TV Pilot · Limited Series · Drama</div>
+        <a href="[PLACEHOLDER-PDF-TRANSPLANTS]" style="font-size:12px;color:var(--red);font-weight:500;text-decoration:none;" target="_blank" rel="noopener noreferrer">Download PDF → [Add when available]</a>
+      </div>
+      <div style="background:var(--paper);border-radius:3px;padding:20px;border:1px dashed rgba(141,153,174,0.3);display:flex;align-items:center;justify-content:center;">
+        <div style="font-size:13px;color:var(--ash);font-style:italic;text-align:center;">More scripts added as HEARTH™ programs produce original work.</div>
       </div>
     </div>
-
-    <!-- PRODUCTION TEMPLATES -->
-    <div>
-      <div class="section-label sl-orange">Production Templates</div>
-      <h3 style="font-family:'Besley',serif;font-weight:700;font-size:22px;color:var(--stone);margin-bottom:16px;">Spreadsheets &amp; tools</h3>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <a href="resources/HEARTH_Production_Budget_Template.xlsx" download style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);">
-          <div><div style="font-size:13px;font-weight:600;margin-bottom:2px;">Production Budget Template</div><div style="font-size:11px;color:var(--ash);">9 tabs · Above-the-line through Post</div></div>
-          <span style="color:var(--orange);font-size:16px;">↓</span>
-        </a>
-        <a href="resources/HEARTH_Production_Timeline.xlsx" download style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);">
-          <div><div style="font-size:13px;font-weight:600;margin-bottom:2px;">Production Timeline</div><div style="font-size:11px;color:var(--ash);">Indie Film · 8-Week Plan included</div></div>
-          <span style="color:var(--orange);font-size:16px;">↓</span>
-        </a>
-        <a href="resources/HEARTH_Call_Sheet_Template.xlsx" download style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);">
-          <div><div style="font-size:13px;font-weight:600;margin-bottom:2px;">Daily Call Sheet</div><div style="font-size:11px;color:var(--ash);">Industry-standard format</div></div>
-          <span style="color:var(--orange);font-size:16px;">↓</span>
-        </a>
-        <a href="resources/HEARTH_Shot_List_Template.xlsx" download style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);">
-          <div><div style="font-size:13px;font-weight:600;margin-bottom:2px;">Shot List Template</div><div style="font-size:11px;color:var(--ash);">Short Film · Shot Type Reference included</div></div>
-          <span style="color:var(--orange);font-size:16px;">↓</span>
-        </a>
-        <a href="resources/HEARTH_Script_Breakdown_Sheet.xlsx" download style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);">
-          <div><div style="font-size:13px;font-weight:600;margin-bottom:2px;">Script Breakdown Sheet</div><div style="font-size:11px;color:var(--ash);">Scene &amp; Element Breakdown tabs</div></div>
-          <span style="color:var(--orange);font-size:16px;">↓</span>
-        </a>
-        <a href="resources/HEARTH_Festival_Submission_Tracker.xlsx" download style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);">
-          <div><div style="font-size:13px;font-weight:600;margin-bottom:2px;">Festival Submission Tracker</div><div style="font-size:11px;color:var(--ash);">Track submissions, status &amp; deadlines</div></div>
-          <span style="color:var(--orange);font-size:16px;">↓</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- MEMBER ACCESS -->
-    <div>
-      <div class="section-label">Community</div>
-      <h3 style="font-family:'Besley',serif;font-weight:700;font-size:22px;color:var(--stone);margin-bottom:14px;">For HEARTH™ creators</h3>
-      <p style="font-size:13px;line-height:1.7;color:var(--ash);margin-bottom:20px;">All resources on this page are free for the HEARTH™ community. Script Labs, Youth in Film, and Mentoring participants receive additional annotated drafts and exclusive guides.</p>
-      <div style="background:var(--paper);border-radius:3px;padding:20px;">
-        <div style="font-size:13px;font-weight:600;color:var(--stone);margin-bottom:8px;">New resources added regularly</div>
-        <p style="font-size:12px;line-height:1.6;color:var(--ash);margin-bottom:14px;">Subscribe to The Glow to be notified when new templates, guides, and educational materials are added.</p>
-        <a href="newsletter.html" class="btn btn-red" style="font-size:12px;padding:10px 18px;display:inline-block;">Subscribe to The Glow →</a>
-      </div>
-      <div style="margin-top:20px;padding:16px;background:rgba(229,9,20,0.04);border:1px solid rgba(229,9,20,0.1);border-radius:3px;">
-        <div style="font-size:12px;font-weight:600;color:var(--stone);margin-bottom:6px;">📁 How to use these files</div>
-        <p style="font-size:12px;line-height:1.6;color:var(--ash);">Excel files open in Google Sheets or Microsoft Excel. Word docs open in Google Docs or Microsoft Word. All files are free to download, edit, and use for your productions.</p>
-      </div>
-    </div>
-
   </div>
+
+  <!-- ── SECTION 2: PRODUCTION TEMPLATES & LEGAL FORMS ── -->
+  <div style="margin-bottom:60px;">
+    <div class="section-label sl-orange">Production Templates &amp; Legal Forms</div>
+    <h2 class="page-h2" style="margin-bottom:6px;">Spreadsheets, tools &amp; <em>agreements.</em></h2>
+    <p style="font-size:14px;color:var(--ash);margin-bottom:24px;">Everything you need to plan, shoot, and deliver an independent film — free to download and use on your productions.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+
+      <a href="resources/HEARTH_Production_Budget_Template.xlsx"
+         download="HEARTH_Production_Budget_Template.xlsx"
+         style="display:flex;flex-direction:column;padding:20px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);border:1.5px solid transparent;transition:border-color 0.2s;"
+         onmouseover="this.style.borderColor='var(--orange)'" onmouseout="this.style.borderColor='transparent'">
+        <div style="font-size:20px;margin-bottom:10px;">📊</div>
+        <div style="font-size:13px;font-weight:600;color:var(--stone);margin-bottom:3px;">Production Budget</div>
+        <div style="font-size:11px;color:var(--ash);margin-bottom:12px;">9 tabs · Above-the-line through Post · Excel</div>
+        <span style="font-size:12px;color:var(--orange);font-weight:600;margin-top:auto;">Download .xlsx ↓</span>
+      </a>
+
+      <a href="resources/HEARTH_Production_Timeline.xlsx"
+         download="HEARTH_Production_Timeline.xlsx"
+         style="display:flex;flex-direction:column;padding:20px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);border:1.5px solid transparent;transition:border-color 0.2s;"
+         onmouseover="this.style.borderColor='var(--orange)'" onmouseout="this.style.borderColor='transparent'">
+        <div style="font-size:20px;margin-bottom:10px;">📅</div>
+        <div style="font-size:13px;font-weight:600;color:var(--stone);margin-bottom:3px;">Production Timeline</div>
+        <div style="font-size:11px;color:var(--ash);margin-bottom:12px;">8-Week indie film plan included · Excel</div>
+        <span style="font-size:12px;color:var(--orange);font-weight:600;margin-top:auto;">Download .xlsx ↓</span>
+      </a>
+
+      <a href="resources/HEARTH_Call_Sheet_Template.xlsx"
+         download="HEARTH_Call_Sheet_Template.xlsx"
+         style="display:flex;flex-direction:column;padding:20px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);border:1.5px solid transparent;transition:border-color 0.2s;"
+         onmouseover="this.style.borderColor='var(--orange)'" onmouseout="this.style.borderColor='transparent'">
+        <div style="font-size:20px;margin-bottom:10px;">📋</div>
+        <div style="font-size:13px;font-weight:600;color:var(--stone);margin-bottom:3px;">Daily Call Sheet</div>
+        <div style="font-size:11px;color:var(--ash);margin-bottom:12px;">Industry-standard format · Excel</div>
+        <span style="font-size:12px;color:var(--orange);font-weight:600;margin-top:auto;">Download .xlsx ↓</span>
+      </a>
+
+      <a href="resources/HEARTH_Shot_List_Template.xlsx"
+         download="HEARTH_Shot_List_Template.xlsx"
+         style="display:flex;flex-direction:column;padding:20px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);border:1.5px solid transparent;transition:border-color 0.2s;"
+         onmouseover="this.style.borderColor='var(--orange)'" onmouseout="this.style.borderColor='transparent'">
+        <div style="font-size:20px;margin-bottom:10px;">🎬</div>
+        <div style="font-size:13px;font-weight:600;color:var(--stone);margin-bottom:3px;">Shot List</div>
+        <div style="font-size:11px;color:var(--ash);margin-bottom:12px;">Short film format · Shot type reference · Excel</div>
+        <span style="font-size:12px;color:var(--orange);font-weight:600;margin-top:auto;">Download .xlsx ↓</span>
+      </a>
+
+      <a href="resources/HEARTH_Script_Breakdown_Sheet.xlsx"
+         download="HEARTH_Script_Breakdown_Sheet.xlsx"
+         style="display:flex;flex-direction:column;padding:20px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);border:1.5px solid transparent;transition:border-color 0.2s;"
+         onmouseover="this.style.borderColor='var(--orange)'" onmouseout="this.style.borderColor='transparent'">
+        <div style="font-size:20px;margin-bottom:10px;">📝</div>
+        <div style="font-size:13px;font-weight:600;color:var(--stone);margin-bottom:3px;">Script Breakdown</div>
+        <div style="font-size:11px;color:var(--ash);margin-bottom:12px;">Scene &amp; element breakdown tabs · Excel</div>
+        <span style="font-size:12px;color:var(--orange);font-weight:600;margin-top:auto;">Download .xlsx ↓</span>
+      </a>
+
+      <a href="resources/HEARTH_Festival_Submission_Tracker.xlsx"
+         download="HEARTH_Festival_Submission_Tracker.xlsx"
+         style="display:flex;flex-direction:column;padding:20px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);border:1.5px solid transparent;transition:border-color 0.2s;"
+         onmouseover="this.style.borderColor='var(--orange)'" onmouseout="this.style.borderColor='transparent'">
+        <div style="font-size:20px;margin-bottom:10px;">🏆</div>
+        <div style="font-size:13px;font-weight:600;color:var(--stone);margin-bottom:3px;">Festival Submission Tracker</div>
+        <div style="font-size:11px;color:var(--ash);margin-bottom:12px;">Track submissions, status &amp; deadlines · Excel</div>
+        <span style="font-size:12px;color:var(--orange);font-weight:600;margin-top:auto;">Download .xlsx ↓</span>
+      </a>
+
+      <a href="resources/HEARTH_Talent_Release_Form.docx"
+         download="HEARTH_Talent_Release_Form.docx"
+         style="display:flex;flex-direction:column;padding:20px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);border:1.5px solid transparent;transition:border-color 0.2s;"
+         onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='transparent'">
+        <div style="font-size:20px;margin-bottom:10px;">📄</div>
+        <div style="font-size:13px;font-weight:600;color:var(--stone);margin-bottom:3px;">Talent Release Form</div>
+        <div style="font-size:11px;color:var(--ash);margin-bottom:12px;">Cast &amp; on-screen participants · Word</div>
+        <span style="font-size:12px;color:var(--red);font-weight:600;margin-top:auto;">Download .docx ↓</span>
+      </a>
+
+      <a href="resources/HEARTH_Location_Agreement.docx"
+         download="HEARTH_Location_Agreement.docx"
+         style="display:flex;flex-direction:column;padding:20px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);border:1.5px solid transparent;transition:border-color 0.2s;"
+         onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='transparent'">
+        <div style="font-size:20px;margin-bottom:10px;">📍</div>
+        <div style="font-size:13px;font-weight:600;color:var(--stone);margin-bottom:3px;">Location Agreement</div>
+        <div style="font-size:11px;color:var(--ash);margin-bottom:12px;">Filming location permissions · Word</div>
+        <span style="font-size:12px;color:var(--red);font-weight:600;margin-top:auto;">Download .docx ↓</span>
+      </a>
+
+      <a href="resources/HEARTH_PostProduction_Delivery_Checklist.docx"
+         download="HEARTH_PostProduction_Delivery_Checklist.docx"
+         style="display:flex;flex-direction:column;padding:20px;background:var(--paper);border-radius:3px;text-decoration:none;color:var(--stone);border:1.5px solid transparent;transition:border-color 0.2s;"
+         onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='transparent'">
+        <div style="font-size:20px;margin-bottom:10px;">✅</div>
+        <div style="font-size:13px;font-weight:600;color:var(--stone);margin-bottom:3px;">Post-Production Checklist</div>
+        <div style="font-size:11px;color:var(--ash);margin-bottom:12px;">Festival &amp; distribution readiness · Word</div>
+        <span style="font-size:12px;color:var(--red);font-weight:600;margin-top:auto;">Download .docx ↓</span>
+      </a>
+
+    </div>
+    <p style="font-size:11px;color:var(--ash);margin-top:16px;padding:12px 16px;background:rgba(229,9,20,0.04);border-radius:3px;border-left:3px solid rgba(229,9,20,0.2);">⚠ Legal templates are provided for educational purposes only and do not constitute legal advice. Have all agreements reviewed by a licensed attorney before use.</p>
+  </div>
+
+  <!-- ── SECTION 3: COMMUNITY ACCESS ── -->
+  <div style="background:var(--paper);border-radius:4px;padding:40px;display:grid;grid-template-columns:2fr 1fr;gap:48px;align-items:center;">
+    <div>
+      <div class="section-label">Community Access</div>
+      <h3 style="font-family:'Besley',serif;font-weight:700;font-size:22px;color:var(--stone);margin-bottom:10px;">Free for every <em style="color:var(--red);">HEARTH™ creator.</em></h3>
+      <p style="font-size:14px;line-height:1.75;color:rgba(43,45,66,0.72);">All files on this page are free to download, edit, and use on your productions. No membership required. Script Labs, Youth in Film, and Mentoring participants receive additional annotated scripts and exclusive guides. Subscribe to The Glow to be notified when new resources are added.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <a href="newsletter.html" class="btn btn-red" style="text-align:center;display:block;">Subscribe to The Glow →</a>
+      <div style="font-size:12px;color:var(--ash);line-height:1.6;padding:12px;background:white;border-radius:3px;">
+        <strong style="color:var(--stone);">How to open these files:</strong><br>
+        .xlsx files → Google Sheets or Excel<br>
+        .docx files → Google Docs or Word<br>
+        Files save to your Downloads folder when clicked.
+      </div>
+    </div>
+  </div>
+
+</div>
 </main>
 <footer>
   <div class="footer-grid">
     <div class="fg-brand">
-      <div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);">HEARTH™</a></div>
+      <div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;">HEARTH<span class="tm">™</span></a></div>
       <p class="fg-tagline">Where Voices Find Their Fire.</p>
       <div class="fg-social">
         <a href="https://www.instagram.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="Instagram">IG</a>

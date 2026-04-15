@@ -962,9 +962,47 @@ nav{position:sticky;top:5px;z-index:200;}
 }
 </style>
 
+
+<style>
+/* ── TRADEMARK SUPERSCRIPT ── */
+.tm { font-size: 0.55em; vertical-align: super; font-weight: 400; letter-spacing: 0; }
+
+/* ── FOOTER color fix (belt AND suspenders) ── */
+.fg-logo a, .fg-logo a:visited, .fg-logo a:link {
+  color: var(--white) !important;
+  text-decoration: none !important;
+}
+
+/* ── NAV Home link ── */
+.nav-home {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--stone);
+  text-decoration: none;
+  padding: 7px 13px;
+  transition: color 0.2s;
+}
+.nav-home:hover { color: var(--red); }
+.nav-home.active-page { color: var(--red); }
+
+/* ── MOBILE fixes ── */
+@media (max-width: 768px) {
+  /* Mentoring button fix */
+  .prog-notify-btn { width: 100% !important; display: block !important; }
+  /* Sticky sidebar unstick */
+  [style*="position:sticky"] { position: relative !important; top: auto !important; }
+  /* Event meta pills wrap */
+  .evt-meta { flex-wrap: wrap !important; }
+  /* About page grid collapse */
+  .about-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+  /* Values grid mobile */
+  .values-grid6 { grid-template-columns: 1fr !important; }
+}
+</style>
 </head>
 <body>
-<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH™</span></a><ul class="nav-menu"><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="work-with-us.html" class="active-page">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
+<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH<span class="tm">™</span></span></a><ul class="nav-menu"><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="work-with-us.html" class="active-page">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
 <main>
 
 <div class="b2b-hero">
@@ -1005,7 +1043,7 @@ nav{position:sticky;top:5px;z-index:200;}
       <span class="b2b-card-tag">Talent Services</span>
       <div class="b2b-card-name">Cast &amp; Crew Access</div>
       <p class="b2b-card-desc">Connect with talented, vetted creators from our community — filmmakers, writers, directors, actors, and crew from underrepresented backgrounds who are ready to bring their craft to independent and community productions.</p>
-      <a href="collab-hub.html" class="b2b-card-cta" style="margin-bottom:8px;">Browse Creators →</a><br><a href="#" id="hireCastBtn" class="btn btn-orange" style="font-size:12px;padding:8px 16px;margin-top:8px;display:inline-block;">Hire Cast/Crew →</a>
+      <a href="collab-hub.html" class="b2b-card-cta" style="margin-bottom:8px;">Browse Creators →</a>
     </div>
 
     <div class="b2b-card">
@@ -1116,7 +1154,7 @@ nav{position:sticky;top:5px;z-index:200;}
 <footer>
   <div class="footer-grid">
     <div class="fg-brand">
-      <div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);">HEARTH™</a></div>
+      <div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;">HEARTH<span class="tm">™</span></a></div>
       <p class="fg-tagline">Where Voices Find Their Fire.</p>
       <div class="fg-social">
         <a href="https://www.instagram.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="Instagram">IG</a>
@@ -1177,11 +1215,11 @@ async function submitToClients(extraFields){
     'Services Interested in': document.getElementById('cf_service').value,
     ...extraFields
   };
-  return await fetch('https://api.airtable.com/v0/appyhjawc9vZ5DfWg/tblR2B8QwzrCDwNKD',{
-    method:'POST',
-    headers:{'Authorization':'Bearer patJXFC5QBpjYqxdQ','Content-Type':'application/json'},
-    body:JSON.stringify({fields})
-  });
+  return await fetch('/.netlify/functions/airtable', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({base:'appyhjawc9vZ5DfWg', table:'tblR2B8QwzrCDwNKD', fields})
+    });
 }
 document.getElementById('clientSubmitBtn').addEventListener('click', async function(){
   var name=document.getElementById('cf_name').value.trim();
@@ -1192,12 +1230,9 @@ document.getElementById('clientSubmitBtn').addEventListener('click', async funct
     if(r.ok){
       document.getElementById('clientForm').style.display='none';
       document.getElementById('clientConfirm').style.display='block';
-    } else { alert('Something went wrong — please try again.'); }
+    } else { var errData = await r.clone().text(); console.error('Airtable error:', errData); alert('Submission error. Please check console for details.'); }
   } catch(e) { alert('Network error.'); }
 });
-document.getElementById('hireCastBtn').addEventListener('click', async function(){
-  document.getElementById('cf_service').value = 'Cast & Crew Access';
-  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
 });
 </script>
 </body></html>

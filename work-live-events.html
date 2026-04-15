@@ -960,9 +960,47 @@ nav{position:sticky;top:5px;z-index:200;}
 }
 </style>
 
+
+<style>
+/* ── TRADEMARK SUPERSCRIPT ── */
+.tm { font-size: 0.55em; vertical-align: super; font-weight: 400; letter-spacing: 0; }
+
+/* ── FOOTER color fix (belt AND suspenders) ── */
+.fg-logo a, .fg-logo a:visited, .fg-logo a:link {
+  color: var(--white) !important;
+  text-decoration: none !important;
+}
+
+/* ── NAV Home link ── */
+.nav-home {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--stone);
+  text-decoration: none;
+  padding: 7px 13px;
+  transition: color 0.2s;
+}
+.nav-home:hover { color: var(--red); }
+.nav-home.active-page { color: var(--red); }
+
+/* ── MOBILE fixes ── */
+@media (max-width: 768px) {
+  /* Mentoring button fix */
+  .prog-notify-btn { width: 100% !important; display: block !important; }
+  /* Sticky sidebar unstick */
+  [style*="position:sticky"] { position: relative !important; top: auto !important; }
+  /* Event meta pills wrap */
+  .evt-meta { flex-wrap: wrap !important; }
+  /* About page grid collapse */
+  .about-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+  /* Values grid mobile */
+  .values-grid6 { grid-template-columns: 1fr !important; }
+}
+</style>
 </head>
 <body>
-<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH™</span></a><ul class="nav-menu"><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="work-with-us.html" class="active-page">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
+<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH<span class="tm">™</span></span></a><ul class="nav-menu"><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="work-with-us.html" class="active-page">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
 <main>
 <div style="background:var(--stone);padding:90px 80px;position:relative;overflow:hidden;">
   <div style="position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,53,0.12),transparent 70%);pointer-events:none;"></div>
@@ -1045,19 +1083,19 @@ document.getElementById('liveEventBtn').addEventListener('click', async function
   };
   Object.keys(fields).forEach(k=>{ if(!fields[k]) delete fields[k]; });
   try{
-    var r=await fetch('https://api.airtable.com/v0/appyhjawc9vZ5DfWg/tblR2B8QwzrCDwNKD',{
+    var r=await fetch('/.netlify/functions/airtable', {
       method:'POST',
-      headers:{'Authorization':'Bearer patJXFC5QBpjYqxdQ','Content-Type':'application/json'},
-      body:JSON.stringify({fields})
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({base:'appyhjawc9vZ5DfWg', table:'tblR2B8QwzrCDwNKD', fields})
     });
     if(r.ok){
       document.getElementById('liveEventForm').style.display='none';
       document.getElementById('liveEventConfirm').style.display='block';
-    } else { alert('Something went wrong — please try again.'); }
+    } else { var errData = await r.clone().text(); console.error('Airtable error:', errData); alert('Submission error. Please check console for details.'); }
   } catch(e){ alert('Network error.'); }
 });
 </script>
-<footer><div class="footer-grid"><div class="fg-brand"><div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);">HEARTH™</a></div><p class="fg-tagline">Where Voices Find Their Fire.</p><div class="fg-social"><a href="https://www.instagram.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn">IG</a><a href="https://www.tiktok.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn">TK</a><a href="https://www.youtube.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn">YT</a><a href="https://www.linkedin.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn">LI</a></div></div><div class="footer-col"><h5>Programs</h5><ul><li><a href="programs.html">All Programs</a></li><li><a href="prog-script-labs.html">Script Labs</a></li><li><a href="prog-youth-in-film.html">Youth in Film</a></li><li><a href="prog-mentoring.html">Mentorship</a></li></ul></div><div class="footer-col"><h5>Community</h5><ul><li><a href="events.html">Events</a></li><li><a href="community.html">Community</a></li><li><a href="newsletter.html">The Glow</a></li></ul></div><div class="footer-col"><h5>Media</h5><ul><li><a href="media.html">Film &amp; TV</a></li><li><a href="music-supervision.html">Music Sync</a></li></ul></div><div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="work-with-us.html">Work With Us</a></li><li><a href="sponsorship.html">Sponsorship</a></li></ul></div></div><div class="footer-bottom"><span class="footer-copy">© 2026 HEARTH™. All rights reserved.</span><div class="fire-dots"><div class="fd fd1"></div><div class="fd fd2"></div><div class="fd fd3"></div></div></div></footer><script>
+<footer><div class="footer-grid"><div class="fg-brand"><div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;">HEARTH<span class="tm">™</span></a></div><p class="fg-tagline">Where Voices Find Their Fire.</p><div class="fg-social"><a href="https://www.instagram.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn">IG</a><a href="https://www.tiktok.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn">TK</a><a href="https://www.youtube.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn">YT</a><a href="https://www.linkedin.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn">LI</a></div></div><div class="footer-col"><h5>Programs</h5><ul><li><a href="programs.html">All Programs</a></li><li><a href="prog-script-labs.html">Script Labs</a></li><li><a href="prog-youth-in-film.html">Youth in Film</a></li><li><a href="prog-mentoring.html">Mentorship</a></li></ul></div><div class="footer-col"><h5>Community</h5><ul><li><a href="events.html">Events</a></li><li><a href="community.html">Community</a></li><li><a href="newsletter.html">The Glow</a></li></ul></div><div class="footer-col"><h5>Media</h5><ul><li><a href="media.html">Film &amp; TV</a></li><li><a href="music-supervision.html">Music Sync</a></li></ul></div><div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="work-with-us.html">Work With Us</a></li><li><a href="sponsorship.html">Sponsorship</a></li></ul></div></div><div class="footer-bottom"><span class="footer-copy">© 2026 HEARTH™. All rights reserved.</span><div class="fire-dots"><div class="fd fd1"></div><div class="fd fd2"></div><div class="fd fd3"></div></div></div></footer><script>
 function toggleMobileMenu(){
   document.getElementById('mobileMenu').classList.toggle('open');
 }

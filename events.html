@@ -962,9 +962,47 @@ nav{position:sticky;top:5px;z-index:200;}
 }
 </style>
 
+
+<style>
+/* ── TRADEMARK SUPERSCRIPT ── */
+.tm { font-size: 0.55em; vertical-align: super; font-weight: 400; letter-spacing: 0; }
+
+/* ── FOOTER color fix (belt AND suspenders) ── */
+.fg-logo a, .fg-logo a:visited, .fg-logo a:link {
+  color: var(--white) !important;
+  text-decoration: none !important;
+}
+
+/* ── NAV Home link ── */
+.nav-home {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--stone);
+  text-decoration: none;
+  padding: 7px 13px;
+  transition: color 0.2s;
+}
+.nav-home:hover { color: var(--red); }
+.nav-home.active-page { color: var(--red); }
+
+/* ── MOBILE fixes ── */
+@media (max-width: 768px) {
+  /* Mentoring button fix */
+  .prog-notify-btn { width: 100% !important; display: block !important; }
+  /* Sticky sidebar unstick */
+  [style*="position:sticky"] { position: relative !important; top: auto !important; }
+  /* Event meta pills wrap */
+  .evt-meta { flex-wrap: wrap !important; }
+  /* About page grid collapse */
+  .about-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+  /* Values grid mobile */
+  .values-grid6 { grid-template-columns: 1fr !important; }
+}
+</style>
 </head>
 <body>
-<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH™</span></a><ul class="nav-menu"><li><a href="programs.html">Programs</a></li><li><a href="events.html" class="active-page">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="work-with-us.html">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
+<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH<span class="tm">™</span></span></a><ul class="nav-menu"><li><a href="programs.html">Programs</a></li><li><a href="events.html" class="active-page">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="work-with-us.html">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
 <main>
 <div class="events-hero">
   <div class="eh-glow eg1"></div><div class="eh-glow eg2"></div>
@@ -1044,7 +1082,7 @@ nav{position:sticky;top:5px;z-index:200;}
     <div class="ev-item" data-cat="panel" style="border:1.5px solid rgba(141,153,174,0.18);border-radius:4px;overflow:hidden;background:white;">
       <div style="height:6px;background:var(--ash);"></div>
       <div style="padding:24px;">
-        <div style="font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ash);margin-bottom:8px;">Panel · Free</div>
+        <div style="font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(200,210,225,0.9);margin-bottom:8px;">Panel · Free</div>
         <a href="evt-breaking-in.html" class="ev-item-title" style="font-family:'Besley',serif;font-weight:700;font-size:17px;color:var(--white);display:block;margin-bottom:8px;background:var(--stone);padding:10px 12px;border-radius:2px;text-decoration:none;">Breaking In: Independent Creator Paths</a>
         <div style="font-size:12px;color:var(--ash);margin-bottom:12px;">April 25, 2026 · Online Webinar</div>
         <a href="evt-breaking-in.html" class="btn btn-dark" style="font-size:12px;padding:8px 18px;background:var(--stone);">View Event →</a>
@@ -1099,7 +1137,7 @@ function filterEvents(cat, btn){
 <footer>
   <div class="footer-grid">
     <div class="fg-brand">
-      <div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);">HEARTH™</a></div>
+      <div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;">HEARTH<span class="tm">™</span></a></div>
       <p class="fg-tagline">Where Voices Find Their Fire.</p>
       <div class="fg-social">
         <a href="https://www.instagram.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="Instagram">IG</a>
