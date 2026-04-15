@@ -944,6 +944,10 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
   .page-section { padding: 44px 20px; }
 }
 
+
+@media(max-width:768px){
+  .values-grid-inline { grid-template-columns: 1fr !important; }
+}
 </style>
 
 <style>
@@ -1002,7 +1006,7 @@ nav{position:sticky;top:5px;z-index:200;}
 </style>
 </head>
 <body>
-<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH<span class="tm">™</span></span></a><ul class="nav-menu"><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html" class="active-page">About</a></li><li><a href="work-with-us.html">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
+<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH<span class="tm">™</span></span></a><ul class="nav-menu"><li><a href="index.html">Home</a></li><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html" class="active-page">About</a></li><li><a href="work-with-us.html">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
 <main>
 <div class="about-hero" class="about-grid" style="background:var(--stone);padding:90px 80px;display:grid;grid-template-columns:3fr 2fr;gap:60px;align-items:start;position:relative;overflow:hidden;">
   <div style="position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(229,9,20,0.12),transparent 70%);pointer-events:none;"></div>
@@ -1048,35 +1052,73 @@ nav{position:sticky;top:5px;z-index:200;}
 </div>
 
 <!-- MISSION + VALUES -->
-<div class="vision-section" style="padding:80px 80px;background:var(--white);">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
-    <div>
-      <div class="section-label">Mission</div>
-      <h2 class="page-h2" style="margin-bottom:20px;">Why we <em>exist.</em></h2>
-      <p style="font-size:15px;line-height:1.85;color:rgba(43,45,66,0.78);margin-bottom:20px;">HEARTH™ is a community-powered film and media education studio dedicated to making the craft of storytelling accessible to underrepresented creators — providing classes, workshops, mentorship, residencies, and cultural events for those who have been left out of formal creative education.</p>
-      <p style="font-size:15px;line-height:1.85;color:rgba(43,45,66,0.78);margin-bottom:20px;">We provide education services in media production: classes, seminars, workshops, retreats, and mentorship covering the development, creation, production, and post-production of film and television content — designed specifically for creators with limited access to traditional film education.</p>
-      <p style="font-size:15px;line-height:1.85;color:rgba(43,45,66,0.78);">We organize events in the field of film and television for cultural and educational purposes, and produce original motion pictures, television content, digital series, documentaries, and podcasts created from the ground up with our community.</p>
+<div class="vision-section" <div style="background:var(--white);">
+
+  <!-- ── WHY WE EXIST ── -->
+  <div style="padding:80px 80px 56px;border-bottom:1px solid rgba(141,153,174,0.12);">
+    <div style="max-width:760px;margin:0 auto;text-align:center;">
+      <div class="section-label" style="justify-content:center;">Our Mission</div>
+      <h2 style="font-family:'Besley',serif;font-weight:700;font-size:42px;color:var(--stone);letter-spacing:-1px;line-height:1.12;margin-bottom:24px;">Why we <em style="color:var(--red);">exist.</em></h2>
+      <p style="font-size:16px;line-height:1.9;color:rgba(43,45,66,0.75);margin-bottom:20px;">HEARTH™ is a community-powered film and media education studio dedicated to making the craft of storytelling accessible to underrepresented creators — providing classes, workshops, mentorship, residencies, and cultural events for those who have been left out of formal creative education.</p>
+      <p style="font-size:16px;line-height:1.9;color:rgba(43,45,66,0.75);margin-bottom:20px;">We provide education services in media production: classes, seminars, workshops, retreats, and mentorship covering the development, creation, production, and post-production of film and television content — designed specifically for creators with limited access to traditional film education.</p>
+      <p style="font-size:16px;line-height:1.9;color:rgba(43,45,66,0.75);">We organize events in the field of film and television for cultural and educational purposes, and produce original motion pictures, television content, digital series, documentaries, and podcasts created from the ground up with our community.</p>
     </div>
-    <div>
-      
   </div>
+
+  <!-- ── CORE VALUES ── -->
+  <div style="padding:80px 80px;">
+    <div style="text-align:center;margin-bottom:56px;">
+      <div class="section-label" style="justify-content:center;">Core Values</div>
+      <h2 style="font-family:'Besley',serif;font-weight:700;font-size:42px;color:var(--stone);letter-spacing:-1px;line-height:1.12;">Six principles that <em style="color:var(--red);">guide the fire.</em></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:rgba(141,153,174,0.1);">
+
+      <div style="background:var(--white);padding:40px 36px;">
+        <div style="font-family:'Courier Prime',monospace;font-size:11px;color:var(--red);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px;">01 —</div>
+        <div style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);margin-bottom:12px;">Lift As We Climb.</div>
+        <p style="font-size:14px;line-height:1.75;color:var(--ash);margin-bottom:14px;">We create ladders of access and celebrate each other's creative growth. No one climbs alone.</p>
+        <div style="font-size:12px;color:var(--red);font-weight:500;">→ Mentoring without ego, sharing credit openly</div>
+      </div>
+
+      <div style="background:var(--white);padding:40px 36px;">
+        <div style="font-family:'Courier Prime',monospace;font-size:11px;color:var(--red);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px;">02 —</div>
+        <div style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);margin-bottom:12px;">Voice is Value.</div>
+        <p style="font-size:14px;line-height:1.75;color:var(--ash);margin-bottom:14px;">Diverse perspectives are not checkboxes — they are the source of the most powerful and authentic stories.</p>
+        <div style="font-size:12px;color:var(--red);font-weight:500;">→ Amplify overlooked stories</div>
+      </div>
+
+      <div style="background:var(--white);padding:40px 36px;">
+        <div style="font-family:'Courier Prime',monospace;font-size:11px;color:var(--red);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px;">03 —</div>
+        <div style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);margin-bottom:12px;">Purpose with a Punch.</div>
+        <p style="font-size:14px;line-height:1.75;color:var(--ash);margin-bottom:14px;">We reject the false choice between art and meaning. Stories can be profoundly human and wildly entertaining.</p>
+        <div style="font-size:12px;color:var(--red);font-weight:500;">→ Depth + delight, always both</div>
+      </div>
+
+      <div style="background:var(--paper);padding:40px 36px;">
+        <div style="font-family:'Courier Prime',monospace;font-size:11px;color:var(--red);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px;">04 —</div>
+        <div style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);margin-bottom:12px;">Create Bravely.</div>
+        <p style="font-size:14px;line-height:1.75;color:var(--ash);margin-bottom:14px;">True creative growth happens outside comfort zones. We hold space to experiment, fail, and learn without judgment.</p>
+        <div style="font-size:12px;color:var(--red);font-weight:500;">→ Try. Iterate. Grow.</div>
+      </div>
+
+      <div style="background:var(--paper);padding:40px 36px;">
+        <div style="font-family:'Courier Prime',monospace;font-size:11px;color:var(--red);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px;">05 —</div>
+        <div style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);margin-bottom:12px;">Community is Our Currency.</div>
+        <p style="font-size:14px;line-height:1.75;color:var(--ash);margin-bottom:14px;">We are a dialogue, not a monologue. Our community are active co-creators in everything we build and imagine together.</p>
+        <div style="font-size:12px;color:var(--red);font-weight:500;">→ Build with, not for</div>
+      </div>
+
+      <div style="background:var(--paper);padding:40px 36px;">
+        <div style="font-family:'Courier Prime',monospace;font-size:11px;color:var(--red);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px;">06 —</div>
+        <div style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);margin-bottom:12px;">Own the Outcome.</div>
+        <p style="font-size:14px;line-height:1.75;color:var(--ash);margin-bottom:14px;">We are all creators here. Resourceful, proactive, and focused on solutions — because the story doesn't tell itself.</p>
+        <div style="font-size:12px;color:var(--red);font-weight:500;">→ How can I make this better?</div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
-
-
-<section class="page-section values-section">
-  <div class="vals-intro">
-    <div class="section-label">Core Values</div>
-    <h2 class="page-h2">Six principles that <em>guide the fire.</em></h2>
-  </div>
-  <div class="values-grid6">
-    <div class="val-cell"><span class="val-num">01 —</span><div class="val-name">Lift As We Climb.</div><p class="val-body">We create ladders of access and celebrate each other's creative growth. No one climbs alone.</p><span class="val-action">→ Mentoring without ego, sharing credit openly</span></div>
-    <div class="val-cell"><span class="val-num">02 —</span><div class="val-name">Voice is Value.</div><p class="val-body">Diverse perspectives are not checkboxes — they are the source of the most powerful and authentic stories.</p><span class="val-action">→ Amplify overlooked stories</span></div>
-    <div class="val-cell"><span class="val-num">03 —</span><div class="val-name">Purpose with a Punch.</div><p class="val-body">We reject the false choice between art and meaning. Stories can be profoundly human and wildly entertaining.</p><span class="val-action">→ Depth + delight, always both</span></div>
-    <div class="val-cell"><span class="val-num">04 —</span><div class="val-name">Create Bravely.</div><p class="val-body">True creative growth happens outside comfort zones. We hold space to experiment, fail, and learn without judgment.</p><span class="val-action">→ Try. Iterate. Grow.</span></div>
-    <div class="val-cell"><span class="val-num">05 —</span><div class="val-name">Community is Our Currency.</div><p class="val-body">We are a dialogue, not a monologue. Our community are active co-creators in everything we build and imagine together.</p><span class="val-action">→ Build with, not for</span></div>
-    <div class="val-cell"><span class="val-num">06 —</span><div class="val-name">Own the Outcome.</div><p class="val-body">We are all creators here. Resourceful, proactive, and focused on solutions — because the story doesn't tell itself.</p><span class="val-action">→ How can I make this better?</span></div>
-  </div>
-</section>
 <div class="manifesto-section"><p class="mq-text">"Together, we burn brighter. HEARTH™ is not a brand — it is a commitment. To access. To education. To the belief that every creator deserves the tools, space, and community to tell their story."</p><p class="mq-attr">— HEARTH™ Manifesto</p></div>
 
 </main>

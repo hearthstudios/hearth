@@ -1,0 +1,33 @@
+# HEARTH™ — Cloudflare Pages Redirects
+# Clean URLs — removes .html from all page paths
+
+/programs               /programs.html              200
+/events                 /events.html                200
+/media                  /media.html                 200
+/community              /community.html             200
+/about                  /about.html                 200
+/membership             /membership.html            200
+/work-with-us           /work-with-us.html          200
+/schedule               /schedule.html              200
+/newsletter             /newsletter.html            200
+/resources              /resources.html             200
+/collab-hub             /collab-hub.html            200
+/music-supervision      /music-supervision.html     200
+/sponsorship            /sponsorship.html           200
+
+/work/live-event-production     /work-live-events.html          200
+
+/programs/script-labs           /prog-script-labs.html          200
+/programs/music-residencies     /prog-music-residencies.html    200
+/programs/film-producing        /prog-film-producing.html       200
+/programs/youth-in-film         /prog-youth-in-film.html        200
+/programs/mentoring             /prog-mentoring.html            200
+/programs/showcases             /prog-showcases.html            200
+
+/events/new-voices-night        /evt-new-voices.html            200
+/events/songwriting-for-camera  /evt-songwriting.html           200
+/events/breaking-in             /evt-breaking-in.html           200
+/events/stand-up-be-counted     /evt-stand-up.html              200
+/events/film-pitch-night        /evt-film-pitch.html            200
+/events/acting-for-camera       /evt-acting-camera.html         200
+/events/annual-hearth           /evt-annual-hearth.html         200
