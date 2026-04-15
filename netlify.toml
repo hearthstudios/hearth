@@ -1,5 +1,5 @@
 # HEARTH™ — Netlify Configuration
-# Clean URLs: /programs → /programs.html etc.
+# Clean URLs: removes .html extension from all pages
 
 [[redirects]]
   from = "/programs"
@@ -62,6 +62,16 @@
   status = 200
 
 [[redirects]]
+  from = "/sponsorship"
+  to = "/sponsorship.html"
+  status = 200
+
+[[redirects]]
+  from = "/work/live-event-production"
+  to = "/work-live-events.html"
+  status = 200
+
+[[redirects]]
   from = "/programs/script-labs"
   to = "/prog-script-labs.html"
   status = 200
@@ -89,6 +99,41 @@
 [[redirects]]
   from = "/programs/showcases"
   to = "/prog-showcases.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/new-voices-night"
+  to = "/evt-new-voices.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/songwriting-for-camera"
+  to = "/evt-songwriting.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/breaking-in"
+  to = "/evt-breaking-in.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/stand-up-be-counted"
+  to = "/evt-stand-up.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/film-pitch-night"
+  to = "/evt-film-pitch.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/acting-for-camera"
+  to = "/evt-acting-camera.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/annual-hearth"
+  to = "/evt-annual-hearth.html"
   status = 200
 
 [build]

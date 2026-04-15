@@ -972,7 +972,7 @@ nav{position:sticky;top:5px;z-index:200;}
       <h1 style="font-family:'Besley',serif;font-weight:700;font-size:52px;color:var(--white);letter-spacing:-1.5px;line-height:1.07;margin-bottom:12px;">Youth in<br><em style="color:var(--red);">Film.</em></h1>
       <p style="font-family:'Besley',serif;font-style:italic;font-size:16px;color:var(--ash);margin-bottom:28px;">The Next Generation of Storytellers. In the Classroom.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <a href="newsletter.html" class="btn btn-red">Get Program Updates →</a>
+        <a href="#" onclick="openNotifyModal()" class="btn btn-red">Get Program Updates →</a>
         <a href="programs.html" class="btn btn-outline-dark">← All Programs</a>
       </div>
     </div>
@@ -991,7 +991,7 @@ nav{position:sticky;top:5px;z-index:200;}
 <div style="padding:60px 80px;background:var(--white);display:grid;grid-template-columns:3fr 2fr;gap:60px;">
   <div>
     <div class="section-label">About This Program</div>
-    <h2 class="page-h2" style="margin-bottom:16px;">Filmmaking<br><em>in the classroom.</em></h2>
+    <h2 class="page-h2" style="margin-bottom:16px;">Film education<br><em>for every student.</em></h2>
     <p style="font-size:15px;line-height:1.85;color:rgba(43,45,66,0.78);margin-bottom:20px;">Youth in Film is a year-long film production curriculum designed to equip students with hands-on experience in filmmaking while integrating academic skills in Math and English Language Arts (ELA). By the end of the program, students will have produced an original 5-minute short film — directed by students and centered on authentic teenage experiences in Philadelphia.</p>
     <p style="font-size:15px;line-height:1.85;color:rgba(43,45,66,0.78);margin-bottom:32px;">Youth in Film is HEARTH™'s most direct expression of the educate pillar of its mission. It reaches students before they have been told that filmmaking is not for them. Youth in Film alumni become the next generation of HEARTH™ program participants when they reach 18.</p>
 
@@ -1057,12 +1057,51 @@ nav{position:sticky;top:5px;z-index:200;}
         <div style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">Produced By</div>
         <p style="font-size:14px;color:var(--stone);">Students enrolled in HEARTH™ Youth in Film — Philadelphia Public Schools, Grades 7–12</p>
       </div>
-      <a href="newsletter.html" class="btn btn-red">Get Notified About Screenings →</a>
+      <a href="#" onclick="openNotifyModal()" class="btn btn-red">Get Notified About Screenings →</a>
     </div>
   </div>
 </div>
 </main>
-<footer><div class="footer-grid"><div class="fg-brand"><div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);">HEARTH™</a></div><p class="fg-tagline">Where Voices Find Their Fire.</p><div class="fg-social"><a href="https://www.instagram.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn">IG</a><a href="https://www.tiktok.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn">TK</a><a href="https://www.youtube.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn">YT</a><a href="https://www.linkedin.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn">LI</a></div></div><div class="footer-col"><h5>Programs</h5><ul><li><a href="programs.html#script-labs">Script Labs</a></li><li><a href="programs.html#music-residencies">Music Residencies</a></li><li><a href="programs.html#film-producing">Film Producing</a></li><li><a href="programs.html#youth-in-film">Youth in Film</a></li><li><a href="programs.html#mentorship">Mentorship</a></li></ul></div><div class="footer-col"><h5>Community</h5><ul><li><a href="events.html">Events</a></li><li><a href="community.html">Community</a></li><li><a href="newsletter.html">The Glow</a></li></ul></div><div class="footer-col"><h5>Media</h5><ul><li><a href="media.html">Film &amp; TV</a></li><li><a href="media.html#sync-library">Sync Library</a></li><li><a href="media.html#transplants">Transplants</a></li></ul></div><div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="work-with-us.html">Work With Us</a></li></ul></div></div><div class="footer-bottom"><span class="footer-copy">© 2026 HEARTH™. All rights reserved.</span><div class="fire-dots"><div class="fd fd1"></div><div class="fd fd2"></div><div class="fd fd3"></div></div></div></footer><script>
+<footer>
+  <div class="footer-grid">
+    <div class="fg-brand">
+      <div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);">HEARTH™</a></div>
+      <p class="fg-tagline">Where Voices Find Their Fire.</p>
+      <div class="fg-social">
+        <a href="https://www.instagram.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="Instagram">IG</a>
+        <a href="https://www.tiktok.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="TikTok">TK</a>
+        <a href="https://www.youtube.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="YouTube">YT</a>
+        <a href="https://www.linkedin.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="LinkedIn">LI</a>
+      </div>
+    </div>
+    <div class="footer-col"><h5>Programs</h5><ul>
+      <li><a href="programs.html">All Programs</a></li>
+      <li><a href="prog-script-labs.html">Script Labs</a></li>
+      <li><a href="prog-music-residencies.html">Music Residencies</a></li>
+      <li><a href="prog-youth-in-film.html">Youth in Film</a></li>
+      <li><a href="prog-mentoring.html">Mentorship</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>Community</h5><ul>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="#" onclick="openNotifyModal()">The Glow</a></li>
+      <li><a href="resources.html">Resources</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>Media</h5><ul>
+      <li><a href="media.html">Film &amp; TV</a></li>
+      <li><a href="music-supervision.html">Music Sync</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>Company</h5><ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work-with-us.html">Work With Us</a></li>
+      <li><a href="sponsorship.html">Sponsorship</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 HEARTH™. All rights reserved.</span>
+    <div class="fire-dots"><div class="fd fd1"></div><div class="fd fd2"></div><div class="fd fd3"></div></div>
+  </div>
+</footer><script>
 function toggleMobileMenu(){
   document.getElementById('mobileMenu').classList.toggle('open');
 }
@@ -1070,6 +1109,50 @@ document.addEventListener('click',function(e){
   var m=document.getElementById('mobileMenu');
   var b=document.querySelector('.mobile-menu-btn');
   if(m&&b&&!m.contains(e.target)&&!b.contains(e.target)){m.classList.remove('open');}
+});
+</script>
+
+<div id="notifyModal" style="display:none;position:fixed;inset:0;background:rgba(43,45,66,0.85);z-index:9000;align-items:center;justify-content:center;padding:24px;">
+  <div style="background:var(--white);border-radius:4px;padding:48px 40px;max-width:460px;width:100%;position:relative;">
+    <button onclick="closeNotifyModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ash);">✕</button>
+    <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--red),var(--orange),var(--yellow));border-radius:4px 4px 0 0;"></div>
+    <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;">// Stay Informed</div>
+    <h3 style="font-family:'Besley',serif;font-weight:700;font-size:26px;color:var(--stone);margin-bottom:8px;">Get notified when<br><em style="color:var(--red);">this program opens.</em></h3>
+    <p style="font-size:13px;color:var(--ash);margin-bottom:20px;">Join our community and be the first to know about program launches, open applications, and creative opportunities.</p>
+    <form id="notifyForm" style="display:flex;flex-direction:column;gap:12px;">
+      <input id="nf_name" type="text" placeholder="Your name" required style="padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);">
+      <input id="nf_email" type="email" placeholder="your@email.com" required style="padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);">
+      <select id="nf_role" style="padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);">
+        <option>Artist / Creator</option>
+        <option>Filmmaker / Writer</option>
+        <option>Musician</option>
+        <option>Industry Professional</option>
+        <option>Brand / Organization</option>
+      </select>
+      <button id="notifySubmitBtn" type="button" style="background:var(--red);color:white;font-weight:500;font-size:14px;padding:14px;border:none;border-radius:2px;cursor:pointer;min-height:44px;">Notify Me →</button>
+    </form>
+    <div id="notifyConfirm" style="display:none;padding:16px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:3px;font-size:14px;color:#16a34a;font-weight:500;">✓ You're on the list. We'll reach out when applications open.</div>
+  </div>
+</div>
+<script>
+function openNotifyModal(){ document.getElementById('notifyModal').style.display='flex'; }
+function closeNotifyModal(){ document.getElementById('notifyModal').style.display='none'; }
+document.getElementById('notifySubmitBtn').addEventListener('click', async function(){
+  var name=document.getElementById('nf_name').value.trim();
+  var email=document.getElementById('nf_email').value.trim();
+  var role=document.getElementById('nf_role').value;
+  if(!name||!email){ alert('Please enter your name and email.'); return; }
+  try {
+    var r=await fetch('https://api.airtable.com/v0/appdlPcw5190uENFf/tblYLycvNesUSAZYJ',{
+      method:'POST',
+      headers:{'Authorization':'Bearer patJXFC5QBpjYqxdQ','Content-Type':'application/json'},
+      body:JSON.stringify({fields:{'Email':email,'Name':name,'I am a…':role}})
+    });
+    if(r.ok){
+      document.getElementById('notifyForm').style.display='none';
+      document.getElementById('notifyConfirm').style.display='block';
+    } else { alert('Something went wrong — please try again.'); }
+  } catch(e) { alert('Network error.'); }
 });
 </script>
 </body></html>
