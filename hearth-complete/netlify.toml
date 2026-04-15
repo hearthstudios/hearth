@@ -1,0 +1,147 @@
+# HEARTH™ — Netlify Configuration
+
+[build]
+  publish = "."
+  command = "echo 'No build step'"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/programs"
+  to = "/programs.html"
+  status = 200
+
+[[redirects]]
+  from = "/events"
+  to = "/events.html"
+  status = 200
+
+[[redirects]]
+  from = "/media"
+  to = "/media.html"
+  status = 200
+
+[[redirects]]
+  from = "/community"
+  to = "/community.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/membership"
+  to = "/membership.html"
+  status = 200
+
+[[redirects]]
+  from = "/work-with-us"
+  to = "/work-with-us.html"
+  status = 200
+
+[[redirects]]
+  from = "/schedule"
+  to = "/schedule.html"
+  status = 200
+
+[[redirects]]
+  from = "/newsletter"
+  to = "/newsletter.html"
+  status = 200
+
+[[redirects]]
+  from = "/resources"
+  to = "/resources.html"
+  status = 200
+
+[[redirects]]
+  from = "/collab-hub"
+  to = "/collab-hub.html"
+  status = 200
+
+[[redirects]]
+  from = "/music-supervision"
+  to = "/music-supervision.html"
+  status = 200
+
+[[redirects]]
+  from = "/sponsorship"
+  to = "/sponsorship.html"
+  status = 200
+
+[[redirects]]
+  from = "/work/live-event-production"
+  to = "/work-live-events.html"
+  status = 200
+
+[[redirects]]
+  from = "/programs/script-labs"
+  to = "/prog-script-labs.html"
+  status = 200
+
+[[redirects]]
+  from = "/programs/music-residencies"
+  to = "/prog-music-residencies.html"
+  status = 200
+
+[[redirects]]
+  from = "/programs/film-producing"
+  to = "/prog-film-producing.html"
+  status = 200
+
+[[redirects]]
+  from = "/programs/youth-in-film"
+  to = "/prog-youth-in-film.html"
+  status = 200
+
+[[redirects]]
+  from = "/programs/mentoring"
+  to = "/prog-mentoring.html"
+  status = 200
+
+[[redirects]]
+  from = "/programs/showcases"
+  to = "/prog-showcases.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/new-voices-night"
+  to = "/evt-new-voices.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/songwriting-for-camera"
+  to = "/evt-songwriting.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/breaking-in"
+  to = "/evt-breaking-in.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/stand-up-be-counted"
+  to = "/evt-stand-up.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/film-pitch-night"
+  to = "/evt-film-pitch.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/acting-for-camera"
+  to = "/evt-acting-camera.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/annual-hearth"
+  to = "/evt-annual-hearth.html"
+  status = 200
