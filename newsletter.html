@@ -1089,7 +1089,7 @@ document.getElementById('nlSubmitBtn').addEventListener('click', async function(
   if(!name||!email){ alert('Please enter your name and email address.'); return; }
   var fields = {'Email': email, 'Name': name, 'I am a…': role};
   try {
-    var r = await fetch('/functions/airtable', {
+    var r = await fetch('/.netlify/functions/airtable', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields: fields})
