@@ -1124,7 +1124,7 @@ async function submitToClients(extraFields){
     'Services Interested in': document.getElementById('cf_service').value,
     ...extraFields
   };
-  return await fetch('/functions/airtable', {
+  return await fetch('/.netlify/functions/airtable', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({base:'appyhjawc9vZ5DfWg', table:'tblR2B8QwzrCDwNKD', fields})

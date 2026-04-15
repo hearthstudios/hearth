@@ -1,5 +1,14 @@
 # HEARTH™ — Netlify Configuration
-# Clean URLs: removes .html extension from all pages
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[build.environment]
+  NODE_VERSION = "18"
 
 [[redirects]]
   from = "/programs"
@@ -135,6 +144,3 @@
   from = "/events/annual-hearth"
   to = "/evt-annual-hearth.html"
   status = 200
-
-[build]
-  publish = "."

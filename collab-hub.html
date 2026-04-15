@@ -1177,7 +1177,7 @@ document.getElementById('collabSubmitBtn').addEventListener('click', async funct
   };
   Object.keys(fields).forEach(function(k){ if(!fields[k]) delete fields[k]; });
   try {
-    var r = await fetch('/functions/airtable', {
+    var r = await fetch('/.netlify/functions/airtable', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({base: 'appbtjsDW3xK8fi5u', table: 'tblGE4QZ9m1VQfjlC', fields: fields})
@@ -1219,7 +1219,7 @@ document.getElementById('collabSubmitBtn').addEventListener('click', async funct
   };
   Object.keys(fields).forEach(function(k){ if(!fields[k]) delete fields[k]; });
   try {
-    var r = await fetch('/functions/airtable', {
+    var r = await fetch('/.netlify/functions/airtable', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({base: 'appbtjsDW3xK8fi5u', table: 'tblGE4QZ9m1VQfjlC', fields: fields})

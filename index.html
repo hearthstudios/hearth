@@ -1165,7 +1165,7 @@ document.getElementById('gatherBtn').addEventListener('click', async function(){
   if(!fname||!lname||!email){ alert('Please fill in all required fields.'); return; }
   var fields = {'Email': email, 'Name': fname+' '+lname, 'I am a…': role};
   try {
-    var r = await fetch('/functions/airtable', {
+    var r = await fetch('/.netlify/functions/airtable', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields: fields})

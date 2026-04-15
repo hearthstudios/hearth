@@ -1197,7 +1197,7 @@ document.getElementById('spSubmitBtn').addEventListener('click', async function(
   };
   Object.keys(fields).forEach(function(k){ if(!fields[k]) delete fields[k]; });
   try {
-    var r = await fetch('/functions/airtable', {
+    var r = await fetch('/.netlify/functions/airtable', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({base: 'appyhjawc9vZ5DfWg', table: 'tblR2B8QwzrCDwNKD', fields: fields})
@@ -1236,7 +1236,7 @@ async function submitToClients(extraFields){
     'Services Interested in': document.getElementById('cf_service').value,
     ...extraFields
   };
-  return await fetch('/functions/airtable', {
+  return await fetch('/.netlify/functions/airtable', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({base:'appyhjawc9vZ5DfWg', table:'tblR2B8QwzrCDwNKD', fields})
