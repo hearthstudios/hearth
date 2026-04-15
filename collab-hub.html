@@ -1177,14 +1177,13 @@ document.getElementById('collabSubmitBtn').addEventListener('click', async funct
   };
   Object.keys(fields).forEach(function(k){ if(!fields[k]) delete fields[k]; });
   try {
-    var r = await fetch('/.netlify/functions/airtable', {
+    var r = await fetch('/functions/airtable', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({base: 'appbtjsDW3xK8fi5u', table: 'tblGE4QZ9m1VQfjlC', fields: fields})
     });
     if(r.ok){
-      document.getElementById('collabForm').style.display='none';
-      document.getElementById('collabConfirm').style.display='block';
+      window.location.href = 'index.html';
     } else {
       var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.'));
     }
@@ -1219,14 +1218,13 @@ document.getElementById('collabSubmitBtn').addEventListener('click', async funct
   };
   Object.keys(fields).forEach(function(k){ if(!fields[k]) delete fields[k]; });
   try {
-    var r = await fetch('/.netlify/functions/airtable', {
+    var r = await fetch('/functions/airtable', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({base: 'appbtjsDW3xK8fi5u', table: 'tblGE4QZ9m1VQfjlC', fields: fields})
     });
     if(r.ok){
-      document.getElementById('collabForm').style.display='none';
-      document.getElementById('collabConfirm').style.display='block';
+      window.location.href = 'index.html';
     } else {
       var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.'));
     }

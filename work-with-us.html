@@ -1219,14 +1219,13 @@ document.getElementById('clientSubmitBtn').addEventListener('click', async funct
   };
   Object.keys(fields).forEach(function(k){ if(!fields[k]) delete fields[k]; });
   try {
-    var r = await fetch('/.netlify/functions/airtable', {
+    var r = await fetch('/functions/airtable', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({base: 'appyhjawc9vZ5DfWg', table: 'tblR2B8QwzrCDwNKD', fields: fields})
     });
     if(r.ok){
-      document.getElementById('clientForm').style.display='none';
-      document.getElementById('clientConfirm').style.display='block';
+      window.location.href = 'index.html';
     } else {
       var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.'));
     }

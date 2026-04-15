@@ -1307,7 +1307,7 @@ document.getElementById('musicSubmitBtn').addEventListener('click', async functi
   };
   Object.keys(musicFields).forEach(function(k){ if(!musicFields[k]) delete musicFields[k]; });
   try {
-    var r = await fetch('/.netlify/functions/airtable', {
+    var r = await fetch('/functions/airtable', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({base: 'appKsSNFxrW7R8nfs', table: 'tblJzxn2bQag54qMD', fields: musicFields})
@@ -1315,14 +1315,13 @@ document.getElementById('musicSubmitBtn').addEventListener('click', async functi
     if(!r.ok){ var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.')); return; }
     if(document.getElementById('mf_newsletter').checked && email){
       var subFields = {'Email': email, 'Name': artist, 'I am a…': 'Musician'};
-      await fetch('/.netlify/functions/airtable', {
+      await fetch('/functions/airtable', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields: subFields})
       });
     }
-    document.getElementById('musicForm').style.display='none';
-    document.getElementById('musicConfirm').style.display='block';
+    window.location.href = 'index.html';
   } catch(ex) { alert('Network error — please check your connection and try again.'); }
 });
 </script>

@@ -1089,14 +1089,13 @@ document.getElementById('nlSubmitBtn').addEventListener('click', async function(
   if(!name||!email){ alert('Please enter your name and email address.'); return; }
   var fields = {'Email': email, 'Name': name, 'I am a…': role};
   try {
-    var r = await fetch('/.netlify/functions/airtable', {
+    var r = await fetch('/functions/airtable', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields: fields})
     });
     if(r.ok){
-      document.getElementById('glowForm').style.display='none';
-      document.getElementById('glowConfirm').style.display='block';
+      window.location.href = 'index.html';
     } else {
       var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.'));
     }

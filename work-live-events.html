@@ -1083,14 +1083,13 @@ document.getElementById('liveEventBtn').addEventListener('click', async function
   };
   Object.keys(fields).forEach(k=>{ if(!fields[k]) delete fields[k]; });
   try{
-    var r=await fetch('/.netlify/functions/airtable', {
+    var r=await fetch('/functions/airtable', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({base:'appyhjawc9vZ5DfWg', table:'tblR2B8QwzrCDwNKD', fields})
     });
     if(r.ok){
-      document.getElementById('liveEventForm').style.display='none';
-      document.getElementById('liveEventConfirm').style.display='block';
+      window.location.href = 'index.html';
     } else { var errData = await r.clone().text(); console.error('Airtable error:', errData); alert('Submission error. Please check console for details.'); }
   } catch(e){ alert('Network error.'); }
 });
