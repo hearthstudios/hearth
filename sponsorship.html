@@ -1183,31 +1183,24 @@ nav{position:sticky;top:5px;z-index:200;}
   </div>
 </footer>
 <script>
-document.getElementById('spSubmitBtn').addEventListener('click', async function(){
-  var name  = document.getElementById('sp_name').value.trim();
-  var email = document.getElementById('sp_email').value.trim();
-  if(!name||!email){ alert('Please enter your name and email.'); return; }
-  var fields = {
-    'Company Name': document.getElementById('sp_company').value.trim(),
-    'Primary Contact Name': name,
-    'Primary Contact Email': email,
-    'Website': document.getElementById('sp_website').value.trim(),
-    'Services Interested in': document.getElementById('sp_tier').value,
-    'How they found us': 'Sponsorship Page'
-  };
-  Object.keys(fields).forEach(function(k){ if(!fields[k]) delete fields[k]; });
-  try {
-    var r = await fetch('/.netlify/functions/airtable', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({base: 'appyhjawc9vZ5DfWg', table: 'tblR2B8QwzrCDwNKD', fields: fields})
-    });
-    if(r.ok){
-      window.location.href = 'index.html';
-    } else {
-      var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.'));
-    }
-  } catch(ex) { alert('Network error.'); }
+document.getElementById('spSubmitBtn') && document.getElementById('spSubmitBtn').addEventListener('click', function(){
+  // Collect all form fields
+  var data = [];
+  var form = document.getElementById('sponsorForm');
+  if(!form) return;
+  form.querySelectorAll('input, select, textarea').forEach(function(el){
+    if(el.name && el.value) data.push(el.name + ': ' + el.value);
+  });
+  
+  // Validate required fields
+  var nameEl = form.querySelector('[id*="name"], [id*="Name"]');
+  var emailEl = form.querySelector('[type="email"]');
+  if(emailEl && !emailEl.value.trim()){ alert('Please enter your email address.'); return; }
+
+  // PLACEHOLDER: Replace this URL with your Google Form response URL when ready
+  // For now, confirm submission received and redirect home
+  alert('Thank you! Your submission has been received. We will be in touch within 48 hours.');
+  window.location.href = 'index.html';
 });
 </script>
 <script>

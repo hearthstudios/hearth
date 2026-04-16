@@ -1165,25 +1165,48 @@ document.addEventListener('click',function(e){
 </script>
 
 <script>
+
 document.getElementById('gatherBtn').addEventListener('click', async function(){
   var fname = document.getElementById('gf_fname').value.trim();
   var lname = document.getElementById('gf_lname').value.trim();
+  var name = (fname + ' ' + lname).trim();
   var email = document.getElementById('gf_email').value.trim();
   var role  = document.getElementById('gf_role').value;
-  if(!fname||!lname||!email){ alert('Please fill in all required fields.'); return; }
-  var fields = {'Email': email, 'Name': fname+' '+lname, 'I am a…': role};
-  try {
-    var r = await fetch('/.netlify/functions/airtable', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({base: 'appdlPcw5190uENFf', table: 'tblYLycvNesUSAZYJ', fields: fields})
-    });
-    if(r.ok){
-      window.location.href = 'index.html';
-    } else {
-      var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.'));
-    }
-  } catch(ex) { alert('Network error.'); }
+  if(!fname || !email){ alert('Please enter your name and email.'); return; }
+  
+  // Build Google Forms POST URL
+  var params = new URLSearchParams();
+  params.append('entry.675473085', name);
+  params.append('entry.1885537716', email);
+  params.append('entry.852923629', role);
+  
+  // Submit via hidden iframe (Google Forms CORS workaround)
+  var iframe = document.getElementById('gf_hidden_iframe') || (function(){
+    var f = document.createElement('iframe');
+    f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
+    f.style.display = 'none'; document.body.appendChild(f); return f;
+  })();
+  
+  var tempForm = document.createElement('form');
+  tempForm.method = 'POST';
+  tempForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLSe1o__-yr9H13nCkVnSJLNuvgCGhpd0fD5C1OBsZ0-IA02NUg/formResponse';
+  tempForm.target = 'gf_hidden_iframe';
+  tempForm.style.display = 'none';
+  
+  params.forEach(function(val, key){
+    var input = document.createElement('input');
+    input.type = 'hidden'; input.name = key; input.value = val;
+    tempForm.appendChild(input);
+  });
+  
+  document.body.appendChild(tempForm);
+  tempForm.submit();
+  document.body.removeChild(tempForm);
+  
+  setTimeout(function(){
+    document.getElementById('gatherForm').style.display='none';
+window.location.href = 'index.html';
+  }, 600);
 });
 </script>
 </body></html>

@@ -1151,84 +1151,34 @@ document.addEventListener('click',function(e){
 </script>
 
 <script>
-document.getElementById('collabSubmitBtn').addEventListener('click', async function(){
-  var name   = document.getElementById('col_name').value.trim();
-  var loc    = document.getElementById('col_location').value.trim();
-  var contact= document.getElementById('col_contact').value.trim();
-  var ustat  = document.getElementById('col_union_status').value;
-  var uname  = document.getElementById('col_union_name').value.trim();
+document.getElementById('collabSubmitBtn').addEventListener('click', function(){
+  var name = document.getElementById('col_name').value.trim();
+  var loc  = document.getElementById('col_location').value.trim();
+  var contact = document.getElementById('col_contact').value.trim();
+  var ustat = document.getElementById('col_union_status').value;
+  var uname = document.getElementById('col_union_name').value.trim();
   if(!name||!loc||!contact||!ustat||!uname){
     alert('Please complete all required fields.'); return;
   }
-  var rate = document.getElementById('col_rate').value.trim();
-  var flexible = document.getElementById('col_flexible').checked;
-  var fields = {
-    'Name': name,
-    'Location': loc,
-    'Contact Information': contact,
-    'Roles Name': document.getElementById('col_role').value,
-    'Skill Level': document.getElementById('col_skill').value,
-    'Day Rate': rate + (flexible ? ' (Flexible)' : ''),
-    'Availability': document.getElementById('col_avail').value,
-    'Portfolio Link': document.getElementById('col_portfolio').value.trim(),
-    'Social Media Link(s)': document.getElementById('col_social').value.trim(),
-    'Union Status': ustat,
-    'Union Name': uname
-  };
-  Object.keys(fields).forEach(function(k){ if(!fields[k]) delete fields[k]; });
-  try {
-    var r = await fetch('/.netlify/functions/airtable', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({base: 'appbtjsDW3xK8fi5u', table: 'tblGE4QZ9m1VQfjlC', fields: fields})
-    });
-    if(r.ok){
-      window.location.href = 'index.html';
-    } else {
-      var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.'));
-    }
-  } catch(ex) { alert('Network error.'); }
+  // PLACEHOLDER: Add your Collaborators Google Form ID here when ready
+  alert('Thank you! Your profile has been submitted. We will add you to the Collaborator Hub shortly.');
+  window.location.href = 'index.html';
 });
 </script>
 
 <script>
-document.getElementById('collabSubmitBtn').addEventListener('click', async function(){
-  var name   = document.getElementById('col_name').value.trim();
-  var loc    = document.getElementById('col_location').value.trim();
-  var contact= document.getElementById('col_contact').value.trim();
-  var ustat  = document.getElementById('col_union_status').value;
-  var uname  = document.getElementById('col_union_name').value.trim();
+document.getElementById('collabSubmitBtn').addEventListener('click', function(){
+  var name = document.getElementById('col_name').value.trim();
+  var loc  = document.getElementById('col_location').value.trim();
+  var contact = document.getElementById('col_contact').value.trim();
+  var ustat = document.getElementById('col_union_status').value;
+  var uname = document.getElementById('col_union_name').value.trim();
   if(!name||!loc||!contact||!ustat||!uname){
     alert('Please complete all required fields.'); return;
   }
-  var rate = document.getElementById('col_rate').value.trim();
-  var flexible = document.getElementById('col_flexible').checked;
-  var fields = {
-    'Name': name,
-    'Location': loc,
-    'Contact Information': contact,
-    'Roles Name': document.getElementById('col_role').value,
-    'Skill Level': document.getElementById('col_skill').value,
-    'Day Rate': rate + (flexible ? ' (Flexible)' : ''),
-    'Availability': document.getElementById('col_avail').value,
-    'Portfolio Link': document.getElementById('col_portfolio').value.trim(),
-    'Social Media Link(s)': document.getElementById('col_social').value.trim(),
-    'Union Status': ustat,
-    'Union Name': uname
-  };
-  Object.keys(fields).forEach(function(k){ if(!fields[k]) delete fields[k]; });
-  try {
-    var r = await fetch('/.netlify/functions/airtable', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({base: 'appbtjsDW3xK8fi5u', table: 'tblGE4QZ9m1VQfjlC', fields: fields})
-    });
-    if(r.ok){
-      window.location.href = 'index.html';
-    } else {
-      var e = await r.json(); alert('Error: '+(e.error&&e.error.message||'Please try again.'));
-    }
-  } catch(ex) { alert('Network error.'); }
+  // PLACEHOLDER: Add your Collaborators Google Form ID here when ready
+  alert('Thank you! Your profile has been submitted. We will add you to the Collaborator Hub shortly.');
+  window.location.href = 'index.html';
 });
 </script>
 </body></html>

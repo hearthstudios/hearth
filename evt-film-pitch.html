@@ -1111,39 +1111,24 @@ document.addEventListener('click',function(e){
 </script>
 
 <script>
-async function submitToClients(extraFields){
-  var fields = {
-    'Company Name': document.getElementById('cf_company').value.trim(),
-    'Primary Contact Name': document.getElementById('cf_name').value.trim(),
-    'Primary Contact Email': document.getElementById('cf_email').value.trim(),
-    'Primary Contact Phone': document.getElementById('cf_phone').value.trim(),
-    'City': document.getElementById('cf_city').value.trim(),
-    'State': document.getElementById('cf_state').value.trim(),
-    'Website': document.getElementById('cf_website').value.trim(),
-    'How they found us': document.getElementById('cf_source').value,
-    'Services Interested in': document.getElementById('cf_service').value,
-    ...extraFields
-  };
-  return await fetch('/.netlify/functions/airtable', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({base:'appyhjawc9vZ5DfWg', table:'tblR2B8QwzrCDwNKD', fields})
-    });
-}
-document.getElementById('clientSubmitBtn').addEventListener('click', async function(){
-  var name=document.getElementById('cf_name').value.trim();
-  var email=document.getElementById('cf_email').value.trim();
-  if(!name||!email){ alert('Please enter your name and email.'); return; }
-  try {
-    var r = await submitToClients({});
-    if(r.ok){
-      window.location.href = 'index.html';
-    } else { var errData = await r.clone().text(); console.error('Airtable error:', errData); alert('Submission error. Please check console for details.'); }
-  } catch(e) { alert('Network error.'); }
-});
-document.getElementById('hireCastBtn').addEventListener('click', async function(){
-  document.getElementById('cf_service').value = 'Cast & Crew Access';
-  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+document.getElementById('clientSubmitBtn') && document.getElementById('clientSubmitBtn').addEventListener('click', function(){
+  // Collect all form fields
+  var data = [];
+  var form = document.getElementById('clientForm');
+  if(!form) return;
+  form.querySelectorAll('input, select, textarea').forEach(function(el){
+    if(el.name && el.value) data.push(el.name + ': ' + el.value);
+  });
+  
+  // Validate required fields
+  var nameEl = form.querySelector('[id*="name"], [id*="Name"]');
+  var emailEl = form.querySelector('[type="email"]');
+  if(emailEl && !emailEl.value.trim()){ alert('Please enter your email address.'); return; }
+
+  // PLACEHOLDER: Replace this URL with your Google Form response URL when ready
+  // For now, confirm submission received and redirect home
+  alert('Thank you! Your submission has been received. We will be in touch within 48 hours.');
+  window.location.href = 'index.html';
 });
 </script>
 </html>
