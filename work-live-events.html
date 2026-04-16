@@ -1104,4 +1104,13 @@ document.addEventListener('click',function(e){
   if(m&&b&&!m.contains(e.target)&&!b.contains(e.target)){m.classList.remove('open');}
 });
 </script>
+
+<div id="successModal" style="display:none;position:fixed;inset:0;background:rgba(43,45,66,0.85);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:var(--white);border-radius:4px;padding:48px 40px;max-width:420px;width:90%;position:relative;text-align:center;">
+    <div style="width:56px;height:56px;background:rgba(74,222,128,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;">✓</div>
+    <h3 style="font-family:'Besley',serif;font-weight:700;font-size:24px;color:var(--stone);margin-bottom:10px;">Message received.</h3>
+    <p style="font-size:14px;line-height:1.7;color:var(--ash);margin-bottom:28px;">Thank you for reaching out to HEARTH™. We'll be in touch within 48 hours.</p>
+    <button onclick="document.getElementById('successModal').style.display='none';" style="background:var(--red);color:white;border:none;padding:14px 32px;border-radius:2px;font-size:14px;font-weight:500;cursor:pointer;width:100%;">Close →</button>
+  </div>
+</div>
 </body></html>

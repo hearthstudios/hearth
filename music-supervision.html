@@ -1296,59 +1296,44 @@ document.getElementById('musicSubmitBtn').addEventListener('click', function(){
   p.append('entry.1300478591', stems);
   p.append('entry.1837620464', rc);
   p.append('entry.1647116488', 'I confirm that I am the sole or co-owner of both the master recording and the underlying composition for all tracks submitted and that I have the authority to grant sync licensing rights.');
-
-  // Newsletter opt-in
   var newsletter = document.getElementById('mf_newsletter').checked;
-  if(newsletter){
-    p.append('entry.1137375980', 'I agree to receive email updates from HEARTH. You can unsubscribe at any time. We respect your privacy');
-  } else {
-    p.append('entry.1137375980', 'I do not agree to receive email updates from HEARTH.');
+  p.append('entry.1137375980', newsletter
+    ? 'I agree to receive email updates from HEARTH. You can unsubscribe at any time. We respect your privacy'
+    : 'I do not agree to receive email updates from HEARTH.');
+
+  function submitToGF(url, params){
+    var gfIframe = document.getElementById('gf_hidden_iframe') || (function(){
+      var f = document.createElement('iframe');
+      f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
+      f.style.display = 'none'; document.body.appendChild(f); return f;
+    })();
+    var gfForm = document.createElement('form');
+    gfForm.method = 'POST'; gfForm.action = url;
+    gfForm.target = 'gf_hidden_iframe'; gfForm.style.display = 'none';
+    params.forEach(function(val, key){
+      var inp = document.createElement('input');
+      inp.type = 'hidden'; inp.name = key; inp.value = val;
+      gfForm.appendChild(inp);
+    });
+    document.body.appendChild(gfForm);
+    gfForm.submit();
+    document.body.removeChild(gfForm);
   }
 
-  // Submit to Google Forms via hidden iframe
-  var gfIframe = document.getElementById('gf_hidden_iframe') || (function(){
-    var f = document.createElement('iframe');
-    f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
-    f.style.display = 'none'; document.body.appendChild(f); return f;
-  })();
-  var gfForm = document.createElement('form');
-  gfForm.method = 'POST';
-  gfForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLScPpqJNMJN3EOKCkIJZenvxPtzzbj25OQN_daEz8S6-gApwEw/formResponse';
-  gfForm.target = 'gf_hidden_iframe';
-  gfForm.style.display = 'none';
-  p.forEach(function(val, key){
-    var inp = document.createElement('input');
-    inp.type = 'hidden'; inp.name = key; inp.value = val;
-    gfForm.appendChild(inp);
-  });
-  document.body.appendChild(gfForm);
-  gfForm.submit();
-  document.body.removeChild(gfForm);
+  submitToGF('https://docs.google.com/forms/d/e/1FAIpQLScPpqJNMJN3EOKCkIJZenvxPtzzbj25OQN_daEz8S6-gApwEw/formResponse', p);
 
-  // If newsletter opted in, also submit to subscriber form
   if(newsletter && email){
     setTimeout(function(){
       var sp = new URLSearchParams();
       sp.append('entry.675473085', artist);
       sp.append('entry.1885537716', email);
       sp.append('entry.852923629', 'Musician');
-      var sf = document.createElement('form');
-      sf.method = 'POST';
-      sf.action = 'https://docs.google.com/forms/d/e/1FAIpQLSe1o__-yr9H13nCkVnSJLNuvgCGhpd0fD5C1OBsZ0-IA02NUg/formResponse';
-      sf.target = 'gf_hidden_iframe';
-      sf.style.display = 'none';
-      sp.forEach(function(val,key){
-        var i=document.createElement('input');
-        i.type='hidden'; i.name=key; i.value=val;
-        sf.appendChild(i);
-      });
-      document.body.appendChild(sf);
-      sf.submit();
-      document.body.removeChild(sf);
+      submitToGF('https://docs.google.com/forms/d/e/1FAIpQLSe1o__-yr9H13nCkVnSJLNuvgCGhpd0fD5C1OBsZ0-IA02NUg/formResponse', sp);
     }, 400);
   }
 
-  setTimeout(function(){ window.location.href = 'index.html'; }, 800);
+  document.getElementById('musicForm').style.display = 'none';
+  document.getElementById('successModal').style.display = 'flex';
 });
 </script>
 </body></html
@@ -1408,94 +1393,5 @@ document.addEventListener('click',function(e){
 </script>
 
 
-<script>
-document.getElementById('musicSubmitBtn').addEventListener('click', function(){
-  var artist = document.getElementById('mf_artist').value.trim();
-  var email  = document.getElementById('mf_email').value.trim();
-  var title1 = document.getElementById('mf_title1').value.trim();
-  var link1  = document.getElementById('mf_link1').value.trim();
-  var genre  = document.getElementById('mf_genre').value;
-  var inst   = document.getElementById('mf_instruments').value;
-  var vocal  = document.getElementById('mf_vocal').value;
-  var expl   = document.getElementById('mf_explicit').value;
-  var lyrics = document.getElementById('mf_lyrics').value;
-  var stems  = document.getElementById('mf_stems').value;
-  var rc     = document.getElementById('mf_rights_contact').value.trim();
-  var rights = document.getElementById('mf_rights_confirm').checked;
 
-  if(!artist||!email||!title1||!link1||!genre||!inst||!vocal||!expl||!lyrics||!stems||!rc){
-    alert('Please complete all required fields (marked with *).'); return;
-  }
-  if(!rights){ alert('Rights confirmation is required before submission.'); return; }
-
-  var p = new URLSearchParams();
-  p.append('entry.1186850487', artist);
-  p.append('entry.1559382111', title1);
-  p.append('entry.89988266',   email);
-  p.append('entry.159834489',  document.getElementById('mf_phone').value.trim());
-  p.append('entry.1906751892', link1);
-  p.append('entry.108142743',  genre);
-  p.append('entry.306678011',  document.getElementById('mf_bpm').value.trim());
-  p.append('entry.962086369',  inst);
-  p.append('entry.1321133650', vocal);
-  p.append('entry.2027100635', expl);
-  p.append('entry.1190401984', lyrics);
-  p.append('entry.1300478591', stems);
-  p.append('entry.1837620464', rc);
-  p.append('entry.1647116488', 'I confirm that I am the sole or co-owner of both the master recording and the underlying composition for all tracks submitted and that I have the authority to grant sync licensing rights.');
-
-  // Newsletter opt-in
-  var newsletter = document.getElementById('mf_newsletter').checked;
-  if(newsletter){
-    p.append('entry.1137375980', 'I agree to receive email updates from HEARTH. You can unsubscribe at any time. We respect your privacy');
-  } else {
-    p.append('entry.1137375980', 'I do not agree to receive email updates from HEARTH.');
-  }
-
-  // Submit to Google Forms via hidden iframe
-  var gfIframe = document.getElementById('gf_hidden_iframe') || (function(){
-    var f = document.createElement('iframe');
-    f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
-    f.style.display = 'none'; document.body.appendChild(f); return f;
-  })();
-  var gfForm = document.createElement('form');
-  gfForm.method = 'POST';
-  gfForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLScPpqJNMJN3EOKCkIJZenvxPtzzbj25OQN_daEz8S6-gApwEw/formResponse';
-  gfForm.target = 'gf_hidden_iframe';
-  gfForm.style.display = 'none';
-  p.forEach(function(val, key){
-    var inp = document.createElement('input');
-    inp.type = 'hidden'; inp.name = key; inp.value = val;
-    gfForm.appendChild(inp);
-  });
-  document.body.appendChild(gfForm);
-  gfForm.submit();
-  document.body.removeChild(gfForm);
-
-  // If newsletter opted in, also submit to subscriber form
-  if(newsletter && email){
-    setTimeout(function(){
-      var sp = new URLSearchParams();
-      sp.append('entry.675473085', artist);
-      sp.append('entry.1885537716', email);
-      sp.append('entry.852923629', 'Musician');
-      var sf = document.createElement('form');
-      sf.method = 'POST';
-      sf.action = 'https://docs.google.com/forms/d/e/1FAIpQLSe1o__-yr9H13nCkVnSJLNuvgCGhpd0fD5C1OBsZ0-IA02NUg/formResponse';
-      sf.target = 'gf_hidden_iframe';
-      sf.style.display = 'none';
-      sp.forEach(function(val,key){
-        var i=document.createElement('input');
-        i.type='hidden'; i.name=key; i.value=val;
-        sf.appendChild(i);
-      });
-      document.body.appendChild(sf);
-      sf.submit();
-      document.body.removeChild(sf);
-    }, 400);
-  }
-
-  setTimeout(function(){ window.location.href = 'index.html'; }, 800);
-});
-</script>
 </body></html>

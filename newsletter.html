@@ -1086,12 +1086,13 @@ document.getElementById('nlSubmitBtn').addEventListener('click', function(){
   var name  = document.getElementById('nl_name').value.trim();
   var email = document.getElementById('nl_email').value.trim();
   var role  = document.getElementById('nl_role').value;
-  if(!name || !email){ alert('Please enter your name and email address.'); return; }
+  if(!name || !email){ alert('Please enter your name and email.'); return; }
+
   var p = new URLSearchParams();
   p.append('entry.675473085', name);
   p.append('entry.1885537716', email);
   p.append('entry.852923629', role);
-  
+
   var gfIframe = document.getElementById('gf_hidden_iframe') || (function(){
     var f = document.createElement('iframe');
     f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
@@ -1099,7 +1100,7 @@ document.getElementById('nlSubmitBtn').addEventListener('click', function(){
   })();
   var gfForm = document.createElement('form');
   gfForm.method = 'POST';
-  gfForm.action = '{SUB_URL}';
+  gfForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLSe1o__-yr9H13nCkVnSJLNuvgCGhpd0fD5C1OBsZ0-IA02NUg/formResponse';
   gfForm.target = 'gf_hidden_iframe';
   gfForm.style.display = 'none';
   p.forEach(function(val, key){
@@ -1110,7 +1111,9 @@ document.getElementById('nlSubmitBtn').addEventListener('click', function(){
   document.body.appendChild(gfForm);
   gfForm.submit();
   document.body.removeChild(gfForm);
-  setTimeout(function(){ window.location.href = 'index.html'; }, 600);
+
+  document.getElementById('glowForm').style.display = 'none';
+  document.getElementById('successModal').style.display = 'flex';
 });
 </script>
 </body></html>

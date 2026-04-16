@@ -85,7 +85,7 @@ h2.page-h2.on-dark em{color:var(--yellow);}
 /* ══════════════════════════════════════════
    HOME PAGE
 ══════════════════════════════════════════ */
-.hero{background:var(--stone);display:grid;grid-template-columns:1.1fr 0.9fr;min-height:auto;position:relative;overflow:hidden;}
+.hero{background:var(--stone);display:grid;grid-template-columns:1fr 1fr;min-height:auto;position:relative;overflow:hidden;}
 .hero-orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;}
 .ho1{width:500px;height:500px;background:rgba(229,9,20,0.13);top:-80px;right:-40px;}
 .ho2{width:340px;height:340px;background:rgba(255,107,53,0.08);bottom:-40px;left:60px;}
@@ -100,7 +100,7 @@ h2.page-h2.on-dark em{color:var(--yellow);}
 .hero-stats{display:flex;gap:36px;padding-top:36px;border-top:1px solid rgba(250,250,248,0.08);}
 .stat-n{font-family:'Besley',serif;font-weight:700;font-size:30px;color:var(--yellow);line-height:1;margin-bottom:4px;}
 .stat-l{font-weight:300;font-size:11px;color:var(--ash);letter-spacing:0.08em;text-transform:uppercase;}
-.hero-r{position:relative;z-index:2;display:flex;align-items:stretch;justify-content:center;}
+.hero-r{position:relative;z-index:2;display:flex;align-items:center;justify-content:flex-start;padding:60px 40px 60px 20px;}
 .hero-card{background:rgba(250,250,248,0.05);border:1px solid rgba(250,250,248,0.09);border-radius:4px;padding:24px 20px;flex:1;min-width:0;position:relative;display:flex;flex-direction:column;}
 .hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--orange),var(--yellow));border-radius:4px 4px 0 0;}
 .hc-label{font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;}
@@ -1040,7 +1040,7 @@ nav{position:sticky;top:5px;z-index:200;}
       <div><div class="stat-n">340+</div><div class="stat-l">Events</div></div>
     </div>
   </div>
-  <div class="hero-r" style="display:flex;flex-direction:row;gap:14px;align-items:flex-start;padding:40px 48px 40px 24px;">
+  <div class="hero-r" style="display:flex;flex-direction:row;gap:14px;align-items:center;padding:0 32px 0 0;">
     <div class="hero-card">
       <div>
         <div class="hc-label">// Now Accepting</div>
@@ -1165,48 +1165,51 @@ document.addEventListener('click',function(e){
 </script>
 
 <script>
-
-document.getElementById('gatherBtn').addEventListener('click', async function(){
+document.getElementById('gatherBtn').addEventListener('click', function(){
   var fname = document.getElementById('gf_fname').value.trim();
   var lname = document.getElementById('gf_lname').value.trim();
-  var name = (fname + ' ' + lname).trim();
   var email = document.getElementById('gf_email').value.trim();
   var role  = document.getElementById('gf_role').value;
-  if(!fname || !email){ alert('Please enter your name and email.'); return; }
-  
-  // Build Google Forms POST URL
-  var params = new URLSearchParams();
-  params.append('entry.675473085', name);
-  params.append('entry.1885537716', email);
-  params.append('entry.852923629', role);
-  
-  // Submit via hidden iframe (Google Forms CORS workaround)
-  var iframe = document.getElementById('gf_hidden_iframe') || (function(){
+  if(!fname || !email){ alert('Please enter your first name and email.'); return; }
+  var name = (fname + ' ' + lname).trim();
+
+  var p = new URLSearchParams();
+  p.append('entry.675473085', name);
+  p.append('entry.1885537716', email);
+  p.append('entry.852923629', role);
+
+  var gfIframe = document.getElementById('gf_hidden_iframe') || (function(){
     var f = document.createElement('iframe');
     f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
     f.style.display = 'none'; document.body.appendChild(f); return f;
   })();
-  
-  var tempForm = document.createElement('form');
-  tempForm.method = 'POST';
-  tempForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLSe1o__-yr9H13nCkVnSJLNuvgCGhpd0fD5C1OBsZ0-IA02NUg/formResponse';
-  tempForm.target = 'gf_hidden_iframe';
-  tempForm.style.display = 'none';
-  
-  params.forEach(function(val, key){
-    var input = document.createElement('input');
-    input.type = 'hidden'; input.name = key; input.value = val;
-    tempForm.appendChild(input);
+  var gfForm = document.createElement('form');
+  gfForm.method = 'POST';
+  gfForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLSe1o__-yr9H13nCkVnSJLNuvgCGhpd0fD5C1OBsZ0-IA02NUg/formResponse';
+  gfForm.target = 'gf_hidden_iframe';
+  gfForm.style.display = 'none';
+  p.forEach(function(val, key){
+    var inp = document.createElement('input');
+    inp.type = 'hidden'; inp.name = key; inp.value = val;
+    gfForm.appendChild(inp);
   });
-  
-  document.body.appendChild(tempForm);
-  tempForm.submit();
-  document.body.removeChild(tempForm);
-  
-  setTimeout(function(){
-    document.getElementById('gatherForm').style.display='none';
-window.location.href = 'index.html';
-  }, 600);
+  document.body.appendChild(gfForm);
+  gfForm.submit();
+  document.body.removeChild(gfForm);
+
+  // Show confirmation modal — no redirect, no blank page
+  document.getElementById('gatherForm').style.display = 'none';
+  document.getElementById('successModal').style.display = 'flex';
 });
 </script>
+
+<!-- ── CONFIRMATION MODAL ── -->
+<div id="successModal" style="display:none;position:fixed;inset:0;background:rgba(43,45,66,0.85);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:var(--white);border-radius:4px;padding:48px 40px;max-width:420px;width:90%;position:relative;text-align:center;">
+    <div style="width:56px;height:56px;background:rgba(74,222,128,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;">✓</div>
+    <h3 style="font-family:'Besley',serif;font-weight:700;font-size:24px;color:var(--stone);margin-bottom:10px;">You're on the list.</h3>
+    <p style="font-size:14px;line-height:1.7;color:var(--ash);margin-bottom:28px;">Welcome to the HEARTH™ circle. We'll be in touch with updates, program news, and opportunities.</p>
+    <button onclick="document.getElementById('successModal').style.display='none';" style="background:var(--red);color:white;border:none;padding:14px 32px;border-radius:2px;font-size:14px;font-weight:500;cursor:pointer;width:100%;">Close →</button>
+  </div>
+</div>
 </body></html>
