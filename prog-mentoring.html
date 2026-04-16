@@ -1079,7 +1079,7 @@ document.addEventListener('click',function(e){
     <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;">// Stay Informed</div>
     <h3 style="font-family:'Besley',serif;font-weight:700;font-size:26px;color:var(--stone);margin-bottom:8px;">Get notified when<br><em style="color:var(--red);">this program opens.</em></h3>
     <p style="font-size:13px;color:var(--ash);margin-bottom:20px;">Join our community and be the first to know about program launches, open applications, and creative opportunities.</p>
-    <form id="notifyForm" style="display:flex;flex-direction:column;gap:12px;">
+    <form id="notifyForm" style="display:flex;flex-direction:column;gap:12px;" onsubmit="return false;">
       <input id="nf_name" type="text" placeholder="Your name" required style="padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);">
       <input id="nf_email" type="email" placeholder="your@email.com" required style="padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);">
       <select id="nf_role" style="padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);">

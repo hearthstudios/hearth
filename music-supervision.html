@@ -1034,7 +1034,7 @@ nav{position:sticky;top:5px;z-index:200;}
       <h2 class="page-h2" style="margin-bottom:16px;">Submit your<br><em>music.</em></h2>
       <p style="font-size:14px;line-height:1.75;color:rgba(43,45,66,0.75);margin-bottom:24px;">HEARTH™ accepts original music for our curated sync library on a rolling basis. All genres welcome. You retain ownership — we license on a per-use basis.</p>
 
-      <form id="musicForm" style="display:flex;flex-direction:column;gap:0;">
+      <form id="musicForm" style="display:flex;flex-direction:column;gap:0;" onsubmit="return false;">
 
         <!-- Artist Info -->
         <div style="background:var(--paper);border-radius:3px 3px 0 0;padding:20px 22px;border-bottom:1px solid rgba(141,153,174,0.15);">
@@ -1193,7 +1193,7 @@ nav{position:sticky;top:5px;z-index:200;}
 
     <div style="background:var(--paper);border-radius:4px;padding:32px;">
       <div style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#c9a000;margin-bottom:14px;">// Licensing Inquiry</div>
-      <form action="[AIRTABLE-PLACEHOLDER]" method="POST" style="display:flex;flex-direction:column;gap:14px;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
         <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Name *</label><input type="text" name="name" required placeholder="Your name" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
         <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Email *</label><input type="email" name="email" required placeholder="your@email.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
         <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Project Type *</label>
