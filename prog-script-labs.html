@@ -1010,7 +1010,7 @@ nav{position:sticky;top:5px;z-index:200;}
       <h1 style="font-family:'Besley',serif;font-weight:700;font-size:52px;color:var(--white);letter-spacing:-1.5px;line-height:1.07;margin-bottom:12px;">Script<br>Labs.</h1>
       <p style="font-family:'Besley',serif;font-style:italic;font-size:16px;color:var(--ash);margin-bottom:28px;">From Idea to Draft. In Eight Weeks.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <a href="#" onclick="openNotifyModal()" class="btn btn-red">Get Notified →</a>
+        <a href="https://www.eventbrite.com/e/script-labs-tickets-1988245403524?aff=oddtdtcreator&keep_tld=true" target="_blank" rel="noopener noreferrer" class="btn btn-red" style="display:inline-block;padding:14px 28px;min-height:44px;">Apply Now →</a>
         <a href="programs.html" class="btn btn-outline-dark">← All Programs</a>
       </div>
     </div>
@@ -1061,7 +1061,7 @@ nav{position:sticky;top:5px;z-index:200;}
     <div class="footer-col"><h5>Community</h5><ul>
       <li><a href="events.html">Events</a></li>
       <li><a href="community.html">Community</a></li>
-      <li><a href="#" onclick="openNotifyModal()">The Glow</a></li>
+      <li><a href="newsletter.html">The Glow</a></li>
       <li><a href="resources.html">Resources</a></li>
     </ul></div>
     <div class="footer-col"><h5>Media</h5><ul>
@@ -1094,8 +1094,8 @@ document.addEventListener('click',function(e){
     <button onclick="closeNotifyModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ash);">✕</button>
     <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--red),var(--orange),var(--yellow));border-radius:4px 4px 0 0;"></div>
     <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;">// Stay Informed</div>
-    <h3 style="font-family:'Besley',serif;font-weight:700;font-size:26px;color:var(--stone);margin-bottom:8px;">Get notified when<br><em style="color:var(--red);">this program opens.</em></h3>
-    <p style="font-size:13px;color:var(--ash);margin-bottom:20px;">Join our community and be the first to know about program launches, open applications, and creative opportunities.</p>
+    <h3 style="font-family:'Besley',serif;font-weight:700;font-size:26px;color:var(--stone);margin-bottom:8px;">Apply &amp; stay<br><em style="color:var(--red);">in the loop.</em></h3>
+    <p style="font-size:13px;color:var(--ash);margin-bottom:20px;">Drop your info and we'll keep you updated — then head to Eventbrite to secure your spot.</p>
     <form id="notifyForm" style="display:flex;flex-direction:column;gap:12px;" onsubmit="return false;">
       <input id="nf_name" type="text" placeholder="Your name" required style="padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);">
       <input id="nf_email" type="email" placeholder="your@email.com" required style="padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);">
@@ -1106,9 +1106,13 @@ document.addEventListener('click',function(e){
         <option value="Industry Professional">Industry Professional</option>
         <option value="Brand/Organization">Brand / Organization</option>
       </select>
-      <button id="notifySubmitBtn" type="button" style="background:var(--red);color:white;font-weight:500;font-size:14px;padding:14px;border:none;border-radius:2px;cursor:pointer;min-height:44px;">Notify Me →</button>
+      <button id="notifySubmitBtn" type="button" style="background:var(--red);color:white;font-weight:500;font-size:14px;padding:14px;border:none;border-radius:2px;cursor:pointer;min-height:44px;">Submit &amp; See Registration Link →</button>
     </form>
-    <div id="notifyConfirm" style="display:none;padding:16px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:3px;font-size:14px;color:#16a34a;font-weight:500;">✓ You're on the list. We'll reach out when applications open.</div>
+    <div id="notifyConfirm" style="display:none;">
+      <div style="padding:16px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:3px;font-size:14px;color:#16a34a;font-weight:500;margin-bottom:14px;">✓ You're on the list. We'll reach out when applications open.</div>
+      <p style="font-size:13px;color:var(--ash);margin-bottom:12px;">Ready to secure your spot? Register on Eventbrite now:</p>
+      <a href="https://www.eventbrite.com/e/script-labs-tickets-1988245403524?aff=oddtdtcreator&keep_tld=true" target="_blank" rel="noopener noreferrer" style="display:block;background:var(--red);color:white;text-align:center;font-weight:500;font-size:14px;padding:14px;border-radius:2px;text-decoration:none;">Register on Eventbrite →</a>
+    </div>
   </div>
 </div>
 <script>
