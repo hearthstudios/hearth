@@ -1006,17 +1006,34 @@ nav{position:sticky;top:5px;z-index:200;}
 <main>
 
 <!-- TRANSPLANTS HERO VIDEO -->
-<div id="transplants" style="background:var(--stone);position:relative;overflow:hidden;">
+<div id="transplants" style="background:#000;position:relative;overflow:hidden;">
   <div style="position:relative;width:100%;background:#000;overflow:hidden;">
+
+    <!-- Video — autoplay, muted (required for autoplay), loop -->
     <video
-      controls
-      preload="metadata"
-      poster=""
-      style="width:100%;display:block;max-height:600px;object-fit:contain;background:#000;"
-      aria-label="Transplants 2023 Full Length Trailer">
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      style="width:100%;display:block;max-height:620px;object-fit:cover;background:#000;"
+      aria-label="Transplants 2023 Full Length Trailer — HEARTH Original Series">
       <source src="resources/Transplants__2023_Full_Length_Trailer.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
+
+    <!-- HEARTH Original Series overlay — bottom left corner -->
+    <div style="position:absolute;bottom:28px;left:32px;z-index:10;pointer-events:none;">
+      <div style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,107,53,0.9);margin-bottom:6px;display:flex;align-items:center;gap:8px;">
+        <span style="display:inline-block;width:20px;height:1px;background:rgba(255,107,53,0.9);"></span>
+        HEARTH™ Original Series
+      </div>
+      <div style="font-family:'Besley',serif;font-weight:700;font-size:36px;color:#fff;line-height:1.1;letter-spacing:-0.5px;text-shadow:0 2px 12px rgba(0,0,0,0.6);">Transplants</div>
+      <div style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.7);margin-top:6px;letter-spacing:0.02em;">Television Series · Season 1 · Limited Series</div>
+    </div>
+
+    <!-- Subtle gradient so overlay text is always legible -->
+    <div style="position:absolute;bottom:0;left:0;right:0;height:180px;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,transparent 100%);pointer-events:none;"></div>
+
   </div>
 </div>
 </div>
