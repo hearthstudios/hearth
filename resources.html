@@ -1235,11 +1235,11 @@ document.addEventListener('click',function(e){
 </div>
 
 <!-- EmailJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<!-- EmailJS via direct fetch API -->
 
 <script>
 // ── EmailJS config ──
-emailjs.init('zWnKBDrA6gu40NILJ');
+// EmailJS credentials
 
 var _currentFile = '';
 var _currentName = '';
@@ -1273,15 +1273,29 @@ function sendResource() {
 
   var downloadLink = BASE_URL + _currentFile;
 
-  // Send via EmailJS
-  emailjs.send('service_iojbhx8', 'template_8vxruge', {
-    name:          name,
-    to_name:       name,
-    to_email:      email,
-    email:         email,
-    resource_name: _currentName,
-    download_link: downloadLink
-  }).then(function() {
+  // Send via EmailJS REST API directly
+  fetch('https://api.emailjs.com/api/v1.0/email/send', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      service_id:  'service_iojbhx8',
+      template_id: 'template_8vxruge',
+      user_id:     'zWnKBDrA6gu40NILJ',
+      accessToken: 'zWnKBDrA6gu40NILJ',
+      template_params: {
+        name:          name,
+        to_name:       name,
+        to_email:      email,
+        email:         email,
+        resource_name: _currentName,
+        download_link: downloadLink
+      }
+    })
+  }).then(function(response) {
+    console.log('EmailJS response status:', response.status);
+    return response.text().then(function(text) {
+      console.log('EmailJS response body:', text);
+      if (response.ok) {
     // Cross-submit to Google Sheets subscribers
     var p = new URLSearchParams();
     p.append('entry.675473085', name);
@@ -1308,9 +1322,13 @@ function sendResource() {
     document.getElementById('resourceForm').style.display = 'none';
     document.getElementById('resourceConfirm').style.display = 'block';
 
-  }, function(error) {
-    console.error('EmailJS error:', error);
-    alert('Something went wrong sending the email. Please try again.');
+      } else {
+        throw new Error('Status ' + response.status + ': ' + text);
+      }
+    });
+  }).catch(function(error) {
+    console.error('EmailJS fetch error:', error.message);
+    alert('Error: ' + error.message);
     btn.textContent = 'Send Me This Resource →';
     btn.disabled = false;
   });
