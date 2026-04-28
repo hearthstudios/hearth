@@ -1235,11 +1235,12 @@ document.addEventListener('click',function(e){
 </div>
 
 <!-- EmailJS SDK -->
-<!-- EmailJS via direct fetch API -->
-
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
-// ── EmailJS config ──
-// EmailJS credentials
+(function(){
+  emailjs.init({publicKey: 'zWnKBDrA6gu40NILJ'});
+})();
 
 var _currentFile = '';
 var _currentName = '';
@@ -1273,69 +1274,46 @@ function sendResource() {
 
   var downloadLink = BASE_URL + _currentFile;
 
-  var payload = {
-    service_id:  'service_iojbhx8',
-    template_id: 'template_2y9jhvo',
-    user_id:     'zWnKBDrA6gu40NILJ',
-    template_params: {
-      name:          name,
-      to_name:       name,
-      to_email:      email,
-      email:         email,
-      resource_name: _currentName,
-      download_link: downloadLink
-    }
-  };
-
-  console.log('Sending to EmailJS:', JSON.stringify(payload));
-
-  fetch('https://api.emailjs.com/api/v1.0/email/send', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
+  emailjs.send('service_iojbhx8', 'template_2y9jhvo', {
+    name:          name,
+    to_name:       name,
+    to_email:      email,
+    email:         email,
+    resource_name: _currentName,
+    download_link: downloadLink
   })
-  .then(function(res) {
-    return res.text().then(function(txt) {
-      console.log('EmailJS response:', res.status, txt);
-      if (res.ok) {
-        // Cross-submit to Google Sheets
-        var p = new URLSearchParams();
-        p.append('entry.675473085', name);
-        p.append('entry.1885537716', email);
-        p.append('entry.852923629', 'Artist/Creator');
-        var gfIframe = document.getElementById('gf_hidden_iframe') || (function(){
-          var f = document.createElement('iframe');
-          f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
-          f.style.display = 'none'; document.body.appendChild(f); return f;
-        })();
-        var gfForm = document.createElement('form');
-        gfForm.method = 'POST'; gfForm.action = SUB_URL;
-        gfForm.target = 'gf_hidden_iframe'; gfForm.style.display = 'none';
-        p.forEach(function(val, key) {
-          var inp = document.createElement('input');
-          inp.type = 'hidden'; inp.name = key; inp.value = val;
-          gfForm.appendChild(inp);
-        });
-        document.body.appendChild(gfForm);
-        gfForm.submit();
-        document.body.removeChild(gfForm);
-        document.getElementById('resourceForm').style.display = 'none';
-        document.getElementById('resourceConfirm').style.display = 'block';
-      } else {
-        alert('EmailJS Error ' + res.status + ': ' + txt);
-        btn.textContent = 'Send Me This Resource →';
-        btn.disabled = false;
-      }
+  .then(function() {
+    // Cross-submit to Google Sheets
+    var p = new URLSearchParams();
+    p.append('entry.675473085', name);
+    p.append('entry.1885537716', email);
+    p.append('entry.852923629', 'Artist/Creator');
+    var gfIframe = document.getElementById('gf_hidden_iframe') || (function(){
+      var f = document.createElement('iframe');
+      f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
+      f.style.display = 'none'; document.body.appendChild(f); return f;
+    })();
+    var gfForm = document.createElement('form');
+    gfForm.method = 'POST'; gfForm.action = SUB_URL;
+    gfForm.target = 'gf_hidden_iframe'; gfForm.style.display = 'none';
+    p.forEach(function(val, key) {
+      var inp = document.createElement('input');
+      inp.type = 'hidden'; inp.name = key; inp.value = val;
+      gfForm.appendChild(inp);
     });
+    document.body.appendChild(gfForm);
+    gfForm.submit();
+    document.body.removeChild(gfForm);
+    document.getElementById('resourceForm').style.display = 'none';
+    document.getElementById('resourceConfirm').style.display = 'block';
   })
   .catch(function(err) {
-    console.error('Network error:', err);
-    alert('Network error: ' + err.message);
+    console.error('EmailJS error:', JSON.stringify(err));
+    alert('Error ' + (err.status || '') + ': ' + (err.text || JSON.stringify(err)));
     btn.textContent = 'Send Me This Resource →';
     btn.disabled = false;
   });
 }
-
 
 // Close modal on backdrop click
 document.getElementById('resourceModal').addEventListener('click', function(e) {
