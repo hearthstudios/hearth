@@ -1011,12 +1011,15 @@ nav{position:sticky;top:5px;z-index:200;}
 
     <!-- YouTube embed — autoplay, muted, no controls clutter -->
     <iframe
-      src="https://www.youtube.com/embed/lDbr4hbeNvQ?autoplay=1&mute=1&loop=1&playlist=lDbr4hbeNvQ&controls=1&rel=0&modestbranding=1&playsinline=1"
+      src="https://www.youtube.com/embed/lDbr4hbeNvQ?autoplay=1&mute=1&loop=1&playlist=lDbr4hbeNvQ&controls=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&fs=0"
       style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
       title="Transplants — Full Length Trailer | HEARTH™ Original Series">
     </iframe>
+
+    <!-- Click blocker — prevents YouTube controls from appearing on hover/click -->
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:4;cursor:default;"></div>
 
     <!-- HEARTH™ Original Series overlay — bottom left corner -->
     <div style="position:absolute;bottom:28px;left:32px;z-index:10;pointer-events:none;">
