@@ -1250,32 +1250,27 @@ document.getElementById('spSubmitBtn').addEventListener('click', function() {
   var website = document.getElementById('sp_website').value.trim();
   var tier    = document.getElementById('sp_tier').value;
   var message = document.getElementById('sp_message').value.trim();
-  if(!name || !email) { alert('Please enter your name and email address.'); return; }
-  var p = new URLSearchParams();
-  p.append('entry.1804274884', company);
-  p.append('entry.2009583113', name);
-  p.append('entry.792855019',  email);
-  p.append('entry.1427556871', website);
-  p.append('entry.1576071528', tier);
-  p.append('entry.1651488351', message);
-  var gfIframe = document.getElementById('gf_hidden_iframe') || (function() {
-    var f = document.createElement('iframe');
-    f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
-    f.style.display = 'none'; document.body.appendChild(f); return f;
-  })();
-  var gfForm = document.createElement('form');
-  gfForm.method = 'POST';
-  gfForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLSdvKsHALPAobiNjUWMFOhvTLK-G0GcPovUAieP0KUo2rKalVA/formResponse';
-  gfForm.target = 'gf_hidden_iframe';
-  gfForm.style.display = 'none';
-  p.forEach(function(val, key) {
-    var inp = document.createElement('input');
-    inp.type = 'hidden'; inp.name = key; inp.value = val;
-    gfForm.appendChild(inp);
+
+  if (!name)  { alert('Please enter your name.'); return; }
+  if (!email) { alert('Please enter your email address.'); return; }
+
+  var formData = new FormData();
+  formData.append('entry.1804274884', company);
+  formData.append('entry.2009583113', name);
+  formData.append('entry.792855019',  email);
+  formData.append('entry.1427556871', website);
+  formData.append('entry.1576071528', tier);
+  formData.append('entry.1651488351', message);
+
+  // Use no-cors fetch — Google Forms accepts this
+  // We can't read the response (that's what no-cors means) but the data posts fine
+  fetch('https://docs.google.com/forms/d/e/1FAIpQLSdvKsHALPAobiNjUWMFOhvTLK-G0GcPovUAieP0KUo2rKalVA/formResponse', {
+    method: 'POST',
+    mode: 'no-cors',
+    body: formData
   });
-  document.body.appendChild(gfForm);
-  gfForm.submit();
-  document.body.removeChild(gfForm);
+
+  // Show modal immediately — no need to wait for response
   document.getElementById('sponsorForm').style.display = 'none';
   document.getElementById('successModal').style.display = 'flex';
 });
