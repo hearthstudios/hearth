@@ -1109,27 +1109,6 @@ document.addEventListener('click',function(e){
   if(m&&b&&!m.contains(e.target)&&!b.contains(e.target)){m.classList.remove('open');}
 });
 </script>
-
-<script>
-document.getElementById('clientSubmitBtn') && document.getElementById('clientSubmitBtn').addEventListener('click', function(){
-  // Collect all form fields
-  var data = [];
-  var form = document.getElementById('clientForm');
-  if(!form) return;
-  form.querySelectorAll('input, select, textarea').forEach(function(el){
-    if(el.name && el.value) data.push(el.name + ': ' + el.value);
-  });
-  
-  // Validate required fields
-  var nameEl = form.querySelector('[id*="name"], [id*="Name"]');
-  var emailEl = form.querySelector('[type="email"]');
-  if(emailEl && !emailEl.value.trim()){ alert('Please enter your email address.'); return; }
-
-  // PLACEHOLDER: Replace this URL with your Google Form response URL when ready
-  // For now, confirm submission received and redirect home
-  document.getElementById('successModal').style.display = 'flex';
-});
-</script>
 </html>
 
 </body>
