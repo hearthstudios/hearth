@@ -1194,42 +1194,7 @@ document.addEventListener('click',function(e){
 });
 </script>
 
-<script>
-async function submitToClients(extraFields){
-  var fields = {
-    'Company Name': document.getElementById('cf_company').value.trim(),
-    'Primary Contact Name': document.getElementById('cf_name').value.trim(),
-    'Primary Contact Email': document.getElementById('cf_email').value.trim(),
-    'Primary Contact Phone': document.getElementById('cf_phone').value.trim(),
-    'City': document.getElementById('cf_city').value.trim(),
-    'State': document.getElementById('cf_state').value.trim(),
-    'Website': document.getElementById('cf_website').value.trim(),
-    'How they found us': document.getElementById('cf_source').value,
-    'Services Interested in': document.getElementById('cf_service').value,
-    ...extraFields
-  };
-  return await fetch('/.netlify/functions/airtable', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({base:'appyhjawc9vZ5DfWg', table:'tblR2B8QwzrCDwNKD', fields})
-    });
-}
-document.getElementById('clientSubmitBtn').addEventListener('click', async function(){
-  var name=document.getElementById('cf_name').value.trim();
-  var email=document.getElementById('cf_email').value.trim();
-  if(!name||!email){ alert('Please enter your name and email.'); return; }
-  try {
-    var r = await submitToClients({});
-    if(r.ok){
-      window.location.href = 'index.html';
-    } else { var errData = await r.clone().text(); console.error('Airtable error:', errData); alert('Submission error. Please check console for details.'); }
-  } catch(e) { alert('Network error.'); }
-});
-document.getElementById('hireCastBtn').addEventListener('click', async function(){
-  document.getElementById('cf_service').value = 'Cast & Crew Access';
-  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
-});
-</script>
+
 
 <!-- ── SPONSORSHIP SUCCESS MODAL ── -->
 <div id="successModal" style="display:none;position:fixed;inset:0;background:rgba(43,45,66,0.88);z-index:9999;align-items:center;justify-content:center;">
