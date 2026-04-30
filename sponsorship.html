@@ -1003,7 +1003,7 @@ nav{position:sticky;top:5px;z-index:200;}
 </head>
 <body>
 <div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div>
-<nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH<span class="tm">™</span></span></a><ul class="nav-menu"><li><a href="index.html">Home</a></li><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="work-with-us.html" class="active-page">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
+<nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH<span class="tm">™</span></span></a><ul class="nav-menu"><li><a href="index.html">Home</a></li><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="schedule.html">Schedule</a></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="work-with-us.html" class="active-page">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
 <main>
 
 <!-- HERO -->
@@ -1030,7 +1030,7 @@ nav{position:sticky;top:5px;z-index:200;}
     <div style="background:var(--paper);border-radius:3px;padding:28px;border-top:3px solid var(--orange);">
       <div style="font-size:28px;margin-bottom:14px;">👥</div>
       <div style="font-family:'Besley',serif;font-weight:700;font-size:17px;color:var(--stone);margin-bottom:8px;">11,000+ Community Members</div>
-      <p style="font-size:13px;line-height:1.65;color:var(--ash);">Your brand reaches a deeply engaged community of creators, storytellers, and culture-forward audiences across Philadelphia, Los Angeles, and nationally.</p>
+      <p style="font-size:13px;line-height:1.65;color:var(--ash);">Your brand reaches a deeply engaged community of creators, storytellers, and culture-forward audiences across nationally across rotating cities.</p>
     </div>
     <div style="background:var(--paper);border-radius:3px;padding:28px;border-top:3px solid #c9a000;">
       <div style="font-size:28px;margin-bottom:14px;">📊</div>
@@ -1162,7 +1162,7 @@ nav{position:sticky;top:5px;z-index:200;}
       <li><a href="prog-mentoring.html">Mentorship</a></li>
     </ul></div>
     <div class="footer-col"><h5>Community</h5><ul>
-      <li><a href="events.html">Events</a></li>
+      <li><a href="events.html">Events</a></li><li><a href="schedule.html">Schedule</a></li>
       <li><a href="community.html">Community</a></li>
       <li><a href="newsletter.html">The Glow</a></li>
       <li><a href="resources.html">Resources</a></li>
@@ -1184,21 +1184,45 @@ nav{position:sticky;top:5px;z-index:200;}
 </footer>
 <script>
 document.getElementById('spSubmitBtn') && document.getElementById('spSubmitBtn').addEventListener('click', function(){
-  // Collect all form fields
-  var data = [];
-  var form = document.getElementById('sponsorForm');
-  if(!form) return;
-  form.querySelectorAll('input, select, textarea').forEach(function(el){
-    if(el.name && el.value) data.push(el.name + ': ' + el.value);
-  });
-  
-  // Validate required fields
-  var nameEl = form.querySelector('[id*="name"], [id*="Name"]');
-  var emailEl = form.querySelector('[type="email"]');
-  if(emailEl && !emailEl.value.trim()){ alert('Please enter your email address.'); return; }
+  var company = document.getElementById('sp_company').value.trim();
+  var name    = document.getElementById('sp_name').value.trim();
+  var email   = document.getElementById('sp_email').value.trim();
+  var website = document.getElementById('sp_website') ? document.getElementById('sp_website').value.trim() : '';
+  var tier    = document.getElementById('sp_tier').value;
+  var message = document.getElementById('sp_message') ? document.getElementById('sp_message').value.trim() : '';
 
-  // PLACEHOLDER: Replace this URL with your Google Form response URL when ready
-  // For now, confirm submission received and redirect home
+  if(!name || !email) { alert('Please enter your name and email address.'); return; }
+
+  var p = new URLSearchParams();
+  p.append('entry.1804274884', company);
+  p.append('entry.2009583113', name);
+  p.append('entry.792855019',  email);
+  p.append('entry.1427556871', website);
+  p.append('entry.1576071528', tier);
+  p.append('entry.1651488351', message);
+
+  function submitToGF(url, params) {
+    var gfIframe = document.getElementById('gf_hidden_iframe') || (function() {
+      var f = document.createElement('iframe');
+      f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
+      f.style.display = 'none'; document.body.appendChild(f); return f;
+    })();
+    var gfForm = document.createElement('form');
+    gfForm.method = 'POST'; gfForm.action = url;
+    gfForm.target = 'gf_hidden_iframe'; gfForm.style.display = 'none';
+    params.forEach(function(val, key) {
+      var inp = document.createElement('input');
+      inp.type = 'hidden'; inp.name = key; inp.value = val;
+      gfForm.appendChild(inp);
+    });
+    document.body.appendChild(gfForm);
+    gfForm.submit();
+    document.body.removeChild(gfForm);
+  }
+
+  submitToGF('https://docs.google.com/forms/d/e/1FAIpQLSdvKsHALPAobiNjUWMFOhvTLK-G0GcPovUAieP0KUo2rKalVA/formResponse', p);
+
+  document.getElementById('sponsorForm').style.display = 'none';
   document.getElementById('successModal').style.display = 'flex';
 });
 </script>

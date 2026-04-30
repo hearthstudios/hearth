@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Program Schedule — HEARTH™ | Launch Timeline 2026–2027</title>
-<meta name="description" content="View the full HEARTH™ program launch timeline — Showcases & Pitch Events, Script Labs, Mentorship, Music Residencies, Film Producing Curriculum, and Youth in Film schedules.">
-<meta property="og:url" content="https://buildyourhearth.studio/schedule">
-<link rel="canonical" href="https://buildyourhearth.studio/schedule">
+<title>Schedule — HEARTH™ | Live Events, Showcases, Workshops, Open Mics</title>
+<meta name="description" content="HEARTH™ organizes live events in the field of film and television for cultural and educational purposes — open mics, showcases, pitch nights, workshops, comedy shows, and annual gatherings in Philadelphia, NYC, Los Angeles, and nationally.">
+<meta property="og:title" content="Events — HEARTH™ | Live Events, Showcases, Workshops, Open Mics">
+<meta property="og:description" content="HEARTH™ organizes live events in the field of film and television for cultural and educational purposes — open mics, showcases, pitch nights, workshops, comedy shows, and annual gatherings in Philadelphia, NYC, Los Angeles, and nationally.">
+<meta property="og:url" content="https://buildyourhearth.studio/events">
+<link rel="canonical" href="https://buildyourhearth.studio/events">
 <link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -46,6 +48,30 @@ nav{
   border-bottom:1px solid rgba(141,153,174,0.15);
   padding:0 56px;height:64px;
   display:flex;align-items:center;justify-content:space-between;
+  /* ── EVENTS GRID — upcoming events ── */
+  #evtGrid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .ev-item {
+    width: 100% !important;
+  }
+  /* Featured event collapse */
+  .featured-event {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .fe-visual { min-height: 160px !important; }
+  .fe-info { padding: 24px !important; }
+  /* Filter chips scroll on mobile */
+  .efb-filters {
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+  .ef-chip { white-space: nowrap !important; flex-shrink: 0 !important; }
+
 }
 .nav-logo{font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--red);text-decoration:none;display:flex;align-items:center;gap:9px;}
 .nav-logo span{color:var(--stone);}
@@ -220,7 +246,7 @@ h2.page-h2.on-dark em{color:var(--yellow);}
 .ec-orange{background:var(--orange);color:white;}
 .ec-yellow{background:var(--yellow);color:var(--stone);}
 .ec-free{background:rgba(141,153,174,0.25);color:var(--ash);}
-.ev-item-title{font-family:'Besley',serif;font-weight:700;font-size:17px;color:var(--white);line-height:1.25;margin-bottom:8px;}
+.ev-item-title{font-family:'Besley',serif;font-weight:700;font-size:17px;color:var(--stone);line-height:1.25;margin-bottom:8px;}
 .ev-item-meta{font-size:12px;color:var(--ash);}
 .ev-free-badge{font-size:10px;font-weight:600;color:var(--yellow);letter-spacing:0.07em;text-transform:uppercase;margin-left:4px;}
 
@@ -998,134 +1024,124 @@ nav{position:sticky;top:5px;z-index:200;}
   .values-grid6 { grid-template-columns: 1fr !important; }
 }
 </style>
+
+<style>
+@media (max-width: 768px) {
+  #evtGrid {
+    grid-template-columns: 1fr !important;
+  }
+  .featured-event {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+  }
+}
+@media (max-width: 480px) {
+  .eh-h1 { font-size: 30px !important; }
+  .events-filter-bar { padding: 14px 16px !important; }
+  .events-layout { padding: 28px 16px 48px !important; }
+}
+</style>
 </head>
 <body>
-<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH<span class="tm">™</span></span></a><ul class="nav-menu"><li><a href="index.html">Home</a></li><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="work-with-us.html">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
+<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH<span class="tm">™</span></span></a><ul class="nav-menu"><li><a href="index.html">Home</a></li><li><a href="programs.html">Programs</a></li><li><a href="events.html" class="active-page">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="work-with-us.html">Work With Us</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
+
 <main>
-<div style="background:var(--stone);padding:90px 80px;position:relative;overflow:hidden;">
-  <div style="position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(229,9,20,0.12),transparent 70%);pointer-events:none;"></div>
-  <div style="position:relative;z-index:1;max-width:640px;">
-    <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-bottom:18px;display:flex;align-items:center;gap:10px;"><span style="display:block;width:24px;height:1px;background:var(--orange);"></span>Programs · Launch Timeline</div>
-    <h1 style="font-family:'Besley',serif;font-weight:700;font-size:52px;color:var(--white);letter-spacing:-1.5px;line-height:1.07;margin-bottom:14px;">What's coming<br><em style="color:var(--orange);">and when.</em></h1>
-    <p style="font-size:15px;line-height:1.75;color:rgba(250,250,248,0.68);">Our full educational program launch schedule — from currently active classes and workshops to upcoming program launches through 2027.</p>
+
+<!-- HERO -->
+<div style="background:var(--stone);padding:80px 80px 64px;position:relative;overflow:hidden;">
+  <div style="position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(229,9,20,0.12),transparent 70%);pointer-events:none;"></div>
+  <div style="position:relative;z-index:1;max-width:680px;">
+    <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-bottom:18px;display:flex;align-items:center;gap:10px;"><span style="display:block;width:24px;height:1px;background:var(--orange);"></span>Events &amp; Showcases</div>
+    <h1 style="font-family:'Besley',serif;font-weight:700;font-size:52px;color:var(--white);letter-spacing:-1.5px;line-height:1.07;margin-bottom:14px;">The full <em style="color:var(--orange);">schedule.</em></h1>
+    <p style="font-size:15px;line-height:1.75;color:rgba(250,250,248,0.65);">Workshops, panels, showcases, and cultural events — all in one place. Tickets and registration links for each event below.</p>
   </div>
 </div>
 
 <div style="padding:60px 80px;background:var(--white);">
-  <div class="section-label">Full Timeline</div>
-  <h2 class="page-h2" style="margin-bottom:36px;">Program <em>launches.</em></h2>
 
-  <div style="display:flex;flex-direction:column;gap:0;">
-
-    <div style="display:grid;grid-template-columns:120px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid rgba(141,153,174,0.15);align-items:start;">
-      <div style="text-align:center;">
-        <div style="display:inline-block;background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.3);border-radius:3px;padding:8px 14px;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#16a34a;">Active Now</div>
+  <!-- ANNUAL SHOWCASE -->
+  <div style="margin-bottom:48px;">
+    <div class="section-label">Featured &mdash; Annual Showcase</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;background:var(--stone);border-radius:4px;overflow:hidden;padding:40px;">
+      <div>
+        <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;">Showcase &middot; Annual &middot; Ticketed</div>
+        <h2 style="font-family:'Besley',serif;font-weight:700;font-size:32px;color:var(--white);margin-bottom:10px;line-height:1.2;">The Annual HEARTH&trade;<br><em style="color:var(--orange);">Voices Across Cities 2026</em></h2>
+        <div style="font-size:14px;color:rgba(250,250,248,0.65);margin-bottom:8px;">&#128197; October 25, 2026 &nbsp;&middot;&nbsp; 6:00 PM</div>
+        <div style="font-size:14px;color:rgba(250,250,248,0.65);margin-bottom:20px;">&#128205; Location TBA</div>
+        <p style="font-size:14px;line-height:1.7;color:rgba(250,250,248,0.65);margin-bottom:24px;">HEARTH&trade;'s flagship annual gathering where developed talent presents original work to industry stakeholders and community. Live performances, film screenings, and project pitches.</p>
+        <a href="https://www.eventbrite.com/e/the-annual-hearthtm-voices-across-cities-2026-tickets-1988249524851?aff=oddtdtcreator" target="_blank" rel="noopener noreferrer" class="btn btn-red" style="display:inline-block;padding:14px 28px;">Get Tickets &rarr;</a>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;">
+        <div style="text-align:center;">
+          <div style="font-family:'Besley',serif;font-weight:700;font-size:96px;color:rgba(229,9,20,0.2);line-height:1;">25</div>
+          <div style="font-family:'Courier Prime',monospace;font-size:14px;color:rgba(250,250,248,0.4);letter-spacing:0.15em;text-transform:uppercase;">October 2026</div>
         </div>
       </div>
-      <div>
-        <div style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);margin-bottom:6px;">Youth in Film</div>
-        <div style="font-size:13px;color:var(--ash);margin-bottom:10px;">For-credit school curriculum · Grades 7–12 · In-Person Philadelphia</div>
-        <p style="font-size:14px;line-height:1.65;color:rgba(43,45,66,0.75);">Currently active with 10 students enrolled. A year-long film and television production curriculum in Philadelphia public schools integrating film and television making with Math and ELA skills.</p>
-        <a href="prog-youth-in-film.html" style="font-size:13px;color:var(--red);font-weight:500;text-decoration:none;display:inline-block;margin-top:10px;">Learn More →</a>
-      </div>
     </div>
-
-    <div style="display:grid;grid-template-columns:120px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid rgba(141,153,174,0.15);align-items:start;">
-      <div style="text-align:center;">
-        <div style="display:inline-block;background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.25);border-radius:3px;padding:8px 14px;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);">June 2026</div>
-        </div>
-      </div>
-      <div>
-        <div style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);margin-bottom:6px;">Showcases &amp; Pitch Events</div>
-        <div style="font-size:13px;color:var(--ash);margin-bottom:10px;">Quarterly live events · Philadelphia, NYC, Los Angeles</div>
-        <p style="font-size:14px;line-height:1.65;color:rgba(43,45,66,0.75);">Quarterly in-person events where HEARTH-developed talent presents work to industry stakeholders through live performances, film screenings, and project pitches.</p>
-        <a href="prog-showcases.html" style="font-size:13px;color:var(--red);font-weight:500;text-decoration:none;display:inline-block;margin-top:10px;">Learn More →</a>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:120px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid rgba(141,153,174,0.15);align-items:start;">
-      <div style="text-align:center;">
-        <div style="display:inline-block;background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.25);border-radius:3px;padding:8px 14px;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);">June 2026</div>
-        </div>
-      </div>
-      <div>
-        <div style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);margin-bottom:6px;">Script Labs — Applications Open</div>
-        <div style="font-size:13px;color:var(--ash);margin-bottom:10px;">8-week hybrid cohort · 12 writers maximum · Applications close September 2026</div>
-        <p style="font-size:14px;line-height:1.65;color:rgba(43,45,66,0.75);">Applications open June 2026, close September 2026. Program launches February 2027. Intensive screenwriting workshop for feature and TV pilot writers.</p>
-        <a href="prog-script-labs.html" style="font-size:13px;color:var(--red);font-weight:500;text-decoration:none;display:inline-block;margin-top:10px;">Learn More →</a>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:120px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid rgba(141,153,174,0.15);align-items:start;">
-      <div style="text-align:center;">
-        <div style="display:inline-block;background:rgba(229,9,20,0.08);border:1px solid rgba(229,9,20,0.2);border-radius:3px;padding:8px 14px;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);">Feb 2027</div>
-        </div>
-      </div>
-      <div>
-        <div style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);margin-bottom:6px;">Script Labs — Launches</div>
-        <div style="font-size:13px;color:var(--ash);margin-bottom:10px;">8 weeks · Hybrid (Philadelphia + National Online)</div>
-        <p style="font-size:14px;line-height:1.65;color:rgba(43,45,66,0.75);">First cohort of Script Labs launches February 2027. Applications close September 2026 — sign up to be notified when applications open.</p>
-        <a href="newsletter.html" style="font-size:13px;color:var(--red);font-weight:500;text-decoration:none;display:inline-block;margin-top:10px;">Get Notified →</a>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:120px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid rgba(141,153,174,0.15);align-items:start;">
-      <div style="text-align:center;">
-        <div style="display:inline-block;background:rgba(229,9,20,0.08);border:1px solid rgba(229,9,20,0.2);border-radius:3px;padding:8px 14px;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);">Feb 2027</div>
-        </div>
-      </div>
-      <div>
-        <div style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);margin-bottom:6px;">1-on-1 &amp; Small Group Mentorship</div>
-        <div style="font-size:13px;color:var(--ash);margin-bottom:10px;">Remote · 3-month cohorts · All disciplines</div>
-        <p style="font-size:14px;line-height:1.65;color:rgba(43,45,66,0.75);">Structured, compensated mentorship pairing emerging creators with working industry professionals. Fully remote. Launches February 2027.</p>
-        <a href="prog-mentoring.html" style="font-size:13px;color:var(--red);font-weight:500;text-decoration:none;display:inline-block;margin-top:10px;">Learn More →</a>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:120px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid rgba(141,153,174,0.15);align-items:start;">
-      <div style="text-align:center;">
-        <div style="display:inline-block;background:rgba(141,153,174,0.1);border:1px solid rgba(141,153,174,0.25);border-radius:3px;padding:8px 14px;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ash);">TBD 2027</div>
-        </div>
-      </div>
-      <div>
-        <div style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);margin-bottom:6px;">Music Residencies</div>
-        <div style="font-size:13px;color:var(--ash);margin-bottom:10px;">12-week in-person studio · 8 musicians max · Studio partner required</div>
-        <p style="font-size:14px;line-height:1.65;color:rgba(43,45,66,0.75);">Launch contingent on studio partner confirmation. HEARTH is actively in conversations. Sign up to be notified when the studio partner is confirmed and applications open.</p>
-        <a href="newsletter.html" style="font-size:13px;color:var(--red);font-weight:500;text-decoration:none;display:inline-block;margin-top:10px;">Get Notified →</a>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:120px 1fr;gap:32px;padding:32px 0;align-items:start;">
-      <div style="text-align:center;">
-        <div style="display:inline-block;background:rgba(141,153,174,0.1);border:1px solid rgba(141,153,174,0.25);border-radius:3px;padding:8px 14px;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ash);">Fall 2027</div>
-        </div>
-      </div>
-      <div>
-        <div style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);margin-bottom:6px;">Film Producing Curriculum</div>
-        <div style="font-size:13px;color:var(--ash);margin-bottom:10px;">6–12 months · Hybrid · 10 producers max</div>
-        <p style="font-size:14px;line-height:1.65;color:rgba(43,45,66,0.75);">The full producer lifecycle — development, financing, production, and distribution. Requires curriculum development completion and anchor funding. Target: Fall 2027.</p>
-        <a href="prog-film-producing.html" style="font-size:13px;color:var(--red);font-weight:500;text-decoration:none;display:inline-block;margin-top:10px;">Learn More →</a>
-      </div>
-    </div>
-
   </div>
 
-  <div style="margin-top:48px;padding:32px;background:var(--paper);border-radius:3px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
-    <div>
-      <div style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);margin-bottom:6px;">Stay ahead of every launch.</div>
-      <p style="font-size:14px;color:var(--ash);">Subscribe to The Glow and be the first to know when applications open.</p>
+  <!-- WORKSHOPS & EVENTS -->
+  <div>
+    <div class="section-label sl-orange">Upcoming Workshops &amp; Events</div>
+    <h3 style="font-family:'Besley',serif;font-weight:700;font-size:28px;color:var(--stone);margin-bottom:24px;">Open to the <em style="color:var(--red);">community.</em></h3>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" id="scheduleGrid">
+
+      <div style="background:var(--paper);border-radius:3px;overflow:hidden;border:1.5px solid rgba(141,153,174,0.15);">
+        <div style="height:5px;background:var(--red);"></div>
+        <div style="padding:24px;">
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);margin-bottom:8px;">Panel &middot; Ticketed</div>
+          <div style="font-family:'Besley',serif;font-weight:700;font-size:18px;color:var(--stone);margin-bottom:8px;line-height:1.3;">Breaking In: Independent Creator Paths</div>
+          <div style="font-size:12px;color:var(--ash);margin-bottom:4px;">&#128197; June 7, 2026 &nbsp;&middot;&nbsp; 10:00 AM</div>
+          <div style="font-size:12px;color:var(--ash);margin-bottom:16px;">&#128205; Location TBA</div>
+          <a href="https://www.eventbrite.com/e/breaking-in-independent-creator-paths-tickets-1988249001285?aff=oddtdtcreator" target="_blank" rel="noopener noreferrer" class="btn btn-dark" style="font-size:12px;padding:8px 18px;background:var(--stone);display:inline-block;">Get Tickets &rarr;</a>
+        </div>
+      </div>
+
+      <div style="background:var(--paper);border-radius:3px;overflow:hidden;border:1.5px solid rgba(141,153,174,0.15);">
+        <div style="height:5px;background:var(--orange);"></div>
+        <div style="padding:24px;">
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;">Workshop &middot; Ticketed</div>
+          <div style="font-family:'Besley',serif;font-weight:700;font-size:18px;color:var(--stone);margin-bottom:8px;line-height:1.3;">Acting for Camera: Intensive</div>
+          <div style="font-size:12px;color:var(--ash);margin-bottom:4px;">&#128197; June 14, 2026 &nbsp;&middot;&nbsp; 10:00 AM</div>
+          <div style="font-size:12px;color:var(--ash);margin-bottom:16px;">&#128205; Location TBA</div>
+          <a href="https://www.eventbrite.com/e/acting-for-camera-intensive-tickets-1988249016330?aff=oddtdtcreator" target="_blank" rel="noopener noreferrer" class="btn btn-orange" style="font-size:12px;padding:8px 18px;display:inline-block;">Get Tickets &rarr;</a>
+        </div>
+      </div>
+
+      <div style="background:var(--paper);border-radius:3px;overflow:hidden;border:1.5px solid rgba(141,153,174,0.15);">
+        <div style="height:5px;background:#c9a000;"></div>
+        <div style="padding:24px;">
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#c9a000;margin-bottom:8px;">Workshop &middot; Ticketed</div>
+          <div style="font-family:'Besley',serif;font-weight:700;font-size:18px;color:var(--stone);margin-bottom:8px;line-height:1.3;">Songwriting for Camera</div>
+          <div style="font-size:12px;color:var(--ash);margin-bottom:4px;">&#128197; July 26, 2026 &nbsp;&middot;&nbsp; 10:00 AM</div>
+          <div style="font-size:12px;color:var(--ash);margin-bottom:16px;">&#128205; Location TBA</div>
+          <a href="https://www.eventbrite.com/e/songwriting-for-camera-tickets-1988248467689?aff=oddtdtcreator" target="_blank" rel="noopener noreferrer" class="btn btn-dark" style="font-size:12px;padding:8px 18px;background:var(--stone);display:inline-block;">Get Tickets &rarr;</a>
+        </div>
+      </div>
+
     </div>
-    <a href="newsletter.html" class="btn btn-red">Subscribe to The Glow →</a>
   </div>
+
+  <!-- SHOWCASES COMING SOON -->
+  <div style="margin-top:60px;padding:40px;background:var(--paper);border-radius:4px;border-left:4px solid var(--red);">
+    <div class="section-label">Showcases &amp; Pitch Events</div>
+    <h3 style="font-family:'Besley',serif;font-weight:700;font-size:26px;color:var(--stone);margin-bottom:10px;">Quarterly showcases launching <em style="color:var(--red);">Fall 2026.</em></h3>
+    <p style="font-size:14px;line-height:1.75;color:var(--ash);max-width:680px;margin-bottom:20px;">HEARTH&trade; Showcases &amp; Pitch Events are quarterly in-person gatherings where developed talent presents work directly to industry stakeholders. Live performances, film screenings, and project pitches across rotating cities.</p>
+    <a href="newsletter.html" class="btn btn-red" style="display:inline-block;padding:13px 26px;">Get Notified via The Glow &rarr;</a>
+  </div>
+
 </div>
+
+<!-- MOBILE CSS -->
+<style>
+@media(max-width:768px){
+  #scheduleGrid { grid-template-columns: 1fr !important; }
+}
+</style>
+
 </main>
+
 <footer>
   <div class="footer-grid">
     <div class="fg-brand">
@@ -1146,7 +1162,7 @@ nav{position:sticky;top:5px;z-index:200;}
       <li><a href="prog-mentoring.html">Mentorship</a></li>
     </ul></div>
     <div class="footer-col"><h5>Community</h5><ul>
-      <li><a href="events.html">Events</a></li>
+      <li><a href="events.html">Events</a></li><li><a href="schedule.html">Schedule</a></li>
       <li><a href="community.html">Community</a></li>
       <li><a href="newsletter.html">The Glow</a></li>
       <li><a href="resources.html">Resources</a></li>
@@ -1175,4 +1191,4 @@ document.addEventListener('click',function(e){
   if(m&&b&&!m.contains(e.target)&&!b.contains(e.target)){m.classList.remove('open');}
 });
 </script>
-</body></html>
+</body>
