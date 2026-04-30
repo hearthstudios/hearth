@@ -1,4 +1,8 @@
+// HEARTH™ — Netlify Function: Airtable Proxy
+// PAT is stored in Netlify environment variables — never in code
+
 exports.handler = async function(event) {
+  // CORS preflight
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
@@ -17,6 +21,7 @@ exports.handler = async function(event) {
 
   const PAT = process.env.AIRTABLE_PAT;
   if (!PAT) {
+    console.error('AIRTABLE_PAT environment variable not set');
     return {
       statusCode: 500,
       headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
@@ -66,6 +71,7 @@ exports.handler = async function(event) {
       body: JSON.stringify(data)
     };
   } catch(err) {
+    console.error('Airtable error:', err.message);
     return {
       statusCode: 500,
       headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },

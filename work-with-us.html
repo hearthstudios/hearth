@@ -1124,11 +1124,10 @@ nav{position:sticky;top:5px;z-index:200;}
   id="clientForm"
   method="POST"
   action="https://docs.google.com/forms/d/e/1FAIpQLSeGUR74ERI3eIwiFm0rGe_rKOkC03fQPusMGQT7EyaMUk6gig/formResponse"
-  target="wwu_hidden_iframe"
-  onsubmit="setTimeout(function(){ document.getElementById('clientForm').style.display='none'; document.getElementById('successModal').style.display='flex'; }, 500);"
   style="display:flex;flex-direction:column;gap:16px;">
   <input type="hidden" name="fvv" value="1">
   <input type="hidden" name="fbzx" value="0">
+  <input type="hidden" name="submissionTimestamp" value="">
   <div>
     <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Company / Organization Name</label>
     <input name="entry.82494337" type="text" placeholder="Your company or organization" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
@@ -1190,9 +1189,8 @@ nav{position:sticky;top:5px;z-index:200;}
     <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Tell Us More</label>
     <textarea name="entry.1644905355" rows="4" placeholder="Tell us about your project or what you're looking for..." style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;resize:vertical;"></textarea>
   </div>
-  <button type="submit" class="btn btn-orange" style="width:100%;padding:14px;font-size:15px;border:none;cursor:pointer;min-height:44px;margin-top:4px;">Send Inquiry →</button>
+  <button type="submit" id="wwuSubmitBtn" class="btn btn-orange" style="width:100%;padding:14px;font-size:15px;border:none;cursor:pointer;min-height:44px;margin-top:4px;">Send Inquiry →</button>
 </form>
-<iframe name="wwu_hidden_iframe" style="display:none;" title="form-target"></iframe>
       <div id="clientConfirm" style="display:none;padding:18px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:3px;font-size:14px;color:#16a34a;font-weight:500;">✓ Got it — we'll be in touch within 48 hours.</div>
   </div>
 </div>
@@ -1256,4 +1254,21 @@ document.addEventListener('click',function(e){
     <button onclick="document.getElementById('successModal').style.display='none';" style="background:var(--red);color:white;border:none;padding:14px 32px;border-radius:2px;font-size:14px;cursor:pointer;">Close →</button>
   </div>
 </div>
+
+<script>
+document.getElementById('clientForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = this;
+  var data = new FormData(form);
+  fetch(form.action, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: data
+  }).then(function() {
+    window.location.href = 'thankyou.html';
+  }).catch(function() {
+    window.location.href = 'thankyou.html';
+  });
+});
+</script>
 </body></html>
