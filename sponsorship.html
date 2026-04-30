@@ -1182,50 +1182,7 @@ nav{position:sticky;top:5px;z-index:200;}
     <div class="fire-dots"><div class="fd fd1"></div><div class="fd fd2"></div><div class="fd fd3"></div></div>
   </div>
 </footer>
-<script>
-document.getElementById('spSubmitBtn').addEventListener('click', function() {
-  var company = document.getElementById('sp_company').value.trim();
-  var name    = document.getElementById('sp_name').value.trim();
-  var email   = document.getElementById('sp_email').value.trim();
-  var website = document.getElementById('sp_website') ? document.getElementById('sp_website').value.trim() : '';
-  var tier    = document.getElementById('sp_tier').value;
-  var message = document.getElementById('sp_message') ? document.getElementById('sp_message').value.trim() : '';
 
-  if (!name)  { alert('Please enter your name.'); return; }
-  if (!email) { alert('Please enter your email address.'); return; }
-
-  var p = new URLSearchParams();
-  p.append('entry.1804274884', company);
-  p.append('entry.2009583113', name);
-  p.append('entry.792855019',  email);
-  p.append('entry.1427556871', website);
-  p.append('entry.1576071528', tier);
-  p.append('entry.1651488351', message);
-
-  // Submit via hidden iframe — same pattern as working subscriber forms
-  var gfIframe = document.getElementById('gf_hidden_iframe') || (function() {
-    var f = document.createElement('iframe');
-    f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
-    f.style.display = 'none'; document.body.appendChild(f); return f;
-  })();
-  var gfForm = document.createElement('form');
-  gfForm.method = 'POST';
-  gfForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLSdvKsHALPAobiNjUWMFOhvTLK-G0GcPovUAieP0KUo2rKalVA/formResponse';
-  gfForm.target = 'gf_hidden_iframe';
-  gfForm.style.display = 'none';
-  p.forEach(function(val, key) {
-    var inp = document.createElement('input');
-    inp.type = 'hidden'; inp.name = key; inp.value = val;
-    gfForm.appendChild(inp);
-  });
-  document.body.appendChild(gfForm);
-  gfForm.submit();
-  document.body.removeChild(gfForm);
-
-  // Show success modal
-  document.getElementById('successModal').style.display = 'flex';
-});
-</script>
 <script>
 function toggleMobileMenu(){
   document.getElementById('mobileMenu').classList.toggle('open');
@@ -1284,8 +1241,44 @@ document.getElementById('hireCastBtn').addEventListener('click', async function(
     <button onclick="document.getElementById('successModal').style.display='none';" style="background:var(--red);color:white;border:none;padding:14px 36px;border-radius:2px;font-size:14px;font-weight:500;cursor:pointer;width:100%;">Close →</button>
   </div>
 </div>
-</body></html>
 
-
+<script>
+document.getElementById('spSubmitBtn').addEventListener('click', function() {
+  var company = document.getElementById('sp_company').value.trim();
+  var name    = document.getElementById('sp_name').value.trim();
+  var email   = document.getElementById('sp_email').value.trim();
+  var website = document.getElementById('sp_website').value.trim();
+  var tier    = document.getElementById('sp_tier').value;
+  var message = document.getElementById('sp_message').value.trim();
+  if(!name || !email) { alert('Please enter your name and email address.'); return; }
+  var p = new URLSearchParams();
+  p.append('entry.1804274884', company);
+  p.append('entry.2009583113', name);
+  p.append('entry.792855019',  email);
+  p.append('entry.1427556871', website);
+  p.append('entry.1576071528', tier);
+  p.append('entry.1651488351', message);
+  var gfIframe = document.getElementById('gf_hidden_iframe') || (function() {
+    var f = document.createElement('iframe');
+    f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
+    f.style.display = 'none'; document.body.appendChild(f); return f;
+  })();
+  var gfForm = document.createElement('form');
+  gfForm.method = 'POST';
+  gfForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLSdvKsHALPAobiNjUWMFOhvTLK-G0GcPovUAieP0KUo2rKalVA/formResponse';
+  gfForm.target = 'gf_hidden_iframe';
+  gfForm.style.display = 'none';
+  p.forEach(function(val, key) {
+    var inp = document.createElement('input');
+    inp.type = 'hidden'; inp.name = key; inp.value = val;
+    gfForm.appendChild(inp);
+  });
+  document.body.appendChild(gfForm);
+  gfForm.submit();
+  document.body.removeChild(gfForm);
+  document.getElementById('sponsorForm').style.display = 'none';
+  document.getElementById('successModal').style.display = 'flex';
+});
+</script>
 </body>
 </html>
