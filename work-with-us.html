@@ -1120,32 +1120,78 @@ nav{position:sticky;top:5px;z-index:200;}
     </div>
   </div>
   <div style="background:var(--paper);border-radius:4px;padding:40px;border:1.5px solid #EDE7D9;">
-    <form id="clientForm" style="display:flex;flex-direction:column;gap:14px;" onsubmit="return false;">
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Company / Organization Name</label><input id="cf_company" type="text" placeholder="Your organization" style="width:100%;padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Primary Contact Name *</label><input id="cf_name" type="text" required placeholder="Your full name" style="width:100%;padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Email *</label><input id="cf_email" type="email" required placeholder="your@email.com" style="width:100%;padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Phone</label><input id="cf_phone" type="tel" placeholder="Your phone number" style="width:100%;padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">City</label><input id="cf_city" type="text" placeholder="City" style="width:100%;padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-          <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">State</label><input id="cf_state" type="text" placeholder="State" style="width:100%;padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-        </div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Website</label><input id="cf_website" type="url" placeholder="https://yourwebsite.com" style="width:100%;padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">How did you find us?</label>
-          <select id="cf_source" style="width:100%;padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
-            <option>Social Media</option><option>Google Search</option><option>Word of Mouth</option>
-            <option>Event / Screening</option><option>Newsletter</option><option>Other</option>
-          </select>
-        </div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Services Interested In</label>
-          <select id="cf_service" style="width:100%;padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
-            <option>Live Event Production</option><option>Cast &amp; Crew Access</option>
-            <option>Music Supervision &amp; Sync</option><option>Media Education &amp; Workshops</option>
-            <option>Community Screenings &amp; Events</option><option>Sponsorship</option><option>Other</option>
-          </select>
-        </div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Tell us more</label><textarea id="cf_msg" placeholder="Share your project, goals, and questions..." style="width:100%;padding:12px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;min-height:100px;resize:vertical;"></textarea></div>
-        <button id="clientSubmitBtn" type="button" class="btn btn-orange" style="width:100%;padding:14px;font-size:15px;border:none;cursor:pointer;min-height:44px;">Send It Our Way →</button>
-      </form>
+    <form
+  id="clientForm"
+  method="POST"
+  action="https://docs.google.com/forms/d/e/1FAIpQLSeGUR74ERI3eIwiFm0rGe_rKOkC03fQPusMGQT7EyaMUk6gig/formResponse"
+  target="wwu_hidden_iframe"
+  onsubmit="setTimeout(function(){ document.getElementById('clientForm').style.display='none'; document.getElementById('successModal').style.display='flex'; }, 500);"
+  style="display:flex;flex-direction:column;gap:14px;">
+
+  <input type="hidden" name="fvv" value="1">
+  <input type="hidden" name="fbzx" value="0">
+
+  <div>
+    <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Company / Organization Name</label>
+    <input name="entry.82494337" type="text" placeholder="Your company or organization" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;">
+  </div>
+
+  <div>
+    <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Primary Contact Name *</label>
+    <input name="entry.1279477144" type="text" required placeholder="Your full name" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;">
+  </div>
+
+  <div>
+    <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Email Address *</label>
+    <input name="entry.1442475176" type="email" required placeholder="your@email.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;">
+  </div>
+
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;">
+    <div>
+      <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">City</label>
+      <input name="entry.1654351850" type="text" placeholder="City" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;">
+    </div>
+    <div>
+      <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">State</label>
+      <input name="entry.1480464224" type="text" placeholder="State" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;">
+    </div>
+  </div>
+
+  <div>
+    <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">How did you find us?</label>
+    <select name="entry.783755622" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;">
+      <option value="Google Search">Google Search</option>
+      <option value="Social Media">Social Media</option>
+      <option value="Referral">Referral / Word of Mouth</option>
+      <option value="The Glow Newsletter">The Glow Newsletter</option>
+      <option value="Event">Event</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <div>
+    <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Services Interested In</label>
+    <select name="entry.1113089927" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;">
+      <option value="Cast &amp; Crew Access">Cast &amp; Crew Access</option>
+      <option value="Music Supervision">Music Supervision / Sync Library</option>
+      <option value="Production Services">Production Services</option>
+      <option value="Sponsorship">Sponsorship / Partnership</option>
+      <option value="Event Production">Event Production</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <div>
+    <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Tell Us More</label>
+    <textarea name="entry.1644905355" rows="4" placeholder="Tell us about your project or what you're looking for..." style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;resize:vertical;"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-orange" style="width:100%;padding:14px;font-size:15px;border:none;cursor:pointer;min-height:44px;">Send Inquiry →</button>
+
+</form>
+
+<!-- Hidden iframe receives Google Forms response — prevents page redirect -->
+<iframe name="wwu_hidden_iframe" style="display:none;" title="form-target"></iframe>
       <div id="clientConfirm" style="display:none;padding:18px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:3px;font-size:14px;color:#16a34a;font-weight:500;">✓ Got it — we'll be in touch within 48 hours.</div>
   </div>
 </div>
@@ -1201,24 +1247,12 @@ document.addEventListener('click',function(e){
 });
 </script>
 
-<script>
-document.getElementById('clientSubmitBtn') && document.getElementById('clientSubmitBtn').addEventListener('click', function(){
-  // Collect all form fields
-  var data = [];
-  var form = document.getElementById('clientForm');
-  if(!form) return;
-  form.querySelectorAll('input, select, textarea').forEach(function(el){
-    if(el.name && el.value) data.push(el.name + ': ' + el.value);
-  });
-  
-  // Validate required fields
-  var nameEl = form.querySelector('[id*="name"], [id*="Name"]');
-  var emailEl = form.querySelector('[type="email"]');
-  if(emailEl && !emailEl.value.trim()){ alert('Please enter your email address.'); return; }
-
-  // PLACEHOLDER: Replace this URL with your Google Form response URL when ready
-  // For now, confirm submission received and redirect home
-  document.getElementById('successModal').style.display = 'flex';
-});
-</script>
+<div id="successModal" style="display:none;position:fixed;inset:0;background:rgba(43,45,66,0.88);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:var(--white);border-radius:4px;padding:52px 44px;max-width:460px;width:92%;text-align:center;">
+    <div style="font-size:40px;margin-bottom:16px;">✓</div>
+    <h3 style="font-family:'Besley',serif;font-weight:700;font-size:24px;color:var(--stone);margin-bottom:10px;">Inquiry received.</h3>
+    <p style="font-size:14px;line-height:1.7;color:var(--ash);margin-bottom:24px;">Thank you for reaching out to HEARTH™. We'll be in touch within 48 hours.</p>
+    <button onclick="document.getElementById('successModal').style.display='none';" style="background:var(--red);color:white;border:none;padding:14px 32px;border-radius:2px;font-size:14px;cursor:pointer;">Close →</button>
+  </div>
+</div>
 </body></html>
