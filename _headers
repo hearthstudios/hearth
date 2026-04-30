@@ -18,3 +18,8 @@
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: form-action 'self' https://docs.google.com; connect-src 'self' https://docs.google.com https://api.emailjs.com https://cdn.jsdelivr.net
+
+# Sponsorship page — allow POSTing to Google Forms
+/sponsorship.html
+  Content-Security-Policy: form-action 'self' https://docs.google.com; connect-src 'self' https://docs.google.com https://api.emailjs.com
