@@ -1183,7 +1183,7 @@ nav{position:sticky;top:5px;z-index:200;}
   </div>
 </footer>
 <script>
-document.getElementById('spSubmitBtn') && document.getElementById('spSubmitBtn').addEventListener('click', function(){
+document.getElementById('spSubmitBtn').addEventListener('click', function() {
   var company = document.getElementById('sp_company').value.trim();
   var name    = document.getElementById('sp_name').value.trim();
   var email   = document.getElementById('sp_email').value.trim();
@@ -1191,7 +1191,8 @@ document.getElementById('spSubmitBtn') && document.getElementById('spSubmitBtn')
   var tier    = document.getElementById('sp_tier').value;
   var message = document.getElementById('sp_message') ? document.getElementById('sp_message').value.trim() : '';
 
-  if(!name || !email) { alert('Please enter your name and email address.'); return; }
+  if (!name)  { alert('Please enter your name.'); return; }
+  if (!email) { alert('Please enter your email address.'); return; }
 
   var p = new URLSearchParams();
   p.append('entry.1804274884', company);
@@ -1201,28 +1202,27 @@ document.getElementById('spSubmitBtn') && document.getElementById('spSubmitBtn')
   p.append('entry.1576071528', tier);
   p.append('entry.1651488351', message);
 
-  function submitToGF(url, params) {
-    var gfIframe = document.getElementById('gf_hidden_iframe') || (function() {
-      var f = document.createElement('iframe');
-      f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
-      f.style.display = 'none'; document.body.appendChild(f); return f;
-    })();
-    var gfForm = document.createElement('form');
-    gfForm.method = 'POST'; gfForm.action = url;
-    gfForm.target = 'gf_hidden_iframe'; gfForm.style.display = 'none';
-    params.forEach(function(val, key) {
-      var inp = document.createElement('input');
-      inp.type = 'hidden'; inp.name = key; inp.value = val;
-      gfForm.appendChild(inp);
-    });
-    document.body.appendChild(gfForm);
-    gfForm.submit();
-    document.body.removeChild(gfForm);
-  }
+  // Submit via hidden iframe — same pattern as working subscriber forms
+  var gfIframe = document.getElementById('gf_hidden_iframe') || (function() {
+    var f = document.createElement('iframe');
+    f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
+    f.style.display = 'none'; document.body.appendChild(f); return f;
+  })();
+  var gfForm = document.createElement('form');
+  gfForm.method = 'POST';
+  gfForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLSdvKsHALPAobiNjUWMFOhvTLK-G0GcPovUAieP0KUo2rKalVA/formResponse';
+  gfForm.target = 'gf_hidden_iframe';
+  gfForm.style.display = 'none';
+  p.forEach(function(val, key) {
+    var inp = document.createElement('input');
+    inp.type = 'hidden'; inp.name = key; inp.value = val;
+    gfForm.appendChild(inp);
+  });
+  document.body.appendChild(gfForm);
+  gfForm.submit();
+  document.body.removeChild(gfForm);
 
-  submitToGF('https://docs.google.com/forms/d/e/1FAIpQLSdvKsHALPAobiNjUWMFOhvTLK-G0GcPovUAieP0KUo2rKalVA/formResponse', p);
-
-  document.getElementById('sponsorForm').style.display = 'none';
+  // Show success modal
   document.getElementById('successModal').style.display = 'flex';
 });
 </script>
@@ -1273,6 +1273,19 @@ document.getElementById('hireCastBtn').addEventListener('click', async function(
   document.getElementById('contact').scrollIntoView({behavior:'smooth'});
 });
 </script>
+
+<!-- ── SPONSORSHIP SUCCESS MODAL ── -->
+<div id="successModal" style="display:none;position:fixed;inset:0;background:rgba(43,45,66,0.88);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:var(--white);border-radius:4px;padding:52px 44px;max-width:460px;width:92%;position:relative;text-align:center;">
+    <div style="width:60px;height:60px;background:rgba(74,222,128,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:26px;">✓</div>
+    <div style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;">Inquiry Received</div>
+    <h3 style="font-family:'Besley',serif;font-weight:700;font-size:26px;color:var(--stone);margin-bottom:10px;">Thank you for reaching out.</h3>
+    <p style="font-size:14px;line-height:1.75;color:var(--ash);margin-bottom:28px;">Your sponsorship inquiry has been received. A member of the HEARTH™ team will follow up within 48 hours to discuss partnership opportunities.</p>
+    <button onclick="document.getElementById('successModal').style.display='none';" style="background:var(--red);color:white;border:none;padding:14px 36px;border-radius:2px;font-size:14px;font-weight:500;cursor:pointer;width:100%;">Close →</button>
+  </div>
+</div>
 </body></html>
+
+
 </body>
 </html>
