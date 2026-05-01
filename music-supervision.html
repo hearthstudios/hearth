@@ -1336,5 +1336,15 @@ document.getElementById('musicSubmitBtn').addEventListener('click', function(){
   document.getElementById('successModal').style.display = 'flex';
 });
 </script>
+
+<div id="successModal" style="display:none;position:fixed;inset:0;background:rgba(43,45,66,0.88);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:var(--white);border-radius:4px;padding:52px 44px;max-width:460px;width:92%;text-align:center;">
+    <div style="font-size:40px;margin-bottom:16px;">✓</div>
+    <div style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;">Submission Received</div>
+    <h3 style="font-family:'Besley',serif;font-weight:700;font-size:24px;color:var(--stone);margin-bottom:10px;">Your music is in the queue.</h3>
+    <p style="font-size:14px;line-height:1.7;color:var(--ash);margin-bottom:24px;">Thank you for submitting to the HEARTH™ Sync Library. Our team reviews all submissions and will be in touch if your music is a fit.</p>
+    <button onclick="document.getElementById('successModal').style.display='none';" style="background:var(--red);color:white;border:none;padding:14px 32px;border-radius:2px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Close →</button>
+  </div>
+</div>
 </body>
 </html>
