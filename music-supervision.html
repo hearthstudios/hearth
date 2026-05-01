@@ -1088,7 +1088,7 @@ nav{position:sticky;top:5px;z-index:200;}
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Genre *</label>
                 <select id="mf_genre" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
-                  <option value="">Select genre...</option>
+                  <option value="" disabled selected>Select genre...</option>
                   <option>Hip-Hop</option><option>R&B / Soul</option><option>Pop</option>
                   <option>Indie / Alternative</option><option>Rock</option><option>Electronic / EDM</option>
                   <option>Ambient / Atmospheric</option><option>Jazz</option><option>Classical</option>
@@ -1101,7 +1101,7 @@ nav{position:sticky;top:5px;z-index:200;}
             </div>
             <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Primary Instruments *</label>
               <select id="mf_instruments" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
-                <option value="">Select primary instrument...</option>
+                <option value="" disabled selected>Select primary instrument...</option>
                 <option>Guitar (Acoustic)</option><option>Guitar (Electric)</option>
                 <option>Piano / Keys</option><option>Synthesizer</option>
                 <option>Drums / Percussion</option><option>Bass</option>
@@ -1122,26 +1122,26 @@ nav{position:sticky;top:5px;z-index:200;}
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Vocal Type *</label>
                 <select id="mf_vocal" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
-                  <option value="">Select...</option>
+                  <option value="" disabled selected>Select...</option>
                   <option>Instrumental</option><option>Male Vocal</option>
                   <option>Female Vocal</option><option>Mixed Vocals</option><option>Choir</option>
                 </select>
               </div>
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Explicit Content *</label>
                 <select id="mf_explicit" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
-                  <option value="">Select...</option><option>No</option><option>Yes</option>
+                  <option value="" disabled selected>Select...</option><option>No</option><option>Yes</option>
                 </select>
               </div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Lyrics Available *</label>
                 <select id="mf_lyrics" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
-                  <option value="">Select...</option><option>Yes</option><option>No</option>
+                  <option value="" disabled selected>Select...</option><option>Yes</option><option>No</option>
                 </select>
               </div>
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Stems Available *</label>
                 <select id="mf_stems" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
-                  <option value="">Select...</option><option>Yes</option><option>No</option><option>Not Yet</option>
+                  <option value="" disabled selected>Select...</option><option>Yes</option><option>No</option><option>Not Yet</option>
                 </select>
               </div>
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Exclusivity *</label>
@@ -1193,35 +1193,86 @@ nav{position:sticky;top:5px;z-index:200;}
 
     <div style="background:var(--paper);border-radius:4px;padding:32px;">
       <div style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#c9a000;margin-bottom:14px;">// Licensing Inquiry</div>
-      <div style="display:flex;flex-direction:column;gap:14px;">
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Name *</label><input type="text" name="name" required placeholder="Your name" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Email *</label><input type="email" name="email" required placeholder="your@email.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Project Type *</label>
-          <select name="project_type" required style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
-            <option>Film / Short Film</option><option>TV / Series</option><option>Advertisement</option>
-            <option>Documentary</option><option>Branded Content</option><option>Podcast / Audio</option>
-            <option>Interactive / Game</option><option>Other</option>
+
+      <form
+        id="licensingForm"
+        method="POST"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSeGUR74ERI3eIwiFm0rGe_rKOkC03fQPusMGQT7EyaMUk6gig/formResponse"
+        target="lic_hidden_iframe"
+        onsubmit="setTimeout(function(){{ document.getElementById('licensingForm').style.display='none'; document.getElementById('licensingConfirm').style.display='block'; }}, 500);"
+        style="display:flex;flex-direction:column;gap:14px;">
+
+        <input type="hidden" name="fvv" value="1">
+        <input type="hidden" name="fbzx" value="0">
+
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Company / Organization Name</label>
+          <input name="entry.82494337" type="text" placeholder="Your company or organization" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Company Website</label>
+          <input name="entry.620933666" type="text" placeholder="yourcompany.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Primary Contact Name *</label>
+          <input name="entry.1279477144" type="text" required placeholder="Your full name" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Primary Contact Phone</label>
+          <input name="entry.176012143" type="tel" placeholder="(000) 000-0000" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Email Address *</label>
+          <input name="entry.1442475176" type="email" required placeholder="your@email.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+        </div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;">
+          <div>
+            <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">City</label>
+            <input name="entry.1654351850" type="text" placeholder="City" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">State</label>
+            <input name="entry.1480464224" type="text" placeholder="State" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">How Did You Find Us?</label>
+          <select name="entry.783755622" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;">
+            <option value="">Select one...</option>
+            <option value="Social Media">Social Media</option>
+            <option value="Google Search">Google Search</option>
+            <option value="Word of Mouth">Word of Mouth</option>
+            <option value="Event/Screening">Event / Screening</option>
+            <option value="Newsletter">Newsletter</option>
+            <option value="Other">Other</option>
           </select>
         </div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Tell us about your project</label><textarea name="message" placeholder="Genre/mood needed, scene context, timeline, budget range..." style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;min-height:90px;resize:vertical;"></textarea></div>
-        <button type="submit" class="btn btn-dark" style="width:100%;padding:14px;border:none;cursor:pointer;font-size:14px;background:var(--stone);min-height:44px;">Send Inquiry →</button>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Services Interested In</label>
+          <select name="entry.1113089927" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;">
+            <option value="">Select one...</option>
+            <option value="Music Supervision &amp; Sync">Music Supervision &amp; Sync</option>
+            <option value="Event Production">Event Production</option>
+            <option value="Cast &amp; Crew Hiring">Cast &amp; Crew Hiring</option>
+            <option value="Media Education &amp; Workshops">Media Education &amp; Workshops</option>
+            <option value="Community Screenings &amp; Events">Community Screenings &amp; Events</option>
+            <option value="Sponsorships">Sponsorships</option>
+            <option value="Content Strategy &amp; Consulting">Content Strategy &amp; Consulting</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Tell Us More</label>
+          <textarea name="entry.1644905355" rows="4" placeholder="Tell us about your project and what music you're looking for..." style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;resize:vertical;"></textarea>
+        </div>
+        <button type="submit" style="width:100%;background:var(--red);color:white;font-weight:500;font-size:14px;padding:14px;border:none;border-radius:2px;cursor:pointer;min-height:44px;font-family:'Inter',sans-serif;">Send Licensing Inquiry →</button>
       </form>
-    </div>
-  </div>
 
-</div>
-</main>
-<footer>
-  <div class="footer-grid">
-    <div class="fg-brand">
-      <div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;">HEARTH<span class="tm">™</span></a></div>
-      <p class="fg-tagline">Where Voices Find Their Fire.</p>
-      <div class="fg-social">
-        <a href="https://www.instagram.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="Instagram">IG</a>
-        <a href="https://www.tiktok.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="TikTok">TK</a>
-        <a href="https://www.youtube.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="YouTube">YT</a>
-        <a href="https://www.linkedin.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="LinkedIn">LI</a>
-      </div>
+      <iframe name="lic_hidden_iframe" style="display:none;" title="form-target"></iframe>
+
+      <div id="licensingConfirm" style="display:none;padding:16px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:3px;font-size:14px;color:#16a34a;font-weight:500;margin-top:16px;">
+        ✓ Inquiry received. We'll be in touch within 48 hours.
+      </div></div>
     </div>
     <div class="footer-col"><h5>Programs</h5><ul>
       <li><a href="programs.html">All Programs</a></li>
@@ -1276,9 +1327,18 @@ document.getElementById('musicSubmitBtn').addEventListener('click', function(){
   var rc     = document.getElementById('mf_rights_contact').value.trim();
   var rights = document.getElementById('mf_rights_confirm').checked;
 
-  if(!artist||!email||!title1||!link1||!genre||!inst||!vocal||!expl||!lyrics||!stems||!rc){
-    alert('Please complete all required fields (marked with *).'); return;
-  }
+  // Validate only truly required fields — dropdowns validated separately
+  if(!artist){ alert('Please enter your artist / band name.'); return; }
+  if(!email){ alert('Please enter your email address.'); return; }
+  if(!title1){ alert('Please enter at least one track title.'); return; }
+  if(!link1){ alert('Please enter a streaming link for your first track.'); return; }
+  if(!genre){ alert('Please select a genre.'); return; }
+  if(!inst){ alert('Please select a primary instrument.'); return; }
+  if(!vocal){ alert('Please select a vocal type.'); return; }
+  if(!expl){ alert('Please select explicit content status.'); return; }
+  if(!lyrics){ alert('Please select lyrics availability.'); return; }
+  if(!stems){ alert('Please select stems availability.'); return; }
+  if(!rc){ alert('Please enter a rights contact name.'); return; }
   if(!rights){ alert('Rights confirmation is required before submission.'); return; }
 
   var p = new URLSearchParams();
