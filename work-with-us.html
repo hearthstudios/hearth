@@ -951,7 +951,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: calc(100% + 6px);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   background: #FAFAF8;
@@ -960,7 +960,17 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
   box-shadow: 0 8px 32px rgba(43,45,66,0.14);
   min-width: 230px;
   z-index: 9999;
-  padding: 6px 0;
+  padding: 8px 0;
+  margin-top: 0;
+}
+/* Invisible bridge fills gap between trigger and menu */
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 12px;
 }
 .nav-dropdown:hover .dropdown-menu { display: block; }
 .dropdown-menu a {
@@ -1049,11 +1059,28 @@ nav{position:sticky;top:5px;z-index:200;}
     </div>
   </div>
   <div class="bh-right" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;position:relative;z-index:1;">
-    <div style="background:rgba(250,250,248,0.05);border:1px solid rgba(250,250,248,0.09);border-radius:3px;padding:20px;"><div style="font-size:22px;margin-bottom:8px;">🎟️</div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px;">Live Events</div><div style="font-size:12px;color:var(--ash);">340+ events produced</div></div>
-    <div style="background:rgba(250,250,248,0.05);border:1px solid rgba(250,250,248,0.09);border-radius:3px;padding:20px;"><div style="font-size:22px;margin-bottom:8px;">🎵</div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px;">Music Sync</div><div style="font-size:12px;color:var(--ash);">Original licensed library</div></div>
-    <div style="background:rgba(250,250,248,0.05);border:1px solid rgba(250,250,248,0.09);border-radius:3px;padding:20px;"><div style="font-size:22px;margin-bottom:8px;">🎭</div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px;">Casting</div><div style="font-size:12px;color:var(--ash);">11,000+ creator network</div></div>
-    <div style="background:rgba(250,250,248,0.05);border:1px solid rgba(250,250,248,0.09);border-radius:3px;padding:20px;"><div style="font-size:22px;margin-bottom:8px;">🎤</div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px;">Training</div><div style="font-size:12px;color:var(--ash);">Teams &amp; executives</div></div>
+    <div style="background:rgba(250,250,248,0.06);border:1px solid rgba(250,250,248,0.12);border-radius:6px;padding:36px 28px;min-height:180px;display:flex;flex-direction:column;justify-content:flex-end;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(229,9,20,0.4)'" onmouseout="this.style.borderColor='rgba(250,250,248,0.12)'">
+      <div style="font-size:36px;margin-bottom:16px;">🎬</div>
+      <div style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:6px;">Video Production</div>
+      <div style="font-size:13px;color:var(--ash);line-height:1.5;">Content strategy through distribution</div>
+    </div>
+    <div style="background:rgba(250,250,248,0.06);border:1px solid rgba(250,250,248,0.12);border-radius:6px;padding:36px 28px;min-height:180px;display:flex;flex-direction:column;justify-content:flex-end;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(255,107,53,0.4)'" onmouseout="this.style.borderColor='rgba(250,250,248,0.12)'">
+      <div style="font-size:36px;margin-bottom:16px;">🎵</div>
+      <div style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:6px;">Music Sync</div>
+      <div style="font-size:13px;color:var(--ash);line-height:1.5;">Original licensed library</div>
+    </div>
+    <div style="background:rgba(250,250,248,0.06);border:1px solid rgba(250,250,248,0.12);border-radius:6px;padding:36px 28px;min-height:180px;display:flex;flex-direction:column;justify-content:flex-end;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(229,9,20,0.4)'" onmouseout="this.style.borderColor='rgba(250,250,248,0.12)'">
+      <div style="font-size:36px;margin-bottom:16px;">🎭</div>
+      <div style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:6px;">Casting</div>
+      <div style="font-size:13px;color:var(--ash);line-height:1.5;">11,000+ creator network</div>
+    </div>
+    <div style="background:rgba(250,250,248,0.06);border:1px solid rgba(250,250,248,0.12);border-radius:6px;padding:36px 28px;min-height:180px;display:flex;flex-direction:column;justify-content:flex-end;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(255,107,53,0.4)'" onmouseout="this.style.borderColor='rgba(250,250,248,0.12)'">
+      <div style="font-size:36px;margin-bottom:16px;">🎤</div>
+      <div style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:6px;">Training</div>
+      <div style="font-size:13px;color:var(--ash);line-height:1.5;">Teams &amp; executives</div>
+    </div>
   </div>
+</div>
 </div>
 
 <section class="b2b-services-section" style="padding:80px 80px;background:var(--white);">
