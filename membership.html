@@ -47,7 +47,7 @@ nav{
   padding:0 56px;height:64px;
   display:flex;align-items:center;justify-content:space-between;
 }
-.nav-logo{text-decoration:none;display:flex;align-items:center;line-height:0;flex-shrink:0;}.logo-img{max-height:44px;max-width:180px;width:auto;height:auto;display:block;}@media(max-width:768px){.logo-img{max-height:36px;max-width:140px;}}
+.nav-logo{font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--red);text-decoration:none;display:flex;align-items:center;gap:9px;}.nav-logo span{color:var(--stone);}
 
 .nav-menu{display:flex;align-items:center;list-style:none;gap:2px;}
 .nav-menu a{font-size:13px;font-weight:400;color:var(--stone);text-decoration:none;padding:7px 13px;transition:color 0.2s;display:block;}
@@ -1042,8 +1042,9 @@ nav{position:sticky;top:5px;z-index:200;}
 </style>
 </head>
 <body>
-<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo" style="line-height:0;">
-    <img src="resources/hearth-logo.png" alt="HEARTH™ Studios" class="logo-img" style="max-height:44px;width:auto;display:block;">
+<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo">
+    <svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg>
+    <span style="font-family:'Besley',serif;">HEARTH<span class="tm">™</span></span>
   </a><ul class="nav-menu"><li><a href="index.html">Home</a></li><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li class="nav-dropdown"><a href="work-with-us.html">Services</a><div class="dropdown-menu"><a href="video-production.html">Video Production</a><a href="work-live-events.html">Live Event Production</a><a href="cast-crew-access.html">Cast &amp; Crew Access</a><a href="music-supervision.html">Music Supervision &amp; Sync</a><a href="media-education.html">Media Education &amp; Workshops</a><a href="storytelling-workshops.html">On-Camera &amp; Storytelling Workshops</a><a href="community-screenings.html">Community Screenings &amp; Events</a><div class="dd-divider"></div><a href="work-with-us.html">Work With Us →</a></div></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="sponsorship.html">Sponsor</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
 <main>
 <div class="mem-hero" style="background:var(--stone);padding:90px 80px;position:relative;overflow:hidden;">
