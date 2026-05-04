@@ -945,6 +945,38 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
   .page-section { padding: 44px 20px; }
 }
 
+
+/* ── SERVICES DROPDOWN ── */
+.nav-dropdown { position: relative; }
+.nav-dropdown > a::after { content: ' \25BE'; font-size: 10px; opacity: 0.55; }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FAFAF8;
+  border: 1.5px solid rgba(141,153,174,0.2);
+  border-radius: 3px;
+  box-shadow: 0 8px 32px rgba(43,45,66,0.14);
+  min-width: 230px;
+  z-index: 9999;
+  padding: 6px 0;
+}
+.nav-dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu a {
+  display: block;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #2B2D42;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  border: none;
+}
+.dropdown-menu a:hover { background: #F5F0E8; color: #E50914; }
+.dd-divider { height: 1px; background: rgba(141,153,174,0.18); margin: 4px 0; }
 </style>
 
 <style>

@@ -942,6 +942,38 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
   .page-section { padding: 44px 20px; }
 }
 
+
+/* ── SERVICES DROPDOWN ── */
+.nav-dropdown { position: relative; }
+.nav-dropdown > a::after { content: ' \25BE'; font-size: 10px; opacity: 0.55; }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FAFAF8;
+  border: 1.5px solid rgba(141,153,174,0.2);
+  border-radius: 3px;
+  box-shadow: 0 8px 32px rgba(43,45,66,0.14);
+  min-width: 230px;
+  z-index: 9999;
+  padding: 6px 0;
+}
+.nav-dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu a {
+  display: block;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #2B2D42;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  border: none;
+}
+.dropdown-menu a:hover { background: #F5F0E8; color: #E50914; }
+.dd-divider { height: 1px; background: rgba(141,153,174,0.18); margin: 4px 0; }
 </style>
 
 <style>
@@ -1011,7 +1043,7 @@ nav{position:sticky;top:5px;z-index:200;}
     <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-bottom:18px;display:flex;align-items:center;gap:10px;"><span style="display:block;width:24px;height:1px;background:var(--orange);"></span>HEARTH™ Services</div>
     <h1 style="font-family:'Besley',serif;font-weight:700;font-size:56px;color:var(--white);line-height:1.07;letter-spacing:-1.5px;margin-bottom:20px;">Video Production.<br><em style="color:var(--orange);">From concept<br>to screen.</em></h1>
     <p style="font-size:16px;line-height:1.8;color:rgba(250,250,248,0.65);max-width:600px;margin-bottom:32px;">We handle every stage of the production process — content strategy, pre-production, production, post-production, marketing, and distribution support — so your story gets told the right way.</p>
-    <a href="work-with-us.html" class="btn btn-red" style="display:inline-block;padding:15px 32px;font-size:15px;">Start a Project →</a>
+    <a href="#contact-form" class="btn btn-red" style="display:inline-block;padding:15px 32px;font-size:15px;">Start a Project →</a>
   </div>
 </div>
 
@@ -1070,7 +1102,7 @@ nav{position:sticky;top:5px;z-index:200;}
       <div class="section-label sl-orange">Who We Work With</div>
       <h2 style="font-family:'Besley',serif;font-weight:700;font-size:42px;color:var(--white);line-height:1.15;letter-spacing:-1px;margin-bottom:20px;">Built for creators<br><em style="color:var(--orange);">and brands.</em></h2>
       <p style="font-size:15px;line-height:1.8;color:rgba(250,250,248,0.65);margin-bottom:24px;">Whether you're a brand looking to tell a story, an independent creator developing original content, or an organization building a media presence — HEARTH™ brings the full production infrastructure to your project.</p>
-      <a href="work-with-us.html" class="btn btn-orange" style="display:inline-block;padding:14px 28px;">Get in Touch →</a>
+      <a href="#contact-form" class="btn btn-orange" style="display:inline-block;padding:14px 28px;">Get in Touch →</a>
     </div>
     <div style="display:flex;flex-direction:column;gap:16px;">
       <div style="background:rgba(250,250,248,0.05);border:1px solid rgba(250,250,248,0.09);border-radius:3px;padding:20px 24px;display:flex;align-items:flex-start;gap:14px;">
@@ -1112,7 +1144,7 @@ nav{position:sticky;top:5px;z-index:200;}
     <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:16px;">Ready to Start?</div>
     <h2 style="font-family:'Besley',serif;font-weight:700;font-size:44px;color:white;margin-bottom:16px;letter-spacing:-1px;">Let's make something<br><em>worth watching.</em></h2>
     <p style="font-size:16px;color:rgba(255,255,255,0.8);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;">Tell us about your project and we'll be in touch within 48 hours.</p>
-    <a href="work-with-us.html" class="btn" style="background:white;color:var(--red);display:inline-block;padding:16px 40px;font-size:15px;font-weight:600;border-radius:2px;">Start a Project →</a>
+    <a href="#contact-form" class="btn" style="background:white;color:var(--red);display:inline-block;padding:16px 40px;font-size:15px;font-weight:600;border-radius:2px;">Start a Project →</a>
   </div>
 </div>
 
@@ -1123,6 +1155,93 @@ nav{position:sticky;top:5px;z-index:200;}
   .vp-who { grid-template-columns: 1fr !important; gap: 40px !important; }
 }
 </style>
+
+
+<!-- CONTACT FORM -->
+<div id="contact-form" style="background:var(--paper);padding:80px 80px;">
+  <div style="max-width:680px;margin:0 auto;">
+    <div class="section-label">Start a Project</div>
+    <h2 class="page-h2" style="margin-bottom:8px;">Let's make something<br><em>worth watching.</em></h2>
+    <p style="font-size:15px;line-height:1.75;color:var(--ash);margin-bottom:36px;">Tell us about your project and we'll follow up within 48 hours.</p>
+
+    <form
+  id="clientForm"
+  method="POST"
+  action="https://docs.google.com/forms/d/e/1FAIpQLSeGUR74ERI3eIwiFm0rGe_rKOkC03fQPusMGQT7EyaMUk6gig/formResponse"
+  style="display:flex;flex-direction:column;gap:16px;">
+  <input type="hidden" name="fvv" value="1">
+  <input type="hidden" name="fbzx" value="0">
+  <input type="hidden" name="submissionTimestamp" value="">
+  <div>
+    <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Company / Organization Name</label>
+    <input name="entry.82494337" type="text" placeholder="Your company or organization" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+  </div>
+  <div>
+    <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Company Website</label>
+    <input name="entry.620933666" type="text" placeholder="yourcompany.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+  </div>
+
+  <div>
+    <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Primary Contact Name *</label>
+    <input name="entry.1279477144" type="text" required placeholder="Your full name" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+  </div>
+  <div>
+    <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Primary Contact Phone</label>
+    <input name="entry.176012143" type="tel" placeholder="(000) 000-0000" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+  </div>
+  <div>
+    <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Email Address *</label>
+    <input name="entry.1442475176" type="email" required placeholder="your@email.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+  </div>
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;">
+    <div>
+      <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">City</label>
+      <input name="entry.1654351850" type="text" placeholder="City" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+    </div>
+    <div>
+      <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">State</label>
+      <input name="entry.1480464224" type="text" placeholder="State" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+    </div>
+  </div>
+  <div>
+    <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">How Did You Find Us?</label>
+    <select name="entry.783755622" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;">
+      <option value="">Select one...</option>
+      <option value="Social Media">Social Media</option>
+      <option value="Google Search">Google Search</option>
+      <option value="Word of Mouth">Word of Mouth</option>
+      <option value="Event/Screening">Event / Screening</option>
+      <option value="Newsletter">Newsletter</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div>
+    <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Services Interested In</label>
+    <select name="entry.1113089927" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;">
+      <option value="">Select one...</option>
+      <option value="Event Production">Event Production</option>
+      <option value="Cast &amp; Crew Hiring">Cast &amp; Crew Hiring</option>
+      <option value="Music Supervision &amp; Sync">Music Supervision &amp; Sync</option>
+      <option value="Media Education &amp; Workshops">Media Education &amp; Workshops</option>
+      <option value="Community Screenings &amp; Events">Community Screenings &amp; Events</option>
+      <option value="Sponsorships">Sponsorships</option>
+      <option value="Video Production">Video Production</option>
+      <option value="Content Strategy &amp; Consulting">Content Strategy &amp; Consulting</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div>
+    <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Tell Us More</label>
+    <textarea name="entry.1644905355" rows="4" placeholder="Tell us about your project or what you're looking for..." style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;resize:vertical;"></textarea>
+  </div>
+  <button type="submit" id="wwuSubmitBtn" class="btn btn-orange" style="width:100%;padding:14px;font-size:15px;border:none;cursor:pointer;min-height:44px;margin-top:4px;">Send Inquiry →</button>
+</form>
+
+    <div id="licensingConfirm" style="display:none;padding:16px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:3px;font-size:14px;color:#16a34a;font-weight:500;margin-top:16px;">
+      ✓ Inquiry received. We'll be in touch within 48 hours.
+    </div>
+  </div>
+</div>
 
 </main>
 
