@@ -1079,16 +1079,17 @@ nav{position:sticky;top:5px;z-index:200;}
       <h2 class="page-h2" style="margin-bottom:16px;">Submit your<br><em>music.</em></h2>
       <p style="font-size:14px;line-height:1.75;color:rgba(43,45,66,0.75);margin-bottom:24px;">HEARTH™ accepts original music for our curated sync library on a rolling basis. All genres welcome. You retain ownership — we license on a per-use basis.</p>
 
-      <form id="musicForm" style="display:flex;flex-direction:column;gap:0;" onsubmit="return false;">
+      <form id="musicForm" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLScPpqJNMJN3EOKCkIJZenvxPtzzbj25OQN_daEz8S6-gApwEw/formResponse" style="display:flex;flex-direction:column;gap:0;">
+<input type="hidden" name="fvv" value="1"><input type="hidden" name="fbzx" value="0">
 
         <!-- Artist Info -->
         <div style="background:var(--paper);border-radius:3px 3px 0 0;padding:20px 22px;border-bottom:1px solid rgba(141,153,174,0.15);">
           <div style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:14px;">Artist Information</div>
           <div style="display:flex;flex-direction:column;gap:12px;">
-            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Artist Name *</label><input id="mf_artist" type="text" required placeholder="Your artist or band name" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Artist Name *</label><input id="mf_artist" name="entry.1186850487" type="text" required placeholder="Your artist or band name" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Contact Email *</label><input id="mf_email" type="email" required placeholder="your@email.com" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Phone</label><input id="mf_phone" type="tel" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Contact Email *</label><input id="mf_email" name="entry.89988266" type="email" required placeholder="your@email.com" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Phone</label><input id="mf_phone" name="entry.159834489" type="tel" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
             </div>
           </div>
         </div>
@@ -1098,8 +1099,8 @@ nav{position:sticky;top:5px;z-index:200;}
           <div style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;">Primary Track Submission</div>
           <p style="font-size:12px;color:var(--ash);margin-bottom:14px;">Submit your strongest, production-ready track.</p>
           <div style="display:flex;flex-direction:column;gap:12px;">
-            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Song Title *</label><input id="mf_title1" type="text" required placeholder="Track title" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Primary Streaming Link *</label><input id="mf_link1" type="url" required placeholder="Spotify, SoundCloud, Apple Music..." style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Song Title *</label><input id="mf_title1" name="entry.1559382111" type="text" required placeholder="Track title" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Primary Streaming Link *</label><input id="mf_link1" name="entry.1906751892" type="url" required placeholder="Spotify, SoundCloud, Apple Music..." style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
             <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Portfolio / Website</label><input id="mf_portfolio" type="url" placeholder="https://yoursite.com" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
           </div>
         </div>
@@ -1110,17 +1111,17 @@ nav{position:sticky;top:5px;z-index:200;}
           <p style="font-size:12px;color:var(--ash);margin-bottom:14px;">You may submit up to five tracks per window. Select your strongest work.</p>
           <div style="display:flex;flex-direction:column;gap:10px;">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Track Title 2</label><input id="mf_title2" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 2</label><input id="mf_link2" type="url" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Track Title 2</label><input id="mf_title2" name="entry.2095755343" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 2</label><input id="mf_link2" name="entry.476295792" type="url" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
             </div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Track Title 3</label><input id="mf_title3" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 3</label><input id="mf_link3" type="url" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Track Title 3</label><input id="mf_title3" name="entry.510330240" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 3</label><input id="mf_link3" name="entry.230059567" type="url" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
             </div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Track Title 4</label><input id="mf_title4" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 4</label><input id="mf_link4" type="url" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Track Title 4</label><input id="mf_title4" name="entry.325948493" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 4</label><input id="mf_link4" name="entry.736339887" type="url" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
             </div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Track Title 5</label><input id="mf_title5" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 5</label><input id="mf_link5" type="url" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Track Title 5</label><input id="mf_title5" name="entry.939556436" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 5</label><input id="mf_link5" name="entry.1500672768" type="url" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
             </div>
           </div>
         </div>
@@ -1132,7 +1133,7 @@ nav{position:sticky;top:5px;z-index:200;}
           <div style="display:flex;flex-direction:column;gap:12px;">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Genre *</label>
-                <select id="mf_genre" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
+                <select id="mf_genre" name="entry.108142743" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
                   <option value="" disabled selected>Select genre...</option>
                   <option>Hip-Hop</option><option>R&B / Soul</option><option>Pop</option>
                   <option>Indie / Alternative</option><option>Rock</option><option>Electronic / EDM</option>
@@ -1142,10 +1143,10 @@ nav{position:sticky;top:5px;z-index:200;}
                   <option>Experimental</option><option>Other</option>
                 </select>
               </div>
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Approximate BPM</label><input id="mf_bpm" type="number" placeholder="e.g. 120" min="40" max="220" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Approximate BPM</label><input id="mf_bpm" name="entry.306678011" type="number" placeholder="e.g. 120" min="40" max="220" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
             </div>
             <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Primary Instruments *</label>
-              <select id="mf_instruments" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
+              <select id="mf_instruments" name="entry.962086369" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
                 <option value="" disabled selected>Select primary instrument...</option>
                 <option>Guitar (Acoustic)</option><option>Guitar (Electric)</option>
                 <option>Piano / Keys</option><option>Synthesizer</option>
@@ -1166,26 +1167,26 @@ nav{position:sticky;top:5px;z-index:200;}
           <div style="display:flex;flex-direction:column;gap:12px;">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Vocal Type *</label>
-                <select id="mf_vocal" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
+                <select id="mf_vocal" name="entry.1321133650" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
                   <option value="" disabled selected>Select...</option>
                   <option>Instrumental</option><option>Male Vocal</option>
                   <option>Female Vocal</option><option>Mixed Vocals</option><option>Choir</option>
                 </select>
               </div>
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Explicit Content *</label>
-                <select id="mf_explicit" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
+                <select id="mf_explicit" name="entry.2027100635" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
                   <option value="" disabled selected>Select...</option><option>No</option><option>Yes</option>
                 </select>
               </div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Lyrics Available *</label>
-                <select id="mf_lyrics" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
+                <select id="mf_lyrics" name="entry.1190401984" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
                   <option value="" disabled selected>Select...</option><option>Yes</option><option>No</option>
                 </select>
               </div>
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Stems Available *</label>
-                <select id="mf_stems" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
+                <select id="mf_stems" name="entry.1300478591" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
                   <option value="" disabled selected>Select...</option><option>Yes</option><option>No</option><option>Not Yet</option>
                 </select>
               </div>
@@ -1197,7 +1198,7 @@ nav{position:sticky;top:5px;z-index:200;}
               </div>
             </div>
             <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Rights Holder Contact *</label>
-              <input id="mf_rights_contact" type="text" required placeholder="Email of rights holder (you or your label/publisher)" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
+              <input id="mf_rights_contact" name="entry.1837620464" type="text" required placeholder="Email of rights holder (you or your label/publisher)" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
               <p style="font-size:11px;color:var(--ash);margin-top:5px;">If you own your masters and publishing this will be the same as your contact email above.</p>
             </div>
           </div>
@@ -1207,14 +1208,14 @@ nav{position:sticky;top:5px;z-index:200;}
         <div style="background:var(--paper);padding:20px 22px;border-radius:0 0 3px 3px;">
           <div style="display:flex;flex-direction:column;gap:14px;">
             <div style="display:flex;align-items:flex-start;gap:10px;padding:14px;background:rgba(229,9,20,0.04);border:1px solid rgba(229,9,20,0.12);border-radius:3px;">
-              <input type="checkbox" id="mf_rights_confirm" required style="margin-top:3px;flex-shrink:0;width:16px;height:16px;">
+              <input type="checkbox" id="mf_rights_confirm" name="entry.1647116488" value="I confirm that I am the sole or co-owner of both the master recording and the underlying composition for all tracks submitted and that I have the authority to grant sync licensing rights." required style="margin-top:3px;flex-shrink:0;width:16px;height:16px;">
               <label for="mf_rights_confirm" style="font-size:13px;color:var(--stone);line-height:1.5;cursor:pointer;"><strong>Rights Confirmation *</strong><br><span style="color:var(--ash);">I confirm I hold all necessary rights and clearances for the submitted music. Submissions without rights confirmation cannot be reviewed.</span></label>
             </div>
             <div style="display:flex;align-items:flex-start;gap:10px;">
-              <input type="checkbox" id="mf_newsletter" style="margin-top:3px;flex-shrink:0;width:16px;height:16px;">
+              <input type="checkbox" id="mf_newsletter" name="entry.1137375980" value="I agree to receive email updates from HEARTH. You can unsubscribe at any time. We respect your privacy." style="margin-top:3px;flex-shrink:0;width:16px;height:16px;">
               <label for="mf_newsletter" style="font-size:13px;color:var(--ash);line-height:1.5;cursor:pointer;">Newsletter Opt-in — By checking this box, you agree to receive email updates from HEARTH™. You can unsubscribe at any time. We respect your privacy.</label>
             </div>
-            <button id="musicSubmitBtn" type="button" class="btn btn-orange" style="width:100%;padding:14px;border:none;cursor:pointer;font-size:14px;min-height:44px;">Submit to the Library →</button>
+            <button id="musicSubmitBtn" type="submit" class="btn btn-orange" style="width:100%;padding:14px;border:none;cursor:pointer;font-size:14px;min-height:44px;">Submit to the Library →</button>
           </div>
         </div>
 
@@ -1351,93 +1352,36 @@ document.addEventListener('click',function(e){
 </script>
 
 <script>
-document.getElementById('musicSubmitBtn').addEventListener('click', function() {
-  var artist = document.getElementById('mf_artist').value.trim();
-  var email  = document.getElementById('mf_email').value.trim();
-  var title1 = document.getElementById('mf_title1').value.trim();
-  var link1  = document.getElementById('mf_link1').value.trim();
-  var genre  = document.getElementById('mf_genre').value;
-  var inst   = document.getElementById('mf_instruments').value;
-  var vocal  = document.getElementById('mf_vocal').value;
-  var expl   = document.getElementById('mf_explicit').value;
-  var lyrics = document.getElementById('mf_lyrics').value;
-  var stems  = document.getElementById('mf_stems').value;
-  var rc     = document.getElementById('mf_rights_contact').value.trim();
+document.getElementById('musicForm').addEventListener('submit', function(e) {
+  e.preventDefault();
   var rights = document.getElementById('mf_rights_confirm').checked;
-  if(!artist){ alert('Please enter your artist / band name.'); return; }
-  if(!email){ alert('Please enter your email address.'); return; }
-  if(!title1){ alert('Please enter at least one track title.'); return; }
-  if(!link1){ alert('Please enter a streaming link for your first track.'); return; }
-  if(!genre){ alert('Please select a genre.'); return; }
-  if(!inst){ alert('Please select a primary instrument.'); return; }
-  if(!vocal){ alert('Please select a vocal type.'); return; }
-  if(!expl){ alert('Please select explicit content status.'); return; }
-  if(!lyrics){ alert('Please select lyrics availability.'); return; }
-  if(!stems){ alert('Please select stems availability.'); return; }
-  if(!rc){ alert('Please enter a rights contact name.'); return; }
   if(!rights){ alert('Please confirm you hold the rights to this music before submitting.'); return; }
+  var form = this;
+  var data = new FormData(form);
+  // Newsletter cross-submit if checked
   var newsletter = document.getElementById('mf_newsletter').checked;
-
-  // submitToGF: hidden iframe POST — the proven pattern used across this site
-  function submitToGF(url, params) {
-    var iframe = document.getElementById('mf_hidden_iframe') || (function() {
-      var f = document.createElement('iframe');
-      f.id = 'mf_hidden_iframe'; f.name = 'mf_hidden_iframe';
-      f.style.display = 'none'; document.body.appendChild(f); return f;
-    })();
-    var form = document.createElement('form');
-    form.method = 'POST'; form.action = url;
-    form.target = 'mf_hidden_iframe'; form.style.display = 'none';
-    Object.keys(params).forEach(function(key) {
-      var inp = document.createElement('input');
-      inp.type = 'hidden'; inp.name = key; inp.value = params[key];
-      form.appendChild(inp);
-    });
-    document.body.appendChild(form);
-    form.submit();
-    setTimeout(function(){ document.body.removeChild(form); }, 1000);
-  }
-
-  // Submit music catalog entry
-  submitToGF('https://docs.google.com/forms/d/e/1FAIpQLScPpqJNMJN3EOKCkIJZenvxPtzzbj25OQN_daEz8S6-gApwEw/formResponse', {
-    'entry.1186850487': artist,
-    'entry.1559382111': title1,
-    'entry.89988266':   email,
-    'entry.159834489':  document.getElementById('mf_phone').value.trim(),
-    'entry.1906751892': link1,
-    'entry.476295792':  document.getElementById('mf_link2').value.trim(),
-    'entry.2095755343': document.getElementById('mf_title2').value.trim(),
-    'entry.230059567':  document.getElementById('mf_link3').value.trim(),
-    'entry.510330240':  document.getElementById('mf_title3').value.trim(),
-    'entry.736339887':  document.getElementById('mf_link4').value.trim(),
-    'entry.325948493':  document.getElementById('mf_title4').value.trim(),
-    'entry.1500672768': document.getElementById('mf_link5').value.trim(),
-    'entry.939556436':  document.getElementById('mf_title5').value.trim(),
-    'entry.108142743':  genre,
-    'entry.306678011':  document.getElementById('mf_bpm').value.trim(),
-    'entry.962086369':  inst,
-    'entry.1321133650': vocal,
-    'entry.2027100635': expl,
-    'entry.1190401984': lyrics,
-    'entry.1300478591': stems,
-    'entry.1837620464': rc,
-    'entry.1647116488': 'I confirm that I am the sole or co-owner of both the master recording and the underlying composition for all tracks submitted and that I have the authority to grant sync licensing rights.',
-    'entry.1137375980': newsletter ? 'I agree to receive email updates from HEARTH. You can unsubscribe at any time. We respect your privacy.' : 'I do not agree to receive email updates from HEARTH.',
-    'fvv': '1', 'fbzx': '0'
-  });
-
-  // Newsletter cross-submit (subscriber form)
+  var email = document.getElementById('mf_email').value.trim();
   if(newsletter && email) {
-    submitToGF('https://docs.google.com/forms/d/e/1FAIpQLSe1o__-yr9H13nCkVnSJLNuvgCGhpd0fD5C1OBsZ0-IA02NUg/formResponse', {
-      'entry.675473085': artist,
-      'entry.1885537716': email,
-      'entry.852923629': 'Musician',
-      'fvv': '1', 'fbzx': '0'
+    var sp = new FormData();
+    sp.append('entry.675473085', document.getElementById('mf_artist').value.trim());
+    sp.append('entry.1885537716', email);
+    sp.append('entry.852923629', 'Musician');
+    sp.append('fvv', '1');
+    fetch('https://docs.google.com/forms/d/e/1FAIpQLSe1o__-yr9H13nCkVnSJLNuvgCGhpd0fD5C1OBsZ0-IA02NUg/formResponse', {
+      method: 'POST', mode: 'no-cors', body: sp
     });
   }
-
-  document.getElementById('musicForm').style.display = 'none';
-  document.getElementById('successModal').style.display = 'flex';
+  fetch(form.action, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: data
+  }).then(function() {
+    document.getElementById('musicForm').style.display = 'none';
+    document.getElementById('successModal').style.display = 'flex';
+  }).catch(function() {
+    document.getElementById('musicForm').style.display = 'none';
+    document.getElementById('successModal').style.display = 'flex';
+  });
 });
 </script>
 
