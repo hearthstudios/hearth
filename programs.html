@@ -50,8 +50,8 @@ nav{
   padding:0 56px;height:64px;
   display:flex;align-items:center;justify-content:space-between;
 }
-.nav-logo{font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--red);text-decoration:none;display:flex;align-items:center;gap:9px;}.nav-logo span{color:var(--stone);}
-
+.nav-logo{font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--red);text-decoration:none;display:flex;align-items:center;gap:9px;}
+.nav-logo span{color:var(--stone);}
 .nav-menu{display:flex;align-items:center;list-style:none;gap:2px;}
 .nav-menu a{font-size:13px;font-weight:400;color:var(--stone);text-decoration:none;padding:7px 13px;transition:color 0.2s;display:block;}
 .nav-menu a:hover,.nav-menu a.active-page{color:var(--red);}
@@ -945,48 +945,6 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
   .page-section { padding: 44px 20px; }
 }
 
-
-/* ── SERVICES DROPDOWN ── */
-.nav-dropdown { position: relative; }
-.nav-dropdown > a::after { content: ' \25BE'; font-size: 10px; opacity: 0.55; }
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #FAFAF8;
-  border: 1.5px solid rgba(141,153,174,0.2);
-  border-radius: 3px;
-  box-shadow: 0 8px 32px rgba(43,45,66,0.14);
-  min-width: 230px;
-  z-index: 9999;
-  padding: 8px 0;
-  margin-top: 0;
-}
-/* Invisible bridge fills gap between trigger and menu */
-.nav-dropdown::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 12px;
-}
-.nav-dropdown:hover .dropdown-menu { display: block; }
-.dropdown-menu a {
-  display: block;
-  padding: 10px 18px;
-  font-size: 13px;
-  font-weight: 400;
-  color: #2B2D42;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background 0.15s, color 0.15s;
-  border: none;
-}
-.dropdown-menu a:hover { background: #F5F0E8; color: #E50914; }
-.dd-divider { height: 1px; background: rgba(141,153,174,0.18); margin: 4px 0; }
 </style>
 
 <style>
@@ -1045,10 +1003,7 @@ nav{position:sticky;top:5px;z-index:200;}
 </style>
 </head>
 <body>
-<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo">
-    <svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg>
-    <span style="font-family:'Besley',serif;">HEARTH<span class="tm">™</span></span>
-  </a><ul class="nav-menu"><li><a href="index.html">Home</a></li><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li class="nav-dropdown"><a href="work-with-us.html">Services</a><div class="dropdown-menu"><a href="video-production.html">Video Production</a><a href="work-live-events.html">Live Event Production</a><a href="cast-crew-access.html">Cast &amp; Crew Access</a><a href="music-supervision.html">Music Supervision &amp; Sync</a><a href="media-education.html">Media Education &amp; Workshops</a><a href="storytelling-workshops.html">On-Camera &amp; Storytelling Workshops</a><a href="community-screenings.html">Community Screenings &amp; Events</a><div class="dd-divider"></div><a href="work-with-us.html#contact">Work With Us →</a></div></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="sponsorship.html">Sponsor</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
+<div class="brand-bar"><div style="background:#E50914"></div><div style="background:#FF6B35"></div><div style="background:#FFD166"></div><div style="background:#8D99AE"></div><div style="background:#2B2D42"></div></div><nav><a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#E50914" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#FFD166" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#E50914"/></svg><span style="font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--stone);">HEARTH<span class="tm">™</span></span></a><ul class="nav-menu"><li><a href="index.html">Home</a></li><li><a href="programs.html" class="active-page">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="work-with-us.html">Work With Us</a></li><li><a href="sponsorship.html">Sponsor</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul><button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button></nav><div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
 <main>
 <div class="programs-hero">
   <div style="position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(229,9,20,0.12),transparent 70%);pointer-events:none;z-index:0;"></div>
@@ -1073,6 +1028,102 @@ nav{position:sticky;top:5px;z-index:200;}
 </div>
 
 
+  <div class="prog-filter" id="progFilter">
+    <button class="filter-btn active" onclick="filterPrograms('all',this)">All Programs</button>
+    <button class="filter-btn" onclick="filterPrograms('writing',this)">Writing</button>
+    <button class="filter-btn" onclick="filterPrograms('music',this)">Music</button>
+    <button class="filter-btn" onclick="filterPrograms('film',this)">Film</button>
+    <button class="filter-btn" onclick="filterPrograms('mentorship',this)">Mentorship</button>
+    <button class="filter-btn" onclick="filterPrograms('events',this)">Events</button>
+  </div>
+
+  <div class="prog-grid" id="progGrid">
+
+    <div class="prog-card" id="script-labs" data-cat="writing">
+      <div class="pc-tag">Writing · Creative Incubator</div>
+      <div style="font-size:28px;margin-bottom:14px;">✍️</div>
+      <div class="pc-name">Script Labs</div>
+      <p class="pc-desc">Intensive 8-week workshops for screenwriters developing feature screenplays and television pilots. Professional feedback, peer cohorts, and a clear path to a finished draft.</p>
+      <div class="pc-details">
+        <div class="pc-detail"><span>Duration</span><span>8 Weeks</span></div>
+        <div class="pc-detail"><span>Format</span><span>Hybrid (In-Person + Online)</span></div>
+        <div class="pc-detail"><span>Cohort</span><span>12 Writers Max</span></div>
+        <div class="pc-detail"><span>Status</span><span>Applications Open June, Close Sept · Launches Feb 2027</span></div>
+      </div>
+      <a href="prog-script-labs.html" class="pc-cta">Learn More &amp; Apply →</a>
+    </div>
+
+    <div class="prog-card" id="music-residencies" data-cat="music">
+      <div class="pc-tag" style="color:var(--orange);">Music · Creative Residency</div>
+      <div style="font-size:28px;margin-bottom:14px;">🎵</div>
+      <div class="pc-name">Music Residencies</div>
+      <p class="pc-desc">Programmed studio time for musicians to create new work with industry mentorship and a peer cohort built in from day one. Studio partner TBD.</p>
+      <div class="pc-details">
+        <div class="pc-detail"><span>Duration</span><span>12 Weeks</span></div>
+        <div class="pc-detail"><span>Format</span><span>In-Person (Studio)</span></div>
+        <div class="pc-detail"><span>Cohort</span><span>8 Musicians Max</span></div>
+        <div class="pc-detail"><span>Status</span><span>Active · Applications Open</span></div>
+      </div>
+      <a href="prog-music-residencies.html" class="pc-cta" style="color:var(--orange);">Learn More &amp; Apply →</a>
+    </div>
+
+    <div class="prog-card" id="film-producing" data-cat="film">
+      <div class="pc-tag" style="color:#c9a000;">Film · Curriculum</div>
+      <div style="font-size:28px;margin-bottom:14px;">🎬</div>
+      <div class="pc-name">Television Producing Lab</div>
+      <p class="pc-desc">A formal 6–12 month training program covering development, financing, production, and distribution from start to finish. The full producer lifecycle.</p>
+      <div class="pc-details">
+        <div class="pc-detail"><span>Duration</span><span>6 or 12 Months</span></div>
+        <div class="pc-detail"><span>Format</span><span>Hybrid</span></div>
+        <div class="pc-detail"><span>Cohort</span><span>10 Producers Max</span></div>
+        <div class="pc-detail"><span>Status</span><span>Active · Applications Open</span></div>
+      </div>
+      <a href="prog-film-producing.html" class="pc-cta" style="color:#c9a000;">Learn More &amp; Apply →</a>
+    </div>
+
+    <div class="prog-card" id="youth-in-film" data-cat="film">
+      <div class="pc-tag" style="color:var(--red);">Film · Education · School Partnerships</div>
+      <div style="font-size:28px;margin-bottom:14px;">🎥</div>
+      <div class="pc-name">Youth in Film</div>
+      <p class="pc-desc">A year-long film and television production curriculum in Philadelphia public schools equipping students with hands-on film and television making experience integrated with Math and ELA skills.</p>
+      <div class="pc-details">
+        <div class="pc-detail"><span>Format</span><span>In-Person · School Partnerships</span></div>
+        <div class="pc-detail"><span>Duration</span><span>Full School Year</span></div>
+        <div class="pc-detail"><span>Cohort</span><span>25 Students</span></div>
+        <div class="pc-detail"><span>Grades</span><span>7–12</span></div>
+        <div class="pc-detail"><span>Status</span><span>Active · Applications Open</span></div>
+      </div>
+      <a href="prog-youth-in-film.html" class="pc-cta">Learn More &amp; Apply →</a>
+    </div>
+
+    <div class="prog-card" id="mentorship" data-cat="mentorship">
+      <div class="pc-tag" style="color:var(--orange);">Mentorship · All Disciplines</div>
+      <div style="font-size:28px;margin-bottom:14px;">🤝</div>
+      <div class="pc-name">1-on-1 &amp; Small Group Mentorship</div>
+      <p class="pc-desc">Direct access to working creative practitioners across film, music, and writing. Structured, compensated mentorship over a 3-month engagement.</p>
+      <div class="pc-details">
+        <div class="pc-detail"><span>Duration</span><span>3-Month Match</span></div>
+        <div class="pc-detail"><span>Format</span><span>Remote · Bi-Weekly 60 Min</span></div>
+        <div class="pc-detail"><span>Status</span><span>Active · Accepting Applications</span></div>
+      </div>
+      <a href="prog-mentoring.html" class="pc-cta" style="color:var(--orange);">Learn More &amp; Apply →</a>
+    </div>
+
+    <div class="prog-card" id="showcases" data-cat="events">
+      <div class="pc-tag">Live Events · Industry Access</div>
+      <div style="font-size:28px;margin-bottom:14px;">🎤</div>
+      <div class="pc-name">Showcases &amp; Pitch Events</div>
+      <p class="pc-desc">Quarterly events where HEARTH-developed talent presents work to creative community members and practitioners through live performances, film screenings, and project pitches.</p>
+      <div class="pc-details">
+        <div class="pc-detail"><span>Format</span><span>In-Person · Philadelphia, NYC, Los Angeles</span></div>
+        <div class="pc-detail"><span>Frequency</span><span>Quarterly</span></div>
+        <div class="pc-detail"><span>Status</span><span>Active · Applications Open</span></div>
+      </div>
+      <a href="prog-showcases.html" class="pc-cta">Learn More →</a>
+    </div>
+
+  </div>
+</section>
 
 <div class="manifesto-section"><p class="mq-text">"From spark to fire. We don't just teach craft — we build the conditions where talent becomes unstoppable."</p><p class="mq-attr">— HEARTH™ Programs</p></div>
 
@@ -1098,7 +1149,7 @@ function filterPrograms(cat, btn){
       <div class="fg-social">
         <a href="https://www.instagram.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="Instagram">IG</a>
         <a href="https://www.tiktok.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="TikTok">TK</a>
-        <a href="https://www.youtube.com/@BuildYourHearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="YouTube">YT</a>
+        <a href="https://www.youtube.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="YouTube">YT</a>
         <a href="https://www.linkedin.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="LinkedIn">LI</a>
       </div>
     </div>
@@ -1113,7 +1164,7 @@ function filterPrograms(cat, btn){
       <li><a href="events.html">Events</a></li>
       <li><a href="community.html">Community</a></li>
       <li><a href="newsletter.html">The Glow</a></li>
-      
+      <li><a href="resources.html">Resources</a></li>
     </ul></div>
     <div class="footer-col"><h5>Media</h5><ul>
       <li><a href="media.html">Film &amp; TV</a></li>
