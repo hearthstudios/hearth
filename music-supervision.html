@@ -1377,54 +1377,65 @@ document.getElementById('musicSubmitBtn').addEventListener('click', function() {
   if(!rc){ alert('Please enter a rights contact name.'); return; }
   if(!rights){ alert('Please confirm you hold the rights to this music before submitting.'); return; }
   var newsletter = document.getElementById('mf_newsletter').checked;
-  var data = new FormData();
-  // Track 1
-  data.append('entry.1186850487', artist);
-  data.append('entry.1559382111', title1);
-  data.append('entry.89988266', email);
-  data.append('entry.159834489', document.getElementById('mf_phone').value.trim());
-  data.append('entry.1906751892', link1);
-  // Track 2
-  data.append('entry.476295792', document.getElementById('mf_link2').value.trim());
-  data.append('entry.2095755343', document.getElementById('mf_title2').value.trim());
-  // Track 3
-  data.append('entry.230059567', document.getElementById('mf_link3').value.trim());
-  data.append('entry.510330240', document.getElementById('mf_title3').value.trim());
-  // Track 4
-  data.append('entry.736339887', document.getElementById('mf_link4').value.trim());
-  data.append('entry.325948493', document.getElementById('mf_title4').value.trim());
-  // Track 5
-  data.append('entry.1500672768', document.getElementById('mf_link5').value.trim());
-  data.append('entry.939556436', document.getElementById('mf_title5').value.trim());
-  // Music details
-  data.append('entry.108142743', genre);
-  data.append('entry.306678011', document.getElementById('mf_bpm').value.trim());
-  data.append('entry.962086369', inst);
-  data.append('entry.1321133650', vocal);
-  data.append('entry.2027100635', expl);
-  data.append('entry.1190401984', lyrics);
-  data.append('entry.1300478591', stems);
-  // Rights
-  data.append('entry.1837620464', rc);
-  data.append('entry.1647116488', 'I confirm that I am the sole or co-owner of both the master recording and the underlying composition for all tracks submitted and that I have the authority to grant sync licensing rights.');
-  data.append('entry.1137375980', newsletter ? 'I agree to receive email updates from HEARTH. You can unsubscribe at any time. We respect your privacy.' : 'I do not agree to receive email updates from HEARTH.');
-  fetch('https://docs.google.com/forms/d/e/1FAIpQLScPpqJNMJN3EOKCkIJZenvxPtzzbj25OQN_daEz8S6-gApwEw/formResponse', {
-    method: 'POST',
-    mode: 'no-cors',
-    body: data
+
+  // submitToGF: hidden iframe POST — the proven pattern used across this site
+  function submitToGF(url, params) {
+    var iframe = document.getElementById('mf_hidden_iframe') || (function() {
+      var f = document.createElement('iframe');
+      f.id = 'mf_hidden_iframe'; f.name = 'mf_hidden_iframe';
+      f.style.display = 'none'; document.body.appendChild(f); return f;
+    })();
+    var form = document.createElement('form');
+    form.method = 'POST'; form.action = url;
+    form.target = 'mf_hidden_iframe'; form.style.display = 'none';
+    Object.keys(params).forEach(function(key) {
+      var inp = document.createElement('input');
+      inp.type = 'hidden'; inp.name = key; inp.value = params[key];
+      form.appendChild(inp);
+    });
+    document.body.appendChild(form);
+    form.submit();
+    setTimeout(function(){ document.body.removeChild(form); }, 1000);
+  }
+
+  // Submit music catalog entry
+  submitToGF('https://docs.google.com/forms/d/e/1FAIpQLScPpqJNMJN3EOKCkIJZenvxPtzzbj25OQN_daEz8S6-gApwEw/formResponse', {
+    'entry.1186850487': artist,
+    'entry.1559382111': title1,
+    'entry.89988266':   email,
+    'entry.159834489':  document.getElementById('mf_phone').value.trim(),
+    'entry.1906751892': link1,
+    'entry.476295792':  document.getElementById('mf_link2').value.trim(),
+    'entry.2095755343': document.getElementById('mf_title2').value.trim(),
+    'entry.230059567':  document.getElementById('mf_link3').value.trim(),
+    'entry.510330240':  document.getElementById('mf_title3').value.trim(),
+    'entry.736339887':  document.getElementById('mf_link4').value.trim(),
+    'entry.325948493':  document.getElementById('mf_title4').value.trim(),
+    'entry.1500672768': document.getElementById('mf_link5').value.trim(),
+    'entry.939556436':  document.getElementById('mf_title5').value.trim(),
+    'entry.108142743':  genre,
+    'entry.306678011':  document.getElementById('mf_bpm').value.trim(),
+    'entry.962086369':  inst,
+    'entry.1321133650': vocal,
+    'entry.2027100635': expl,
+    'entry.1190401984': lyrics,
+    'entry.1300478591': stems,
+    'entry.1837620464': rc,
+    'entry.1647116488': 'I confirm that I am the sole or co-owner of both the master recording and the underlying composition for all tracks submitted and that I have the authority to grant sync licensing rights.',
+    'entry.1137375980': newsletter ? 'I agree to receive email updates from HEARTH. You can unsubscribe at any time. We respect your privacy.' : 'I do not agree to receive email updates from HEARTH.',
+    'fvv': '1', 'fbzx': '0'
   });
-  // Newsletter cross-submit
+
+  // Newsletter cross-submit (subscriber form)
   if(newsletter && email) {
-    var sd = new FormData();
-    sd.append('entry.675473085', artist);
-    sd.append('entry.1885537716', email);
-    sd.append('entry.852923629', 'Musician');
-    fetch('https://docs.google.com/forms/d/e/1FAIpQLSe1o__-yr9H13nCkVnSJLNuvgCGhpd0fD5C1OBsZ0-IA02NUg/formResponse', {
-      method: 'POST',
-      mode: 'no-cors',
-      body: sd
+    submitToGF('https://docs.google.com/forms/d/e/1FAIpQLSe1o__-yr9H13nCkVnSJLNuvgCGhpd0fD5C1OBsZ0-IA02NUg/formResponse', {
+      'entry.675473085': artist,
+      'entry.1885537716': email,
+      'entry.852923629': 'Musician',
+      'fvv': '1', 'fbzx': '0'
     });
   }
+
   document.getElementById('musicForm').style.display = 'none';
   document.getElementById('successModal').style.display = 'flex';
 });
