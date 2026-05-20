@@ -47,8 +47,8 @@ nav{
   padding:0 56px;height:64px;
   display:flex;align-items:center;justify-content:space-between;
 }
-.nav-logo{font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--red);text-decoration:none;display:flex;align-items:center;gap:9px;}
-.nav-logo span{color:var(--stone);}
+.nav-logo{font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--red);text-decoration:none;display:flex;align-items:center;gap:9px;}.nav-logo span{color:var(--stone);}
+
 .nav-menu{display:flex;align-items:center;list-style:none;gap:2px;}
 .nav-menu a{font-size:13px;font-weight:400;color:var(--stone);text-decoration:none;padding:7px 13px;transition:color 0.2s;display:block;}
 .nav-menu a:hover,.nav-menu a.active-page{color:var(--red);}
@@ -942,6 +942,48 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
   .page-section { padding: 44px 20px; }
 }
 
+
+/* ── SERVICES DROPDOWN ── */
+.nav-dropdown { position: relative; }
+.nav-dropdown > a::after { content: ' \25BE'; font-size: 10px; opacity: 0.55; }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FAFAF8;
+  border: 1.5px solid rgba(141,153,174,0.2);
+  border-radius: 3px;
+  box-shadow: 0 8px 32px rgba(43,45,66,0.14);
+  min-width: 230px;
+  z-index: 9999;
+  padding: 8px 0;
+  margin-top: 0;
+}
+/* Invisible bridge fills gap between trigger and menu */
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
+.nav-dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu a {
+  display: block;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #2B2D42;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  border: none;
+}
+.dropdown-menu a:hover { background: #F5F0E8; color: #E50914; }
+.dd-divider { height: 1px; background: rgba(141,153,174,0.18); margin: 4px 0; }
 </style>
 
 <style>
@@ -1061,8 +1103,8 @@ nav{position:sticky;top:5px;z-index:200;}
           <p style="font-size:12px;color:var(--ash);margin-bottom:14px;">Submit your strongest, production-ready track.</p>
           <div style="display:flex;flex-direction:column;gap:12px;">
             <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Song Title *</label><input id="mf_title1" type="text" required placeholder="Track title" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Primary Streaming Link *</label><input id="mf_link1" type="text" required placeholder="Spotify, SoundCloud, Apple Music..." style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Portfolio / Website</label><input id="mf_portfolio" type="text" placeholder="https://yoursite.com" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Primary Streaming Link *</label><input id="mf_link1" type="url" required placeholder="Spotify, SoundCloud, Apple Music..." style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Portfolio / Website</label><input id="mf_portfolio" type="url" placeholder="https://yoursite.com" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
           </div>
         </div>
 
@@ -1073,16 +1115,16 @@ nav{position:sticky;top:5px;z-index:200;}
           <div style="display:flex;flex-direction:column;gap:10px;">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Track Title 2</label><input id="mf_title2" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 2</label><input id="mf_link2" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 2</label><input id="mf_link2" type="url" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
             </div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Track Title 3</label><input id="mf_title3" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 3</label><input id="mf_link3" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 3</label><input id="mf_link3" type="url" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
             </div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Track Title 4</label><input id="mf_title4" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 4</label><input id="mf_link4" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 4</label><input id="mf_link4" type="url" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
             </div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
               <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Track Title 5</label><input id="mf_title5" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 5</label><input id="mf_link5" type="text" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
+              <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Streaming Link 5</label><input id="mf_link5" type="url" placeholder="Optional" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
             </div>
           </div>
         </div>
@@ -1169,14 +1211,14 @@ nav{position:sticky;top:5px;z-index:200;}
         <div style="background:var(--paper);padding:20px 22px;border-radius:0 0 3px 3px;">
           <div style="display:flex;flex-direction:column;gap:14px;">
             <div style="display:flex;align-items:flex-start;gap:10px;padding:14px;background:rgba(229,9,20,0.04);border:1px solid rgba(229,9,20,0.12);border-radius:3px;">
-              <input type="checkbox" id="mf_rights_confirm" value="I confirm that I am the sole or co-owner of both the master recording and the underlying composition for all tracks submitted and that I have the authority to grant sync licensing rights." required style="margin-top:3px;flex-shrink:0;width:16px;height:16px;">
+              <input type="checkbox" id="mf_rights_confirm" required style="margin-top:3px;flex-shrink:0;width:16px;height:16px;">
               <label for="mf_rights_confirm" style="font-size:13px;color:var(--stone);line-height:1.5;cursor:pointer;"><strong>Rights Confirmation *</strong><br><span style="color:var(--ash);">I confirm I hold all necessary rights and clearances for the submitted music. Submissions without rights confirmation cannot be reviewed.</span></label>
             </div>
             <div style="display:flex;align-items:flex-start;gap:10px;">
-              <input type="checkbox" id="mf_newsletter" value="I agree to receive email updates from HEARTH. You can unsubscribe at any time. We respect your privacy." style="margin-top:3px;flex-shrink:0;width:16px;height:16px;">
+              <input type="checkbox" id="mf_newsletter" style="margin-top:3px;flex-shrink:0;width:16px;height:16px;">
               <label for="mf_newsletter" style="font-size:13px;color:var(--ash);line-height:1.5;cursor:pointer;">Newsletter Opt-in — By checking this box, you agree to receive email updates from HEARTH™. You can unsubscribe at any time. We respect your privacy.</label>
             </div>
-            <button id="musicSubmitBtn" type="button" class="btn btn-orange" style="width:100%;padding:14px;border:none;cursor:pointer;font-size:14px;min-height:44px;">Submit to the Library →</button>
+            <button id="musicSubmitBtn" type="submit" class="btn btn-orange" style="width:100%;padding:14px;border:none;cursor:pointer;font-size:14px;min-height:44px;">Submit to the Library →</button>
           </div>
         </div>
 
@@ -1200,35 +1242,79 @@ nav{position:sticky;top:5px;z-index:200;}
 
     <div style="background:var(--paper);border-radius:4px;padding:32px;">
       <div style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#c9a000;margin-bottom:14px;">// Licensing Inquiry</div>
-      <form action="[AIRTABLE-PLACEHOLDER]" method="POST" style="display:flex;flex-direction:column;gap:14px;">
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Name *</label><input type="text" name="name" required placeholder="Your name" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Email *</label><input type="email" name="email" required placeholder="your@email.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;"></div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Project Type *</label>
-          <select name="project_type" required style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;">
-            <option>Film / Short Film</option><option>TV / Series</option><option>Advertisement</option>
-            <option>Documentary</option><option>Branded Content</option><option>Podcast / Audio</option>
-            <option>Interactive / Game</option><option>Other</option>
+
+      <form id="licensingForm" onsubmit="return false;" style="display:flex;flex-direction:column;gap:14px;">
+
+        <input type="hidden" name="fvv" value="1">
+        <input type="hidden" name="fbzx" value="0">
+
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Company / Organization Name</label>
+          <input name="entry.82494337" type="text" placeholder="Your company or organization" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Company Website</label>
+          <input name="entry.620933666" type="text" placeholder="yourcompany.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Primary Contact Name *</label>
+          <input name="entry.1279477144" type="text" required placeholder="Your full name" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Primary Contact Phone</label>
+          <input name="entry.176012143" type="tel" placeholder="(000) 000-0000" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Email Address *</label>
+          <input name="entry.1442475176" type="email" required placeholder="your@email.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+        </div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;">
+          <div>
+            <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">City</label>
+            <input name="entry.1654351850" type="text" placeholder="City" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">State</label>
+            <input name="entry.1480464224" type="text" placeholder="State" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">How Did You Find Us?</label>
+          <select name="entry.783755622" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;">
+            <option value="">Select one...</option>
+            <option value="Social Media">Social Media</option>
+            <option value="Google Search">Google Search</option>
+            <option value="Word of Mouth">Word of Mouth</option>
+            <option value="Event/Screening">Event / Screening</option>
+            <option value="Newsletter">Newsletter</option>
+            <option value="Other">Other</option>
           </select>
         </div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Tell us about your project</label><textarea name="message" placeholder="Genre/mood needed, scene context, timeline, budget range..." style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--stone);background:white;min-height:90px;resize:vertical;"></textarea></div>
-        <button type="submit" class="btn btn-dark" style="width:100%;padding:14px;border:none;cursor:pointer;font-size:14px;background:var(--stone);min-height:44px;">Send Inquiry →</button>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Services Interested In</label>
+          <select name="entry.1113089927" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;">
+            <option value="">Select one...</option>
+            <option value="Music Supervision &amp; Sync" selected>Music Supervision &amp; Sync</option>
+            <option value="Event Production">Event Production</option>
+            <option value="Cast &amp; Crew Hiring">Cast &amp; Crew Hiring</option>
+            <option value="Media Education &amp; Workshops">Media Education &amp; Workshops</option>
+            <option value="Community Screenings &amp; Events">Community Screenings &amp; Events</option>
+            <option value="Sponsorships">Sponsorships</option>
+            <option value="Video Production">Video Production</option>
+            <option value="Content Strategy &amp; Consulting">Content Strategy &amp; Consulting</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Tell Us More</label>
+          <textarea name="entry.1644905355" rows="4" placeholder="Tell us about your project and what music you're looking for..." style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--stone);background:white;font-family:'Inter',sans-serif;box-sizing:border-box;resize:vertical;"></textarea>
+        </div>
+        <button type="submit" style="width:100%;background:var(--red);color:white;font-weight:500;font-size:14px;padding:14px;border:none;border-radius:2px;cursor:pointer;min-height:44px;font-family:'Inter',sans-serif;" id="licSubmitBtn" type="button">Send Licensing Inquiry →</button>
       </form>
-    </div>
-  </div>
 
-</div>
-</main>
-<footer>
-  <div class="footer-grid">
-    <div class="fg-brand">
-      <div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;">HEARTH<span class="tm">™</span></a></div>
-      <p class="fg-tagline">Where Voices Find Their Fire.</p>
-      <div class="fg-social">
-        <a href="https://www.instagram.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="Instagram">IG</a>
-        <a href="https://www.tiktok.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="TikTok">TK</a>
-        <a href="https://www.youtube.com/@BuildYourHearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="YouTube">YT</a>
-        <a href="https://www.linkedin.com/company/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="LinkedIn">LI</a>
-      </div>
+      <div id="licensingConfirm" style="display:none;padding:16px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:3px;font-size:14px;color:#16a34a;font-weight:500;margin-top:16px;">
+        ✓ Inquiry received. We'll be in touch within 48 hours.
+      </div></div>
     </div>
     <div class="footer-col"><h5>Programs</h5><ul>
       <li><a href="programs.html">All Programs</a></li>
@@ -1241,7 +1327,7 @@ nav{position:sticky;top:5px;z-index:200;}
       <li><a href="events.html">Events</a></li>
       <li><a href="community.html">Community</a></li>
       <li><a href="newsletter.html">The Glow</a></li>
-      <li><a href="resources.html">Resources</a></li>
+      
     </ul></div>
     <div class="footer-col"><h5>Media</h5><ul>
       <li><a href="media.html">Film &amp; TV</a></li>
@@ -1270,7 +1356,6 @@ document.addEventListener('click',function(e){
 
 <script>
 document.getElementById('musicSubmitBtn').addEventListener('click', async function() {
-  // Collect values
   var artist  = document.getElementById('mf_artist').value.trim();
   var email   = document.getElementById('mf_email').value.trim();
   var title1  = document.getElementById('mf_title1').value.trim();
@@ -1281,38 +1366,42 @@ document.getElementById('musicSubmitBtn').addEventListener('click', async functi
   var expl    = document.getElementById('mf_explicit').value;
   var lyrics  = document.getElementById('mf_lyrics').value;
   var stems   = document.getElementById('mf_stems').value;
-  var excl    = document.getElementById('mf_exclusivity').value;
+  var excl    = document.getElementById('mf_exclusivity') ? document.getElementById('mf_exclusivity').value : '';
   var rc      = document.getElementById('mf_rights_contact').value.trim();
   var rights  = document.getElementById('mf_rights_confirm').checked;
 
-  // Validation
-  if (!artist || !email || !title1 || !link1 || !genre || !inst || !vocal || !expl || !lyrics || !stems || !excl || !rc) {
+  if (!artist || !email || !title1 || !link1 || !genre || !inst || !vocal || !expl || !lyrics || !stems || !rc) {
     alert('Please complete all required fields (marked with *).'); return;
   }
   if (!rights) {
     alert('Rights confirmation is required before submission.'); return;
   }
 
-  // Build Airtable fields — match column names in Music Catalog table
+  var btn = document.getElementById('musicSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  // Field names match EXACTLY what is in the Airtable Music Catalog table
+  // Note: Airtable column 33 is spelled "Primary Steaming Link" (not Streaming)
   var fields = {
-    'Artist':                  artist,
-    'Artist Contact Email':    email,
-    'Song Title':              title1,
-    'Primary Streaming Link':  link1,
-    'Genre':                   genre,
-    'Primary Instruments':     inst,
-    'Vocal Type':              vocal,
-    'Explicit Content':        expl,
-    'Lyrics Available':        lyrics,
-    'Stems Available':         stems,
-    'Exclusivity':             excl,
-    'Rights Holder Contact':   rc
+    'Artist':                 artist,
+    'Artist Contact Email':   email,
+    'Song Title':             title1,
+    'Primary Steaming Link':  link1,
+    'Genre':                  genre,
+    'Primary Instruments':    inst,
+    'Vocal Type':             vocal,
+    'Explicit Content':       expl,
+    'Lyrics Available':       lyrics,
+    'Stems Available':        stems,
+    'Rights Holder Contact':  rc
   };
 
-  // Optional fields — only include if filled
-  var phone  = document.getElementById('mf_phone').value.trim();
-  var port   = document.getElementById('mf_portfolio').value.trim();
-  var bpm    = document.getElementById('mf_bpm').value.trim();
+  if (excl) fields['Exclusivity'] = excl;
+
+  var phone = document.getElementById('mf_phone') ? document.getElementById('mf_phone').value.trim() : '';
+  var port  = document.getElementById('mf_portfolio') ? document.getElementById('mf_portfolio').value.trim() : '';
+  var bpm   = document.getElementById('mf_bpm') ? document.getElementById('mf_bpm').value.trim() : '';
   var t2 = document.getElementById('mf_title2').value.trim();
   var l2 = document.getElementById('mf_link2').value.trim();
   var t3 = document.getElementById('mf_title3').value.trim();
@@ -1322,58 +1411,61 @@ document.getElementById('musicSubmitBtn').addEventListener('click', async functi
   var t5 = document.getElementById('mf_title5').value.trim();
   var l5 = document.getElementById('mf_link5').value.trim();
 
-  if (phone)  fields['Artist Phone']       = phone;
-  if (port)   fields['Portfolio or Website Link'] = port;
-  if (bpm)    fields['Approximate BPM']    = bpm;
-  if (t2)     fields['Track Title 2']      = t2;
-  if (l2)     fields['Streaming Link 2']   = l2;
-  if (t3)     fields['Track Title 3']      = t3;
-  if (l3)     fields['Streaming Link 3']   = l3;
-  if (t4)     fields['Track Title 4']      = t4;
-  if (l4)     fields['Streaming Link 4']   = l4;
-  if (t5)     fields['Track Title 5']      = t5;
-  if (l5)     fields['Streaming Link 5']   = l5;
+  if (phone) fields['Artist Phone']          = phone;
+  if (port)  fields['Portfolio or Website Link'] = port;
+  if (bpm)   fields['Approximate BPM']       = bpm;
+  if (t2)    fields['Track Title 2']         = t2;
+  if (l2)    fields['Streaming Link 2']      = l2;
+  if (t3)    fields['Track Title 3']         = t3;
+  if (l3)    fields['Streaming Link 3']      = l3;
+  if (t4)    fields['Track Title 4']         = t4;
+  if (l4)    fields['Streaming Link 4']      = l4;
+  if (t5)    fields['Track Title 5']         = t5;
+  if (l5)    fields['Streaming Link 5']      = l5;
 
-  // Disable button to prevent double submit
-  var btn = document.getElementById('musicSubmitBtn');
-  btn.disabled = true;
-  btn.textContent = 'Submitting…';
+  // Rights confirmation text
+  if (rights) fields['Rights Confirmation'] = 'I confirm that I am the sole or co-owner of both the master recording and the underlying composition for all tracks submitted and that I have the authority to grant sync licensing rights.';
+
+  // Newsletter opt-in
+  var newsletter = document.getElementById('mf_newsletter') && document.getElementById('mf_newsletter').checked;
+  if (newsletter) fields['Newsletter Opt-in'] = 'I agree to receive email updates from HEARTH. You can unsubscribe at any time. We respect your privacy.';
+
+  // Remove empty values
+  Object.keys(fields).forEach(function(k) { if (!fields[k]) delete fields[k]; });
 
   try {
-    // POST to Netlify function → Airtable API
-    // Target: Music Supervision base (appKsSNFxrW7R8nfs), Music Catalog table (tblJzxn2bQag54qMD)
     var response = await fetch('/.netlify/functions/airtable', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        base:   'appKsSNFxrW7R8nfs',
-        table:  'tblJzxn2bQag54qMD',
+        base:  'appKsSNFxrW7R8nfs',
+        table: 'tblJzxn2bQag54qMD',
         fields: fields
       })
     });
 
     if (!response.ok) {
       var err = await response.json();
-      alert('Submission error: ' + (err.error && err.error.message ? err.error.message : 'Please try again.'));
+      var msg = (err.error && err.error.message) ? err.error.message : JSON.stringify(err);
+      alert('Submission error: ' + msg);
       btn.disabled = false;
       btn.textContent = 'Submit to the Library →';
       return;
     }
 
-    // Newsletter cross-submit (subscriber base)
-    if (document.getElementById('mf_newsletter').checked && email) {
+    // Newsletter cross-submit to subscriber base
+    if (newsletter && email) {
       await fetch('/.netlify/functions/airtable', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          base:   'appdlPcw5190uENFf',
-          table:  'tblYLycvNesUSAZYJ',
+          base:  'appdlPcw5190uENFf',
+          table: 'tblYLycvNesUSAZYJ',
           fields: { 'Email': email, 'Name': artist, 'I am a…': 'Musician' }
         })
       });
     }
 
-    // Success — show modal
     document.getElementById('musicForm').style.display = 'none';
     document.getElementById('successModal').style.display = 'flex';
 
@@ -1384,6 +1476,7 @@ document.getElementById('musicSubmitBtn').addEventListener('click', async functi
   }
 });
 </script>
+
 <div id="successModal" style="display:none;position:fixed;inset:0;background:rgba(43,45,66,0.88);z-index:9999;align-items:center;justify-content:center;">
   <div style="background:var(--white);border-radius:4px;padding:52px 44px;max-width:460px;width:92%;text-align:center;">
     <div style="font-size:40px;margin-bottom:16px;">✓</div>
@@ -1392,61 +1485,45 @@ document.getElementById('musicSubmitBtn').addEventListener('click', async functi
     <p style="font-size:14px;line-height:1.7;color:var(--ash);margin-bottom:24px;">Thank you for submitting to the HEARTH™ Sync Library. Our team reviews all submissions and will be in touch if your music is a fit.</p>
     <button onclick="document.getElementById('successModal').style.display='none';" style="background:var(--red);color:white;border:none;padding:14px 32px;border-radius:2px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Close →</button>
   </div>
-</body></html
-
-  </div>
 </div>
-</main>
 
-<footer>
-  <div class="footer-grid">
-    <div class="fg-brand">
-      <div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;color:var(--white);text-decoration:none;font-family:'Besley',serif;font-weight:700;font-size:20px;">HEARTH<span class="tm">™</span></a></div>
-      <p class="fg-tagline">Where Voices Find Their Fire.</p>
-      <div class="fg-social">
-        <a href="https://www.instagram.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="Instagram">IG</a>
-        <a href="https://www.tiktok.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="TikTok">TK</a>
-        <a href="https://www.youtube.com/@BuildYourHearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="YouTube">YT</a>
-        <a href="https://www.linkedin.com/company/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="LinkedIn">LI</a>
-      </div>
-    </div>
-    <div class="footer-col"><h5>Programs</h5><ul>
-      <li><a href="programs.html">All Programs</a></li>
-      <li><a href="prog-script-labs.html">Script Labs</a></li>
-      <li><a href="prog-music-residencies.html">Music Residencies</a></li>
-      <li><a href="prog-youth-in-film.html">Youth in Film</a></li>
-      <li><a href="prog-mentoring.html">Mentorship</a></li>
-    </ul></div>
-    <div class="footer-col"><h5>Community</h5><ul>
-      <li><a href="events.html">Events</a></li>
-      <li><a href="community.html">Community</a></li>
-      <li><a href="newsletter.html">The Glow</a></li>
-      <li><a href="resources.html">Resources</a></li>
-    </ul></div>
-    <div class="footer-col"><h5>Media</h5><ul>
-      <li><a href="media.html">Film &amp; TV</a></li>
-      <li><a href="music-supervision.html">Music Sync</a></li>
-    </ul></div>
-    <div class="footer-col"><h5>Company</h5><ul>
-      <li><a href="about.html">About</a></li>
-      <li><a href="work-with-us.html">Work With Us</a></li>
-      <li><a href="sponsorship.html">Sponsorship</a></li>
-    </ul></div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2026 HEARTH™. All rights reserved.</span>
-    <div class="fire-dots"><div class="fd fd1"></div><div class="fd fd2"></div><div class="fd fd3"></div></div>
-  </div>
-</footer><script>
-function toggleMobileMenu(){
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
-document.addEventListener('click',function(e){
-  var m=document.getElementById('mobileMenu');
-  var b=document.querySelector('.mobile-menu-btn');
-  if(m&&b&&!m.contains(e.target)&&!b.contains(e.target)){m.classList.remove('open');}
+<script>
+document.getElementById('licSubmitBtn').addEventListener('click', function() {
+  var name    = document.getElementById('lic_name') ? document.getElementById('lic_name').value.trim() : document.querySelector('#licensingForm [name="entry.1279477144"]').value.trim();
+  var email   = document.querySelector('#licensingForm [name="entry.1442475176"]').value.trim();
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!email) { alert('Please enter your email address.'); return; }
+
+  var fields = document.querySelectorAll('#licensingForm input[name^="entry."], #licensingForm select[name^="entry."], #licensingForm textarea[name^="entry."]');
+  var p = new URLSearchParams();
+  fields.forEach(function(el) {
+    p.append(el.name, el.value);
+  });
+
+  function submitToGF(url, params) {
+    var gfIframe = document.getElementById('gf_hidden_iframe') || (function() {
+      var f = document.createElement('iframe');
+      f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
+      f.style.display = 'none'; document.body.appendChild(f); return f;
+    })();
+    var gfForm = document.createElement('form');
+    gfForm.method = 'POST'; gfForm.action = url;
+    gfForm.target = 'gf_hidden_iframe'; gfForm.style.display = 'none';
+    params.forEach(function(val, key) {
+      var inp = document.createElement('input');
+      inp.type = 'hidden'; inp.name = key; inp.value = val;
+      gfForm.appendChild(inp);
+    });
+    document.body.appendChild(gfForm);
+    gfForm.submit();
+    document.body.removeChild(gfForm);
+  }
+
+  submitToGF('https://docs.google.com/forms/d/e/1FAIpQLSeGUR74ERI3eIwiFm0rGe_rKOkC03fQPusMGQT7EyaMUk6gig/formResponse', p);
+
+  document.getElementById('licensingForm').style.display = 'none';
+  document.getElementById('licensingConfirm').style.display = 'block';
 });
 </script>
-
-
-</body></html>
+</body>
+</html>
