@@ -1413,7 +1413,7 @@ document.getElementById('musicSubmitBtn').addEventListener('click', async functi
 
   if (phone) fields['Artist Phone']          = phone;
   if (port)  fields['Portfolio or Website Link'] = port;
-  if (bpm)   fields['Approximate BPM']       = bpm;
+  if (bpm)   fields['Approximate BPM']       = parseInt(bpm, 10) || 0;
   if (t2)    fields['Track Title 2']         = t2;
   if (l2)    fields['Streaming Link 2']      = l2;
   if (t3)    fields['Track Title 3']         = t3;
