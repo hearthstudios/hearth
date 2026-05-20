@@ -1,5 +1,4 @@
 # HEARTH™ — Netlify Headers
-# Ensures all resource files download correctly with proper MIME types
 
 /resources/*.xlsx
   Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
@@ -13,13 +12,15 @@
   Content-Type: application/pdf
   Content-Disposition: attachment
 
-# Security headers for all pages
-/*
+# Netlify functions — must be unrestricted so the browser can POST to them
+/.netlify/functions/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Headers: Content-Type
+  Access-Control-Allow-Methods: POST, OPTIONS
+
+# Security headers for HTML pages only (not functions)
+/*.html
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Content-Security-Policy: form-action 'self' https://docs.google.com; connect-src 'self' https://docs.google.com https://api.emailjs.com https://cdn.jsdelivr.net
-
-# Sponsorship page — allow POSTing to Google Forms
-/sponsorship.html
-  Content-Security-Policy: form-action 'self' https://docs.google.com; connect-src 'self' https://docs.google.com https://api.emailjs.com
