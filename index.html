@@ -123,8 +123,8 @@ h2.page-h2.on-dark em{color:var(--glow);}
 .ms-body{font-family:'Courier Prime',monospace;font-size:15px;line-height:1.85;color:rgba(255,255,255,0.85);font-style:italic;}
 
 /* Services overview */
-.services-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(141,153,174,0.15);margin-top:48px;}
-.svc-tile{background:var(--bone);padding:32px 24px;text-align:center;transition:background 0.2s;cursor:pointer;}
+.services-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(141,153,174,0.15);margin-top:48px;}
+.svc-tile{background:var(--bone);padding:32px 24px;text-align:center;transition:background 0.2s;cursor:pointer;text-decoration:none;color:inherit;}
 .svc-tile:hover{background:var(--bone);}
 .svc-icon{font-size:28px;margin-bottom:14px;display:block;}
 .svc-name{font-family:'Fraunces',serif;font-weight:600;font-size:15px;color:var(--charcoal);margin-bottom:6px;}
@@ -524,6 +524,95 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .btn-primary-lg {
+    padding: 16px 44px;
+    font-size: 16px;
+    min-height: 50px;
+    background: var(--terracotta);
+    color: white;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn-primary-lg:hover {
+    background: var(--ember);
+    transform: translateY(-2px);
+  }
+
+  .btn-cta-primary {
+    background: var(--terracotta);
+    color: white;
+    padding: 16px 36px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 240px;
+    text-align: center;
+  }
+
+  .btn-cta-primary:hover {
+    background: var(--ember);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(226, 104, 46, 0.25);
+  }
+
+  .btn-cta-secondary {
+    background: white;
+    color: var(--terracotta);
+    border: 2px solid var(--terracotta);
+    padding: 14px 34px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 240px;
+    text-align: center;
+  }
+
+  .btn-cta-secondary:hover {
+    background: var(--terracotta);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(226, 104, 46, 0.15);
+  }
+
+  .hero-secondary {
+    margin-top: 20px;
+    font-size: 15px;
+    color: rgba(250,250,248,0.72);
+    line-height: 1.6;
+  }
+
+  .text-link {
+    color: var(--terracotta);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid var(--terracotta);
+    transition: all 0.2s ease;
+  }
+
+  .text-link:hover {
+    color: var(--ember);
+    border-bottom-color: var(--ember);
   }
 
   /* ── FOOTER ── */
@@ -1057,83 +1146,80 @@ nav{position:sticky;top:5px;z-index:200;}
   <div style="background:#1C1A19"></div>
 </div><nav>
   <a href="index.html" class="nav-logo">
-    <svg width="24" height="24" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="#C25A3C" stroke-width="1.5"/><circle cx="14" cy="14" r="8" fill="none" stroke="#E2682E" stroke-width="1.5"/><circle cx="14" cy="14" r="4" fill="none" stroke="#F2B441" stroke-width="1.5"/><circle cx="14" cy="14" r="1.5" fill="#C25A3C"/></svg>
-    <span style="font-family:'Fraunces',serif;">HEARTH<span class="tm">™</span></span>
+    <img src="Full_Lockup_Horizon_No_Stu.svg" alt="HEARTH Studios" style="height:64px;width:auto;max-height:64px;object-fit:contain;">
   </a>
-  <ul class="nav-menu"><li><a href="index.html">Home</a></li><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li class="nav-dropdown"><a href="work-with-us.html">Services</a><div class="dropdown-menu"><a href="video-production.html">Video Production</a><a href="work-live-events.html">Live Event Production</a><a href="cast-crew-access.html">Cast &amp; Crew Access</a><a href="music-supervision.html">Music Supervision &amp; Sync</a><a href="media-education.html">Media Education &amp; Workshops</a><a href="storytelling-workshops.html">On-Camera &amp; Storytelling Workshops</a><a href="community-screenings.html">Community Screenings &amp; Events</a><div class="dd-divider"></div><a href="work-with-us.html#contact">Work With Us →</a></div></li><li><a href="media.html">Media</a></li><li><a href="community.html">Community</a></li><li><a href="about.html">About</a></li><li><a href="sponsorship.html">Sponsor</a></li><li><a href="membership.html" class="nav-cta">Join the Circle</a></li></ul>
+  <ul class="nav-menu"><li><a href="index.html">Home</a></li><li class="nav-dropdown"><a href="programs.html">Develop Your Craft</a><div class="dropdown-menu"><a href="prog-script-labs.html">Script Labs</a><a href="prog-music-residencies.html">Music Residencies</a><a href="prog-film-producing.html">Film Producing Lab</a><a href="prog-mentoring.html">1-on-1 Mentorship</a><div class="dd-divider"></div><a href="programs.html">All Programs →</a></div></li><li class="nav-dropdown"><a href="events.html">Events & Community</a><div class="dropdown-menu"><a href="events.html">Upcoming Events</a><a href="evt-new-voices.html">New Voices Night</a><a href="evt-acting-camera.html">Acting for Camera</a><a href="evt-songwriting.html">Songwriting for Camera</a><a href="evt-breaking-in.html">Breaking In</a><a href="evt-film-pitch.html">Film Pitch Night</a><div class="dd-divider"></div><a href="community.html">Community Hub →</a></div></li><li class="nav-dropdown"><a href="work-with-us.html">Work With Us</a><div class="dropdown-menu"><a href="work-live-events.html">Event Production</a><a href="community-screenings.html">Live Events & Screenings</a><a href="cast-crew-access.html">Cast & Crew Access</a><a href="music-supervision.html">Music Licensing</a><a href="media-education.html">Media Education</a><a href="video-production.html">Content & Video</a><div class="dd-divider"></div><a href="work-with-us.html#contact">Contact →</a></div></li><li class="nav-dropdown"><a href="about.html">About</a><div class="dropdown-menu"><a href="about.html">Our Story</a><a href="sponsorship.html">Sponsorships</a></div></li><li><a href="#community" class="nav-cta">Join Our Community</a></li></ul>
   <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
 </nav>
-<div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="membership.html" class="mobile-cta">Join the Circle</a></div>
+<div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="media.html">Media</a><a href="community.html">Community</a><a href="about.html">About</a><a href="work-with-us.html">Work With Us</a><a href="#community" class="mobile-cta">Join Our Community</a></div>
 <main>
 <section class="hero">
   <div class="hero-orb ho1"></div><div class="hero-orb ho2"></div>
   <div class="hero-l">
     <div class="hero-eyebrow">Community-Powered Talent Studio</div>
-    <h1 class="hero-h1">Where <em>diverse</em><br>voices become<br>lasting light.</h1>
+    <h1 class="hero-h1">Where <em>authentic</em><br>voices become<br>lasting light.</h1>
     
-    <p class="hero-body">We provide film and television education, creative workshops, and mentorship for underrepresented voices — giving underserved creators the tools, community, and opportunity to tell their stories.</p>
-    <div class="hero-btns">
-      <a href="programs.html" class="btn btn-terracotta">Develop Your Craft</a>
-      <a href="events.html" class="btn btn-outline-dark">Find an Event</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-n">6</div><div class="stat-l">Programs</div></div>
-      <div><div class="stat-n">3</div><div class="stat-l">Cities</div></div>
-      <div><div class="stat-n">11k+</div><div class="stat-l">Community</div></div>
-      <div><div class="stat-n">10+</div><div class="stat-l">Events</div></div>
-    </div>
+    <p class="hero-body">We provide film and television education, creative workshops, and mentorship for creators building outside traditional gates — giving authentic voices the tools, peer community, and platform to tell their stories.</p>
   </div>
-  <div class="hero-r" style="display:flex;flex-direction:row;gap:14px;align-items:center;padding:0 32px 0 0;flex-shrink:0;">
-    <div class="hero-card" style="min-height:420px;height:auto;max-height:none;">
-      <div>
-        <div class="hc-label">// Now Accepting</div>
-        <div class="hc-title">Music Supervision Sync Library</div>
-        <div class="hc-desc">We accept original music for our curated sync library on a rolling basis. Diverse, licensed tracks for film, documentary, and independent media.</div>
-      </div>
-      <div>
-        <div class="pills" style="margin-bottom:10px;"><span class="pill p-red">Music</span><span class="pill p-orange">Rolling Basis</span><span class="pill p-yellow">Sync Ready</span><span class="pill p-ash">Licensed</span></div>
-        <a href="music-supervision.html" class="hc-cta">Submit Now! →</a>
-      </div>
-    </div>
-    <div class="hero-card" style="min-height:420px;height:auto;max-height:none;">
-      <div>
-        <div class="hc-label">// Free for All Creators</div>
-        <div class="hc-title">Production Resources</div>
-        <div class="hc-desc">Templates, legal forms, and production tools built for independent film and televisionmakers and TV creators — free to download and use on your projects.</div>
-      </div>
-      <div>
-        <div class="pills" style="margin-bottom:10px;"><span class="pill p-red">Templates</span><span class="pill p-orange">Legal Forms</span><span class="pill p-yellow">Free</span><span class="pill p-ash">9 Files</span></div>
-        <a href="resources.html" class="hc-cta">Browse Resources →</a>
-      </div>
-    </div>
+  <div class="hero-r" style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;padding:0 32px 0 0;flex-shrink:0;justify-content:center;">
+    <a href="programs.html" class="btn btn-cta-primary">Develop Your Craft</a>
+    <a href="events.html" class="btn btn-cta-secondary">Explore Upcoming Events</a>
   </div>
 </section>
 
+<!-- QUICK START GUIDE -->
+<div style="background:var(--bone);padding:80px;text-align:center;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <h2 style="font-family:'Fraunces',serif;font-weight:700;font-size:32px;color:var(--charcoal);margin-bottom:12px;">What are you here for?</h2>
+    <p style="font-size:16px;color:rgba(43,45,66,0.72);margin-bottom:48px;">Choose your path to get started.</p>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;">
+      <a href="programs.html" style="text-decoration:none;padding:32px 24px;background:white;border:2px solid rgba(226,104,46,0.15);border-radius:4px;transition:all 0.3s;display:flex;flex-direction:column;gap:16px;align-items:center;justify-content:center;" onmouseover="this.style.borderColor='var(--terracotta)';this.style.boxShadow='0 8px 24px rgba(226,104,46,0.12)'" onmouseout="this.style.borderColor='rgba(226,104,46,0.15)';this.style.boxShadow='none'">
+        <div style="font-size:32px;">📚</div>
+        <div><div style="font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:var(--charcoal);margin-bottom:6px;">Develop My Craft</div>
+        <p style="font-size:13px;color:rgba(43,45,66,0.66);margin:0;">Courses, labs, and mentorship</p></div>
+      </a>
+      
+      <a href="events.html" style="text-decoration:none;padding:32px 24px;background:white;border:2px solid rgba(226,104,46,0.15);border-radius:4px;transition:all 0.3s;display:flex;flex-direction:column;gap:16px;align-items:center;justify-content:center;" onmouseover="this.style.borderColor='var(--terracotta)';this.style.boxShadow='0 8px 24px rgba(226,104,46,0.12)'" onmouseout="this.style.borderColor='rgba(226,104,46,0.15)';this.style.boxShadow='none'">
+        <div style="font-size:32px;">🎤</div>
+        <div><div style="font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:var(--charcoal);margin-bottom:6px;">Attend Events</div>
+        <p style="font-size:13px;color:rgba(43,45,66,0.66);margin:0;">Screenings, workshops, showcases</p></div>
+      </a>
+      
+      <a href="work-with-us.html" style="text-decoration:none;padding:32px 24px;background:white;border:2px solid rgba(226,104,46,0.15);border-radius:4px;transition:all 0.3s;display:flex;flex-direction:column;gap:16px;align-items:center;justify-content:center;" onmouseover="this.style.borderColor='var(--terracotta)';this.style.boxShadow='0 8px 24px rgba(226,104,46,0.12)'" onmouseout="this.style.borderColor='rgba(226,104,46,0.15)';this.style.boxShadow='none'">
+        <div style="font-size:32px;">💼</div>
+        <div><div style="font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:var(--charcoal);margin-bottom:6px;">Work With Us</div>
+        <p style="font-size:13px;color:rgba(43,45,66,0.66);margin:0;">Services for producers & projects</p></div>
+      </a>
+      
+      <a href="community.html" style="text-decoration:none;padding:32px 24px;background:white;border:2px solid rgba(226,104,46,0.15);border-radius:4px;transition:all 0.3s;display:flex;flex-direction:column;gap:16px;align-items:center;justify-content:center;" onmouseover="this.style.borderColor='var(--terracotta)';this.style.boxShadow='0 8px 24px rgba(226,104,46,0.12)'" onmouseout="this.style.borderColor='rgba(226,104,46,0.15)';this.style.boxShadow='none'">
+        <div style="font-size:32px;">👥</div>
+        <div><div style="font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:var(--charcoal);margin-bottom:6px;">Join Community</div>
+        <p style="font-size:13px;color:rgba(43,45,66,0.66);margin:0;">Connect, collaborate, create</p></div>
+      </a>
+    </div>
+  </div>
+</div>
+
 <div class="mission-strip">
   <div class="ms-left"><div class="ms-label">Our Mission</div><div class="ms-title">Educate.<br>Empower.<br>Entertain.</div></div>
-  <div class="ms-body">"To make film and television education accessible to underrepresented creators — providing the workshops, mentorship, and community that turn creative potential into original stories and lived experiences into lasting art."</div>
+  <div class="ms-body" style="font-size:22px;line-height:1.8;">"To make film and television education accessible to creators building outside traditional gates — providing the workshops, mentorship, and peer community that turn creative potential into original stories and lived experiences into lasting art."</div>
 </div>
 
 <section class="page-section ps-white">
   <div class="section-label">What We Do</div>
   <h2 class="page-h2" style="margin-bottom:12px;">Everything under one <em>roof.</em></h2>
-  <p style="font-size:15px;line-height:1.75;color:var(--ash);max-width:560px;margin-bottom:0;">Film and media education, creative workshops, and cultural events — built specifically for underrepresented creators who deserve the tools to tell their stories.</p>
+  <p style="font-size:17px;line-height:1.8;color:var(--ash);max-width:800px;margin-bottom:48px;">Film and media education, creative workshops, and cultural events — built specifically for creators building outside traditional gates who deserve the tools to tell their stories. HEARTH exists to make the craft of film and television making, music, and storytelling available to every creator — regardless of background, resources, or who they know.</p>
   <div class="services-grid">
-    <div class="svc-tile"><span class="svc-icon">✍️</span><div class="svc-name">Talent Development</div><div class="svc-desc">Workshops, residencies, curriculum &amp; mentorship in film, television, music, and storytelling</div><a href="programs.html" class="svc-link">Explore Programs →</a></div>
-    <div class="svc-tile"><span class="svc-icon">🎤</span><div class="svc-name">Live Events</div><div class="svc-desc">Cultural events, open mics, screenings, panels &amp; showcases for creative enrichment</div><a href="events.html" class="svc-link">Find Events →</a></div>
-    <div class="svc-tile"><span class="svc-icon">🎞️</span><div class="svc-name">Media &amp; Stories</div><div class="svc-desc">Original films, podcasts, digital series &amp; music we create with our community</div><a href="media.html" class="svc-link">Watch &amp; Listen →</a></div>
-    <div class="svc-tile"><span class="svc-icon">⭕</span><div class="svc-name">Creator + Collaborator</div><div class="svc-desc">Newsletter, peer community, chapters &amp; creative collaboration spaces</div><a href="community.html" class="svc-link">Join the Circle →</a></div>
-    <div class="svc-tile"><span class="svc-icon">🎬</span><div class="svc-name">Video Production</div><div class="svc-desc">Content strategy, production, post-production, marketing &amp; distribution support</div><a href="video-production.html" class="svc-link">Learn More →</a></div>
-    <div class="svc-tile"><span class="svc-icon">🤝</span><div class="svc-name">Work With Us</div><div class="svc-desc">Event production, music licensing, media education &amp; access programs</div><a href="work-with-us.html" class="svc-link">Partner With Us →</a></div>
+    <a href="programs.html" class="svc-tile svc-clickable"><span class="svc-icon">✍️</span><div class="svc-name">Talent Development</div><div class="svc-desc">Workshops, residencies, curriculum &amp; mentorship in film, television, music, and storytelling</div><div class="svc-link">Explore Programs →</div></a>
+    <a href="events.html" class="svc-tile svc-clickable"><span class="svc-icon">🎤</span><div class="svc-name">Live Events</div><div class="svc-desc">Cultural gatherings — open mics, screenings, panels &amp; showcases for creative development</div><div class="svc-link">Find Events →</div></a>
+    <a href="media.html" class="svc-tile svc-clickable"><span class="svc-icon">🎞️</span><div class="svc-name">Media &amp; Stories</div><div class="svc-desc">Original films, podcasts, digital series &amp; music we create with creators</div><div class="svc-link">Watch &amp; Listen →</div></a>
+    <a href="community.html" class="svc-tile svc-clickable"><span class="svc-icon">⭕</span><div class="svc-name">Creator + Collaborator</div><div class="svc-desc">Newsletter, peer network, chapters & creative collaboration spaces</div><div class="svc-link">Join Our Community →</div></a>
+    <a href="work-with-us.html" class="svc-tile svc-clickable"><span class="svc-icon">🤝</span><div class="svc-name">Work With Us</div><div class="svc-desc">Event production, content strategy, music licensing, media education, and access programs for creators and organizations</div><div class="svc-link">Partner With Us →</div></a>
   </div>
 </section>
 
-<div class="manifesto-section">
-  <p class="mq-text">"HEARTH™ exists to make the craft of film and television making, music, and storytelling available to every creator — regardless of background, resources, or who they know."</p>
-  <p class="mq-attr">— HEARTH™ Brand Essence</p>
 
-
-<!-- ══ SPONSORSHIP SECTION ══ -->
 <section style="background:var(--charcoal);padding:80px 80px;position:relative;overflow:hidden;">
 
   <!-- Background orb -->
@@ -1143,9 +1229,9 @@ nav{position:sticky;top:5px;z-index:200;}
 
     <!-- Left: copy -->
     <div>
-      <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ember);margin-bottom:18px;display:flex;align-items:center;gap:10px;"><span style="display:block;width:24px;height:1px;background:var(--ember);"></span>Partner With HEARTH™</div>
+      <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ember);margin-bottom:18px;display:flex;align-items:center;gap:10px;">Partner With HEARTH™</div>
       <h2 style="font-family:'Fraunces',serif;font-weight:700;font-size:48px;color:var(--bone);line-height:1.1;letter-spacing:-1px;margin-bottom:20px;">Your brand belongs<br><em style="color:var(--ember);">at the fire.</em></h2>
-      <p style="font-size:15px;line-height:1.8;color:rgba(250,250,248,0.65);margin-bottom:16px;">HEARTH™ connects sponsors with 11,000+ creators across film, television, music, and storytelling — underrepresented voices building the next generation of independent media.</p>
+      <p style="font-size:15px;line-height:1.8;color:rgba(250,250,248,0.65);margin-bottom:16px;">HEARTH™ connects partners with a diverse creative ecosystem — Black, POC, LGBTQ+, and working-class creators building independent media across film, television, music, and storytelling.</p>
       <p style="font-size:15px;line-height:1.8;color:rgba(250,250,248,0.65);margin-bottom:32px;">Sponsorship with HEARTH™ means your brand is seen as a genuine champion of creative access — not just an advertiser. We offer presenting partnerships, program sponsorships, event co-branding, and in-kind partnerships.</p>
 
       <!-- Tier previews -->
@@ -1240,11 +1326,11 @@ nav{position:sticky;top:5px;z-index:200;}
 <footer>
   <div class="footer-grid">
     <div class="fg-brand">
-      <div class="fg-logo"><a href="index.html" style="text-decoration:none;font-family:'Fraunces',serif;font-weight:700;font-size:20px;color:var(--bone);text-decoration:none;font-family:'Fraunces',serif;font-weight:700;font-size:20px;">HEARTH<span class="tm">™</span></a></div>
+      <div class="fg-logo"><a href="index.html"><img src="WORDMARK_COLOR.svg" alt="HEARTH Studios" style="width:240px;height:auto;max-width:100%;object-fit:contain;display:block;"></a></div>
       <p class="fg-tagline">where stories gather...</p>
       <div class="fg-social">
         <a href="https://www.instagram.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="Instagram">IG</a>
-        <a href="https://www.tiktok.com/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="TikTok">TK</a>
+        <a href="https://www.tiktok.com/t/ZP8s3mfp6/" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="TikTok">TK</a>
         <a href="https://www.youtube.com/@BuildYourHearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="YouTube">YT</a>
         <a href="https://www.linkedin.com/company/buildyourhearth" target="_blank" rel="noopener noreferrer" class="fs-btn" aria-label="LinkedIn">LI</a>
       </div>
@@ -1294,34 +1380,45 @@ document.getElementById('gatherBtn').addEventListener('click', function() {
   var role  = document.getElementById('gf_role').value;
   if(!name || !email) { alert('Please enter your name and email.'); return; }
 
-  var p = new URLSearchParams();
-  p.append('entry.675473085', name);
-  p.append('entry.1885537716', email);
-  p.append('entry.852923629', role);
+  // Beehiiv API Endpoint
+  var beehiivUrl = 'https://api.beehiiv.com/v1/publications/ZP8s3mfp6/subscribe';
+  
+  // Prepare payload for Beehiiv
+  var payload = {
+    email: email,
+    referencable_id: email,
+    utm_source: 'hearth_website',
+    utm_medium: 'homepage_form',
+    utm_campaign: 'gather_circle',
+    custom_metadata: {
+      full_name: name,
+      role: role
+    }
+  };
 
-  function submitToGF(url, params) {
-    var gfIframe = document.getElementById('gf_hidden_iframe') || (function() {
-      var f = document.createElement('iframe');
-      f.id = 'gf_hidden_iframe'; f.name = 'gf_hidden_iframe';
-      f.style.display = 'none'; document.body.appendChild(f); return f;
-    })();
-    var gfForm = document.createElement('form');
-    gfForm.method = 'POST'; gfForm.action = url;
-    gfForm.target = 'gf_hidden_iframe'; gfForm.style.display = 'none';
-    params.forEach(function(val, key) {
-      var inp = document.createElement('input');
-      inp.type = 'hidden'; inp.name = key; inp.value = val;
-      gfForm.appendChild(inp);
-    });
-    document.body.appendChild(gfForm);
-    gfForm.submit();
-    document.body.removeChild(gfForm);
-  }
-
-  submitToGF('https://docs.google.com/forms/d/e/1FAIpQLSe1o__-yr9H13nCkVnSJLNuvgCGhpd0fD5C1OBsZ0-IA02NUg/formResponse', p);
-
-  document.getElementById('gatherForm').style.display = 'none';
-  document.getElementById('successModal').style.display = 'flex';
+  // Send to Beehiiv
+  fetch(beehiivUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(function(response) {
+    if(response.ok || response.status === 200 || response.status === 201) {
+      // Success
+      document.getElementById('gatherForm').style.display = 'none';
+      document.getElementById('successModal').style.display = 'flex';
+    } else {
+      // Handle error
+      console.error('Beehiiv subscription failed:', response.status);
+      alert('There was an issue subscribing you. Please try again.');
+    }
+  })
+  .catch(function(error) {
+    console.error('Beehiiv subscription error:', error);
+    alert('There was an issue subscribing you. Please try again.');
+  });
 });
 </script>
 
