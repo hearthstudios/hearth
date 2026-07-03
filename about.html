@@ -1075,9 +1075,10 @@ nav{position:sticky;top:5px;z-index:200;}
   <div style="position:relative;z-index:1;">
     <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ember);margin-bottom:18px;display:flex;align-items:center;gap:10px;">About HEARTH™</div>
     <h1 class="ah-h1" style="font-family:'Fraunces',serif;font-weight:700;font-size:52px;color:var(--bone);letter-spacing:-1.5px;line-height:1.07;margin-bottom:16px;">We build the<br>conditions where<br><em style="color:var(--terracotta);">talent thrives.</em></h1>
-    <p style="font-size:15px;line-height:1.8;color:rgba(250,250,248,0.72);margin-bottom:28px;">Founded in 2025 by Alscott Worrell. HEARTH™ is a for-profit social enterprise and community-powered talent development studio operating in nationally across rotating cities.</p>
+    <p style="font-size:15px;line-height:1.8;color:rgba(250,250,248,0.72);margin-bottom:28px;">Founded in 2025 in NYC & NJ by Alscott Worrell. HEARTH™ is a for-profit social enterprise and community-powered talent development studio operating in nationally across rotating cities.</p>
     <div style="display:flex;gap:12px;flex-wrap:wrap;">
       <a href="programs.html" class="btn btn-terracotta">Explore Programs</a>
+      <a href="#community" class="btn btn-outline-dark">Join the Community</a>
     </div>
   </div>
   <div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:16px;">
@@ -1236,4 +1237,49 @@ document.addEventListener('click',function(e){
   if(m&&b&&!m.contains(e.target)&&!b.contains(e.target)){m.classList.remove('open');}
 });
 </script>
+
+<!-- ===== HEARTH Newsletter Popup (Beehiiv) ===== -->
+<div id="glowPopup" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:rgba(28,26,25,0.72);backdrop-filter:blur(4px);padding:20px;">
+  <div style="background:#1C1A19;max-width:440px;width:100%;border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.5);position:relative;border:1px solid rgba(244,236,224,0.1);">
+    <button id="glowPopupClose" aria-label="Close" style="position:absolute;top:14px;right:16px;background:none;border:none;color:rgba(244,236,224,0.6);font-size:24px;line-height:1;cursor:pointer;z-index:2;padding:4px;">&times;</button>
+    <div style="padding:44px 36px 36px;">
+      <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#E2682E;margin-bottom:14px;">The Glow Newsletter</div>
+      <h3 style="font-family:'Fraunces',serif;font-weight:700;font-size:28px;color:#F4ECE0;line-height:1.12;margin:0 0 12px;">Stay in the circle.</h3>
+      <p style="font-size:14.5px;line-height:1.65;color:rgba(244,236,224,0.72);margin:0 0 24px;">Events, open calls, talent spotlights, and creative opportunities — delivered free every week. None of us arrive here alone.</p>
+      <input type="email" id="glowPopupEmail" placeholder="your@email.com" style="width:100%;box-sizing:border-box;padding:14px 16px;border-radius:5px;border:1px solid rgba(244,236,224,0.18);background:rgba(244,236,224,0.06);color:#F4ECE0;font-size:15px;margin-bottom:12px;font-family:'Inter',sans-serif;">
+      <button id="glowPopupSubmit" style="width:100%;padding:15px;border:none;border-radius:5px;background:#C25A3C;color:#fff;font-weight:600;font-size:15px;cursor:pointer;font-family:'Inter',sans-serif;">Subscribe to The Glow →</button>
+      <p style="font-size:11px;color:rgba(244,236,224,0.45);text-align:center;margin:14px 0 0;">Free forever. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'hearth_glow_popup_dismissed';
+  var BEEHIIV = 'https://buildyourhearth.beehiiv.com/subscribe';
+  function go(email){
+    var u = BEEHIIV + '?utm_source=hearth_website&utm_medium=popup&utm_campaign=the_glow';
+    if(email) u += '&email=' + encodeURIComponent(email);
+    window.location.href = u;
+  }
+  try { if(localStorage.getItem(KEY)) return; } catch(e){}
+  var pop = document.getElementById('glowPopup');
+  if(!pop) return;
+  function dismiss(){ pop.style.display='none'; try{ localStorage.setItem(KEY,'1'); }catch(e){} }
+  // Show after a short delay
+  setTimeout(function(){ pop.style.display='flex'; }, 3500);
+  document.getElementById('glowPopupClose').addEventListener('click', dismiss);
+  pop.addEventListener('click', function(e){ if(e.target===pop) dismiss(); });
+  document.getElementById('glowPopupSubmit').addEventListener('click', function(){
+    var email = document.getElementById('glowPopupEmail').value.trim();
+    if(!email){ alert('Please enter your email address.'); return; }
+    try{ localStorage.setItem(KEY,'1'); }catch(e){}
+    go(email);
+  });
+  document.getElementById('glowPopupEmail').addEventListener('keydown', function(e){
+    if(e.key==='Enter'){ document.getElementById('glowPopupSubmit').click(); }
+  });
+})();
+</script>
+<!-- ===== End Newsletter Popup ===== -->
+
 </body></html>
