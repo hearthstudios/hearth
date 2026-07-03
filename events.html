@@ -200,7 +200,12 @@ h2.page-h2.on-dark em{color:var(--glow);}
 .eh-glow{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;}
 .eg1{width:400px;height:400px;background:rgba(229,9,20,0.12);top:-80px;right:0;}
 .eg2{width:300px;height:300px;background:rgba(255,107,53,0.08);bottom:-60px;left:100px;}
-.eh-inner{position:relative;z-index:1;max-width:600px;}
+.eh-inner{position:relative;z-index:1;display:grid;grid-template-columns:0.82fr 1.18fr;gap:56px;align-items:center;}
+.eh-text{max-width:600px;}
+.eh-media{position:relative;z-index:1;}
+.eh-media img{width:100%;height:auto;border-radius:8px;display:block;box-shadow:0 24px 60px rgba(0,0,0,0.45);object-fit:cover;aspect-ratio:16/11;}
+.eh-media::after{content:'';position:absolute;inset:0;border-radius:8px;box-shadow:inset 0 0 0 1px rgba(244,236,224,0.12);pointer-events:none;}
+@media(max-width:860px){.eh-inner{grid-template-columns:1fr;gap:36px;}.eh-media{order:-1;}}
 .eh-h1{font-family:'Fraunces',serif;font-weight:700;font-size:56px;color:var(--bone);letter-spacing:-1.5px;line-height:1.07;margin-bottom:12px;}
 .eh-h1 em{color:var(--ember);font-style:italic;}
 .eh-sub{font-size:15px;line-height:1.75;color:rgba(250,250,248,0.68);max-width:460px;margin-bottom:36px;}
@@ -1110,11 +1115,14 @@ nav{position:sticky;top:5px;z-index:200;}
 <div class="events-hero">
   <div class="eh-glow eg1"></div><div class="eh-glow eg2"></div>
   <div class="eh-inner">
-    <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ember);margin-bottom:18px;display:flex;align-items:center;gap:10px;">Community &amp; Events</div>
-    <h1 class="eh-h1">Light your<br>calendar. <em>Find<br>your people.</em></h1>
-    <p class="eh-sub">HEARTH™ organizes events in the field of film, television, and music for cultural and educational purposes — open mics, screenings, workshops, panels, and showcases rooted in community and creative enrichment.</p>
-    <div class="eh-types">
-                                        </div>
+    <div class="eh-text">
+      <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ember);margin-bottom:18px;display:flex;align-items:center;gap:10px;">Community &amp; Events</div>
+      <h1 class="eh-h1">Light your<br>calendar. <em>Find<br>your people.</em></h1>
+      <p class="eh-sub">HEARTH™ organizes events in the field of film, television, and music for cultural and educational purposes — open mics, screenings, workshops, panels, and showcases rooted in community and creative enrichment.</p>
+    </div>
+    <div class="eh-media">
+      <img src="events-hero.jpg" alt="HEARTH community event — creators gathered at a live gathering">
+    </div>
   </div>
 </div>
 

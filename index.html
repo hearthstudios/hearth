@@ -639,7 +639,12 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
   .hero-btns { flex-direction: column; gap: 10px; }
   .hero-btns .btn { width: 100%; text-align: center; }
   .hero-stats { gap: 20px; flex-wrap: wrap; }
-  .hero-r { padding: 0 24px 56px; }
+  .hero-r { padding: 0 24px 56px !important; align-items: stretch !important; }
+  .hero-r .btn-cta-primary, .hero-r .btn-cta-secondary {
+    min-width: 0 !important;
+    width: 100%;
+    box-sizing: border-box;
+  }
   .hero-card { max-width: 100%; padding: 28px; }
 
   /* ── HOME: MISSION STRIP ── */
