@@ -123,8 +123,10 @@ h2.page-h2.on-dark em{color:var(--glow);}
 
 /* Services overview */
 .services-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(141,153,174,0.15);margin-top:48px;}
-.svc-tile{transition:transform 0.25s, box-shadow 0.25s;}
-.svc-tile:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(28,26,25,0.28);z-index:3;}
+.svc-tile{position:relative;padding:32px 24px;text-align:center;transition:transform 0.25s, box-shadow 0.25s;cursor:pointer;text-decoration:none;color:inherit;overflow:hidden;background-size:cover;background-position:center;min-height:230px;display:flex;flex-direction:column;justify-content:center;align-items:center;}
+/* Dark overlay for text legibility over photo */
+.svc-tile:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(28,26,25,0.28);}
+.svc-tile > *{position:relative;z-index:2;}
 .svc-icon{font-size:28px;margin-bottom:14px;display:block;}
 .svc-name{font-family:'Fraunces',serif;font-weight:700;font-size:16px;color:#FFFFFF;margin-bottom:8px;text-shadow:0 1px 3px rgba(0,0,0,0.4);}
 .svc-desc{font-size:12px;line-height:1.6;color:rgba(244,236,224,0.92);text-shadow:0 1px 2px rgba(0,0,0,0.35);}
@@ -1201,51 +1203,11 @@ nav{position:sticky;top:5px;z-index:200;}
   <h2 class="page-h2" style="margin-bottom:12px;">Everything under one <em>roof.</em></h2>
   <p style="font-size:17px;line-height:1.8;color:var(--ash);max-width:800px;margin-bottom:48px;">Film and media education, creative workshops, and cultural events — built specifically for creators building outside traditional gates who deserve the tools to tell their stories. HEARTH exists to make the craft of film and television making, music, and storytelling available to every creator — regardless of background, resources, or who they know.</p>
   <div class="services-grid">
-    <a href="programs.html" class="svc-tile" style="background-image:url('card-talent.jpg');background-size:cover;background-position:center;border-radius:0;padding:32px 24px;min-height:230px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;text-decoration:none;">
-      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div>
-      <div style="position:relative;z-index:2;">
-        <div style="font-size:28px;margin-bottom:14px;">✍️</div>
-        <div style="font-family:'Fraunces',serif;font-weight:700;font-size:16px;color:#fff;margin-bottom:8px;text-shadow:0 1px 3px rgba(0,0,0,0.4);">Talent Development</div>
-        <div style="font-size:12px;line-height:1.6;color:rgba(244,236,224,0.92);text-shadow:0 1px 2px rgba(0,0,0,0.35);">Workshops, residencies, curriculum &amp; mentorship in film, television, music, and storytelling</div>
-        <div style="font-size:11.5px;font-weight:700;color:var(--glow);margin-top:12px;text-shadow:0 1px 2px rgba(0,0,0,0.4);">Explore Programs →</div>
-      </div>
-    </a>
-    <a href="events.html" class="svc-tile" style="background-image:url('card-live.jpg');background-size:cover;background-position:center;border-radius:0;padding:32px 24px;min-height:230px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;text-decoration:none;">
-      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div>
-      <div style="position:relative;z-index:2;">
-        <div style="font-size:28px;margin-bottom:14px;">🎤</div>
-        <div style="font-family:'Fraunces',serif;font-weight:700;font-size:16px;color:#fff;margin-bottom:8px;text-shadow:0 1px 3px rgba(0,0,0,0.4);">Live Events</div>
-        <div style="font-size:12px;line-height:1.6;color:rgba(244,236,224,0.92);text-shadow:0 1px 2px rgba(0,0,0,0.35);">Cultural gatherings — open mics, screenings, panels &amp; showcases for creative development</div>
-        <div style="font-size:11.5px;font-weight:700;color:var(--glow);margin-top:12px;text-shadow:0 1px 2px rgba(0,0,0,0.4);">Find Events →</div>
-      </div>
-    </a>
-    <a href="media.html" class="svc-tile" style="background-image:url('card-media.jpg');background-size:cover;background-position:center;border-radius:0;padding:32px 24px;min-height:230px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;text-decoration:none;">
-      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div>
-      <div style="position:relative;z-index:2;">
-        <div style="font-size:28px;margin-bottom:14px;">🎞️</div>
-        <div style="font-family:'Fraunces',serif;font-weight:700;font-size:16px;color:#fff;margin-bottom:8px;text-shadow:0 1px 3px rgba(0,0,0,0.4);">Media &amp; Stories</div>
-        <div style="font-size:12px;line-height:1.6;color:rgba(244,236,224,0.92);text-shadow:0 1px 2px rgba(0,0,0,0.35);">Original films, podcasts, digital series &amp; music we create with creators</div>
-        <div style="font-size:11.5px;font-weight:700;color:var(--glow);margin-top:12px;text-shadow:0 1px 2px rgba(0,0,0,0.4);">Watch &amp; Listen →</div>
-      </div>
-    </a>
-    <a href="community.html" class="svc-tile" style="background-image:url('card-creator.jpg');background-size:cover;background-position:center;border-radius:0;padding:32px 24px;min-height:230px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;text-decoration:none;">
-      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div>
-      <div style="position:relative;z-index:2;">
-        <div style="font-size:28px;margin-bottom:14px;">⭕</div>
-        <div style="font-family:'Fraunces',serif;font-weight:700;font-size:16px;color:#fff;margin-bottom:8px;text-shadow:0 1px 3px rgba(0,0,0,0.4);">Creator + Collaborator</div>
-        <div style="font-size:12px;line-height:1.6;color:rgba(244,236,224,0.92);text-shadow:0 1px 2px rgba(0,0,0,0.35);">Newsletter, peer network, chapters &amp; creative collaboration spaces</div>
-        <div style="font-size:11.5px;font-weight:700;color:var(--glow);margin-top:12px;text-shadow:0 1px 2px rgba(0,0,0,0.4);">Join Our Community →</div>
-      </div>
-    </a>
-    <a href="work-with-us.html" class="svc-tile" style="background-image:url('card-work.jpg');background-size:cover;background-position:center;border-radius:0;padding:32px 24px;min-height:230px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;text-decoration:none;">
-      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div>
-      <div style="position:relative;z-index:2;">
-        <div style="font-size:28px;margin-bottom:14px;">🤝</div>
-        <div style="font-family:'Fraunces',serif;font-weight:700;font-size:16px;color:#fff;margin-bottom:8px;text-shadow:0 1px 3px rgba(0,0,0,0.4);">Work With Us</div>
-        <div style="font-size:12px;line-height:1.6;color:rgba(244,236,224,0.92);text-shadow:0 1px 2px rgba(0,0,0,0.35);">Event production, content strategy, music licensing, media education, and access programs for creators and organizations</div>
-        <div style="font-size:11.5px;font-weight:700;color:var(--glow);margin-top:12px;text-shadow:0 1px 2px rgba(0,0,0,0.4);">Partner With Us →</div>
-      </div>
-    </a>
+    <a href="programs.html" class="svc-tile svc-clickable" style="background-image:url('card-talent.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">✍️</span><div class="svc-name">Talent Development</div><div class="svc-desc">Workshops, residencies, curriculum &amp; mentorship in film, television, music, and storytelling</div><div class="svc-link">Explore Programs →</div></div></a>
+    <a href="events.html" class="svc-tile svc-clickable" style="background-image:url('card-live.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">🎤</span><div class="svc-name">Live Events</div><div class="svc-desc">Cultural gatherings — open mics, screenings, panels &amp; showcases for creative development</div><div class="svc-link">Find Events →</div></div></a>
+    <a href="media.html" class="svc-tile svc-clickable" style="background-image:url('card-media.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">🎞️</span><div class="svc-name">Media &amp; Stories</div><div class="svc-desc">Original films, podcasts, digital series &amp; music we create with creators</div><div class="svc-link">Watch &amp; Listen →</div></div></a>
+    <a href="community.html" class="svc-tile svc-clickable" style="background-image:url('card-creator.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">⭕</span><div class="svc-name">Creator + Collaborator</div><div class="svc-desc">Newsletter, peer network, chapters & creative collaboration spaces</div><div class="svc-link">Join Our Community →</div></div></a>
+    <a href="work-with-us.html" class="svc-tile svc-clickable" style="background-image:url('card-work.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">🤝</span><div class="svc-name">Work With Us</div><div class="svc-desc">Event production, content strategy, music licensing, media education, and access programs for creators and organizations</div><div class="svc-link">Partner With Us →</div></div></a>
   </div>
 </section>
 
@@ -1412,11 +1374,47 @@ document.getElementById('gatherBtn').addEventListener('click', function() {
   var name  = document.getElementById('gf_name').value.trim();
   var email = document.getElementById('gf_email').value.trim();
   var role  = document.getElementById('gf_role').value;
-  if(!email) { alert('Please enter your email address.'); return; }
-  // Route to Beehiiv's hosted subscribe page, pre-filling the email.
-  var url = 'https://buildyourhearth.beehiiv.com/subscribe?email=' + encodeURIComponent(email)
-          + '&utm_source=hearth_website&utm_medium=homepage_form&utm_campaign=the_glow';
-  window.location.href = url;
+  if(!name || !email) { alert('Please enter your name and email.'); return; }
+
+  // Beehiiv API Endpoint
+  var beehiivUrl = 'https://api.beehiiv.com/v1/publications/ZP8s3mfp6/subscribe';
+  
+  // Prepare payload for Beehiiv
+  var payload = {
+    email: email,
+    referencable_id: email,
+    utm_source: 'hearth_website',
+    utm_medium: 'homepage_form',
+    utm_campaign: 'gather_circle',
+    custom_metadata: {
+      full_name: name,
+      role: role
+    }
+  };
+
+  // Send to Beehiiv
+  fetch(beehiivUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(function(response) {
+    if(response.ok || response.status === 200 || response.status === 201) {
+      // Success
+      document.getElementById('gatherForm').style.display = 'none';
+      document.getElementById('successModal').style.display = 'flex';
+    } else {
+      // Handle error
+      console.error('Beehiiv subscription failed:', response.status);
+      alert('There was an issue subscribing you. Please try again.');
+    }
+  })
+  .catch(function(error) {
+    console.error('Beehiiv subscription error:', error);
+    alert('There was an issue subscribing you. Please try again.');
+  });
 });
 </script>
 
@@ -1429,49 +1427,4 @@ document.getElementById('gatherBtn').addEventListener('click', function() {
     <button onclick="document.getElementById('successModal').style.display='none';" style="background:var(--terracotta);color:white;border:none;padding:14px 32px;border-radius:2px;font-size:14px;font-weight:500;cursor:pointer;width:100%;">Close →</button>
   </div>
 </div>
-
-<!-- ===== HEARTH Newsletter Popup (Beehiiv) ===== -->
-<div id="glowPopup" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:rgba(28,26,25,0.72);backdrop-filter:blur(4px);padding:20px;">
-  <div style="background:#1C1A19;max-width:440px;width:100%;border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.5);position:relative;border:1px solid rgba(244,236,224,0.1);">
-    <button id="glowPopupClose" aria-label="Close" style="position:absolute;top:14px;right:16px;background:none;border:none;color:rgba(244,236,224,0.6);font-size:24px;line-height:1;cursor:pointer;z-index:2;padding:4px;">&times;</button>
-    <div style="padding:44px 36px 36px;">
-      <div style="font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#E2682E;margin-bottom:14px;">The Glow Newsletter</div>
-      <h3 style="font-family:'Fraunces',serif;font-weight:700;font-size:28px;color:#F4ECE0;line-height:1.12;margin:0 0 12px;">Stay in the circle.</h3>
-      <p style="font-size:14.5px;line-height:1.65;color:rgba(244,236,224,0.72);margin:0 0 24px;">Events, open calls, talent spotlights, and creative opportunities — delivered free every week. None of us arrive here alone.</p>
-      <input type="email" id="glowPopupEmail" placeholder="your@email.com" style="width:100%;box-sizing:border-box;padding:14px 16px;border-radius:5px;border:1px solid rgba(244,236,224,0.18);background:rgba(244,236,224,0.06);color:#F4ECE0;font-size:15px;margin-bottom:12px;font-family:'Inter',sans-serif;">
-      <button id="glowPopupSubmit" style="width:100%;padding:15px;border:none;border-radius:5px;background:#C25A3C;color:#fff;font-weight:600;font-size:15px;cursor:pointer;font-family:'Inter',sans-serif;">Subscribe to The Glow →</button>
-      <p style="font-size:11px;color:rgba(244,236,224,0.45);text-align:center;margin:14px 0 0;">Free forever. Unsubscribe anytime.</p>
-    </div>
-  </div>
-</div>
-<script>
-(function(){
-  var KEY = 'hearth_glow_popup_dismissed';
-  var BEEHIIV = 'https://buildyourhearth.beehiiv.com/subscribe';
-  function go(email){
-    var u = BEEHIIV + '?utm_source=hearth_website&utm_medium=popup&utm_campaign=the_glow';
-    if(email) u += '&email=' + encodeURIComponent(email);
-    window.location.href = u;
-  }
-  try { if(localStorage.getItem(KEY)) return; } catch(e){}
-  var pop = document.getElementById('glowPopup');
-  if(!pop) return;
-  function dismiss(){ pop.style.display='none'; try{ localStorage.setItem(KEY,'1'); }catch(e){} }
-  // Show after a short delay
-  setTimeout(function(){ pop.style.display='flex'; }, 3500);
-  document.getElementById('glowPopupClose').addEventListener('click', dismiss);
-  pop.addEventListener('click', function(e){ if(e.target===pop) dismiss(); });
-  document.getElementById('glowPopupSubmit').addEventListener('click', function(){
-    var email = document.getElementById('glowPopupEmail').value.trim();
-    if(!email){ alert('Please enter your email address.'); return; }
-    try{ localStorage.setItem(KEY,'1'); }catch(e){}
-    go(email);
-  });
-  document.getElementById('glowPopupEmail').addEventListener('keydown', function(e){
-    if(e.key==='Enter'){ document.getElementById('glowPopupSubmit').click(); }
-  });
-})();
-</script>
-<!-- ===== End Newsletter Popup ===== -->
-
 </body></html>
