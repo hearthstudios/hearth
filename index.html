@@ -123,12 +123,16 @@ h2.page-h2.on-dark em{color:var(--glow);}
 
 /* Services overview */
 .services-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(141,153,174,0.15);margin-top:48px;}
-.svc-tile{background:var(--bone);padding:32px 24px;text-align:center;transition:background 0.2s;cursor:pointer;text-decoration:none;color:inherit;}
-.svc-tile:hover{background:var(--bone);}
+.svc-tile{position:relative;padding:32px 24px;text-align:center;transition:transform 0.25s, box-shadow 0.25s;cursor:pointer;text-decoration:none;color:inherit;overflow:hidden;background-size:cover;background-position:center;min-height:230px;display:flex;flex-direction:column;justify-content:center;align-items:center;}
+/* Dark overlay for text legibility over photo */
+.svc-tile::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(28,26,25,0.62) 0%, rgba(28,26,25,0.78) 100%);transition:background 0.25s;z-index:1;}
+.svc-tile:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(28,26,25,0.28);}
+.svc-tile:hover::before{background:linear-gradient(180deg, rgba(28,26,25,0.52) 0%, rgba(28,26,25,0.70) 100%);}
+.svc-tile > *{position:relative;z-index:2;}
 .svc-icon{font-size:28px;margin-bottom:14px;display:block;}
-.svc-name{font-family:'Fraunces',serif;font-weight:600;font-size:15px;color:var(--charcoal);margin-bottom:6px;}
-.svc-desc{font-size:12px;line-height:1.6;color:var(--ash);}
-.svc-link{font-size:11.5px;font-weight:500;color:var(--terracotta);margin-top:12px;display:block;text-decoration:none;}
+.svc-name{font-family:'Fraunces',serif;font-weight:700;font-size:16px;color:#FFFFFF;margin-bottom:8px;text-shadow:0 1px 3px rgba(0,0,0,0.4);}
+.svc-desc{font-size:12px;line-height:1.6;color:rgba(244,236,224,0.92);text-shadow:0 1px 2px rgba(0,0,0,0.35);}
+.svc-link{font-size:11.5px;font-weight:700;color:var(--glow);margin-top:12px;display:block;text-decoration:none;text-shadow:0 1px 2px rgba(0,0,0,0.4);}
 
 /* ══════════════════════════════════════════
    PROGRAMS PAGE
@@ -1081,6 +1085,25 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 }
 .dropdown-menu a:hover { background: #F4ECE0; color: #C25A3C; }
 .dd-divider { height: 1px; background: rgba(141,153,174,0.18); margin: 4px 0; }
+
+.back-link, .back-link:link, .back-link:visited, .back-link:hover, .back-link:active {
+  color: var(--ember) !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Courier Prime', monospace !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 22px;
+  padding: 8px 0;
+  position: relative;
+  z-index: 5;
+}
+.back-link:hover { opacity: 0.75; }
+
 </style>
 
 <style>
@@ -1145,7 +1168,7 @@ nav{position:sticky;top:5px;z-index:200;}
   <div style="background:#1C1A19"></div>
 </div><nav>
   <a href="index.html" class="nav-logo">
-    <img src="Full_Lockup_Horizon_No_Stu_Separate.svg" alt="HEARTH Studios" style="height:48px;width:auto;max-height:48px;object-fit:contain;">
+    <img src="WORDMARK_BW_TEXTURED.png" alt="HEARTH Studios" style="height:40px;width:auto;max-height:40px;object-fit:contain;">
   </a>
   <ul class="nav-menu"><li><a href="index.html">Home</a></li><li class="nav-dropdown"><a href="programs.html">Develop Your Craft</a><div class="dropdown-menu"><a href="prog-script-labs.html">Script Labs</a><a href="prog-music-residencies.html">Sync Camp</a><a href="prog-film-producing.html">Television Producing Lab</a><a href="prog-mentoring.html">1-on-1 Mentorship</a><div class="dd-divider"></div><a href="programs.html">All Programs →</a></div></li><li class="nav-dropdown"><a href="events.html">Community & Events</a><div class="dropdown-menu"><a href="events.html">Upcoming Events</a><a href="evt-songwriting.html">Songwriting for Camera</a><a href="evt-acting-camera.html">Acting for Camera</a>
 <a href="evt-budgeting.html">Budgeting for Indie Projects</a><div class="dd-divider"></div><a href="community.html">Community Hub →</a></div></li><li><a href="media.html">Media</a></li><li class="nav-dropdown"><a href="work-with-us.html">Work With Us</a><div class="dropdown-menu"><a href="work-live-events.html">Event Production</a><a href="community-screenings.html">Screenings & Live Events</a><a href="cast-crew-access.html">Cast & Crew Access</a><a href="music-supervision.html">Music Licensing</a><a href="prog-youth-in-film.html">Youth in Film</a><a href="media-education.html">Media Education</a><a href="video-production.html">Content & Video</a><a href="case-studies.html">Case Studies</a><div class="dd-divider"></div><a href="work-with-us.html#contact">Contact →</a></div></li><li class="nav-dropdown"><a href="about.html">About</a><div class="dropdown-menu"><a href="about.html">Our Story</a><a href="press.html">Press &amp; Media</a><a href="sponsorship.html">Sponsorships</a></div></li></ul>
@@ -1177,11 +1200,11 @@ nav{position:sticky;top:5px;z-index:200;}
   <h2 class="page-h2" style="margin-bottom:12px;">Everything under one <em>roof.</em></h2>
   <p style="font-size:17px;line-height:1.8;color:var(--ash);max-width:800px;margin-bottom:48px;">Film and media education, creative workshops, and cultural events — built specifically for creators building outside traditional gates who deserve the tools to tell their stories. HEARTH exists to make the craft of film and television making, music, and storytelling available to every creator — regardless of background, resources, or who they know.</p>
   <div class="services-grid">
-    <a href="programs.html" class="svc-tile svc-clickable"><span class="svc-icon">✍️</span><div class="svc-name">Talent Development</div><div class="svc-desc">Workshops, residencies, curriculum &amp; mentorship in film, television, music, and storytelling</div><div class="svc-link">Explore Programs →</div></a>
-    <a href="events.html" class="svc-tile svc-clickable"><span class="svc-icon">🎤</span><div class="svc-name">Live Events</div><div class="svc-desc">Cultural gatherings — open mics, screenings, panels &amp; showcases for creative development</div><div class="svc-link">Find Events →</div></a>
-    <a href="media.html" class="svc-tile svc-clickable"><span class="svc-icon">🎞️</span><div class="svc-name">Media &amp; Stories</div><div class="svc-desc">Original films, podcasts, digital series &amp; music we create with creators</div><div class="svc-link">Watch &amp; Listen →</div></a>
-    <a href="community.html" class="svc-tile svc-clickable"><span class="svc-icon">⭕</span><div class="svc-name">Creator + Collaborator</div><div class="svc-desc">Newsletter, peer network, chapters & creative collaboration spaces</div><div class="svc-link">Join Our Community →</div></a>
-    <a href="work-with-us.html" class="svc-tile svc-clickable"><span class="svc-icon">🤝</span><div class="svc-name">Work With Us</div><div class="svc-desc">Event production, content strategy, music licensing, media education, and access programs for creators and organizations</div><div class="svc-link">Partner With Us →</div></a>
+    <a href="programs.html" class="svc-tile svc-clickable" style="background-image:url('card-talent.jpg');"><span class="svc-icon">✍️</span><div class="svc-name">Talent Development</div><div class="svc-desc">Workshops, residencies, curriculum &amp; mentorship in film, television, music, and storytelling</div><div class="svc-link">Explore Programs →</div></a>
+    <a href="events.html" class="svc-tile svc-clickable" style="background-image:url('card-live.jpg');"><span class="svc-icon">🎤</span><div class="svc-name">Live Events</div><div class="svc-desc">Cultural gatherings — open mics, screenings, panels &amp; showcases for creative development</div><div class="svc-link">Find Events →</div></a>
+    <a href="media.html" class="svc-tile svc-clickable" style="background-image:url('card-media.jpg');"><span class="svc-icon">🎞️</span><div class="svc-name">Media &amp; Stories</div><div class="svc-desc">Original films, podcasts, digital series &amp; music we create with creators</div><div class="svc-link">Watch &amp; Listen →</div></a>
+    <a href="community.html" class="svc-tile svc-clickable" style="background-image:url('card-creator.jpg');"><span class="svc-icon">⭕</span><div class="svc-name">Creator + Collaborator</div><div class="svc-desc">Newsletter, peer network, chapters & creative collaboration spaces</div><div class="svc-link">Join Our Community →</div></a>
+    <a href="work-with-us.html" class="svc-tile svc-clickable" style="background-image:url('card-work.jpg');"><span class="svc-icon">🤝</span><div class="svc-name">Work With Us</div><div class="svc-desc">Event production, content strategy, music licensing, media education, and access programs for creators and organizations</div><div class="svc-link">Partner With Us →</div></a>
   </div>
 </section>
 
