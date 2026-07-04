@@ -1,0 +1,12 @@
+{
+  "name": "hearth-studio",
+  "version": "1.0.0",
+  "description": "HEARTH\u2122 Website",
+  "private": true,
+  "scripts": {
+    "build": "echo 'No build step required'"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
