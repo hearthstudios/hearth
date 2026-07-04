@@ -1,12 +1,17 @@
 {
   "name": "hearth-studio",
   "version": "1.0.0",
-  "description": "HEARTH\u2122 Website",
+  "description": "HEARTH™ Website",
   "private": true,
   "scripts": {
-    "build": "echo 'No build step required'"
+    "build": "echo 'No build step required'",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.107.0"
   }
 }
