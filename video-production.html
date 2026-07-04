@@ -1357,21 +1357,21 @@ document.addEventListener('click',function(e){
 <script>
 (function(){
   var KEY = 'hearth_glow_popup_dismissed';
-  var BEEHIIV = 'https://buildyourhearth.beehiiv.com/subscribe';
-  function go(email){
-    var u = BEEHIIV + '?utm_source=hearth_website&utm_medium=popup&utm_campaign=the_glow';
-    if(email) u += '&email=' + encodeURIComponent(email);
-    var bhIframe = document.getElementById('bh_hidden_iframe') || (function(){
-      var el = document.createElement('iframe');
-      el.id = 'bh_hidden_iframe'; el.name = 'bh_hidden_iframe';
-      el.style.display = 'none'; document.body.appendChild(el); return el;
-    })();
-    bhIframe.src = u;
+  function subscribe(email, onDone){
+    fetch('/.netlify/functions/beehiiv', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, utm_medium: 'popup' })
+    }).then(function(res){
+      return res.json().catch(function(){ return {}; }).then(function(data){
+        onDone(res.ok, data);
+      });
+    }).catch(function(err){ onDone(false, { error: err.message }); });
   }
-  try { if(localStorage.getItem(KEY)) return; } catch(e){}
+  try { if(sessionStorage.getItem(KEY)) return; } catch(e){}
   var pop = document.getElementById('glowPopup');
   if(!pop) return;
-  function dismiss(){ pop.style.display='none'; try{ localStorage.setItem(KEY,'1'); }catch(e){} }
+  function dismiss(){ pop.style.display='none'; try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
   // Show after a short delay
   setTimeout(function(){ pop.style.display='flex'; }, 3500);
   document.getElementById('glowPopupClose').addEventListener('click', dismiss);
@@ -1379,13 +1379,21 @@ document.addEventListener('click',function(e){
   document.getElementById('glowPopupSubmit').addEventListener('click', function(){
     var email = document.getElementById('glowPopupEmail').value.trim();
     if(!email){ alert('Please enter your email address.'); return; }
-    try{ localStorage.setItem(KEY,'1'); }catch(e){}
-    go(email);
     var btn = document.getElementById('glowPopupSubmit');
-    btn.textContent = '✓ You\'re in!';
+    btn.textContent = 'Subscribing...';
     btn.disabled = true;
-    document.getElementById('glowPopupEmail').disabled = true;
-    setTimeout(dismiss, 1800);
+    subscribe(email, function(ok){
+      if(ok){
+        try{ sessionStorage.setItem(KEY,'1'); }catch(e){}
+        btn.textContent = '✓ You\'re in!';
+        document.getElementById('glowPopupEmail').disabled = true;
+        setTimeout(dismiss, 1800);
+      } else {
+        btn.textContent = 'Subscribe to The Glow →';
+        btn.disabled = false;
+        alert('There was an issue subscribing you. Please try again or email hello@buildyourhearth.studio.');
+      }
+    });
   });
   document.getElementById('glowPopupEmail').addEventListener('keydown', function(e){
     if(e.key==='Enter'){ document.getElementById('glowPopupSubmit').click(); }
