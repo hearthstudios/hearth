@@ -123,9 +123,13 @@ h2.page-h2.on-dark em{color:var(--glow);}
 
 /* Services overview */
 .services-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(141,153,174,0.15);margin-top:48px;}
-.svc-tile{position:relative;padding:32px 24px;text-align:center;transition:transform 0.25s, box-shadow 0.25s;cursor:pointer;text-decoration:none;color:inherit;overflow:hidden;background-size:cover;background-position:center;min-height:230px;display:flex;flex-direction:column;justify-content:center;align-items:center;}
-/* Dark overlay for text legibility over photo */
+.svc-tile{position:relative;padding:32px 24px;text-align:center;transition:transform 0.25s, box-shadow 0.25s;cursor:pointer;text-decoration:none;color:inherit;overflow:hidden;background-size:cover;background-position:center;background-repeat:no-repeat;min-height:230px;display:flex;flex-direction:column;justify-content:center;align-items:center;border-radius:4px;}
+/* Pseudo-element fallback: if any global rule ever clears the inline background-image on <a>,
+   this ::before layer (driven by the --tile-img custom property) still renders the photo,
+   because ::before is a separate box and isn't touched by rules targeting the anchor's own background. */
+.svc-tile::before{content:'';position:absolute;inset:0;background-image:var(--tile-img);background-size:cover;background-position:center;background-repeat:no-repeat;z-index:0;}
 .svc-tile:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(28,26,25,0.28);}
+.svc-tile:focus-visible{outline:3px solid var(--ember);outline-offset:2px;}
 .svc-tile > *{position:relative;z-index:2;}
 .svc-icon{font-size:28px;margin-bottom:14px;display:block;}
 .svc-name{font-family:'Fraunces',serif;font-weight:700;font-size:16px;color:#FFFFFF;margin-bottom:8px;text-shadow:0 1px 3px rgba(0,0,0,0.4);}
@@ -1203,11 +1207,11 @@ nav{position:sticky;top:5px;z-index:200;}
   <h2 class="page-h2" style="margin-bottom:12px;">Everything under one <em>roof.</em></h2>
   <p style="font-size:17px;line-height:1.8;color:var(--ash);max-width:800px;margin-bottom:48px;">Film and media education, creative workshops, and cultural events — built specifically for creators building outside traditional gates who deserve the tools to tell their stories. HEARTH exists to make the craft of film and television making, music, and storytelling available to every creator — regardless of background, resources, or who they know.</p>
   <div class="services-grid">
-    <a href="programs.html" class="svc-tile svc-clickable" style="background-image:url('card-talent.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">✍️</span><div class="svc-name">Talent Development</div><div class="svc-desc">Workshops, residencies, curriculum &amp; mentorship in film, television, music, and storytelling</div><div class="svc-link">Explore Programs →</div></div></a>
-    <a href="events.html" class="svc-tile svc-clickable" style="background-image:url('card-live.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">🎤</span><div class="svc-name">Live Events</div><div class="svc-desc">Cultural gatherings — open mics, screenings, panels &amp; showcases for creative development</div><div class="svc-link">Find Events →</div></div></a>
-    <a href="media.html" class="svc-tile svc-clickable" style="background-image:url('card-media.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">🎞️</span><div class="svc-name">Media &amp; Stories</div><div class="svc-desc">Original films, podcasts, digital series &amp; music we create with creators</div><div class="svc-link">Watch &amp; Listen →</div></div></a>
-    <a href="community.html" class="svc-tile svc-clickable" style="background-image:url('card-creator.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">⭕</span><div class="svc-name">Creator + Collaborator</div><div class="svc-desc">Newsletter, peer network, chapters & creative collaboration spaces</div><div class="svc-link">Join Our Community →</div></div></a>
-    <a href="work-with-us.html" class="svc-tile svc-clickable" style="background-image:url('card-work.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">🤝</span><div class="svc-name">Work With Us</div><div class="svc-desc">Event production, content strategy, music licensing, media education, and access programs for creators and organizations</div><div class="svc-link">Partner With Us →</div></div></a>
+    <a href="programs.html" class="svc-tile svc-clickable" style="background-image:url('card-talent.jpg');--tile-img:url('card-talent.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;" aria-label="Explore Talent Development programs"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">✍️</span><div class="svc-name">Talent Development</div><div class="svc-desc">Workshops, residencies, curriculum &amp; mentorship in film, television, music, and storytelling</div><div class="svc-link">Explore Programs →</div></div></a>
+    <a href="events.html" class="svc-tile svc-clickable" style="background-image:url('card-live.jpg');--tile-img:url('card-live.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;" aria-label="Find Live Events"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">🎤</span><div class="svc-name">Live Events</div><div class="svc-desc">Cultural gatherings — open mics, screenings, panels &amp; showcases for creative development</div><div class="svc-link">Find Events →</div></div></a>
+    <a href="media.html" class="svc-tile svc-clickable" style="background-image:url('card-media.jpg');--tile-img:url('card-media.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;" aria-label="Watch and Listen to Media and Stories"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">🎞️</span><div class="svc-name">Media &amp; Stories</div><div class="svc-desc">Original films, podcasts, digital series &amp; music we create with creators</div><div class="svc-link">Watch &amp; Listen →</div></div></a>
+    <a href="community.html" class="svc-tile svc-clickable" style="background-image:url('card-creator.jpg');--tile-img:url('card-creator.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;" aria-label="Join Our Community as a Creator or Collaborator"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">⭕</span><div class="svc-name">Creator + Collaborator</div><div class="svc-desc">Newsletter, peer network, chapters & creative collaboration spaces</div><div class="svc-link">Join Our Community →</div></div></a>
+    <a href="work-with-us.html" class="svc-tile svc-clickable" style="background-image:url('card-work.jpg');--tile-img:url('card-work.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;" aria-label="Work With Us"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,25,0.62) 0%,rgba(28,26,25,0.78) 100%);z-index:1;"></div><div style="position:relative;z-index:2;"><span class="svc-icon">🤝</span><div class="svc-name">Work With Us</div><div class="svc-desc">Event production, content strategy, music licensing, media education, and access programs for creators and organizations</div><div class="svc-link">Partner With Us →</div></div></a>
   </div>
 </section>
 
@@ -1376,44 +1380,36 @@ document.getElementById('gatherBtn').addEventListener('click', function() {
   var role  = document.getElementById('gf_role').value;
   if(!name || !email) { alert('Please enter your name and email.'); return; }
 
-  // Beehiiv API Endpoint
-  var beehiivUrl = 'https://api.beehiiv.com/v1/publications/ZP8s3mfp6/subscribe';
-  
-  // Prepare payload for Beehiiv
-  var payload = {
-    email: email,
-    referencable_id: email,
-    utm_source: 'hearth_website',
-    utm_medium: 'homepage_form',
-    utm_campaign: 'gather_circle',
-    custom_metadata: {
-      full_name: name,
-      role: role
-    }
-  };
+  var btn = document.getElementById('gatherBtn');
+  btn.textContent = 'Subscribing...';
+  btn.disabled = true;
 
-  // Send to Beehiiv
-  fetch(beehiivUrl, {
+  fetch('/.netlify/functions/beehiiv', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, utm_medium: 'homepage_form', utm_campaign: 'gather_circle' })
   })
   .then(function(response) {
-    if(response.ok || response.status === 200 || response.status === 201) {
-      // Success
+    return response.json().catch(function(){ return {}; }).then(function(data){
+      return { ok: response.ok, data: data };
+    });
+  })
+  .then(function(result) {
+    if(result.ok) {
       document.getElementById('gatherForm').style.display = 'none';
       document.getElementById('successModal').style.display = 'flex';
     } else {
-      // Handle error
-      console.error('Beehiiv subscription failed:', response.status);
-      alert('There was an issue subscribing you. Please try again.');
+      console.error('Beehiiv subscription failed:', result.data);
+      btn.textContent = 'Gather With Us →';
+      btn.disabled = false;
+      alert('There was an issue subscribing you. Please try again or email hello@buildyourhearth.studio.');
     }
   })
   .catch(function(error) {
     console.error('Beehiiv subscription error:', error);
-    alert('There was an issue subscribing you. Please try again.');
+    btn.textContent = 'Gather With Us →';
+    btn.disabled = false;
+    alert('There was an issue subscribing you. Please try again or email hello@buildyourhearth.studio.');
   });
 });
 </script>
