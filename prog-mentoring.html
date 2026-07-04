@@ -1249,7 +1249,12 @@ document.getElementById('notifySubmitBtn').addEventListener('click', function() 
   function go(email){
     var u = BEEHIIV + '?utm_source=hearth_website&utm_medium=popup&utm_campaign=the_glow';
     if(email) u += '&email=' + encodeURIComponent(email);
-    window.location.href = u;
+    var bhIframe = document.getElementById('bh_hidden_iframe') || (function(){
+      var el = document.createElement('iframe');
+      el.id = 'bh_hidden_iframe'; el.name = 'bh_hidden_iframe';
+      el.style.display = 'none'; document.body.appendChild(el); return el;
+    })();
+    bhIframe.src = u;
   }
   try { if(localStorage.getItem(KEY)) return; } catch(e){}
   var pop = document.getElementById('glowPopup');
@@ -1264,6 +1269,11 @@ document.getElementById('notifySubmitBtn').addEventListener('click', function() 
     if(!email){ alert('Please enter your email address.'); return; }
     try{ localStorage.setItem(KEY,'1'); }catch(e){}
     go(email);
+    var btn = document.getElementById('glowPopupSubmit');
+    btn.textContent = '✓ You\'re in!';
+    btn.disabled = true;
+    document.getElementById('glowPopupEmail').disabled = true;
+    setTimeout(dismiss, 1800);
   });
   document.getElementById('glowPopupEmail').addEventListener('keydown', function(e){
     if(e.key==='Enter'){ document.getElementById('glowPopupSubmit').click(); }
