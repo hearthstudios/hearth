@@ -1111,23 +1111,37 @@ nav{position:sticky;top:5px;z-index:200;}
     <div class="section-label">Get In Touch</div>
     <h2 class="page-h2" style="margin-bottom:20px;">Tell us about<br><em>your event.</em></h2>
     <div style="background:var(--bone);border-radius:4px;padding:32px;border:1.5px solid #EDE7D9;">
-      <form id="liveEventForm" style="display:flex;flex-direction:column;gap:12px;" onsubmit="return false;">
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Organization / Company</label><input id="le_company" type="text" placeholder="Your organization name" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Primary Contact Name *</label><input id="le_name" type="text" required placeholder="Your full name" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Email *</label><input id="le_email" type="email" required placeholder="your@email.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Phone</label><input id="le_phone" type="tel" placeholder="Your phone number" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
+      <form
+        id="liveEventForm"
+        method="POST"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSeGUR74ERI3eIwiFm0rGe_rKOkC03fQPusMGQT7EyaMUk6gig/formResponse"
+        style="display:flex;flex-direction:column;gap:12px;">
+        <input type="hidden" name="fvv" value="1">
+        <input type="hidden" name="fbzx" value="0">
+        <input type="hidden" name="submissionTimestamp" value="">
+        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Organization / Company</label><input name="entry.82494337" type="text" placeholder="Your organization name" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
+        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Website</label><input name="entry.620933666" type="text" placeholder="yourcompany.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
+        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Primary Contact Name *</label><input name="entry.1279477144" type="text" required placeholder="Your full name" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
+        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Primary Contact Phone</label><input name="entry.176012143" type="tel" placeholder="(000) 000-0000" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
+        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Email Address *</label><input name="entry.1442475176" type="email" required placeholder="your@email.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">City</label><input id="le_city" type="text" placeholder="City" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
-          <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">State</label><input id="le_state" type="text" placeholder="State" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
+          <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">City</label><input name="entry.1654351850" type="text" placeholder="City" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
+          <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">State</label><input name="entry.1480464224" type="text" placeholder="State" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
         </div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Website</label><input id="le_website" type="url" placeholder="https://yourwebsite.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
         <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">How did you find us?</label>
-          <select id="le_source" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;">
-            <option>Social Media</option><option>Google Search</option><option>Word of Mouth</option><option>Event / Screening</option><option>Newsletter</option><option>Other</option>
+          <select name="entry.783755622" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;">
+            <option value="">Select one...</option>
+            <option value="Social Media">Social Media</option>
+            <option value="Google Search">Google Search</option>
+            <option value="Word of Mouth">Word of Mouth</option>
+            <option value="Event/Screening">Event / Screening</option>
+            <option value="Newsletter">Newsletter</option>
+            <option value="Other">Other</option>
           </select>
         </div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Tell us about your event</label><textarea id="le_msg" placeholder="Event type, expected audience, location preferences, timeline, budget range..." style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;min-height:100px;resize:vertical;"></textarea></div>
-        <button id="liveEventBtn" type="button" class="btn btn-ember" style="width:100%;padding:14px;border:none;cursor:pointer;font-size:14px;min-height:44px;">Send Inquiry →</button>
+        <input type="hidden" name="entry.1113089927" value="Event Production">
+        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Tell us about your event</label><textarea name="entry.1644905355" rows="4" placeholder="Event type, expected audience, location preferences, timeline, budget range..." style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;min-height:100px;resize:vertical;"></textarea></div>
+        <button type="submit" id="liveEventBtn" class="btn btn-ember" style="width:100%;padding:14px;border:none;cursor:pointer;font-size:14px;min-height:44px;">Send Inquiry →</button>
       </form>
       <div id="liveEventConfirm" style="display:none;margin-top:14px;padding:16px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:3px;font-size:14px;color:#16a34a;font-weight:500;">✓ Received — we'll be in touch within 48 hours.</div>
     </div>
@@ -1135,32 +1149,21 @@ nav{position:sticky;top:5px;z-index:200;}
 </div>
 </main>
 <script>
-document.getElementById('liveEventBtn').addEventListener('click', async function(){
-  var name=document.getElementById('le_name').value.trim();
-  var email=document.getElementById('le_email').value.trim();
-  if(!name||!email){ alert('Please enter your name and email.'); return; }
-  var fields={
-    'Company Name': document.getElementById('le_company').value.trim(),
-    'Primary Contact Name': name,
-    'Primary Contact Email': email,
-    'Primary Contact Phone': document.getElementById('le_phone').value.trim(),
-    'City': document.getElementById('le_city').value.trim(),
-    'State': document.getElementById('le_state').value.trim(),
-    'Website': document.getElementById('le_website').value.trim(),
-    'How they found us': document.getElementById('le_source').value,
-    'Services Interested in': 'Live Event Production'
-  };
-  Object.keys(fields).forEach(k=>{ if(!fields[k]) delete fields[k]; });
-  try{
-    var r=await fetch('/.netlify/functions/airtable', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({base:'appyhjawc9vZ5DfWg', table:'tblR2B8QwzrCDwNKD', fields})
-    });
-    if(r.ok){
-      window.location.href = 'index.html';
-    } else { var errData = await r.clone().text(); console.error('Airtable error:', errData); alert('Submission error. Please check console for details.'); }
-  } catch(e){ alert('Network error.'); }
+document.getElementById('liveEventForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = this;
+  var data = new FormData(form);
+  fetch(form.action, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: data
+  }).then(function() {
+    form.style.display = 'none';
+    document.getElementById('liveEventConfirm').style.display = 'block';
+  }).catch(function() {
+    form.style.display = 'none';
+    document.getElementById('liveEventConfirm').style.display = 'block';
+  });
 });
 </script>
 <footer>
