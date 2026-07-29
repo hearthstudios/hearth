@@ -58,7 +58,7 @@ exports.handler = async function(event) {
           'Authorization': `Bearer ${PAT}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ fields })
+        body: JSON.stringify({ fields, typecast: true })
       }
     );
     const data = await response.json();
