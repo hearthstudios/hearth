@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="icon" href="/favicon-192x192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Work With Us — HEARTH™ | Event Production, Music Supervision, Media Training, Casting</title>
 <meta name="description" content="Partner with HEARTH™ — entertainment services including live event production, music supervision and sync licensing, casting and crew, media strategy consulting, and media training workshops.">
 <meta property="og:title" content="Work With Us — HEARTH™ | Event Production, Music Supervision, Media Training, Casting">
@@ -1280,10 +1285,10 @@ nav{position:sticky;top:5px;z-index:200;}
     <select name="entry.783755622" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--charcoal);background:white;font-family:'Inter',sans-serif;">
       <option value="">Select one...</option>
       <option value="Social Media">Social Media</option>
-      <option value="Google Search">Google Search</option>
-      <option value="Word of Mouth">Word of Mouth</option>
-      <option value="Event/Screening">Event / Screening</option>
-      <option value="Newsletter">Newsletter</option>
+      <option value="Web Search">Google Search</option>
+      <option value="Referral from a Colleague">Word of Mouth</option>
+      <option value="Event or Showcase">Event / Screening</option>
+      <option value="HEARTH Community or Newsletter">Newsletter</option>
       <option value="Other">Other</option>
     </select>
   </div>
@@ -1291,11 +1296,11 @@ nav{position:sticky;top:5px;z-index:200;}
     <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:6px;">Services Interested In</label>
     <select name="entry.1113089927" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:15px;color:var(--charcoal);background:white;font-family:'Inter',sans-serif;">
       <option value="">Select one...</option>
-      <option value="Event Production">Event Production</option>
-      <option value="Cast &amp; Crew Hiring">Cast &amp; Crew Hiring</option>
-      <option value="Music Supervision &amp; Sync">Music Supervision &amp; Sync</option>
-      <option value="Media Education &amp; Workshops">Media Education &amp; Workshops</option>
-      <option value="Community Screenings &amp; Events">Community Screenings &amp; Events</option>
+      <option value="Live Event Production">Event Production</option>
+      <option value="Cast and Crew Placement">Cast &amp; Crew Hiring</option>
+      <option value="Music Supervision">Music Supervision &amp; Sync</option>
+      <option value="Film and Media Workshops">Media Education &amp; Workshops</option>
+      <option value="Community Screenings and Events">Community Screenings &amp; Events</option>
       <option value="Sponsorships">Sponsorships</option>
       <option value="Video Production">Video Production</option>
       <option value="Content Strategy &amp; Consulting">Content Strategy &amp; Consulting</option>
@@ -1308,6 +1313,63 @@ nav{position:sticky;top:5px;z-index:200;}
   </div>
   <button type="submit" id="wwuSubmitBtn" class="btn btn-ember" style="width:100%;padding:14px;font-size:15px;border:none;cursor:pointer;min-height:44px;margin-top:4px;">Send Inquiry →</button>
 </form>
+<script>
+document.getElementById('clientForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = this;
+  var btn = form.querySelector('button[type="submit"]');
+  var originalText = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
+
+  var entryMap = {
+    'entry.82494337': 'Organization or Company Name',
+    'entry.1279477144': 'Primary Contact Full Name',
+    'entry.1442475176': 'Email Address',
+    'entry.176012143': 'Phone Number',
+    'entry.1654351850': 'City',
+    'entry.1480464224': 'State',
+    'entry.620933666': 'Organization Website',
+    'entry.783755622': 'How did you hear about HEARTH?',
+    'entry.1113089927': 'Which HEARTH service are you most interested in?',
+    'entry.1644905355': 'Please describe your project in as much detail as you can'
+  };
+
+  var formData = new FormData(form);
+  var fields = { 'Intake Status': 'New — Unreviewed' };
+  formData.forEach(function(value, key) {
+    var fieldName = entryMap[key];
+    if (fieldName && value && String(value).trim() !== '') {
+      fields[fieldName] = value;
+    }
+  });
+
+  fetch('/.netlify/functions/airtable', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ base: 'appyhjawc9vZ5DfWg', table: 'tbl0F7d1Sgor8ZZWj', fields: fields })
+  })
+  .then(function(response) {
+    return response.json().catch(function(){ return {}; }).then(function(data){
+      return { ok: response.ok, data: data };
+    });
+  })
+  .then(function(result) {
+    if (result.ok) {
+      window.location.href = 'thankyou.html';
+    } else {
+      console.error('Airtable error:', result.data);
+      if (btn) { btn.textContent = originalText; btn.disabled = false; }
+      alert('There was an issue sending your inquiry. Please try again or email hello@buildyourhearth.studio.');
+    }
+  })
+  .catch(function(err) {
+    console.error('Network error:', err);
+    if (btn) { btn.textContent = originalText; btn.disabled = false; }
+    alert('There was an issue sending your inquiry. Please try again or email hello@buildyourhearth.studio.');
+  });
+});
+</script>
+
       <div id="clientConfirm" style="display:none;padding:18px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:3px;font-size:14px;color:#16a34a;font-weight:500;">✓ Got it — we'll be in touch within 48 hours.</div>
   </div>
 </div>
@@ -1382,20 +1444,5 @@ document.addEventListener('click',function(e){
   </div>
 </div>
 
-<script>
-document.getElementById('clientForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  var form = this;
-  var data = new FormData(form);
-  fetch(form.action, {
-    method: 'POST',
-    mode: 'no-cors',
-    body: data
-  }).then(function() {
-    window.location.href = 'thankyou.html';
-  }).catch(function() {
-    window.location.href = 'thankyou.html';
-  });
-});
-</script>
+
 </body></html>

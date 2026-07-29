@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="icon" href="/favicon-192x192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Community Screenings & Events — HEARTH™</title>
 <meta name="description" content="HEARTH™ Community Screenings & Events — We help organizations host powerful community screening experiences — documentaries, short films, an">
 <meta property="og:title" content="Community Screenings & Events — HEARTH™">
@@ -1125,10 +1130,67 @@ nav{position:sticky;top:5px;z-index:200;}
         <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Company / Organization</label><input name="entry.82494337" type="text" placeholder="Your company or organization" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:14px;color:var(--charcoal);background:white;box-sizing:border-box;"></div>
         <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Contact Name *</label><input name="entry.1279477144" type="text" required placeholder="Your full name" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:14px;color:var(--charcoal);background:white;box-sizing:border-box;"></div>
         <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Email *</label><input name="entry.1442475176" type="email" required placeholder="your@email.com" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:14px;color:var(--charcoal);background:white;box-sizing:border-box;"></div>
-        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Services Interested In</label><select name="entry.1113089927" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:14px;color:var(--charcoal);background:white;"><option value="">Select one...</option><option value="Media Education &amp; Workshops">Media Education &amp; Workshops</option><option value="On-Camera &amp; Storytelling Workshops">On-Camera &amp; Storytelling Workshops</option><option value="Community Screenings &amp; Events">Community Screenings &amp; Events</option><option value="Event Production">Event Production</option><option value="Video Production">Video Production</option><option value="Music Supervision &amp; Sync">Music Supervision &amp; Sync</option><option value="Other">Other</option></select></div>
+        <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Services Interested In</label><select name="entry.1113089927" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:14px;color:var(--charcoal);background:white;"><option value="">Select one...</option><option value="Film and Media Workshops">Media Education &amp; Workshops</option><option value="On-Camera and Storytelling Workshops">On-Camera &amp; Storytelling Workshops</option><option value="Community Screenings and Events">Community Screenings &amp; Events</option><option value="Live Event Production">Event Production</option><option value="Video Production">Video Production</option><option value="Music Supervision">Music Supervision &amp; Sync</option><option value="Other">Other</option></select></div>
         <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Tell Us More</label><textarea name="entry.1644905355" rows="3" placeholder="Tell us about your project..." style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:14px;color:var(--charcoal);background:white;resize:vertical;box-sizing:border-box;"></textarea></div>
         <button type="submit" class="btn btn-ember" style="width:100%;padding:13px;font-size:14px;border:none;cursor:pointer;min-height:44px;">Send Inquiry →</button>
       </form>
+<script>
+document.getElementById('clientForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = this;
+  var btn = form.querySelector('button[type="submit"]');
+  var originalText = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
+
+  var entryMap = {
+    'entry.82494337': 'Organization or Company Name',
+    'entry.1279477144': 'Primary Contact Full Name',
+    'entry.1442475176': 'Email Address',
+    'entry.176012143': 'Phone Number',
+    'entry.1654351850': 'City',
+    'entry.1480464224': 'State',
+    'entry.620933666': 'Organization Website',
+    'entry.783755622': 'How did you hear about HEARTH?',
+    'entry.1113089927': 'Which HEARTH service are you most interested in?',
+    'entry.1644905355': 'Please describe your project in as much detail as you can'
+  };
+
+  var formData = new FormData(form);
+  var fields = { 'Intake Status': 'New — Unreviewed' };
+  formData.forEach(function(value, key) {
+    var fieldName = entryMap[key];
+    if (fieldName && value && String(value).trim() !== '') {
+      fields[fieldName] = value;
+    }
+  });
+
+  fetch('/.netlify/functions/airtable', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ base: 'appyhjawc9vZ5DfWg', table: 'tbl0F7d1Sgor8ZZWj', fields: fields })
+  })
+  .then(function(response) {
+    return response.json().catch(function(){ return {}; }).then(function(data){
+      return { ok: response.ok, data: data };
+    });
+  })
+  .then(function(result) {
+    if (result.ok) {
+      window.location.href = 'thankyou.html';
+    } else {
+      console.error('Airtable error:', result.data);
+      if (btn) { btn.textContent = originalText; btn.disabled = false; }
+      alert('There was an issue sending your inquiry. Please try again or email hello@buildyourhearth.studio.');
+    }
+  })
+  .catch(function(err) {
+    console.error('Network error:', err);
+    if (btn) { btn.textContent = originalText; btn.disabled = false; }
+    alert('There was an issue sending your inquiry. Please try again or email hello@buildyourhearth.studio.');
+  });
+});
+</script>
+
       <div id="licensingConfirm" style="display:none;padding:14px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:3px;font-size:14px;color:#16a34a;font-weight:500;margin-top:14px;">✓ Inquiry received. We'll be in touch within 48 hours.</div>
     </div>
 
@@ -1140,14 +1202,7 @@ nav{position:sticky;top:5px;z-index:200;}
   </style>
 </div>
 
-<script>
-document.getElementById('clientForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  var data = new FormData(this);
-  fetch(this.action, { method: 'POST', mode: 'no-cors', body: data })
-    .finally(function() { window.location.href = 'thankyou.html'; });
-});
-</script>
+
 
 
   </div>
@@ -1159,22 +1214,7 @@ document.getElementById('clientForm').addEventListener('submit', function(e) {
 </style>
 
 
-<script>
-document.getElementById('clientForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  var form = this;
-  var data = new FormData(form);
-  fetch(form.action, {
-    method: 'POST',
-    mode: 'no-cors',
-    body: data
-  }).then(function() {
-    window.location.href = 'thankyou.html';
-  }).catch(function() {
-    window.location.href = 'thankyou.html';
-  });
-});
-</script>
+
 
 
 <!-- ===== HEARTH Newsletter Popup (Beehiiv) ===== -->
