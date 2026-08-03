@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HEARTH™ — Links</title>
+<meta name="description" content="HEARTH™ Studios — quick links to our newsletter, website, music sync library, and collaborator hub.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="HEARTH™ — Links">
+<meta property="og:description" content="Quick links from HEARTH™ Studios.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://buildyourhearth.studio/og-image.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#1C1A19; --ember:#E2682E; --terracotta:#C25A3C;
+    --ash:#8D99AE; --glow:#F2B441; --bone:#F4ECE0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--charcoal);
+    min-height:100vh;
+    font-family:'Inter',sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px 20px;
+    position:relative;
+    overflow-x:hidden;
+  }
+  .glow-bg{
+    position:absolute;
+    top:-120px; left:50%;
+    transform:translateX(-50%);
+    width:480px; height:480px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(226,104,46,0.18), transparent 70%);
+    pointer-events:none;
+  }
+  .wrap{
+    position:relative;
+    z-index:1;
+    max-width:420px;
+    width:100%;
+    text-align:center;
+  }
+  .logo{
+    width:120px;
+    margin:0 auto 8px;
+    display:block;
+  }
+  .tagline{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:15px;
+    color:rgba(244,236,224,0.6);
+    margin-bottom:36px;
+  }
+  .links{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .link-btn{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    justify-content:center;
+    background:rgba(244,236,224,0.05);
+    border:1.5px solid rgba(244,236,224,0.14);
+    border-radius:8px;
+    padding:18px 20px;
+    text-decoration:none;
+    color:var(--bone);
+    font-size:16px;
+    font-weight:500;
+    transition:transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .link-btn:active{ transform:scale(0.98); }
+  @media(hover:hover){
+    .link-btn:hover{
+      border-color:var(--ember);
+      background:rgba(226,104,46,0.08);
+      transform:translateY(-2px);
+    }
+  }
+  .link-emoji{ font-size:19px; flex-shrink:0; }
+  .link-btn.primary{
+    background:var(--ember);
+    border-color:var(--ember);
+    font-weight:600;
+  }
+  @media(hover:hover){
+    .link-btn.primary:hover{
+      background:#c95a26;
+      border-color:#c95a26;
+    }
+  }
+  .footer-note{
+    margin-top:40px;
+    font-size:12px;
+    color:rgba(244,236,224,0.35);
+    font-family:'Courier Prime',monospace;
+    letter-spacing:0.05em;
+  }
+</style>
+</head>
+<body>
+
+<div class="glow-bg"></div>
+
+<div class="wrap">
+  <img src="WORDMARK_WHITE_TEXTURED.png" alt="HEARTH Studios" class="logo">
+  <p class="tagline">Where voices find their fire.</p>
+
+  <div class="links">
+    <a href="newsletter.html" class="link-btn primary">
+      <span class="link-emoji">🔥</span> Join The Glow — our newsletter!
+    </a>
+    <a href="https://buildyourhearth.studio" class="link-btn">
+      <span class="link-emoji">🌐</span> Explore buildyourhearth.studio
+    </a>
+    <a href="music-supervision.html#submit" class="link-btn">
+      <span class="link-emoji">🎶</span> Submit your music to the Sync Library
+    </a>
+    <a href="collab-hub.html" class="link-btn">
+      <span class="link-emoji">🤝</span> Join the Collaboration Hub
+    </a>
+  </div>
+
+  <p class="footer-note">HEARTH™ STUDIOS</p>
+</div>
+
+</body>
+</html>
