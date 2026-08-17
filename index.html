@@ -113,6 +113,13 @@ h2.page-h2.on-dark em{color:var(--glow);}
 .stat-n{font-family:'Fraunces',serif;font-weight:700;font-size:30px;color:var(--glow);line-height:1;margin-bottom:4px;}
 .stat-l{font-weight:300;font-size:11px;color:var(--ash);letter-spacing:0.08em;text-transform:uppercase;}
 .hero-r{position:relative;z-index:2;display:flex;align-items:center;justify-content:flex-start;padding:60px 40px 60px 20px;}
+.hero-collage{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr 1fr;gap:12px;width:100%;height:100%;max-height:540px;}
+.hero-collage-main{grid-row:1/3;grid-column:1;border-radius:8px;overflow:hidden;position:relative;box-shadow:0 20px 50px rgba(0,0,0,0.35);}
+.hero-collage-a,.hero-collage-b{border-radius:8px;overflow:hidden;position:relative;box-shadow:0 12px 30px rgba(0,0,0,0.3);}
+.hero-collage-a{grid-row:1;grid-column:2;}
+.hero-collage-b{grid-row:2;grid-column:2;}
+.hero-collage img{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-collage-badge{position:absolute;bottom:14px;left:14px;background:rgba(28,26,25,0.75);backdrop-filter:blur(4px);color:var(--bone);font-family:'Courier Prime',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;padding:7px 12px;border-radius:3px;}
 .hero-card{background:rgba(250,250,248,0.05);border:1px solid rgba(250,250,248,0.09);border-radius:4px;padding:24px 20px;flex:1;min-width:0;min-height:320px;height:auto;max-height:none;overflow:visible;position:relative;display:flex;flex-direction:column;justify-content:space-between;}
 .hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--terracotta),var(--ember),var(--glow));border-radius:4px 4px 0 0;}
 .hc-label{font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ember);margin-bottom:8px;}
@@ -647,19 +654,15 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
     grid-template-columns: 1fr;
     min-height: auto;
   }
-  .hero-l { padding: 80px 24px 40px; }
-  .hero-h1 { font-size: 38px; letter-spacing: -1px; }
+  .hero-l { padding: 32px 24px 40px; order: 2; }
+  .hero-h1 { font-size: 34px; letter-spacing: -1px; }
   .hero-sub { font-size: 15px; }
   .hero-body { font-size: 14px; max-width: 100%; }
   .hero-btns { flex-direction: column; gap: 10px; }
-  .hero-btns .btn { width: 100%; text-align: center; }
+  .hero-btns .btn { width: 100%; text-align: center; padding-left: 20px !important; padding-right: 20px !important; white-space: nowrap; }
   .hero-stats { gap: 20px; flex-wrap: wrap; }
-  .hero-r { padding: 0 24px 56px !important; align-items: stretch !important; }
-  .hero-r .btn-cta-primary, .hero-r .btn-cta-secondary {
-    min-width: 0 !important;
-    width: 100%;
-    box-sizing: border-box;
-  }
+  .hero-r { padding: 24px 20px 8px !important; align-items: stretch !important; order: 1; }
+  .hero-collage { max-height: 360px; }
   .hero-card { max-width: 100%; padding: 28px; }
 
   /* ── HOME: MISSION STRIP ── */
@@ -1062,6 +1065,9 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;o
 @media(max-width:900px){
   .hero-r { flex-direction: column !important; }
   .hero-card { min-width: 100% !important; }
+  .hero-h1 { font-size: 44px; letter-spacing: -1px; }
+  .hero-collage { max-height: 420px; }
+  .hero-l { padding: 56px 40px 56px 56px; }
 }
 
 /* ── SERVICES DROPDOWN ── */
@@ -1206,14 +1212,31 @@ nav{position:sticky;top:5px;z-index:200;}
 <section class="hero">
   <div class="hero-orb ho1"></div><div class="hero-orb ho2"></div>
   <div class="hero-l">
-    <div class="hero-eyebrow">Community-Powered Talent Studio</div>
-    <h1 class="hero-h1">Where <em>authentic</em><br>voices become<br>lasting light.</h1>
-    
-    <p class="hero-body">We provide film and television education, creative workshops, and mentorship for creators building outside traditional gates — giving authentic voices the tools, peer community, and platform to tell their stories.</p>
+    <div class="hero-eyebrow">Youth in Film · HEARTH™ Program</div>
+    <h1 class="hero-h1">From the classroom<br>to the <em>call sheet.</em></h1>
+    <p class="hero-body">Ten students. Zero film experience. An eight-month production curriculum that turned first-timers into filmmakers — with real crews, real credits, and a real premiere.</p>
+    <div class="hero-btns">
+      <a href="prog-youth-in-film.html" class="btn btn-cta-primary" style="background:var(--terracotta);color:white;padding:16px 36px;font-size:16px;font-weight:600;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:all 0.3s ease;">Discover Youth in Film →</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-n">10</div><div class="stat-l">Students</div></div>
+      <div><div class="stat-n">8mo</div><div class="stat-l">Curriculum</div></div>
+      <div><div class="stat-n">1</div><div class="stat-l">Premiere</div></div>
+    </div>
   </div>
-  <div class="hero-r" style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;padding:0 32px 0 0;flex-shrink:0;justify-content:center;">
-    <a href="collab-hub.html" class="btn btn-cta-primary" style="background:var(--terracotta);color:white;padding:16px 36px;font-size:16px;font-weight:600;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:all 0.3s ease;cursor:pointer;min-width:240px;text-align:center;">Join the Collaborator Hub →</a>
-    <a href="music-supervision.html#submit" class="btn btn-cta-secondary" style="background:white;color:var(--terracotta);border:2px solid var(--terracotta);padding:14px 34px;font-size:16px;font-weight:600;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:all 0.3s ease;cursor:pointer;min-width:240px;text-align:center;">Submit to the Sync Library →</a>
+  <div class="hero-r" style="padding:48px 48px 48px 20px;">
+    <div class="hero-collage">
+      <div class="hero-collage-main">
+        <img src="hero-yif-main.jpg" width="1100" height="1374" alt="HEARTH Youth in Film students on a production set, reviewing a shot on the camera monitor" fetchpriority="high" decoding="async">
+        <div class="hero-collage-badge">Youth in Film · On Set</div>
+      </div>
+      <div class="hero-collage-a">
+        <img src="hero-yif-cohort.jpg" width="700" height="525" alt="The Youth in Film cohort taking a bow at their premiere showcase" decoding="async">
+      </div>
+      <div class="hero-collage-b">
+        <img src="hero-yif-still.jpg" width="700" height="525" alt="A film still from Time Lock, a short produced by HEARTH Youth in Film students" decoding="async">
+      </div>
+    </div>
   </div>
 </section>
 
