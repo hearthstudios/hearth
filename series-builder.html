@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js"></script>
 <style>
 :root{
   --charcoal:#1C1A19; --bone:#F4ECE0; --bone-deep:#EADFCF; --card:#FBF7F0;
@@ -49,6 +49,7 @@ button,select,input,textarea{font:inherit;color:inherit}
 .auth{max-width:440px;margin:12vh auto;padding:32px;background:var(--card);border-top:4px solid var(--terracotta);border-radius:4px}
 .auth h1{font-family:var(--display);font-size:2rem;line-height:1.1;margin:.3em 0 .4em}
 .auth p{color:#4A4541}
+.auth form{margin:0}
 .auth input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;margin:6px 0 14px}
 .auth .msg{font-size:.92rem;margin-top:14px}
 
@@ -141,11 +142,16 @@ dialog label.opt{display:grid;grid-template-columns:22px 1fr;gap:6px;margin:10px
 <section class="auth" id="authView" hidden>
   <p class="eyebrow">HEARTH members</p>
   <h1>Series Builder</h1>
-  <p>Build your series from story bible to episode outlines, one stage at a time. Sign in with the email you use for the Collaborator Hub.</p>
-  <label for="email" style="font-weight:600">Email</label>
-  <input id="email" type="email" autocomplete="email" placeholder="you@example.com">
-  <button class="btn primary" id="sendLink">Send sign-in link</button>
+  <p>Build your series from story bible to episode outlines, one stage at a time. Sign in with your Collaborator Hub email and password.</p>
+  <form id="signInForm" novalidate>
+    <label for="email" style="font-weight:600">Email</label>
+    <input id="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+    <label for="password" style="font-weight:600">Password</label>
+    <input id="password" type="password" autocomplete="current-password" required>
+    <button class="btn primary" id="signInBtn" type="submit">Sign in</button>
+  </form>
   <p class="msg" id="authMsg" aria-live="polite"></p>
+  <p style="font-size:.9rem;margin-top:18px">No account yet, or forgot your password? <a href="collab-hub.html" style="color:var(--terracotta)">Go to the Collaborator Hub</a>.</p>
 </section>
 
 <!-- App -->
@@ -177,8 +183,8 @@ dialog label.opt{display:grid;grid-template-columns:22px 1fr;gap:6px;margin:10px
 
 <script>
 /* ============ CONFIG: use the same values as collab-hub.html ============ */
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://ogxnqfensgdfjqaronsi.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_3VHZtT3Lyx0v0nKuvnBRIw_Rk50vquw'; // publishable key: safe in the page, data is protected by row-level security
 
 /* ======================== TEMPLATE ======================== */
 const STAGES = [
@@ -463,7 +469,7 @@ function makePreviewStore(){
     return b;
   }
   return {
-    auth:{getSession:async()=>({data:{session:{user}}}),onAuthStateChange(){},signOut:async()=>{location.reload()},signInWithOtp:async()=>({error:{message:'Preview mode'}})},
+    auth:{getSession:async()=>({data:{session:{user}}}),onAuthStateChange(){},signOut:async()=>{location.reload()},signInWithPassword:async()=>({error:{message:'Preview mode'}})},
     rpc:async()=>({data:asLead,error:null}),
     from
   };
@@ -484,21 +490,27 @@ async function start(){
   const {data:{session}}=await sb.auth.getSession();
   if(session) await onSignedIn(session); else showAuth();
   sb.auth.onAuthStateChange((ev,s)=>{
-    if(ev==='SIGNED_IN'&&s&&!me) onSignedIn(s);
+    // Defer: Supabase recommends not awaiting other Supabase calls inside this callback.
+    if(ev==='SIGNED_IN'&&s&&!me) setTimeout(()=>onSignedIn(s),0);
     if(ev==='SIGNED_OUT'){me=null;showAuth()}
   });
 }
 function showAuth(){$('#appView').hidden=true;$('#authView').hidden=false}
-$('#sendLink').addEventListener('click',async()=>{
-  const email=$('#email').value.trim(), msg=$('#authMsg');
+$('#signInForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const email=$('#email').value.trim(), password=$('#password').value, msg=$('#authMsg'), btn=$('#signInBtn');
   if(!/^\S+@\S+\.\S+$/.test(email)){msg.textContent='Enter a valid email address.';return}
-  $('#sendLink').disabled=true; msg.textContent='Sending…';
-  const {error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});
-  $('#sendLink').disabled=false;
-  msg.textContent=error?('Sign-in link not sent: '+error.message):'Check your email for a sign-in link.';
+  if(!password){msg.textContent='Enter your password.';return}
+  btn.disabled=true; msg.textContent='Signing in…';
+  const {data,error}=await sb.auth.signInWithPassword({email,password});
+  btn.disabled=false;
+  if(error){msg.textContent=/invalid/i.test(error.message)?'That email and password don\'t match. Check both, or reset your password in the Collaborator Hub.':'Could not sign in: '+error.message;return}
+  msg.textContent=''; $('#password').value='';
+  if(data&&data.session&&!me) await onSignedIn(data.session);
 });
 
 async function onSignedIn(session){
+  if(me) return;
   me={id:session.user.id,email:session.user.email};
   $('#authView').hidden=true; $('#appView').hidden=false; setStatus('Loading…');
   const r=await sb.rpc('sb_is_lead'); isLead=!r.error&&r.data===true;
@@ -673,7 +685,7 @@ document.addEventListener('change',async e=>{
   }
 });
 document.addEventListener('click',async e=>{
-  const t=e.target.closest('button'); if(!t||!P&&t.id!=='sendLink')return; const st=STAGES[stage];
+  const t=e.target.closest('button'); if(!t||!P)return; const st=STAGES[stage];
   if(t.dataset.step!==undefined){stage=+t.dataset.step;renderSteps();renderMain();window.scrollTo(0,0);return}
   if(t.hasAttribute('data-toggle-ex')){const ex=t.closest('.field').querySelector('.example');ex.hidden=!ex.hidden;t.textContent=ex.hidden?'Show example':'Hide example';return}
   if(t.dataset.add){P.data.g[t.dataset.add].push({});renderMain();scheduleSave();return}
