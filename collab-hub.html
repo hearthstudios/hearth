@@ -1098,78 +1098,88 @@ nav{position:sticky;top:5px;z-index:200;}
   </div>
 </div>
 
-<div class="collab-split" style="display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:600px;">
+<div class="collab-split" style="display:grid;grid-template-columns:1.3fr 1fr;gap:0;min-height:600px;">
 
-  <!-- LEFT: Creator Directory -->
+  <!-- LEFT: Live Directory -->
   <div style="border-right:1px solid rgba(141,153,174,0.12);background:var(--bone);padding:60px 48px;">
     <div class="section-label sl-orange">Creator Directory</div>
     <h3 style="font-family:'Fraunces',serif;font-weight:700;font-size:22px;color:var(--charcoal);margin-bottom:6px;">HEARTH™ collaborators.</h3>
-    <p style="font-size:13px;color:var(--ash);margin-bottom:28px;">Working creators available for collaboration. Click any portfolio link to see their work.</p>
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      <div style="background:white;border-radius:3px;padding:18px 20px;border-left:3px solid var(--terracotta);">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
-          <div style="font-family:'Fraunces',serif;font-weight:700;font-size:15px;color:var(--charcoal);">Jordan Ellis</div>
-          <span style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terracotta);background:rgba(229,9,20,0.08);padding:3px 8px;border-radius:2px;">Mid-Level</span>
-        </div>
-        <div style="font-size:12px;color:var(--ash);margin-bottom:4px;">Director of Photography &nbsp;&middot;&nbsp; Atlanta, GA</div>
-        <span style="font-size:12px;color:var(--ash);font-style:italic;">Portfolio on file</span>
-      </div>
-      <div style="background:white;border-radius:3px;padding:18px 20px;border-left:3px solid var(--ember);">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
-          <div style="font-family:'Fraunces',serif;font-weight:700;font-size:15px;color:var(--charcoal);">Maya Chen</div>
-          <span style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ember);background:rgba(255,107,53,0.08);padding:3px 8px;border-radius:2px;">Emerging</span>
-        </div>
-        <div style="font-size:12px;color:var(--ash);margin-bottom:4px;">Screenwriter &nbsp;&middot;&nbsp; New York, NY</div>
-        <span style="font-size:12px;color:var(--ash);font-style:italic;">Portfolio on file</span>
-      </div>
-      <div style="background:white;border-radius:3px;padding:18px 20px;border-left:3px solid var(--charcoal);">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
-          <div style="font-family:'Fraunces',serif;font-weight:700;font-size:15px;color:var(--charcoal);">Marcus Thompson</div>
-          <span style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);background:rgba(43,45,66,0.08);padding:3px 8px;border-radius:2px;">Senior</span>
-        </div>
-        <div style="font-size:12px;color:var(--ash);margin-bottom:4px;">Music Producer &amp; Sound Designer &nbsp;&middot;&nbsp; NYC & NJ</div>
-        <span style="font-size:12px;color:var(--ash);font-style:italic;">Portfolio on file</span>
-      </div>
-      <div style="background:white;border-radius:3px;padding:18px 20px;border-left:3px solid var(--terracotta);">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
-          <div style="font-family:'Fraunces',serif;font-weight:700;font-size:15px;color:var(--charcoal);">Priya Nair</div>
-          <span style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terracotta);background:rgba(229,9,20,0.08);padding:3px 8px;border-radius:2px;">Mid-Level</span>
-        </div>
-        <div style="font-size:12px;color:var(--ash);margin-bottom:4px;">Film Editor &nbsp;&middot;&nbsp; Los Angeles, CA</div>
-        <span style="font-size:12px;color:var(--ash);font-style:italic;">Portfolio on file</span>
-      </div>
-      <div style="background:white;border-radius:3px;padding:18px 20px;border-left:3px solid var(--ember);">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
-          <div style="font-family:'Fraunces',serif;font-weight:700;font-size:15px;color:var(--charcoal);">Devon Williams</div>
-          <span style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ember);background:rgba(255,107,53,0.08);padding:3px 8px;border-radius:2px;">Emerging</span>
-        </div>
-        <div style="font-size:12px;color:var(--ash);margin-bottom:4px;">Producer &nbsp;&middot;&nbsp; Atlanta, GA</div>
-        <span style="font-size:12px;color:var(--ash);font-style:italic;">Portfolio on file</span>
-      </div>
+    <p style="font-size:13px;color:var(--ash);margin-bottom:20px;">Working creators available for collaboration. Click any portfolio link to see their work.</p>
+
+    <div id="craftTabs" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
+      <button class="craft-tab active" data-craft="">All</button>
+      <!-- populated with crafts from Supabase -->
     </div>
-    <div style="margin-top:20px;padding:14px;background:rgba(141,153,174,0.08);border-radius:3px;font-size:12px;color:var(--ash);line-height:1.6;">
-      <strong style="color:var(--charcoal);">Want to appear here?</strong> Fill out the form to add your profile. Submissions are reviewed by HEARTH™ before being added to the directory.
+
+    <div id="directoryGrid" style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:24px;text-align:center;color:var(--ash);font-size:13px;">Loading directory…</div>
     </div>
+    <div id="directoryEmpty" style="display:none;padding:24px;text-align:center;color:var(--ash);font-size:13px;">No members yet in this category — be the first.</div>
   </div>
 
-<!-- RIGHT: Apply to Join -->
+  <!-- RIGHT: Auth-aware panel -->
   <div style="background:var(--bone);padding:60px 56px;">
-    <div class="section-label">Join the Hub</div>
-    <h2 class="page-h2" style="margin-bottom:8px;">Add yourself<br><em>to the circle.</em></h2>
-    <p style="font-size:14px;line-height:1.75;color:var(--ash);margin-bottom:32px;">HEARTH™ connects filmmakers and TV creators, musicians, writers, and creative practitioners who want to collaborate. Add your profile and get found by other creators and HEARTH™ programs.</p>
-    <form id="collabForm" style="display:flex;flex-direction:column;gap:0;" onsubmit="return false;">
 
-        <!-- Contact Info -->
+    <!-- STATE: signed out -->
+    <div id="authSignedOut">
+      <div class="section-label">Join the Hub</div>
+      <h2 class="page-h2" style="margin-bottom:8px;"><span id="authHeadline">Add yourself<br><em>to the circle.</em></span></h2>
+      <p style="font-size:14px;line-height:1.75;color:var(--ash);margin-bottom:28px;">HEARTH™ connects filmmakers and TV creators, musicians, writers, and creative practitioners who want to collaborate. Create your account to add your profile and get found by other creators and HEARTH™ programs.</p>
+
+      <div style="display:flex;gap:0;margin-bottom:16px;border-bottom:1.5px solid rgba(141,153,174,0.18);">
+        <button id="authTabSignup" class="auth-tab active" style="flex:1;background:none;border:none;padding:12px;font-size:13px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;color:var(--charcoal);border-bottom:2px solid var(--ember);">Sign Up</button>
+        <button id="authTabLogin" class="auth-tab" style="flex:1;background:none;border:none;padding:12px;font-size:13px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;color:var(--ash);border-bottom:2px solid transparent;">Log In</button>
+      </div>
+
+      <div style="background:white;border:1.5px solid rgba(141,153,174,0.18);border-radius:4px;padding:24px;margin-bottom:16px;">
+        <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:8px;">Email Address</label>
+        <input id="authEmail" type="email" required placeholder="your@email.com" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:8px;">Password</label>
+        <input id="authPassword" type="password" required placeholder="At least 6 characters" minlength="6" style="width:100%;padding:11px 14px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;margin-bottom:14px;">
+        <button id="authSubmitBtn" class="btn btn-ember" style="width:100%;padding:14px;border:none;cursor:pointer;font-size:14px;min-height:44px;">Create Account →</button>
+        <p id="authForgotLink" style="font-size:12px;margin-top:12px;display:none;"><a href="#" style="color:var(--terracotta);">Forgot password?</a></p>
+      </div>
+      <div id="authLinkSent" style="display:none;padding:16px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:3px;font-size:14px;color:#16a34a;font-weight:500;"></div>
+      <div id="authError" style="display:none;padding:14px;background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.25);border-radius:3px;font-size:13px;color:#b91c1c;"></div>
+    </div>
+
+    <!-- STATE: signed in, viewing summary -->
+    <div id="authSignedInSummary" style="display:none;">
+      <div class="section-label">Welcome Back</div>
+      <h2 class="page-h2" style="margin-bottom:8px;">You're part of<br><em>the circle.</em></h2>
+      <p id="summaryStatus" style="font-size:14px;line-height:1.75;color:var(--ash);margin-bottom:24px;"></p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px;">
+        <button id="editProfileBtn" class="btn btn-ember" style="padding:13px 26px;font-size:14px;border:none;cursor:pointer;">Edit My Profile</button>
+        <button id="signOutBtn" class="btn btn-outline-dark" style="padding:13px 26px;font-size:14px;cursor:pointer;">Sign Out</button>
+      </div>
+
+      <div style="border-top:1.5px solid rgba(141,153,174,0.18);padding-top:20px;">
+        <div style="display:flex;gap:0;margin-bottom:16px;border-bottom:1.5px solid rgba(141,153,174,0.18);">
+          <button class="conn-tab active" data-conn-tab="community" style="flex:1;background:none;border:none;padding:10px 6px;font-size:12px;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;cursor:pointer;color:var(--charcoal);border-bottom:2px solid var(--ember);">Community <span id="countCommunity"></span></button>
+          <button class="conn-tab" data-conn-tab="incoming" style="flex:1;background:none;border:none;padding:10px 6px;font-size:12px;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;cursor:pointer;color:var(--ash);border-bottom:2px solid transparent;">Incoming <span id="countIncoming"></span></button>
+          <button class="conn-tab" data-conn-tab="sent" style="flex:1;background:none;border:none;padding:10px 6px;font-size:12px;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;cursor:pointer;color:var(--ash);border-bottom:2px solid transparent;">Sent <span id="countSent"></span></button>
+        </div>
+        <div id="connList" style="display:flex;flex-direction:column;gap:10px;max-height:280px;overflow-y:auto;">
+          <div style="padding:16px;text-align:center;color:var(--ash);font-size:13px;">Loading…</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATE: signed in, editing profile -->
+    <div id="authProfileForm" style="display:none;">
+      <div class="section-label">Your Profile</div>
+      <h2 class="page-h2" style="margin-bottom:8px;">Tell us<br><em>about you.</em></h2>
+      <p style="font-size:14px;line-height:1.75;color:var(--ash);margin-bottom:28px;">This is what other creators and HEARTH™ programs will see once your profile is approved.</p>
+
+      <form id="collabForm" style="display:flex;flex-direction:column;gap:0;" onsubmit="return false;">
         <div style="margin-bottom:20px;">
           <div style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ember);margin-bottom:12px;">Contact Information</div>
           <div style="display:flex;flex-direction:column;gap:12px;">
             <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Full Name *</label><input id="cb_name" type="text" required placeholder="Your name" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
             <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Location *</label><input id="cb_location" type="text" required placeholder="City, State" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
-            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Contact Information *</label><input id="cb_contact" type="email" required placeholder="your@email.com" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
           </div>
         </div>
 
-        <!-- Professional Details -->
         <div style="margin-bottom:20px;padding-top:20px;border-top:1px solid rgba(141,153,174,0.12);">
           <div style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ember);margin-bottom:6px;">Professional Details</div>
           <p style="font-size:12px;color:var(--ash);margin-bottom:14px;">Tell us about your role, experience, skills, and availability.</p>
@@ -1214,7 +1224,6 @@ nav{position:sticky;top:5px;z-index:200;}
           </div>
         </div>
 
-        <!-- Portfolio Links -->
         <div style="margin-bottom:20px;padding-top:20px;border-top:1px solid rgba(141,153,174,0.12);">
           <div style="display:flex;flex-direction:column;gap:12px;">
             <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Portfolio Link</label><input id="cb_portfolio" type="url" placeholder="https://yourportfolio.com" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
@@ -1222,29 +1231,37 @@ nav{position:sticky;top:5px;z-index:200;}
           </div>
         </div>
 
-        <!-- Union Details -->
         <div style="margin-bottom:20px;padding-top:20px;border-top:1px solid rgba(141,153,174,0.12);">
           <div style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ember);margin-bottom:6px;">Union &amp; Industry Details</div>
           <p style="font-size:12px;color:var(--ash);margin-bottom:14px;">Share your union status and name if applicable.</p>
           <div style="display:flex;flex-direction:column;gap:12px;">
-            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Union Status *</label>
-              <select id="cb_union_status" required style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;">
+            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Union Status</label>
+              <select id="cb_union_status" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;">
                 <option value="">Select...</option>
                 <option value="I am a union member.">I am a union member</option>
                 <option value="I am not a union member.">I am not a union member</option>
               </select>
             </div>
-            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Union Name *</label><input id="cb_union_name" type="text" required placeholder="e.g. SAG-AFTRA, IATSE, or N/A" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"><p style="font-size:11px;color:var(--ash);margin-top:4px;">Type N/A if you are not part of a union.</p></div>
+            <div><label style="font-size:11px;font-weight:600;color:var(--ash);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;">Union Name</label><input id="cb_union_name" type="text" placeholder="e.g. SAG-AFTRA, IATSE, or N/A" style="width:100%;padding:10px 13px;border:1.5px solid rgba(141,153,174,0.25);border-radius:2px;font-size:16px;color:var(--charcoal);background:white;"></div>
           </div>
         </div>
 
-        <button id="collabSubmitBtn" type="button" class="btn btn-ember" style="width:100%;padding:14px;border:none;cursor:pointer;font-size:14px;min-height:44px;">Add Me to the Hub →</button>
+        <div style="display:flex;gap:12px;">
+          <button id="collabSubmitBtn" type="button" class="btn btn-ember" style="flex:1;padding:14px;border:none;cursor:pointer;font-size:14px;min-height:44px;">Save Profile →</button>
+          <button id="cancelEditBtn" type="button" class="btn btn-outline-dark" style="padding:14px 20px;cursor:pointer;font-size:14px;">Cancel</button>
+        </div>
       </form>
-    <div id="collabConfirm" style="display:none;padding:16px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:3px;font-size:14px;color:#16a34a;font-weight:500;margin-top:16px;">✓ You've been added to the HEARTH™ Collaborator Hub. We'll review your profile shortly.</div>
+      <div id="collabConfirm" style="display:none;padding:16px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:3px;font-size:14px;color:#16a34a;font-weight:500;margin-top:16px;">✓ Saved. Your profile is pending HEARTH™ review before it appears in the directory.</div>
+      <div id="collabError" style="display:none;padding:14px;background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.25);border-radius:3px;font-size:13px;color:#b91c1c;margin-top:16px;"></div>
+    </div>
+
   </div>
 
   </div>
 <style>
+.craft-tab{background:white;border:1.5px solid rgba(141,153,174,0.25);border-radius:20px;padding:6px 14px;font-size:12px;color:var(--charcoal);cursor:pointer;transition:all 0.15s;}
+.craft-tab:hover{border-color:var(--ember);}
+.craft-tab.active{background:var(--charcoal);border-color:var(--charcoal);color:var(--bone);}
 @media(max-width:768px){
   .collab-split { grid-template-columns: 1fr !important; }
 }
@@ -1313,66 +1330,399 @@ document.addEventListener('click',function(e){
 });
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-document.getElementById('collabSubmitBtn').addEventListener('click', function(){
-  var name = document.getElementById('cb_name').value.trim();
-  var location = document.getElementById('cb_location').value.trim();
-  var contact = document.getElementById('cb_contact').value.trim();
-  var ustat = document.getElementById('cb_union_status').value;
-  var uname = document.getElementById('cb_union_name').value.trim();
-  if(!name || !location || !contact || !ustat || !uname){
-    alert('Please complete all required fields.'); return;
+// ============================================
+// HEARTH Collaborator Hub — Supabase config
+// Paste your Project URL + anon public key from
+// Supabase → Settings → API, then this page goes live.
+// ============================================
+const SUPABASE_URL = 'https://ogxnqfensgdfjqaronsi.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_3VHZtT3Lyx0v0nKuvnBRIw_Rk50vquw';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const CRAFTS = ['Directing','Producing','Screenwriting','Cinematography','Editing','Production Design','Sound','Music','Acting','Photography','Other'];
+let activeCraft = '';
+let currentUser = null;
+let currentProfile = null;
+let myConnections = [];
+let activeConnTab = 'community';
+
+// ---------- Craft filter tabs ----------
+function renderCraftTabs(){
+  const wrap = document.getElementById('craftTabs');
+  CRAFTS.forEach(function(craft){
+    const btn = document.createElement('button');
+    btn.className = 'craft-tab';
+    btn.dataset.craft = craft;
+    btn.textContent = craft;
+    btn.addEventListener('click', function(){ setActiveCraft(craft); });
+    wrap.appendChild(btn);
+  });
+  wrap.querySelector('[data-craft=""]').addEventListener('click', function(){ setActiveCraft(''); });
+}
+function setActiveCraft(craft){
+  activeCraft = craft;
+  document.querySelectorAll('.craft-tab').forEach(function(t){
+    t.classList.toggle('active', t.dataset.craft === craft);
+  });
+  loadDirectory();
+}
+
+// ---------- Directory ----------
+async function loadDirectory(){
+  const grid = document.getElementById('directoryGrid');
+  const empty = document.getElementById('directoryEmpty');
+  grid.innerHTML = '<div style="padding:24px;text-align:center;color:var(--ash);font-size:13px;">Loading directory…</div>';
+  empty.style.display = 'none';
+
+  let query = sb.from('profiles').select('*').eq('status','approved').order('created_at',{ascending:false});
+  if(activeCraft){ query = query.contains('craft', [activeCraft]); }
+  const { data, error } = await query;
+
+  if(error){
+    grid.innerHTML = '<div style="padding:24px;text-align:center;color:#b91c1c;font-size:13px;">Couldn\'t load the directory right now.</div>';
+    console.error('Directory load error:', error);
+    return;
+  }
+  if(!data || data.length === 0){
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  grid.innerHTML = '';
+  const accents = ['var(--terracotta)','var(--ember)','var(--charcoal)'];
+  data.forEach(function(p, i){
+    const card = document.createElement('div');
+    card.style.cssText = 'background:white;border-radius:3px;padding:18px 20px;border-left:3px solid ' + accents[i % 3] + ';';
+    const craftLabel = (p.craft && p.craft.length) ? p.craft.join(', ') : '';
+    const skillShort = (p.skill_level || '').split(' –')[0] || (p.skill_level||'').split(' -')[0] || '';
+    card.innerHTML =
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">' +
+        '<div style="font-family:\'Fraunces\',serif;font-weight:700;font-size:15px;color:var(--charcoal);">' + escapeHtml(p.full_name||'HEARTH Member') + '</div>' +
+        (skillShort ? '<span style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:' + accents[i%3] + ';background:rgba(141,153,174,0.08);padding:3px 8px;border-radius:2px;">' + escapeHtml(skillShort) + '</span>' : '') +
+      '</div>' +
+      '<div style="font-size:12px;color:var(--ash);margin-bottom:4px;">' + escapeHtml(craftLabel) + (craftLabel && p.location ? ' &nbsp;·&nbsp; ' : '') + escapeHtml(p.location||'') + '</div>' +
+      (p.portfolio_url ? '<a href="' + escapeAttr(p.portfolio_url) + '" target="_blank" rel="noopener noreferrer" style="font-size:12px;color:var(--terracotta);">View Portfolio →</a>' : '<span style="font-size:12px;color:var(--ash);font-style:italic;">Portfolio on file</span>') +
+      renderConnectButton(p.id);
+    grid.appendChild(card);
+  });
+}
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function escapeAttr(s){ return escapeHtml(s); }
+
+// ---------- Auth state ----------
+async function refreshAuthUI(){
+  const { data: { session } } = await sb.auth.getSession();
+  currentUser = session ? session.user : null;
+
+  document.getElementById('authSignedOut').style.display = currentUser ? 'none' : 'block';
+  document.getElementById('authSignedInSummary').style.display = 'none';
+  document.getElementById('authProfileForm').style.display = 'none';
+
+  if(currentUser){
+    const { data: profile } = await sb.from('profiles').select('*').eq('id', currentUser.id).single();
+    currentProfile = profile;
+    const hasBasics = profile && profile.full_name && profile.location;
+    if(hasBasics){
+      document.getElementById('authSignedInSummary').style.display = 'block';
+      const status = profile.status === 'approved' ? "You're live in the directory."
+                    : profile.status === 'rejected' ? "Your profile needs a revision — reach out to hello@buildyourhearth.studio."
+                    : "Your profile is saved and pending HEARTH™ review.";
+      document.getElementById('summaryStatus').textContent = status;
+    } else {
+      showProfileForm();
+    }
+    await loadConnections();
+    renderConnectionsList();
+  } else {
+    myConnections = [];
+  }
+  loadDirectory();
+}
+
+let authMode = 'signup'; // 'signup' | 'login'
+
+function setAuthMode(mode){
+  authMode = mode;
+  const signupTab = document.getElementById('authTabSignup');
+  const loginTab = document.getElementById('authTabLogin');
+  const btn = document.getElementById('authSubmitBtn');
+  const forgot = document.getElementById('authForgotLink');
+  document.getElementById('authError').style.display = 'none';
+  document.getElementById('authLinkSent').style.display = 'none';
+
+  if(mode === 'signup'){
+    signupTab.style.color = 'var(--charcoal)'; signupTab.style.borderBottomColor = 'var(--ember)';
+    loginTab.style.color = 'var(--ash)'; loginTab.style.borderBottomColor = 'transparent';
+    btn.textContent = 'Create Account →';
+    forgot.style.display = 'none';
+  } else {
+    loginTab.style.color = 'var(--charcoal)'; loginTab.style.borderBottomColor = 'var(--ember)';
+    signupTab.style.color = 'var(--ash)'; signupTab.style.borderBottomColor = 'transparent';
+    btn.textContent = 'Log In →';
+    forgot.style.display = 'block';
+  }
+}
+document.getElementById('authTabSignup').addEventListener('click', function(){ setAuthMode('signup'); });
+document.getElementById('authTabLogin').addEventListener('click', function(){ setAuthMode('login'); });
+
+document.getElementById('authForgotLink').querySelector('a').addEventListener('click', async function(e){
+  e.preventDefault();
+  const email = document.getElementById('authEmail').value.trim();
+  if(!email){ alert('Enter your email above first, then click "Forgot password?"'); return; }
+  const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: window.location.href });
+  const linkSent = document.getElementById('authLinkSent');
+  if(error){
+    document.getElementById('authError').textContent = error.message;
+    document.getElementById('authError').style.display = 'block';
+  } else {
+    linkSent.textContent = '✓ Check your email for a password reset link.';
+    linkSent.style.display = 'block';
+  }
+});
+
+document.getElementById('authSubmitBtn').addEventListener('click', async function(){
+  const email = document.getElementById('authEmail').value.trim();
+  const password = document.getElementById('authPassword').value;
+  if(!email || !password){ alert('Please enter both email and password.'); return; }
+  if(password.length < 6){ alert('Password must be at least 6 characters.'); return; }
+
+  const btn = this;
+  const originalText = btn.textContent;
+  btn.textContent = authMode === 'signup' ? 'Creating account...' : 'Logging in...';
+  btn.disabled = true;
+  document.getElementById('authError').style.display = 'none';
+  document.getElementById('authLinkSent').style.display = 'none';
+
+  const { error } = authMode === 'signup'
+    ? await sb.auth.signUp({ email: email, password: password })
+    : await sb.auth.signInWithPassword({ email: email, password: password });
+
+  if(error){
+    document.getElementById('authError').textContent = error.message;
+    document.getElementById('authError').style.display = 'block';
+    btn.textContent = originalText; btn.disabled = false;
+  } else {
+    // onAuthStateChange listener below picks up the new session and refreshes the UI
+    btn.textContent = originalText; btn.disabled = false;
+  }
+});
+
+document.getElementById('signOutBtn').addEventListener('click', async function(){
+  await sb.auth.signOut();
+  refreshAuthUI();
+});
+
+document.getElementById('editProfileBtn').addEventListener('click', showProfileForm);
+document.getElementById('cancelEditBtn').addEventListener('click', refreshAuthUI);
+
+function showProfileForm(){
+  document.getElementById('authSignedInSummary').style.display = 'none';
+  document.getElementById('authProfileForm').style.display = 'block';
+  document.getElementById('collabConfirm').style.display = 'none';
+  document.getElementById('collabError').style.display = 'none';
+  if(currentProfile){
+    document.getElementById('cb_name').value = currentProfile.full_name || '';
+    document.getElementById('cb_location').value = currentProfile.location || '';
+    document.getElementById('cb_role').value = (currentProfile.craft && currentProfile.craft[0]) || '';
+    document.getElementById('cb_skill').value = currentProfile.skill_level || '';
+    document.getElementById('cb_rate').value = currentProfile.day_rate || '';
+    document.getElementById('cb_flexible').checked = !!currentProfile.flexible_rate;
+    document.getElementById('cb_avail').value = currentProfile.availability || '';
+    document.getElementById('cb_portfolio').value = currentProfile.portfolio_url || '';
+    document.getElementById('cb_social').value = currentProfile.social_url || '';
+    document.getElementById('cb_union_status').value = currentProfile.union_status || '';
+    document.getElementById('cb_union_name').value = currentProfile.union_name || '';
+  }
+}
+
+// ---------- Save profile ----------
+document.getElementById('collabSubmitBtn').addEventListener('click', async function(){
+  const name = document.getElementById('cb_name').value.trim();
+  const location = document.getElementById('cb_location').value.trim();
+  if(!name || !location){
+    alert('Please fill in at least your name and location.'); return;
+  }
+  const btn = this;
+  btn.textContent = 'Saving...'; btn.disabled = true;
+  document.getElementById('collabError').style.display = 'none';
+
+  const role = document.getElementById('cb_role').value;
+  const updates = {
+    id: currentUser.id,
+    email: currentUser.email,
+    full_name: name,
+    location: location,
+    craft: role ? [role] : [],
+    skill_level: document.getElementById('cb_skill').value || null,
+    day_rate: document.getElementById('cb_rate').value ? Number(document.getElementById('cb_rate').value) : null,
+    flexible_rate: document.getElementById('cb_flexible').checked,
+    availability: document.getElementById('cb_avail').value || null,
+    portfolio_url: document.getElementById('cb_portfolio').value.trim() || null,
+    social_url: document.getElementById('cb_social').value.trim() || null,
+    union_status: document.getElementById('cb_union_status').value || null,
+    union_name: document.getElementById('cb_union_name').value.trim() || null,
+    status: 'pending',
+    updated_at: new Date().toISOString()
+  };
+
+  const { error } = await sb.from('profiles').upsert(updates);
+
+  if(error){
+    console.error('Save error:', error);
+    document.getElementById('collabError').textContent = 'There was an issue saving your profile. Please try again or email hello@buildyourhearth.studio.';
+    document.getElementById('collabError').style.display = 'block';
+    btn.textContent = 'Save Profile →'; btn.disabled = false;
+  } else {
+    document.getElementById('collabConfirm').style.display = 'block';
+    btn.textContent = 'Save Profile →'; btn.disabled = false;
+    setTimeout(refreshAuthUI, 1200);
+  }
+});
+
+// ---------- Connections ----------
+async function loadConnections(){
+  if(!currentUser){ myConnections = []; return; }
+  const { data, error } = await sb.from('connections')
+    .select('*')
+    .or('requester_id.eq.' + currentUser.id + ',recipient_id.eq.' + currentUser.id);
+  if(error){ console.error('Connections load error:', error); myConnections = []; return; }
+  myConnections = data || [];
+}
+
+function connectionWith(profileId){
+  return myConnections.find(function(c){
+    return c.requester_id === profileId || c.recipient_id === profileId;
+  });
+}
+
+function renderConnectButton(profileId){
+  if(!currentUser || profileId === currentUser.id) return '';
+  const c = connectionWith(profileId);
+  if(!c){
+    return '<div><button class="conn-action-btn" data-action="connect" data-id="' + profileId + '" style="margin-top:10px;font-size:11.5px;padding:6px 12px;background:var(--charcoal);color:white;border:none;border-radius:3px;cursor:pointer;">+ Connect</button></div>';
+  }
+  if(c.status === 'accepted'){
+    return '<div style="margin-top:10px;font-size:11.5px;color:#16a34a;font-weight:600;">✓ Connected</div>';
+  }
+  if(c.requester_id === currentUser.id){
+    return '<div><button class="conn-action-btn" data-action="cancel" data-connid="' + c.id + '" style="margin-top:10px;font-size:11.5px;padding:6px 12px;background:none;color:var(--ash);border:1.5px solid rgba(141,153,174,0.3);border-radius:3px;cursor:pointer;">Requested</button></div>';
+  }
+  return '<div><button class="conn-action-btn" data-action="accept" data-connid="' + c.id + '" style="margin-top:10px;font-size:11.5px;padding:6px 12px;background:var(--ember);color:white;border:none;border-radius:3px;cursor:pointer;">Accept Request</button></div>';
+}
+
+async function renderConnectionsList(){
+  const list = document.getElementById('connList');
+  if(!currentUser){ list.innerHTML = ''; return; }
+
+  const accepted = myConnections.filter(function(c){ return c.status === 'accepted'; });
+  const incoming = myConnections.filter(function(c){ return c.status === 'pending' && c.recipient_id === currentUser.id; });
+  const sent = myConnections.filter(function(c){ return c.status === 'pending' && c.requester_id === currentUser.id; });
+
+  document.getElementById('countCommunity').textContent = '(' + accepted.length + ')';
+  document.getElementById('countIncoming').textContent = '(' + incoming.length + ')';
+  document.getElementById('countSent').textContent = '(' + sent.length + ')';
+
+  const rows = activeConnTab === 'community' ? accepted : activeConnTab === 'incoming' ? incoming : sent;
+
+  if(rows.length === 0){
+    const msg = activeConnTab === 'community' ? 'No connections yet — browse the directory and connect with someone.'
+              : activeConnTab === 'incoming' ? 'No incoming requests right now.'
+              : 'No pending sent requests.';
+    list.innerHTML = '<div style="padding:16px;text-align:center;color:var(--ash);font-size:12.5px;">' + msg + '</div>';
+    return;
   }
 
-  var btn = document.getElementById('collabSubmitBtn');
-  btn.textContent = 'Submitting...';
-  btn.disabled = true;
+  const otherIds = rows.map(function(c){ return c.requester_id === currentUser.id ? c.recipient_id : c.requester_id; });
+  const { data: profs } = await sb.from('profiles').select('id, full_name, craft').in('id', otherIds);
+  const profMap = {};
+  (profs || []).forEach(function(p){ profMap[p.id] = p; });
 
-  var fields = {
-    'Name': name,
-    'Location': location,
-    'Contact Information': contact,
-    'Role Names': document.getElementById('cb_role').value ? [document.getElementById('cb_role').value] : undefined,
-    'Skill Level': document.getElementById('cb_skill').value,
-    'Day Rate': document.getElementById('cb_rate').value ? Number(document.getElementById('cb_rate').value) : undefined,
-    'Flexible Day Rate': document.getElementById('cb_flexible').checked,
-    'Availability': document.getElementById('cb_avail').value,
-    'Portfolio Link': document.getElementById('cb_portfolio').value.trim(),
-    'Social Media Link(s)': document.getElementById('cb_social').value.trim(),
-    'Union Status': ustat,
-    'Union Name': uname,
-    'Status': 'Pending'
-  };
-  Object.keys(fields).forEach(function(k){ if(fields[k] === '' || fields[k] == null) delete fields[k]; });
-
-  fetch('/.netlify/functions/airtable', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ base: 'appbtjsDW3xK8fi5u', table: 'tblGE4QZ9m1VQfjlC', fields: fields })
-  })
-  .then(function(response){
-    return response.json().catch(function(){ return {}; }).then(function(data){
-      return { ok: response.ok, data: data };
-    });
-  })
-  .then(function(result){
-    if(result.ok){
-      document.getElementById('collabForm').style.display = 'none';
-      document.getElementById('collabConfirm').style.display = 'block';
+  list.innerHTML = '';
+  rows.forEach(function(c){
+    const otherId = c.requester_id === currentUser.id ? c.recipient_id : c.requester_id;
+    const prof = profMap[otherId] || { full_name: 'HEARTH Member', craft: [] };
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;background:white;border-radius:3px;padding:10px 14px;gap:10px;';
+    let actionsHtml = '';
+    if(activeConnTab === 'incoming'){
+      actionsHtml =
+        '<button class="conn-action-btn" data-action="accept" data-connid="' + c.id + '" style="font-size:11px;padding:5px 10px;background:var(--ember);color:white;border:none;border-radius:3px;cursor:pointer;margin-right:6px;">Accept</button>' +
+        '<button class="conn-action-btn" data-action="cancel" data-connid="' + c.id + '" style="font-size:11px;padding:5px 10px;background:none;color:var(--ash);border:1px solid rgba(141,153,174,0.3);border-radius:3px;cursor:pointer;">Decline</button>';
+    } else if(activeConnTab === 'sent'){
+      actionsHtml = '<button class="conn-action-btn" data-action="cancel" data-connid="' + c.id + '" style="font-size:11px;padding:5px 10px;background:none;color:var(--ash);border:1px solid rgba(141,153,174,0.3);border-radius:3px;cursor:pointer;">Cancel</button>';
     } else {
-      console.error('Airtable error:', result.data);
-      btn.textContent = 'Add Me to the Hub →';
-      btn.disabled = false;
-      alert('There was an issue submitting your profile. Please try again or email hello@buildyourhearth.studio.');
+      actionsHtml = '<span style="font-size:13px;color:#16a34a;">✓</span>';
     }
-  })
-  .catch(function(err){
-    console.error('Network error:', err);
-    btn.textContent = 'Add Me to the Hub →';
-    btn.disabled = false;
-    alert('There was an issue submitting your profile. Please try again or email hello@buildyourhearth.studio.');
+    row.innerHTML =
+      '<div style="min-width:0;"><div style="font-family:\'Fraunces\',serif;font-weight:700;font-size:13px;color:var(--charcoal);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escapeHtml(prof.full_name||'HEARTH Member') + '</div>' +
+      '<div style="font-size:11px;color:var(--ash);">' + escapeHtml((prof.craft||[]).join(', ')) + '</div></div>' +
+      '<div style="flex-shrink:0;">' + actionsHtml + '</div>';
+    list.appendChild(row);
   });
+}
+
+function setConnTab(tab){
+  activeConnTab = tab;
+  document.querySelectorAll('.conn-tab').forEach(function(t){
+    const isActive = t.dataset.connTab === tab;
+    t.style.color = isActive ? 'var(--charcoal)' : 'var(--ash)';
+    t.style.borderBottomColor = isActive ? 'var(--ember)' : 'transparent';
+  });
+  renderConnectionsList();
+}
+document.querySelectorAll('.conn-tab').forEach(function(t){
+  t.addEventListener('click', function(){ setConnTab(t.dataset.connTab); });
 });
+
+async function sendConnectionRequest(recipientId){
+  const reverseExisting = myConnections.find(function(c){
+    return c.requester_id === recipientId && c.recipient_id === currentUser.id && c.status === 'pending';
+  });
+  if(reverseExisting){
+    await acceptConnection(reverseExisting.id);
+    return;
+  }
+  const { error } = await sb.from('connections').insert({
+    requester_id: currentUser.id,
+    recipient_id: recipientId,
+    status: 'pending'
+  });
+  if(error) console.error('Connect error:', error);
+}
+
+async function acceptConnection(connId){
+  const { error } = await sb.from('connections').update({ status: 'accepted' }).eq('id', connId);
+  if(error) console.error('Accept error:', error);
+}
+
+async function removeConnection(connId){
+  const { error } = await sb.from('connections').delete().eq('id', connId);
+  if(error) console.error('Remove error:', error);
+}
+
+document.addEventListener('click', async function(e){
+  const btn = e.target.closest('.conn-action-btn');
+  if(!btn || !currentUser) return;
+  const action = btn.dataset.action;
+  btn.disabled = true;
+  if(action === 'connect'){
+    await sendConnectionRequest(btn.dataset.id);
+  } else if(action === 'cancel'){
+    await removeConnection(btn.dataset.connid);
+  } else if(action === 'accept'){
+    await acceptConnection(btn.dataset.connid);
+  }
+  await loadConnections();
+  renderConnectionsList();
+  loadDirectory();
+});
+
+// ---------- Init ----------
+renderCraftTabs();
+refreshAuthUI();
+sb.auth.onAuthStateChange(function(){ refreshAuthUI(); });
 </script>
 
 <!-- ===== HEARTH Newsletter Popup (Beehiiv) ===== -->
