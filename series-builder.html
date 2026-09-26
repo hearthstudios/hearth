@@ -1,0 +1,745 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="utf-8"&gt;</p>
+<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"&gt;</p>
+<p class="p1">&lt;title&gt;Series Builder | HEARTH Studios&lt;/title&gt;</p>
+<p class="p1">&lt;meta name="robots" content="noindex"&gt;</p>
+<p class="p1">&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
+<p class="p1">&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Courier+Prime&amp;family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1">&lt;script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1">:root{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--charcoal:#1C1A19; --bone:#F4ECE0; --bone-deep:#EADFCF; --card:#FBF7F0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--terracotta:#C25A3C; --ember:#E2682E; --glow:#F2B441; --ash:#8D99AE; --line:#E0D4C2;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--rule:rgba(141,153,174,.28); --ok:#3E7A55;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--display:"Fraunces",Georgia,serif; --body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--label:"Courier Prime","Courier New",monospace;</p>
+<p class="p1">}</p>
+<p class="p1">*,*::before,*::after{box-sizing:border-box}</p>
+<p class="p1">html{padding-top:env(safe-area-inset-top,0px)}</p>
+<p class="p1">body{margin:0;background:var(--bone);color:var(--charcoal);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased}</p>
+<p class="p1">button,select,input,textarea{font:inherit;color:inherit}</p>
+<p class="p1">:focus-visible{outline:2px solid var(--ember);outline-offset:2px}</p>
+<p class="p1">.eyebrow{font-family:var(--label);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ember);margin:0}</p>
+<p class="p1">[hidden]{display:none!important}</p>
+<p class="p2"><br></p>
+<p class="p1">/* header */</p>
+<p class="p1">.bar{position:sticky;top:0;z-index:5;background:var(--charcoal);color:var(--bone);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding:10px clamp(14px,3vw,28px);display:flex;gap:10px;align-items:center;flex-wrap:wrap}</p>
+<p class="p1">.brand{display:flex;align-items:baseline;gap:10px;margin-right:auto;color:var(--bone);text-decoration:none}</p>
+<p class="p1">.brand b{font-family:var(--display);font-weight:700;font-size:1.2rem;letter-spacing:.02em}</p>
+<p class="p1">.brand span{font-family:var(--label);text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--glow)}</p>
+<p class="p1">.bar select{background:#2A2725;color:var(--bone);border:1px solid #45403C;border-radius:6px;padding:6px 8px;max-width:260px}</p>
+<p class="p1">.bar .btn{background:transparent;color:var(--bone);border-color:#45403C}</p>
+<p class="p1">.bar .btn:hover{border-color:var(--ember);color:#fff}</p>
+<p class="p1">.status{font-size:.8rem;color:var(--ash);min-width:10ch}</p>
+<p class="p2"><br></p>
+<p class="p1">.btn{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:7px 14px;cursor:pointer;transition:border-color .15s,background .15s}</p>
+<p class="p1">.btn:hover{border-color:var(--ember)}</p>
+<p class="p1">.btn.primary{background:var(--terracotta);color:#fff;border-color:var(--terracotta)}</p>
+<p class="p1">.btn.primary:hover{background:var(--ember);border-color:var(--ember)}</p>
+<p class="p1">.btn.primary:disabled{opacity:.4;cursor:not-allowed;background:var(--terracotta)}</p>
+<p class="p1">.btn.ghost{border-color:transparent;background:transparent;color:var(--terracotta);padding:4px 6px}</p>
+<p class="p1">.btn.ghost:hover{color:var(--ember)}</p>
+<p class="p1">.btn.danger{color:var(--terracotta)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* sign-in */</p>
+<p class="p1">.auth{max-width:440px;margin:12vh auto;padding:32px;background:var(--card);border-top:4px solid var(--terracotta);border-radius:4px}</p>
+<p class="p1">.auth h1{font-family:var(--display);font-size:2rem;line-height:1.1;margin:.3em 0 .4em}</p>
+<p class="p1">.auth p{color:#4A4541}</p>
+<p class="p1">.auth input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;margin:6px 0 14px}</p>
+<p class="p1">.auth .msg{font-size:.92rem;margin-top:14px}</p>
+<p class="p2"><br></p>
+<p class="p1">/* layout */</p>
+<p class="p1">.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:clamp(16px,3vw,44px);max-width:1180px;margin:0 auto;padding:28px clamp(14px,3vw,28px) 90px}</p>
+<p class="p1">nav.steps ol{list-style:none;margin:0;padding:0;position:sticky;top:80px}</p>
+<p class="p1">nav.steps li button{display:grid;grid-template-columns:34px 1fr;gap:4px;width:100%;text-align:left;background:none;border:none;padding:9px 6px;border-radius:6px;cursor:pointer;align-items:start}</p>
+<p class="p1">nav.steps li button:hover{background:var(--bone-deep)}</p>
+<p class="p1">nav.steps li button[aria-current="step"]{background:var(--card);box-shadow:inset 3px 0 0 var(--terracotta)}</p>
+<p class="p1">.num{font-family:var(--label);color:var(--ash)}</p>
+<p class="p1">.sname{font-weight:600;line-height:1.3}</p>
+<p class="p1">.sstate{display:block;font-size:.78rem;color:var(--ash);font-weight:400;margin-top:2px}</p>
+<p class="p1">.st-prog .sstate{color:var(--ember)}</p>
+<p class="p1">.st-done .num,.st-done .sstate{color:var(--ok)}</p>
+<p class="p1">.st-approved .num,.st-approved .sstate{color:var(--terracotta);font-weight:600}</p>
+<p class="p1">.overall{margin:18px 6px 0;font-size:.85rem;color:#5E5750}</p>
+<p class="p1">.meter{height:4px;background:var(--line);border-radius:2px;margin-top:6px;overflow:hidden}</p>
+<p class="p1">.meter i{display:block;height:100%;background:var(--glow);width:0;transition:width .3s}</p>
+<p class="p2"><br></p>
+<p class="p1">main{min-width:0}</p>
+<p class="p1">h1.stage{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.1;margin:.2em 0 .35em}</p>
+<p class="p1">.purpose{max-width:66ch;margin:0 0 18px;font-size:1.05rem}</p>
+<p class="p1">details.craft{background:var(--bone-deep);border-radius:8px;padding:12px 16px;margin:0 0 28px;max-width:74ch}</p>
+<p class="p1">details.craft summary{cursor:pointer;font-weight:600}</p>
+<p class="p1">details.craft ul{margin:10px 0 2px;padding-left:20px}</p>
+<p class="p1">details.craft li{margin:6px 0}</p>
+<p class="p1">.banner{background:var(--card);border-left:3px solid var(--ember);padding:10px 14px;border-radius:0 6px 6px 0;margin:0 0 20px;font-size:.93rem;max-width:74ch}</p>
+<p class="p2"><br></p>
+<p class="p1">/* index cards */</p>
+<p class="p1">.card{background:var(--card);border-radius:4px;border-top:3px solid var(--terracotta);box-shadow:0 0 0 1px var(--line);padding:20px clamp(14px,2.5vw,26px) 12px;margin-bottom:22px}</p>
+<p class="p1">.card h2{font-family:var(--display);font-weight:600;font-size:1.3rem;margin:0 0 4px}</p>
+<p class="p1">.cardnote{color:#5E5750;font-size:.92rem;margin:0 0 12px;max-width:68ch}</p>
+<p class="p1">.field{margin:0 0 22px}</p>
+<p class="p1">.field label{display:block;font-weight:600;margin-bottom:2px}</p>
+<p class="p1">.hint{color:#6A635B;font-size:.9rem;margin:0 0 8px;max-width:70ch}</p>
+<p class="p1">textarea,input.line{width:100%;border:none;border-bottom:1px solid var(--line);background-color:transparent;resize:vertical;padding:0 2px;line-height:28px;font-size:1rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background-image:repeating-linear-gradient(to bottom,transparent 0 27px,var(--rule) 27px 28px);background-attachment:local}</p>
+<p class="p1">input.line{height:30px;background-image:none}</p>
+<p class="p1">textarea:focus,input.line:focus{outline:none;border-bottom-color:var(--ember)}</p>
+<p class="p1">textarea[readonly],input.line[readonly]{color:#4A4541;cursor:default}</p>
+<p class="p1">.meta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:4px;font-size:.82rem;color:#6A635B}</p>
+<p class="p1">.meta .warn{color:var(--terracotta);font-weight:600}</p>
+<p class="p1">.example{margin-top:8px;border-left:3px solid var(--glow);padding:8px 12px;background:var(--bone);font-size:.93rem;white-space:pre-wrap;border-radius:0 6px 6px 0}</p>
+<p class="p1">.example b{display:block;font-family:var(--label);text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--ember);font-weight:400;margin-bottom:4px}</p>
+<p class="p1">.group-item{border:1px dashed var(--line);border-radius:6px;padding:14px 14px 2px;margin-bottom:14px}</p>
+<p class="p1">.group-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}</p>
+<p class="p1">.group-head span{font-family:var(--display);font-weight:600}</p>
+<p class="p2"><br></p>
+<p class="p1">.qa{border-top-color:var(--glow)}</p>
+<p class="p1">.qa ul{list-style:none;margin:0 0 14px;padding:0}</p>
+<p class="p1">.qa li{margin:8px 0}</p>
+<p class="p1">.qa label{display:grid;grid-template-columns:22px 1fr;gap:8px;cursor:pointer;align-items:start}</p>
+<p class="p1">.qa input{margin-top:5px;accent-color:var(--terracotta)}</p>
+<p class="p1">.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:6px 0 14px}</p>
+<p class="p1">.badge{font-weight:600}</p>
+<p class="p1">.badge.ok{color:var(--ok)} .badge.appr{color:var(--terracotta)}</p>
+<p class="p2"><br></p>
+<p class="p1">.coach{border-top-color:var(--charcoal)}</p>
+<p class="p1">.comment{border-bottom:1px solid var(--line);padding:10px 0}</p>
+<p class="p1">.comment:last-of-type{border-bottom:none}</p>
+<p class="p1">.comment .who{font-size:.82rem;color:#6A635B;display:flex;justify-content:space-between;gap:8px}</p>
+<p class="p1">.comment .who b{color:var(--charcoal);font-weight:600}</p>
+<p class="p1">.comment p{margin:4px 0 0;white-space:pre-wrap}</p>
+<p class="p1">.coach textarea{border:1px solid var(--line);border-radius:6px;background:#fff;background-image:none;padding:8px 10px;line-height:1.5;margin-top:10px}</p>
+<p class="p1">.empty{color:#6A635B;font-size:.92rem;margin:0}</p>
+<p class="p2"><br></p>
+<p class="p1">.pager{display:flex;justify-content:space-between;gap:12px;margin-top:8px}</p>
+<p class="p1">.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:.85rem;color:#6A635B}</p>
+<p class="p2"><br></p>
+<p class="p1">dialog{border:none;border-top:4px solid var(--terracotta);border-radius:4px;background:var(--card);color:var(--charcoal);max-width:min(460px,92vw);padding:24px}</p>
+<p class="p1">dialog::backdrop{background:rgba(28,26,25,.55)}</p>
+<p class="p1">dialog h3{font-family:var(--display);font-size:1.4rem;margin:0 0 12px}</p>
+<p class="p1">dialog .row{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap}</p>
+<p class="p1">dialog label.opt{display:grid;grid-template-columns:22px 1fr;gap:6px;margin:10px 0;cursor:pointer}</p>
+<p class="p2"><br></p>
+<p class="p1">@media (max-width:820px){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.wrap{grid-template-columns:1fr;padding-top:12px}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>nav.steps ol{position:static;display:flex;overflow-x:auto;gap:4px;padding-bottom:6px}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>nav.steps li{flex:0 0 auto}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>nav.steps li button{grid-template-columns:26px auto;padding:8px 10px}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.sstate,.overall{display:none}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.brand span{display:none}</p>
+<p class="p1">}</p>
+<p class="p1">@media (prefers-reduced-motion:reduce){*{transition:none!important}}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- Sign-in --&gt;</p>
+<p class="p1">&lt;section class="auth" id="authView" hidden&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;p class="eyebrow"&gt;HEARTH members&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt;Series Builder&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;p&gt;Build your series from story bible to episode outlines, one stage at a time. Sign in with the email you use for the Collaborator Hub.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;label for="email" style="font-weight:600"&gt;Email&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;input id="email" type="email" autocomplete="email" placeholder="you@example.com"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;button class="btn primary" id="sendLink"&gt;Send sign-in link&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;p class="msg" id="authMsg" aria-live="polite"&gt;&lt;/p&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- App --&gt;</p>
+<p class="p1">&lt;div id="appView" hidden&gt;</p>
+<p class="p1">&lt;header class="bar"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;a class="brand" href="collab-hub.html"&gt;&lt;b&gt;HEARTH&lt;/b&gt;&lt;span&gt;Series Builder&lt;/span&gt;&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;label for="projSel" style="position:absolute;left:-9999px"&gt;Project&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;select id="projSel"&gt;&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;button class="btn" id="newBtn"&gt;New project&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;button class="btn" id="exportBtn"&gt;Export&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;span class="status" id="status" aria-live="polite"&gt;&lt;/span&gt;</p>
+<p class="p1">&lt;/header&gt;</p>
+<p class="p1">&lt;div class="wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;nav class="steps" aria-label="Stages"&gt;&lt;ol id="stepList"&gt;&lt;/ol&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="overall"&gt;&lt;span id="overallTxt"&gt;&lt;/span&gt;&lt;div class="meter"&gt;&lt;i id="meterFill"&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;main id="main"&gt;&lt;/main&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;dialog id="newDlg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h3&gt;New project&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;label for="newName" style="font-weight:600"&gt;Working title&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;input id="newName" class="line" placeholder="Untitled series"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;label class="opt"&gt;&lt;input type="radio" name="seed" value="blank" checked&gt;&lt;span&gt;Blank template (worked examples still show under every field)&lt;/span&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;label class="opt"&gt;&lt;input type="radio" name="seed" value="example"&gt;&lt;span&gt;Copy of the worked example, to edit directly&lt;/span&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="row"&gt;&lt;button class="btn" id="newCancel"&gt;Cancel&lt;/button&gt;&lt;button class="btn primary" id="newCreate"&gt;Create project&lt;/button&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/dialog&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">/* ============ CONFIG: use the same values as collab-hub.html ============ */</p>
+<p class="p1">const SUPABASE_URL = 'https://ogxnqfensgdfjqaronsi.supabase.co';</p>
+<p class="p1">const SUPABASE_ANON_KEY = 'sb_publishable_3VHZtT3Lyx0v0nKuvnBRIw_Rk50vquw';</p>
+<p class="p2"><br></p>
+<p class="p1">/* ======================== TEMPLATE ======================== */</p>
+<p class="p1">const STAGES = [</p>
+<p class="p1">{ id:'foundation', title:'Foundation',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>purpose:'Lock what the show is before building anything on top of it. Every later stage gets checked against these answers.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>craft:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'A series logline names a specific person (a flaw, not a job title), the event that starts the story, the complication, and the question the show keeps asking. Aim for 25–40 words.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The series question is different from the pilot question. It should survive several seasons without being fully answered.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'HBO buys voice and specificity: a precise place, a precise community, and a point of view only you could bring. "Why you" matters as much as "why now."',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Keep comps to two titles in an "X meets Y" line. A signature device (narration, structure) gets its own sentence rather than a third comp.'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>cards:[{ title:'The pitch in miniature', fields:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'title',label:'Working title',type:'line'},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'logline',label:'Logline',hint:'Specific protagonist + inciting event + complication + ongoing question. 25–40 words.',rows:4,words:[25,40]},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'seriesQ',label:'Series question',hint:'One question the whole series keeps asking.',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'format',label:'Format',hint:'Runtime, episodes per season, genre.',type:'line'}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]},{ title:'The case for it', fields:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'whyNow',label:'Why now',hint:'What in the culture makes this story land today?',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'whyYou',label:'Why you',hint:'Your personal access to this world. Buyers invest in the writer as much as the idea.',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'whyHBO',label:'Why HBO',hint:'What makes this an HBO show and not a network or streamer-generic one?',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'comps',label:'Comps and signature device',hint:'"X meets Y," then one sentence on the device that makes it yours.',rows:3}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]}],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>qa:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The logline names a flaw or contradiction, not just a job.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The logline is 40 words or fewer and could be said out loud in one breath.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The series question cannot be answered by the end of season one.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Comps are two recent, successful premium titles, and the device is separate.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'"Why you" is specific enough that another writer could not claim it.'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]},</p>
+<p class="p1">{ id:'world', title:'World and tone',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>purpose:'Define where the show lives and how it feels, so every scene you write later sounds like the same show.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>craft:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Treat the setting as a character with its own wants: neighborhoods, rituals, and textures that only exist there.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'A tone statement is a promise about the audience\'s experience. "Funny, then it hurts" is more useful than "dramedy."',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'A narration device needs rules: who is writing, to whom, when it appears, and what it hides. Narration that only explains the scene wastes the device.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Write down what the show never does. Those limits protect tone in the room later.'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>cards:[{ title:'Place and feel', fields:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'setting',label:'Setting',hint:'Where, specifically, and what the place does to your protagonist.',rows:4},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'tone',label:'Tone statement',hint:'How an episode should feel to watch, in one or two sentences.',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'look',label:'Visual and sonic language',hint:'Camera, structure, music, editing rhythm.',rows:3}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]},{ title:'Voice and meaning', fields:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'narration',label:'Narration device',hint:'Source (what is he writing?), rules, and what it reveals vs. hides.',rows:4},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'themes',label:'Themes',hint:'The central theme, plus one or two secondary themes.',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'never',label:'The show never…',hint:'Tone guardrails.',rows:3}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]}],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>qa:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The setting could not be swapped for another city without losing story.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The tone statement describes the audience experience, not a genre label.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The narration has a source in the story and clear rules for when it appears.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The central theme is stated as a tension or question, not a single word.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'There are at least two "never" guardrails.'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]},</p>
+<p class="p1">{ id:'characters', title:'Characters',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>purpose:'Build people who generate story on their own. A strong ensemble makes episodes easier to write.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>craft:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Want is what the character pursues; need is what would actually heal them. Comedy and drama live in the gap between the two.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The wound is the past event. The flaw is how that wound behaves in the present.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Every supporting character should want something from the protagonist that conflicts with what he wants.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Give each regular their own arc, even a small one. Characters who only exist to react become furniture.'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>cards:[{ title:'Protagonist', fields:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'pName',label:'Name and age',type:'line'},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'pSnapshot',label:'Snapshot',hint:'Who he is in three sentences, including his role in his family.',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'pWant',label:'Want',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'pNeed',label:'Need',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'pWound',label:'Wound',hint:'The past event or pattern.',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'pFlaw',label:'Flaw',hint:'How the wound shows up in his behavior now.',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'pLie',label:'What he tells himself vs. the truth',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'pVoice',label:'Voice sample',hint:'A line only he would say.',rows:2}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]}],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>groups:[{ k:'cast', title:'Supporting cast', item:'Character', add:'Add character',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>note:'Start with 3–5 regulars. Add recurring characters later.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>fields:[</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'name',label:'Name and role in his life',type:'line'},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'wants',label:'What they want from him',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'arc',label:'Their own season arc',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'function',label:'How they test the theme',rows:2}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]}],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>qa:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The protagonist\'s want and need point in different directions.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'His flaw is visible in behavior, something an actor could play.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Every regular wants something from him that creates conflict.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Every regular has an arc of their own.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'No two supporting characters serve the same function.'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]},</p>
+<p class="p1">{ id:'engine', title:'Series engine',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>purpose:'Prove the show can make episodes, not just a pilot. This is the stage buyers probe hardest.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>craft:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The engine is the repeatable situation that keeps producing story. Name it in one sentence.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Half-hours usually run an A story (protagonist), a B story, and sometimes a light C. Assign each lane its usual territory.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'If you cannot list 15–20 springboards quickly, the engine is not built yet.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Show where season two comes from. A premise that ends when its central problem is solved is a limited series.'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>cards:[{ title:'How episodes happen', fields:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'engine',label:'The engine in one sentence',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'shape',label:'Episode shape',hint:'The repeatable pattern most episodes follow.',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'laneA',label:'A lane',hint:'What the A story usually carries.',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'laneB',label:'B lane',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'laneC',label:'C lane',rows:2}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]},{ title:'Proof of volume', fields:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'springboards',label:'Episode springboards',hint:'One line each. Aim for 15–20.',rows:10},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'s2',label:'Where season two comes from',rows:3}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]}],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>qa:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The engine fits in one sentence and does not depend on a gimmick.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Each lane has distinct territory, and the lanes can collide.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'There are at least 15 springboards.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'At least three springboards could only happen in this show.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Season two is visible without inventing a new premise.'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]},</p>
+<p class="p1">{ id:'arc', title:'Season arc',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>purpose:'Chart where everyone starts and ends so each episode has a job in the larger story.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>craft:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Define the protagonist\'s emotional position at the start and end first, then fill the middle.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The midpoint should turn the season: a revelation or choice after which the old plan stops working.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The late-season low point is where his flaw costs him the most.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'End the finale on a changed question, not a closed door, so season two has a way in.'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>cards:[{ title:'The spine', fields:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'seasonQ',label:'Season question',hint:'The specific question season one asks and answers.',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'start',label:'Where he starts',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'end',label:'Where he ends',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'opening',label:'Opening movement (episodes 1–3)',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'midpoint',label:'Midpoint turn',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'low',label:'Late-season low point',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{k:'finale',label:'Finale and button into season two',rows:3}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]}],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>groups:[{ k:'arcs', title:'Supporting arcs', item:'Arc', add:'Add arc',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>note:'One entry per regular: where they start, where they end.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>fields:[{k:'who',label:'Character',type:'line'},{k:'from',label:'Starts',rows:2},{k:'to',label:'Ends',rows:2}]</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>qa:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Start and end positions are clearly different.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The midpoint changes his strategy, not just his circumstances.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The low point comes from his flaw, not from bad luck.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Each regular\'s arc peaks in a different episode.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The finale answers the season question and opens a new one.'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]},</p>
+<p class="p1">{ id:'map', title:'Episode map',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>purpose:'Give every episode a one-line purpose before outlining any of them. This is the room\'s board.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>craft:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Name each episode by its question or theme. Sex and the City\'s narration often framed the episode as a question, which works well with a writing device.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Check that A, B, and C stories rhyme thematically inside each episode.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Track where he ends each episode emotionally. A flat line across several episodes means the arc is stalling.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Place the revisits to the past deliberately so they escalate across the season.'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>groups:[{ k:'episodes', title:'Episodes', item:'Episode', add:'Add episode', start:8,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>note:'HBO half-hour seasons commonly run 8–10 episodes.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>fields:[</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'title',label:'Title',type:'line'},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'question',label:'Episode question or theme',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'a',label:'A story',rows:2},{k:'b',label:'B story',rows:2},{k:'c',label:'C story',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'past',label:'Past revisit or flashback',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'endState',label:'Where he ends emotionally',rows:2}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]}],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>qa:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Every episode has its own question or theme.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'A, B, and C connect thematically in each episode.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'His emotional end state changes from episode to episode.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The midpoint and low point from the arc land in specific episodes.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The past revisits escalate in stakes across the season.'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]},</p>
+<p class="p1">{ id:'outline', title:'Episode outlines',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>purpose:'Break each episode into sequences and scenes, ready for pages.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>craft:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'HBO has no commercial breaks, so there are no mandatory act-outs. Structure still matters: think in five or six sequences.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'A half-hour script usually runs about 28–35 pages. Plan roughly 12–20 scenes.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Every scene should turn something: a status, a belief, or a relationship. If nothing changes, cut or merge it.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Write the narration open and close last, once you know what the episode is really about.'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>groups:[{ k:'outlines', title:'Outlines', item:'Outline', add:'Add outline', start:1,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>note:'One outline per episode. Match the episode number from your map.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>fields:[</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'ep',label:'Episode',type:'line'},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'narrOpen',label:'Narration open',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'cold',label:'Cold open',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'setup',label:'Sequence 1: setup',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'complication',label:'Sequence 2: complication',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'turn',label:'Sequence 3: midpoint turn',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'crisis',label:'Sequence 4: crisis',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'resolution',label:'Sequence 5: resolution and button',rows:3},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'narrClose',label:'Narration close',rows:2},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{k:'scenes',label:'Scene list',hint:'One line per scene: location, who, what turns.',rows:8}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]}],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>qa:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Every sequence changes the situation.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The A story changes the protagonist by the end.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The scene count fits a 28–35 page half-hour.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The narration open and close frame the episode\'s question.',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'The episode ends on an image or line, not a summary.'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>]}</p>
+<p class="p1">];</p>
+<p class="p2"><br></p>
+<p class="p1">/* ======================== WORKED EXAMPLE ========================</p>
+<p class="p1"><span class="Apple-converted-space">   </span>Built only from what was stated in this conversation.</p>
+<p class="p1"><span class="Apple-converted-space">   </span>"Draft:" = a proposal to react to. "Open:" = a decision still to make. */</p>
+<p class="p1">const EX = { f:{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>title:'Open: working title not set yet',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>logline:'Newly single and finally facing a diagnosis he spent years avoiding, a teacher moves home to New York to care for the mother he\'s never quite gotten along with, and starts retracing his past to find out who he might have been if he\'d known sooner.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>seriesQ:'Who would he have been if he\'d known sooner, and is it too late to become that person?',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>format:'Half-hour dramedy. Draft: 8 episodes per season.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>whyNow:'Draft: Late adult diagnoses are leading people to reread their whole past. At the same time, caring for a parent is landing on adult children who are still figuring out their own lives.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>whyYou:'Open: your personal connection to New York, caregiving, and the world of teaching.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>whyHBO:'Draft: Voice-driven, New York-specific, and honest about family in uncomfortable ways. It sits in the lineage of I May Destroy You and Insecure.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>comps:'I May Destroy You meets Insecure. Signature device: Sex and the City-style written narration.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>setting:'New York (Open: which borough is home). The city is where he feels most at home and most like himself. It\'s also where the people and places of his past are waiting.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>tone:'Dramedy: comedy found inside real life. He comes alive in the city, and the weight is at home with his mother.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>look:'Draft: Fractured, memory-driven cuts in the spirit of I May Destroy You, moving between the present and the man he was before.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>narration:'Sex and the City-style written narration. Open: what is he writing? This decides the narration\'s source and rules.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>themes:'Who you are vs. who you were before you had words for it. Caregiving as both love and burden. Home as the place you come alive and the place it hurts.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>never:'Draft: Never makes the diagnosis a punchline or a cure. Never lets a character give a speech that explains the theme.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>pName:'Open: name and age',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>pSnapshot:'A teacher and the oldest sibling, the responsible one everything falls on. Newly single after a relationship that kept him from confronting a late diagnosis. Moving home to care for a mother he\'s had a strained, on-and-off relationship with.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>pWant:'Draft: To take care of his mother and hold everything together.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>pNeed:'Draft: To stop managing himself long enough to find out who he actually is.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>pWound:'Draft: Years of being the responsible one while not understanding why his mind worked the way it did.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>pFlaw:'Open: how the wound shows up in his behavior now.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>pLie:'Draft: He tells himself he has it handled. The truth is he has never let anyone take care of him.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>pVoice:'Open: write one line only he would say.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>engine:'Each episode pairs a present-day caregiving or dating beat with a revisit to someone or somewhere from his past.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>shape:'The revisits serve different purposes: some are a test, some are a way to find his direction, and some ask whether he would have acted differently if he had been diagnosed sooner.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>laneA:'Him: the rebuild, the diagnosis, and the revisit to his past.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>laneB:'His mother and his siblings: caregiving and the strained relationship.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>laneC:'Dating again.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>springboards:'Open: list 15–20 springboards. Use people and places from his past as your first source.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>s2:'Open',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>seasonQ:'Draft: Can he care for his mother without losing the self he is just starting to find?',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>start:'Newly single, just arriving back in New York, still barely facing the diagnosis.',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>end:'Open',</p>
+<p class="p1"><span class="Apple-converted-space">  </span>opening:'Open', midpoint:'Open', low:'Open', finale:'Open'</p>
+<p class="p1">},</p>
+<p class="p1">g:{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>cast:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{name:'His mother',wants:'Care she may not want to ask for, especially from him.',arc:'Open',function:'Caring for her is a big deal because the relationship has been strained and on and off. It is also a weight.'},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{name:'His siblings (Open: how many)',wants:'Draft: For him to keep being the one who handles everything.',arc:'Open',function:'They keep the "responsible one" role on him.'},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{name:'The ex (Draft: offscreen or recurring)',wants:'Open',arc:'Open',function:'The relationship that kept him from facing the diagnosis.'}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>episodes:[</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{title:'Episode 1 (pilot)',question:'Draft: What does it cost to come home?',a:'He moves back to New York.',b:'The first days of caring for his mother.',c:'Open',past:'Draft: A first revisit to his past.',endState:'Open'}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>arcs:[{who:'His mother',from:'Open',to:'Open'}],</p>
+<p class="p1"><span class="Apple-converted-space">  </span>outlines:[{ep:'Episode 1 (pilot)',narrOpen:'Open: write last',cold:'Open',setup:'Draft: He arrives in New York to care for his mother.',complication:'Open',turn:'Open',crisis:'Open',resolution:'Open',narrClose:'Open: write last',scenes:'Open'}]</p>
+<p class="p1">}};</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">/* ======================== STATE ======================== */</p>
+<p class="p1">/* Live mode needs real config + the Supabase library. Otherwise: preview mode (this browser only). */</p>
+<p class="p1">const CONFIGURED = /^https:\/\//.test(SUPABASE_URL) &amp;&amp; !/^YOUR_/.test(SUPABASE_ANON_KEY);</p>
+<p class="p1">const HAS_LIB = !!(window.supabase &amp;&amp; window.supabase.createClient);</p>
+<p class="p1">let PREVIEW = !(CONFIGURED &amp;&amp; HAS_LIB);</p>
+<p class="p1">let sb;</p>
+<p class="p1">if(!PREVIEW){ try{ sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); }catch(e){ PREVIEW = true; } }</p>
+<p class="p1">if(PREVIEW){ sb = makePreviewStore(); }</p>
+<p class="p2"><br></p>
+<p class="p1">function makePreviewStore(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const mem={};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const load=t=&gt;{try{return JSON.parse(localStorage.getItem('sbpreview.'+t)||'[]')}catch(e){return mem[t]||[]}};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const save=(t,rows)=&gt;{mem[t]=rows;try{localStorage.setItem('sbpreview.'+t,JSON.stringify(rows))}catch(e){}};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const rid=()=&gt;Math.random().toString(36).slice(2)+Date.now().toString(36);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const user={id:'preview-user',email:'preview@buildyourhearth.studio'};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const asLead=/[?&amp;]lead=1/.test(location.search);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>function from(t){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const q={op:'select',vals:null,filters:[],ord:null,one:false};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const b={</p>
+<p class="p1"><span class="Apple-converted-space">      </span>select(){return b}, eq(c,v){q.filters.push([c,v]);return b}, single(){q.one=true;return b},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>order(c,o){q.ord=[c,!(o&amp;&amp;o.ascending===false)];return b},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>insert(v){q.op='insert';q.vals=v;return b}, update(v){q.op='update';q.vals=v;return b}, delete(){q.op='delete';return b},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>then(res,rej){return Promise.resolve().then(run).then(res,rej)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const match=r=&gt;q.filters.every(([c,v])=&gt;r[c]===v);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function run(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let rows=load(t), now=new Date().toISOString();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(q.op==='insert'){const r=Object.assign({id:rid(),created_at:now,updated_at:now,approved_at:now},q.vals);rows.push(r);save(t,rows);return {data:q.one?r:[r],error:null}}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(q.op==='update'){rows.forEach(r=&gt;{if(match(r))Object.assign(r,q.vals,{updated_at:now})});save(t,rows);return {data:null,error:null}}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(q.op==='delete'){save(t,rows.filter(r=&gt;!match(r)));return {data:null,error:null}}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let out=rows.filter(match);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(q.ord){const [c,asc]=q.ord;out.sort((a,b)=&gt;(a[c]&gt;b[c]?1:-1)*(asc?1:-1))}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return {data:q.one?(out[0]||null):out,error:q.one&amp;&amp;!out[0]?{message:'Not found'}:null};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return b;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>auth:{getSession:async()=&gt;({data:{session:{user}}}),onAuthStateChange(){},signOut:async()=&gt;{location.reload()},signInWithOtp:async()=&gt;({error:{message:'Preview mode'}})},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>rpc:async()=&gt;({data:asLead,error:null}),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>from</p>
+<p class="p1"><span class="Apple-converted-space">  </span>};</p>
+<p class="p1">}</p>
+<p class="p1">let me=null, isLead=false, list=[], P=null, canEdit=false, approvals={}, comments=[], stage=0;</p>
+<p class="p2"><br></p>
+<p class="p1">const $=s=&gt;document.querySelector(s);</p>
+<p class="p1">function esc(s){return String(s??'').replace(/[&amp;&lt;&gt;"']/g,c=&gt;({'&amp;':'&amp;amp;','&lt;':'&amp;lt;','&gt;':'&amp;gt;','"':'&amp;quot;',"'":'&amp;#39;'}[c]))}</p>
+<p class="p1">function wc(s){return (s||'').trim().split(/\s+/).filter(Boolean).length}</p>
+<p class="p1">function filled(v){return typeof v==='string'&amp;&amp;v.trim().length&gt;0}</p>
+<p class="p1">function setStatus(t){$('#status').textContent=t}</p>
+<p class="p1">function clone(o){return JSON.parse(JSON.stringify(o))}</p>
+<p class="p1">function norm(d){d=d||{};return {f:d.f||{},g:d.g||{},qa:d.qa||{},done:d.done||{}}}</p>
+<p class="p1">function fmtDate(s){try{return new Date(s).toLocaleString([], {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}catch(e){return ''}}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ======================== AUTH ======================== */</p>
+<p class="p1">async function start(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const {data:{session}}=await sb.auth.getSession();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(session) await onSignedIn(session); else showAuth();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>sb.auth.onAuthStateChange((ev,s)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(ev==='SIGNED_IN'&amp;&amp;s&amp;&amp;!me) onSignedIn(s);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(ev==='SIGNED_OUT'){me=null;showAuth()}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1">}</p>
+<p class="p1">function showAuth(){$('#appView').hidden=true;$('#authView').hidden=false}</p>
+<p class="p1">$('#sendLink').addEventListener('click',async()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const email=$('#email').value.trim(), msg=$('#authMsg');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(!/^\S+@\S+\.\S+$/.test(email)){msg.textContent='Enter a valid email address.';return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('#sendLink').disabled=true; msg.textContent='Sending…';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const {error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('#sendLink').disabled=false;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>msg.textContent=error?('Sign-in link not sent: '+error.message):'Check your email for a sign-in link.';</p>
+<p class="p1">});</p>
+<p class="p2"><br></p>
+<p class="p1">async function onSignedIn(session){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>me={id:session.user.id,email:session.user.email};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('#authView').hidden=true; $('#appView').hidden=false; setStatus('Loading…');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const r=await sb.rpc('sb_is_lead'); isLead=!r.error&amp;&amp;r.data===true;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>await loadList();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(!list.some(x=&gt;x.owner===me.id)){ await createProject('My series','blank',false); await loadList(); }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const last=localStorage.getItem('sb.last');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const pick=list.find(x=&gt;x.id===last)||list.find(x=&gt;x.owner===me.id)||list[0];</p>
+<p class="p1"><span class="Apple-converted-space">  </span>await openProject(pick.id);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ======================== DATA ======================== */</p>
+<p class="p1">async function loadList(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const {data,error}=await sb.from('sb_projects').select('id,title,owner,owner_email,updated_at').order('updated_at',{ascending:false});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(error){setStatus('Could not load projects');return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>list=data||[]; renderProjects();</p>
+<p class="p1">}</p>
+<p class="p1">async function createProject(title,seed,open=true){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const d=seed==='example'?{f:clone(EX.f),g:clone(EX.g),qa:{},done:{}}:{f:{},g:{},qa:{},done:{}};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const {data,error}=await sb.from('sb_projects').insert({owner:me.id,owner_email:me.email,title:title||'Untitled series',data:d}).select('id').single();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(error){alert('Project not created: '+error.message);return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(open){await loadList();await openProject(data.id)}</p>
+<p class="p1">}</p>
+<p class="p1">async function openProject(id){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>setStatus('Loading…');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const {data,error}=await sb.from('sb_projects').select('*').eq('id',id).single();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(error){setStatus('Could not open project');return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>P=data; P.data=norm(P.data); canEdit=P.owner===me.id; stage=0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>try{localStorage.setItem('sb.last',id)}catch(e){}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>await Promise.all([loadApprovals(),loadComments()]);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>renderAll(); setStatus(canEdit?'Saved':'Viewing');</p>
+<p class="p1">}</p>
+<p class="p1">async function loadApprovals(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const {data}=await sb.from('sb_approvals').select('*').eq('project_id',P.id);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>approvals={}; (data||[]).forEach(a=&gt;approvals[a.stage_id]=a);</p>
+<p class="p1">}</p>
+<p class="p1">async function loadComments(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const {data}=await sb.from('sb_comments').select('*').eq('project_id',P.id).order('created_at',{ascending:true});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>comments=data||[];</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">let saveTimer=null, saving=false, again=false;</p>
+<p class="p1">function scheduleSave(){ if(!canEdit)return; setStatus('Saving…'); clearTimeout(saveTimer); saveTimer=setTimeout(saveNow,1200) }</p>
+<p class="p1">async function saveNow(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(saving){again=true;return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>saving=true;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>try{localStorage.setItem('sb.backup.'+P.id,JSON.stringify({title:P.title,data:P.data,at:Date.now()}))}catch(e){}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const {error}=await sb.from('sb_projects').update({title:P.title,data:P.data}).eq('id',P.id);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>saving=false;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>setStatus(error?'Not saved. Check your connection.':'Saved');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(again){again=false;saveNow()}</p>
+<p class="p1">}</p>
+<p class="p1">window.addEventListener('beforeunload',e=&gt;{if(saveTimer&amp;&amp;$('#status').textContent==='Saving…'){e.preventDefault();e.returnValue=''}});</p>
+<p class="p2"><br></p>
+<p class="p1">/* ======================== PROGRESS ======================== */</p>
+<p class="p1">function stageFields(st){const o=[];(st.cards||[]).forEach(c=&gt;c.fields.forEach(f=&gt;o.push(f)));return o}</p>
+<p class="p1">function stageState(st){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(approvals[st.id]) return 'approved';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(P.data.done[st.id]) return 'done';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const d=P.data;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const any=stageFields(st).some(f=&gt;filled(d.f[f.k]))||(st.groups||[]).some(g=&gt;(d.g[g.k]||[]).some(it=&gt;Object.values(it).some(filled)));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return any?'prog':'empty';</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ======================== RENDER ======================== */</p>
+<p class="p1">function renderAll(){renderProjects();renderSteps();renderMain()}</p>
+<p class="p1">function renderProjects(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const sel=$('#projSel'), mine=list.filter(x=&gt;me&amp;&amp;x.owner===me.id), theirs=list.filter(x=&gt;me&amp;&amp;x.owner!==me.id);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const opt=x=&gt;`&lt;option value="${x.id}" ${P&amp;&amp;x.id===P.id?'selected':''}&gt;${esc(x.title)}${x.owner!==me.id?' | '+esc(x.owner_email||'writer'):''}&lt;/option&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>sel.innerHTML=isLead&amp;&amp;theirs.length</p>
+<p class="p1"><span class="Apple-converted-space">    </span>?`&lt;optgroup label="My projects"&gt;${mine.map(opt).join('')}&lt;/optgroup&gt;&lt;optgroup label="Writers' projects"&gt;${theirs.map(opt).join('')}&lt;/optgroup&gt;`</p>
+<p class="p1"><span class="Apple-converted-space">    </span>:mine.map(opt).join('');</p>
+<p class="p1">}</p>
+<p class="p1">function renderSteps(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>let done=0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('#stepList').innerHTML=STAGES.map((st,i)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const s=stageState(st); if(s==='done'||s==='approved')done++;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lbl={approved:'Approved',done:'Complete',prog:'In progress',empty:'Not started'}[s];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return `&lt;li class="st-${s}"&gt;&lt;button data-step="${i}" ${i===stage?'aria-current="step"':''}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;span class="num"&gt;${s==='approved'||s==='done'?'✓':String(i+1).padStart(2,'0')}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;span class="sname"&gt;${esc(st.title)}&lt;span class="sstate"&gt;${lbl}&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;&lt;/li&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}).join('');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('#overallTxt').textContent=`${done} of ${STAGES.length} stages complete`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('#meterFill').style.width=(done/STAGES.length*100)+'%';</p>
+<p class="p1">}</p>
+<p class="p1">function fieldHTML(f,val,exVal,attrs){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const id='f_'+attrs.replace(/[^a-z0-9]/gi,'_'), ro=canEdit?'':'readonly';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const input=f.type==='line'</p>
+<p class="p1"><span class="Apple-converted-space">    </span>?`&lt;input class="line" id="${id}" ${attrs} ${ro} value="${esc(val)}"&gt;`</p>
+<p class="p1"><span class="Apple-converted-space">    </span>:`&lt;textarea id="${id}" ${attrs} ${ro} rows="${f.rows||3}"&gt;${esc(val)}&lt;/textarea&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>let meta='&lt;span&gt;&lt;/span&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(f.words){const n=wc(val);meta=`&lt;span class="${n&gt;f.words[1]?'warn':''}" data-wc&gt;${n} words · target ${f.words[0]}–${f.words[1]}&lt;/span&gt;`}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const hasEx=filled(exVal);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return `&lt;div class="field"&gt;&lt;label for="${id}"&gt;${esc(f.label)}&lt;/label&gt;${f.hint?`&lt;p class="hint"&gt;${esc(f.hint)}&lt;/p&gt;`:''}${input}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="meta"&gt;${meta}${hasEx?'&lt;button class="btn ghost" type="button" data-toggle-ex&gt;Show example&lt;/button&gt;':''}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>${hasEx?`&lt;div class="example" hidden&gt;&lt;b&gt;Worked example&lt;/b&gt;${esc(exVal)}&lt;/div&gt;`:''}&lt;/div&gt;`;</p>
+<p class="p1">}</p>
+<p class="p1">function renderMain(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const st=STAGES[stage], d=P.data;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>let h='';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(PREVIEW) h+=`&lt;div class="banner"&gt;&lt;b&gt;Preview mode.&lt;/b&gt; Work saves to this browser only. ${CONFIGURED?'The Supabase library didn\'t load, so check your connection.':'Add your Supabase URL and key at the top of the script to go live.'} Add &lt;code&gt;?lead=1&lt;/code&gt; to the address to preview the lead view.&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(!canEdit) h+=`&lt;div class="banner"&gt;You're viewing &lt;b&gt;${esc(P.owner_email||'a writer')}&lt;/b&gt;'s project. Their text is read-only. You can leave coaching notes and approve stages below.&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>else if(stage===0) h+=`&lt;div class="banner"&gt;In the worked examples, &lt;b&gt;Draft:&lt;/b&gt; marks a proposal to react to and &lt;b&gt;Open:&lt;/b&gt; marks a decision still to make.&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>h+=`&lt;p class="eyebrow"&gt;Stage ${stage+1} of ${STAGES.length}&lt;/p&gt;&lt;h1 class="stage"&gt;${esc(st.title)}&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="purpose"&gt;${esc(st.purpose)}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;details class="craft"&gt;&lt;summary&gt;HBO craft notes&lt;/summary&gt;&lt;ul&gt;${st.craft.map(c=&gt;`&lt;li&gt;${esc(c)}&lt;/li&gt;`).join('')}&lt;/ul&gt;&lt;/details&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>(st.cards||[]).forEach(c=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>h+=`&lt;section class="card"&gt;&lt;h2&gt;${esc(c.title)}&lt;/h2&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>c.fields.forEach(f=&gt;{h+=fieldHTML(f,d.f[f.k]||'',EX.f[f.k],`data-k="${f.k}"`)});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>h+='&lt;/section&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>(st.groups||[]).forEach(g=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(!d.g[g.k]) d.g[g.k]=Array.from({length:g.start||1},()=&gt;({}));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const items=d.g[g.k], exItems=EX.g[g.k]||[];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>h+=`&lt;section class="card"&gt;&lt;h2&gt;${esc(g.title)}&lt;/h2&gt;&lt;p class="cardnote"&gt;${esc(g.note||'')}&lt;/p&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>items.forEach((it,i)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>h+=`&lt;div class="group-item"&gt;&lt;div class="group-head"&gt;&lt;span&gt;${esc(g.item)} ${i+1}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>${canEdit?`&lt;button class="btn ghost" type="button" data-remove="${g.k}" data-i="${i}"&gt;Remove&lt;/button&gt;`:''}&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>g.fields.forEach(f=&gt;{h+=fieldHTML(f,it[f.k]||'',(exItems[i]||{})[f.k],`data-g="${g.k}" data-i="${i}" data-gk="${f.k}"`)});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>h+='&lt;/div&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(canEdit) h+=`&lt;button class="btn" type="button" data-add="${g.k}"&gt;${esc(g.add)}&lt;/button&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>h+='&lt;/section&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const qa=d.qa[st.id]||[], all=st.qa.every((_,i)=&gt;qa[i]);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>h+=`&lt;section class="card qa"&gt;&lt;h2&gt;QA checkpoint&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="cardnote"&gt;${canEdit?'Check each item honestly before marking the stage complete.':'The writer\'s self-check for this stage.'}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;ul&gt;${st.qa.map((q,i)=&gt;`&lt;li&gt;&lt;label&gt;&lt;input type="checkbox" data-qa="${i}" ${qa[i]?'checked':''} ${canEdit?'':'disabled'}&gt;&lt;span&gt;${esc(q)}&lt;/span&gt;&lt;/label&gt;&lt;/li&gt;`).join('')}&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="actions"&gt;${</p>
+<p class="p1"><span class="Apple-converted-space">      </span>d.done[st.id]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>?`&lt;span class="badge ok"&gt;Marked complete&lt;/span&gt;${canEdit&amp;&amp;!approvals[st.id]?'&lt;button class="btn ghost" type="button" id="undoneBtn"&gt;Reopen stage&lt;/button&gt;':''}`</p>
+<p class="p1"><span class="Apple-converted-space">        </span>:(canEdit?`&lt;button class="btn primary" type="button" id="doneBtn" ${all?'':'disabled'}&gt;Mark stage complete&lt;/button&gt;`:'&lt;span class="empty"&gt;Not marked complete yet.&lt;/span&gt;')</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}&lt;/div&gt;&lt;/section&gt;`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const a=approvals[st.id], cs=comments.filter(c=&gt;c.stage_id===st.id);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>h+=`&lt;section class="card coach"&gt;&lt;h2&gt;Coaching&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="actions"&gt;${</p>
+<p class="p1"><span class="Apple-converted-space">      </span>a?`&lt;span class="badge appr"&gt;Approved by ${esc(a.approved_by_email||'a HEARTH lead')} · ${esc(fmtDate(a.approved_at))}&lt;/span&gt;`</p>
+<p class="p1"><span class="Apple-converted-space">       </span>:'&lt;span class="empty"&gt;Not approved yet.&lt;/span&gt;'</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}${isLead?(a?'&lt;button class="btn ghost" type="button" id="unapproveBtn"&gt;Remove approval&lt;/button&gt;':'&lt;button class="btn primary" type="button" id="approveBtn"&gt;Approve stage&lt;/button&gt;'):''}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>${cs.length?cs.map(c=&gt;`&lt;div class="comment"&gt;&lt;div class="who"&gt;&lt;span&gt;&lt;b&gt;${esc(c.author_email||'Member')}&lt;/b&gt; · ${esc(fmtDate(c.created_at))}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>${c.author===me.id?`&lt;button class="btn ghost" type="button" data-delcomment="${c.id}"&gt;Delete&lt;/button&gt;`:''}&lt;/div&gt;&lt;p&gt;${esc(c.body)}&lt;/p&gt;&lt;/div&gt;`).join('')</p>
+<p class="p1"><span class="Apple-converted-space">      </span>:'&lt;p class="empty"&gt;No notes on this stage yet.&lt;/p&gt;'}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label for="commentBox" style="position:absolute;left:-9999px"&gt;Add a note&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;textarea id="commentBox" rows="3" placeholder="${isLead&amp;&amp;!canEdit?'Leave a coaching note for the writer':'Reply or ask your coach a question'}"&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="actions"&gt;&lt;button class="btn" type="button" id="postBtn"&gt;Post note&lt;/button&gt;&lt;/div&gt;&lt;/section&gt;`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>h+=`&lt;div class="pager"&gt;&lt;button class="btn" type="button" id="prevBtn" ${stage===0?'disabled':''}&gt;Previous stage&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="btn" type="button" id="nextBtn" ${stage===STAGES.length-1?'disabled':''}&gt;Next stage&lt;/button&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="foot"&gt;&lt;span&gt;Signed in as ${esc(me.email)}${isLead?' · HEARTH lead':''}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span&gt;${canEdit?'&lt;button class="btn ghost danger" type="button" id="deleteBtn"&gt;Delete project&lt;/button&gt;':''}&lt;button class="btn ghost" type="button" id="signOut"&gt;Sign out&lt;/button&gt;&lt;/span&gt;&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('#main').innerHTML=h;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ======================== EVENTS ======================== */</p>
+<p class="p1">document.addEventListener('input',e=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const t=e.target; if(!P||!canEdit)return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.dataset.k){P.data.f[t.dataset.k]=t.value;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(t.dataset.k==='title'&amp;&amp;t.value.trim()){P.title=t.value.trim();const x=list.find(y=&gt;y.id===P.id);if(x)x.title=P.title;renderProjects()}}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>else if(t.dataset.g){P.data.g[t.dataset.g][+t.dataset.i][t.dataset.gk]=t.value}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>else return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const w=t.closest('.field')?.querySelector('[data-wc]');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(w){const f=stageFields(STAGES[stage]).find(x=&gt;x.k===t.dataset.k);if(f&amp;&amp;f.words){const n=wc(t.value);w.textContent=`${n} words · target ${f.words[0]}–${f.words[1]}`;w.className=n&gt;f.words[1]?'warn':''}}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>renderSteps(); scheduleSave();</p>
+<p class="p1">});</p>
+<p class="p1">document.addEventListener('change',async e=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const t=e.target;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.id==='projSel'){clearTimeout(saveTimer);if(canEdit&amp;&amp;$('#status').textContent==='Saving…')await saveNow();await openProject(t.value);return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.dataset.qa!==undefined&amp;&amp;canEdit){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const st=STAGES[stage]; P.data.qa[st.id]=P.data.qa[st.id]||[]; P.data.qa[st.id][+t.dataset.qa]=t.checked;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const b=$('#doneBtn'); if(b) b.disabled=!st.qa.every((_,i)=&gt;P.data.qa[st.id][i]); scheduleSave();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">});</p>
+<p class="p1">document.addEventListener('click',async e=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const t=e.target.closest('button'); if(!t||!P&amp;&amp;t.id!=='sendLink')return; const st=STAGES[stage];</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.dataset.step!==undefined){stage=+t.dataset.step;renderSteps();renderMain();window.scrollTo(0,0);return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.hasAttribute('data-toggle-ex')){const ex=t.closest('.field').querySelector('.example');ex.hidden=!ex.hidden;t.textContent=ex.hidden?'Show example':'Hide example';return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.dataset.add){P.data.g[t.dataset.add].push({});renderMain();scheduleSave();return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.dataset.remove){const arr=P.data.g[t.dataset.remove],it=arr[+t.dataset.i];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(Object.values(it).some(filled)&amp;&amp;!confirm('Remove this entry and its text?'))return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>arr.splice(+t.dataset.i,1);renderMain();renderSteps();scheduleSave();return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.id==='doneBtn'){P.data.done[st.id]=true;renderSteps();renderMain();scheduleSave();return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.id==='undoneBtn'){P.data.done[st.id]=false;renderSteps();renderMain();scheduleSave();return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.id==='approveBtn'){t.disabled=true;const {error}=await sb.from('sb_approvals').insert({project_id:P.id,stage_id:st.id,approved_by:me.id,approved_by_email:me.email});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(error)alert('Approval not saved: '+error.message);await loadApprovals();renderSteps();renderMain();return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.id==='unapproveBtn'){await sb.from('sb_approvals').delete().eq('project_id',P.id).eq('stage_id',st.id);await loadApprovals();renderSteps();renderMain();return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.id==='postBtn'){const body=$('#commentBox').value.trim();if(!body)return;t.disabled=true;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const {error}=await sb.from('sb_comments').insert({project_id:P.id,stage_id:st.id,body,author:me.id,author_email:me.email});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(error){alert('Note not posted: '+error.message);t.disabled=false;return}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>await loadComments();renderMain();return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.dataset.delcomment){if(!confirm('Delete this note?'))return;await sb.from('sb_comments').delete().eq('id',t.dataset.delcomment);await loadComments();renderMain();return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.id==='prevBtn'){stage--;renderSteps();renderMain();window.scrollTo(0,0);return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.id==='nextBtn'){stage++;renderSteps();renderMain();window.scrollTo(0,0);return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.id==='newBtn'){$('#newName').value='';$('#newDlg').showModal();return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.id==='newCancel'){$('#newDlg').close();return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.id==='newCreate'){const name=$('#newName').value.trim(),seed=document.querySelector('input[name=seed]:checked').value;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('#newDlg').close();await createProject(name||(seed==='example'?'Worked example copy':'Untitled series'),seed);return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.id==='exportBtn')return exportMd();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.id==='deleteBtn'){if(!confirm(`Delete "${P.title}" and all its notes? This cannot be undone.`))return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const {error}=await sb.from('sb_projects').delete().eq('id',P.id);if(error){alert('Project not deleted: '+error.message);return}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>await loadList();if(!list.some(x=&gt;x.owner===me.id)){await createProject('My series','blank',false);await loadList()}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>await openProject((list.find(x=&gt;x.owner===me.id)||list[0]).id);return}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if(t.id==='signOut'){await sb.auth.signOut();return}</p>
+<p class="p1">});</p>
+<p class="p2"><br></p>
+<p class="p1">/* ======================== EXPORT ======================== */</p>
+<p class="p1">function toMd(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const d=P.data; let md=`# ${P.title}\n\n`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>STAGES.forEach((st,i)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>md+=`## ${i+1}. ${st.title}${approvals[st.id]?' (approved)':d.done[st.id]?' (complete)':''}\n\n`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>(st.cards||[]).forEach(c=&gt;{md+=`### ${c.title}\n\n`;c.fields.forEach(f=&gt;{md+=`**${f.label}**\n\n${(d.f[f.k]||'').trim()||'_Not yet written_'}\n\n`})});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>(st.groups||[]).forEach(g=&gt;{md+=`### ${g.title}\n\n`;(d.g[g.k]||[]).forEach((it,j)=&gt;{md+=`#### ${g.item} ${j+1}\n\n`;g.fields.forEach(f=&gt;{md+=`**${f.label}:** ${(it[f.k]||'').trim()||'_Not yet written_'}\n\n`})})});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return md;</p>
+<p class="p1">}</p>
+<p class="p1">function exportMd(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const blob=new Blob([toMd()],{type:'text/markdown'}), a=document.createElement('a');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>a.href=URL.createObjectURL(blob); a.download=(P.title||'series').replace(/[^a-z0-9]+/gi,'-').toLowerCase()+'-bible.md';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=&gt;URL.revokeObjectURL(a.href),1000);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">start().catch(err=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>console.error(err);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.body.insertAdjacentHTML('afterbegin',`&lt;div class="banner" style="margin:20px"&gt;The Series Builder couldn't start: ${esc(err&amp;&amp;err.message||err)}&lt;/div&gt;`);</p>
+<p class="p1">});</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
