@@ -229,11 +229,7 @@ textarea.input{resize:vertical;min-height:96px}
 
 /* ---------- home hero video ---------- */
 .video-hero{position:relative;height:min(82vh,780px);min-height:520px;background:var(--bg-deep);overflow:hidden}
-<<<<<<< HEAD
 .video-hero .loop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.72)}
-=======
-.video-hero .poster,.video-hero .yt{position:absolute;inset:0;width:100%;height:100%}
->>>>>>> bdb0effb52f7a486f64191de66a4c0c84dbf7964
 .video-hero .poster{object-fit:cover;filter:brightness(.6)}
 .video-hero .yt{pointer-events:none;opacity:0;transition:opacity 1s}
 .video-hero.playing .yt{opacity:1}

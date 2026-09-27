@@ -37,12 +37,5 @@ window.HEARTH_CONFIG = {
 
   // Events
   lumaCalendarUrl: 'https://luma.com/calendar/cal-p2tGnB5LuPogUhA', // confirm this is your public Luma calendar page
-<<<<<<< HEAD
   lumaEmbedUrl: 'https://luma.com/embed/calendar/cal-p2tGnB5LuPogUhA/events?lt=dark'
-=======
-  lumaEmbedUrl: 'https://luma.com/embed/calendar/cal-p2tGnB5LuPogUhA/events?lt=dark',
-
-  // Homepage hero film
-  heroYouTubeId: 'lrYv5KQ2OuE'
->>>>>>> bdb0effb52f7a486f64191de66a4c0c84dbf7964
 };

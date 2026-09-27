@@ -191,14 +191,10 @@
     form.reset();
     form.full_name.value = p.full_name || '';
     form.location.value = p.location || '';
-<<<<<<< HEAD
     var known = $$('input[name="craft"]', form).map(function (i) { return i.value; });
     var custom = crafts(p).filter(function (c) { return known.indexOf(c) < 0; });
     $$('input[name="craft"]', form).forEach(function (i) { i.checked = crafts(p).indexOf(i.value) > -1 || (i.value === 'Other' && custom.length > 0); });
     form.craft_other.value = custom.join(', ');
-=======
-    $$('input[name="craft"]', form).forEach(function (i) { i.checked = crafts(p).indexOf(i.value) > -1; });
->>>>>>> bdb0effb52f7a486f64191de66a4c0c84dbf7964
     $$('input[name="skill_level"]', form).forEach(function (i) { i.checked = i.value === p.skill_level || skillShort(i.value) === skillShort(p.skill_level); });
     form.day_rate.value = p.day_rate != null ? p.day_rate : '';
     form.flexible_rate.checked = !!p.flexible_rate;
@@ -207,10 +203,7 @@
     form.social_url.value = p.social_url || '';
     $$('input[name="union_status"]', form).forEach(function (i) { i.checked = i.value === p.union_status; });
     form.union_name.value = p.union_name || '';
-<<<<<<< HEAD
     if (window.HEARTH_syncReveals) window.HEARTH_syncReveals(form);
-=======
->>>>>>> bdb0effb52f7a486f64191de66a4c0c84dbf7964
     S.dirty = false;
     renderPreview();
   }
@@ -219,12 +212,8 @@
     return {
       id: S.user.id, email: S.user.email,
       full_name: form.full_name.value.trim(), location: form.location.value.trim(),
-<<<<<<< HEAD
       craft: $$('input[name="craft"]:checked', form).map(function (i) { return i.value; }).filter(function (c) { return c !== 'Other'; })
         .concat(form.querySelector('input[name="craft"][value="Other"]:checked') && form.craft_other.value.trim() ? form.craft_other.value.split(',').map(function (x) { return x.trim(); }).filter(Boolean) : []),
-=======
-      craft: $$('input[name="craft"]:checked', form).map(function (i) { return i.value; }),
->>>>>>> bdb0effb52f7a486f64191de66a4c0c84dbf7964
       skill_level: sel('skill_level'),
       day_rate: form.day_rate.value ? Number(form.day_rate.value) : null,
       flexible_rate: form.flexible_rate.checked,
@@ -243,13 +232,9 @@
     var err = $('[data-save-err]'); err.textContent = '';
     var d = formData();
     if (!d.full_name || !d.location) { err.textContent = 'Add your name and location.'; (d.full_name ? form.location : form.full_name).focus(); return; }
-<<<<<<< HEAD
     if (form.querySelector('input[name="craft"][value="Other"]:checked') && !form.craft_other.value.trim()) { err.textContent = 'Tell us what your craft is.'; form.craft_other.focus(); return; }
     if (!d.craft.length) { err.textContent = 'Pick at least one craft.'; form.querySelector('input[name="craft"]').focus(); return; }
     ['portfolio_url', 'social_url'].forEach(function (k) { if (d[k] && !/^https?:\/\//i.test(d[k])) { d[k] = 'https://' + d[k]; form[k].value = d[k]; } });
-=======
-    if (!d.craft.length) { err.textContent = 'Pick at least one craft.'; form.querySelector('input[name="craft"]').focus(); return; }
->>>>>>> bdb0effb52f7a486f64191de66a4c0c84dbf7964
     if ((d.portfolio_url && !safeUrl(d.portfolio_url)) || (d.social_url && !safeUrl(d.social_url))) { err.textContent = 'Links need to start with https://'; return; }
     var btn = this; btn.disabled = true; btn.textContent = 'Saving…';
     d.status = 'pending'; d.updated_at = new Date().toISOString();
