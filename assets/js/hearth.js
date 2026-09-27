@@ -46,32 +46,46 @@
     var vid = hero.querySelector('[data-loop]');
     var btn = hero.querySelector('.pause-btn');
     var saveData = navigator.connection && navigator.connection.saveData;
+    var userPaused = false;
     function setPaused(p) {
       if (!btn) return;
       btn.setAttribute('aria-pressed', p ? 'true' : 'false');
       btn.setAttribute('aria-label', p ? 'Play background video' : 'Pause background video');
     }
+    function tryPlay() {
+      if (!vid || userPaused) return;
+      vid.muted = true; vid.defaultMuted = true;
+      var pr = vid.play();
+      if (pr && pr.then) pr.then(function () { setPaused(false); }).catch(function () { setPaused(true); });
+    }
     if (vid) {
-      vid.muted = true;
-      if (!vid.getAttribute('src')) {
-        var small = window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
-        vid.src = vid.getAttribute(small ? 'data-src-small' : 'data-src-large');
-      }
-      if (reduceMotion || saveData) {
-        vid.preload = 'none'; setPaused(true);
-      } else {
-        var p = vid.play();
-        if (p && p.catch) p.catch(function () { setPaused(true); });
+      // pick the best file this browser can play: H.264 MP4 (Safari/iOS/Chrome/Edge), else VP9 WebM
+      var small = window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
+      var size = small ? 'small' : 'large';
+      var mp4 = vid.canPlayType('video/mp4; codecs="avc1.640028"') || vid.canPlayType('video/mp4');
+      var webm = vid.canPlayType('video/webm; codecs="vp9"');
+      vid.src = vid.getAttribute('data-' + ((mp4 === 'probably' || !webm) ? 'mp4' : 'webm') + '-' + size);
+      vid.muted = true; vid.defaultMuted = true; vid.loop = true;
+      vid.setAttribute('muted', ''); vid.setAttribute('playsinline', ''); vid.setAttribute('webkit-playsinline', '');
+      // belt and braces: restart at the end if a browser ignores loop
+      vid.addEventListener('ended', function () { vid.currentTime = 0; tryPlay(); });
+      if (reduceMotion || saveData) { userPaused = true; setPaused(true); }
+      else {
+        vid.addEventListener('canplay', tryPlay, { once: true });
+        tryPlay();
+        // if autoplay was blocked (e.g. iPhone Low Power Mode), start on the first tap or scroll
+        var kick = function () { if (vid.paused) tryPlay(); ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach(function (ev) { window.removeEventListener(ev, kick); }); };
+        ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach(function (ev) { window.addEventListener(ev, kick, { passive: true }); });
       }
       if (btn) btn.addEventListener('click', function () {
-        if (vid.paused) { vid.play().catch(function () {}); setPaused(false); } else { vid.pause(); setPaused(true); }
+        if (vid.paused) { userPaused = false; tryPlay(); } else { userPaused = true; vid.pause(); setPaused(true); }
       });
-      // pause when scrolled out of view to save battery
       if ('IntersectionObserver' in window) {
         new IntersectionObserver(function (es) {
-          es.forEach(function (e) { if (btn && btn.getAttribute('aria-pressed') === 'true') return; if (e.isIntersecting) vid.play().catch(function () {}); else vid.pause(); });
+          es.forEach(function (e) { if (userPaused) return; if (e.isIntersecting) tryPlay(); else vid.pause(); });
         }, { threshold: 0.1 }).observe(hero);
       }
+      document.addEventListener('visibilitychange', function () { if (!document.hidden) tryPlay(); });
     }
   }
 
