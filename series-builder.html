@@ -177,7 +177,7 @@ dialog label.opt{display:grid;grid-template-columns:22px 1fr;gap:6px;margin:10px
   <label for="newName" style="font-weight:600">Working title</label>
   <input id="newName" class="line" placeholder="Untitled series">
   <label class="opt"><input type="radio" name="seed" value="blank" checked><span>Blank template (worked examples still show under every field)</span></label>
-  <label class="opt"><input type="radio" name="seed" value="example"><span>Copy of the worked example, to edit directly</span></label>
+  <label class="opt"><input type="radio" name="seed" value="example"><span>Copy of the I May Destroy You example, to study and mark up</span></label>
   <div class="row"><button class="btn" id="newCancel">Cancel</button><button class="btn primary" id="newCreate">Create project</button></div>
 </dialog>
 
@@ -277,7 +277,7 @@ const STAGES = [
     'The engine is the repeatable situation that keeps producing story. Name it in one sentence.',
     'Half-hours usually run an A story (protagonist), a B story, and sometimes a light C. Assign each lane its usual territory.',
     'If you cannot list 15–20 springboards quickly, the engine is not built yet.',
-    'Show where season two comes from. A premise that ends when its central problem is solved is a limited series.'
+    'Decide limited or ongoing. An ongoing series needs a visible season two; a limited series (like IMDY) needs a finale that resolves.'
   ],
   cards:[{ title:'How episodes happen', fields:[
     {k:'engine',label:'The engine in one sentence',rows:2},
@@ -287,14 +287,14 @@ const STAGES = [
     {k:'laneC',label:'C lane',rows:2}
   ]},{ title:'Proof of volume', fields:[
     {k:'springboards',label:'Episode springboards',hint:'One line each. Aim for 15–20.',rows:10},
-    {k:'s2',label:'Where season two comes from',rows:3}
+    {k:'s2',label:'Limited or ongoing? Where season two comes from',rows:3}
   ]}],
   qa:[
     'The engine fits in one sentence and does not depend on a gimmick.',
     'Each lane has distinct territory, and the lanes can collide.',
     'There are at least 15 springboards.',
     'At least three springboards could only happen in this show.',
-    'Season two is visible without inventing a new premise.'
+    'You\'ve chosen limited or ongoing, and the engine fits that choice.'
   ]},
 { id:'arc', title:'Season arc',
   purpose:'Chart where everyone starts and ends so each episode has a job in the larger story.',
@@ -333,7 +333,7 @@ const STAGES = [
     'Place the revisits to the past deliberately so they escalate across the season.'
   ],
   groups:[{ k:'episodes', title:'Episodes', item:'Episode', add:'Add episode', start:8,
-    note:'HBO half-hour seasons commonly run 8–10 episodes.',
+    note:'HBO half-hour seasons commonly run 8–12 episodes. IMDY ran 12.',
     fields:[
       {k:'title',label:'Title',type:'line'},
       {k:'question',label:'Episode question or theme',rows:2},
@@ -352,7 +352,7 @@ const STAGES = [
   purpose:'Break each episode into sequences and scenes, ready for pages.',
   craft:[
     'HBO has no commercial breaks, so there are no mandatory act-outs. Structure still matters: think in five or six sequences.',
-    'A half-hour script usually runs about 28–35 pages. Plan roughly 12–20 scenes.',
+    'Half-hour scripts commonly run about 28–40 pages. Scene counts vary widely: the draft IMDY pilot has 61 scenes in 40 pages, many only a few lines long. Plan by sequence, not scene count.',
     'Every scene should turn something: a status, a belief, or a relationship. If nothing changes, cut or merge it.',
     'Write the narration open and close last, once you know what the episode is really about.'
   ],
@@ -373,61 +373,94 @@ const STAGES = [
   qa:[
     'Every sequence changes the situation.',
     'The A story changes the protagonist by the end.',
-    'The scene count fits a 28–35 page half-hour.',
+    'The draft lands at roughly 28–40 pages.',
     'The narration open and close frame the episode\'s question.',
     'The episode ends on an image or line, not a summary.'
   ]}
 ];
 
 /* ======================== WORKED EXAMPLE ========================
-   Built only from what was stated in this conversation.
-   "Draft:" = a proposal to react to. "Open:" = a decision still to make. */
+   I May Destroy You: paraphrased analysis only, no script text.
+   Pilot page refs = 12 March 2019 draft; season details = aired series. */
+const EX_SOURCE = 'I May Destroy You';
 const EX = { f:{
-  title:'Open: working title not set yet',
-  logline:'Newly single and finally facing a diagnosis he spent years avoiding, a teacher moves home to New York to care for the mother he\'s never quite gotten along with, and starts retracing his past to find out who he might have been if he\'d known sooner.',
-  seriesQ:'Who would he have been if he\'d known sooner, and is it too late to become that person?',
-  format:'Half-hour dramedy. Draft: 8 episodes per season.',
-  whyNow:'Draft: Late adult diagnoses are leading people to reread their whole past. At the same time, caring for a parent is landing on adult children who are still figuring out their own lives.',
-  whyYou:'Open: your personal connection to New York, caregiving, and the world of teaching.',
-  whyHBO:'Draft: Voice-driven, New York-specific, and honest about family in uncomfortable ways. It sits in the lineage of I May Destroy You and Insecure.',
-  comps:'I May Destroy You meets Insecure. Signature device: Sex and the City-style written narration.',
-  setting:'New York (Open: which borough is home). The city is where he feels most at home and most like himself. It\'s also where the people and places of his past are waiting.',
-  tone:'Dramedy: comedy found inside real life. He comes alive in the city, and the weight is at home with his mother.',
-  look:'Draft: Fractured, memory-driven cuts in the spirit of I May Destroy You, moving between the present and the man he was before.',
-  narration:'Sex and the City-style written narration. Open: what is he writing? This decides the narration\'s source and rules.',
-  themes:'Who you are vs. who you were before you had words for it. Caregiving as both love and burden. Home as the place you come alive and the place it hurts.',
-  never:'Draft: Never makes the diagnosis a punchline or a cure. Never lets a character give a speech that explains the theme.',
-  pName:'Open: name and age',
-  pSnapshot:'A teacher and the oldest sibling, the responsible one everything falls on. Newly single after a relationship that kept him from confronting a late diagnosis. Moving home to care for a mother he\'s had a strained, on-and-off relationship with.',
-  pWant:'Draft: To take care of his mother and hold everything together.',
-  pNeed:'Draft: To stop managing himself long enough to find out who he actually is.',
-  pWound:'Draft: Years of being the responsible one while not understanding why his mind worked the way it did.',
-  pFlaw:'Open: how the wound shows up in his behavior now.',
-  pLie:'Draft: He tells himself he has it handled. The truth is he has never let anyone take care of him.',
-  pVoice:'Open: write one line only he would say.',
-  engine:'Each episode pairs a present-day caregiving or dating beat with a revisit to someone or somewhere from his past.',
-  shape:'The revisits serve different purposes: some are a test, some are a way to find his direction, and some ask whether he would have acted differently if he had been diagnosed sooner.',
-  laneA:'Him: the rebuild, the diagnosis, and the revisit to his past.',
-  laneB:'His mother and his siblings: caregiving and the strained relationship.',
-  laneC:'Dating again.',
-  springboards:'Open: list 15–20 springboards. Use people and places from his past as your first source.',
-  s2:'Open',
-  seasonQ:'Draft: Can he care for his mother without losing the self he is just starting to find?',
-  start:'Newly single, just arriving back in New York, still barely facing the diagnosis.',
-  end:'Open',
-  opening:'Open', midpoint:'Open', low:'Open', finale:'Open'
+  title:'I May Destroy You (created and written by Michaela Coel; BBC One and HBO, 2020). The series was originally developed as "January 22nd," and the draft pilot is titled "Am I Bleeding?" It aired as "Eyes Eyes Eyes Eyes."',
+  logline:'A procrastinating internet-famous writer, hours from a book deadline she is nowhere near, takes a "90-minute" break for one drink with friends. She wakes up with blood on her head, a smashed phone, and a finished page she can\'t remember writing, and her memory of the night starts coming back in pieces.',
+  seriesQ:'What happened that night, and can she take back ownership of her own story without letting it define her?',
+  format:'Half-hour black comedy-drama, 12 episodes, single-camera. Built as a limited series: it won the BAFTA for Best Mini-Series.',
+  whyNow:'It arrived in the post-#MeToo conversation and treats consent as a spectrum, not a single headline. It covers drugging, stealthing, male assault, and online performance of trauma, and uses all of them to ask where liberation ends and exploitation begins.',
+  whyYou:'Coel has spoken publicly about being sexually assaulted while writing her previous series, and the show grew out of that experience. Her access to this world is personal, and the pitch leaned on it.',
+  whyHBO:'The BBC produced it with HBO as co-producer. Coel reportedly turned down a larger streaming offer that would have taken her ownership of the show, and the BBC deal let her keep creative control and rights. For HEARTH writers: "why this buyer" includes deal terms, not just brand fit.',
+  comps:'A useful present-day comp line: Chewing Gum\'s voice meets Fleabag\'s direct confrontation of the audience, played for dread instead of laughs. Signature device: fractured, subjective memory, with fragments triggered by objects and sounds, and a title card insisting the story is not based on true events.',
+  setting:'London: Soho bars, Liverpool Street, a shared flat in the East End. The opening in Italy (Lucca in the draft pilot, Ostia in the aired series) is the idyll, slow and sensual with no deadlines. London means speed, obligation, and exposure. The contrast shows what she loses before anything happens.',
+  tone:'Comedy first, dread second. The first 80% of the draft pilot plays as comedy: a squirm-inducing agency call, flatmates, a couple negotiating a threesome. The dread arrives on page 32 of 40, and it hits harder because we were laughing.',
+  look:'Subjective POV: the blackout plays from her eyes, with distorted speech and a door handle floating out of reach. Sound tells the story: the writing montage drops its music, leaving only breath, typing, and a lighter, and a gospel track swallows the club music as she loses control. Match cuts on her blank stare connect Italy to London.',
+  narration:'There is no voiceover. Her writing does the job. The page she wrote during the blackout holds truth she can\'t remember, and her agents read it back to her. The series ends with her finishing the book by rewriting the ending in her head several times. Lesson: a narration device can live in an object the character writes.',
+  themes:'Consent and the gray areas around it. Who gets to tell a story, and who profits from it. Friendship as both rescue and betrayal. Memory as unreliable evidence.',
+  never:'Analysis: the show never depicts the assault head-on. It lives in aftermath and fragments. It never lets any character be purely a victim or purely a villain. Even the survivor-group leader has a past lie.',
+  pName:'Arabella Essiedu, early 30s',
+  pSnapshot:'A writer who became the "voice of her generation" through online writing and now owes a publisher a second book she hasn\'t written. She is magnetic in public: the karaoke crowd calls her the greatest, and the bouncer lifts her off the ground. In private she is avoidant: she ignores calls, apologizes constantly, and medicates the pressure.',
+  pWant:'To deliver the draft without admitting she hasn\'t written it.',
+  pNeed:'To face what she avoids, first the deadline and then the night, and to take ownership of her story.',
+  pWound:'The assault, which the audience learns about alongside her. Beneath it: a childhood split between two parental homes (explored in episode 10) and a name her parents compromised on (a scene in the pilot).',
+  pFlaw:'Avoidance. In the pilot alone she dodges agent calls, lies about her progress, says "sorry" on reflex, and leaves her work for "90 minutes."',
+  pLie:'She tells herself she works best under pressure and can do it in one night because she has done it before. The truth is that she is running from the page.',
+  pVoice:'She deflects pressure with jokes. Asked about her deadline, she makes a crude joke about what she actually did in Italy. Humor is her armor.',
+  engine:'A survivor tries to rebuild her life and finish her book while memory, the police investigation, and her friends\' own experiences keep reopening what happened.',
+  shape:'A present-day obstacle (the book, the police, a relationship) is interrupted by a memory fragment or a flashback. The ensemble runs parallel stories about consent that echo hers.',
+  laneA:'Arabella: memory, investigation, recovery, the book, her growing online platform.',
+  laneB:'Kwame: his own assault and its aftermath, including how the police respond to a gay Black man reporting it. Kwame doesn\'t appear in the draft pilot; he is one of the three leads in the aired series.',
+  laneC:'Terry: her acting career, her own night in Italy, and guilt about leaving Arabella alone that night.',
+  springboards:'Retrace the night using a friend\'s Uber receipts (ep 2)\nA flashback to the friends\' trip to Italy (ep 3)\nA new creative partner crosses a line during sex (ep 4)\nShe exposes him publicly at a literary festival (ep 5)\nA survivor support group led by a school acquaintance (ep 6)\nA school flashback complicates who is telling the truth (ep 6)\nA birthday party and a matchmaking scheme (ep 7)\nThe police close the case (ep 8)\nAn online following starts to replace her friends (ep 9)\nA family birthday reopens childhood (ep 10)\nThe publisher drops the book (ep 11)\nImagining every possible confrontation with the attacker (ep 12)',
+  s2:'IMDY was designed as a limited series, and it resolves. Decide early whether you are pitching a limited or an ongoing series, because the answer changes how you build the engine and the finale.',
+  seasonQ:'Can Arabella reclaim her story after someone took a night from her?',
+  start:'Avoidant and dissociated. The deadline is unmet and she has no memory of the assault.',
+  end:'She lets go of revenge, finishes the book, and celebrates at its launch party. She owns the story.',
+  opening:'Episodes 1–3: the night, the morning after, retracing the night, reporting it to the police, and a flashback to Italy that shows Terry\'s side of an earlier night.',
+  midpoint:'Episodes 5–6: she goes public and exposes Zain at a literary festival, so her strategy shifts from private recovery to a public voice. Then the school flashback in episode 6 complicates the idea of simple victims and villains.',
+  low:'Episodes 8–11: the police close the case, Biagio refuses to see her, social media pulls her away from her friends, and the publisher drops her book.',
+  finale:'Episode 12: she imagines several different confrontations with David at the bar where it happened, then chooses to move on and uses those versions to finish her book.'
 },
 g:{
   cast:[
-    {name:'His mother',wants:'Care she may not want to ask for, especially from him.',arc:'Open',function:'Caring for her is a big deal because the relationship has been strained and on and off. It is also a weight.'},
-    {name:'His siblings (Open: how many)',wants:'Draft: For him to keep being the one who handles everything.',arc:'Open',function:'They keep the "responsible one" role on him.'},
-    {name:'The ex (Draft: offscreen or recurring)',wants:'Open',arc:'Open',function:'The relationship that kept him from facing the diagnosis.'}
+    {name:'Terry, best friend and struggling actor',wants:'For Arabella to stop hiding in pills and deflection.',arc:'Guilt about leaving Arabella alone that night, her own night in Italy, and landing an acting role.',function:'Tests loyalty. Friendship both fails and rescues.'},
+    {name:'Kwame, best friend',wants:'To be believed and taken seriously.',arc:'His own assault, the police dismissing him, and working out intimacy afterward.',function:'Shows that consent and belief don\'t apply equally to everyone.'},
+    {name:'Simon, friend who works in the City',wants:'Her company on the night out, then her silence about what she saw.',arc:'His secret lover and his evasions are exposed, and Terry shuts him out.',function:'The friend who may know more than he says. Builds dramatic irony.'},
+    {name:'Biagio, lover in Italy',wants:'Complete honesty from her.',arc:'Their honesty pact, and later refusing to see her.',function:'Stands for the life before the assault.'},
+    {name:'Julia/Julian (agents) and Francine (financier)',wants:'The draft.',arc:'Their patience runs out, and the book is dropped in episode 11.',function:'External pressure and the ticking clock.'},
+    {name:'Theo, school acquaintance',wants:'Allies. She runs the survivor group.',arc:'Revealed through a school flashback, then part of the finale.',function:'Complicates who is telling the truth.'}
+  ],
+  arcs:[
+    {who:'Terry',from:'A struggling actor who left her friend that night.',to:'Working, and actively redeeming her guilt in the finale.'},
+    {who:'Kwame',from:'Confident about casual sex.',to:'Figuring out a more romantic kind of intimacy (episode 10).'},
+    {who:'Simon',from:'Arabella\'s trusted friend.',to:'Shut out of the group after his secrets come out.'}
   ],
   episodes:[
-    {title:'Episode 1 (pilot)',question:'Draft: What does it cost to come home?',a:'He moves back to New York.',b:'The first days of caring for his mother.',c:'Open',past:'Draft: A first revisit to his past.',endState:'Open'}
+    {title:'1. Eyes Eyes Eyes Eyes',question:'What does it cost to take a break?',a:'Deadline all-nighter, a night out, the blackout, the morning after.',b:'Simon and Kat try to set up a threesome.',c:'Flatmates, and Terry\'s audition.',past:'The Italy opener, and the first memory fragment at the end.',endState:'Confused and shaking, almost smiling.'},
+    {title:'2. Someone Is Lying',question:'Who knows what happened?',a:'She retraces the night and confronts an evasive Simon, then reports the assault with Kwame.',b:'Terry\'s bad audition.',c:'Alissa is revealed as Simon\'s secret lover.',past:'Memory flashes.',endState:'The assault now has a name, and it is reported.'},
+    {title:'3. Don\'t Forget the Sea',question:'What did freedom look like before?',a:'The Italy trip with Terry in flashback.',b:'Terry\'s own wild night.',c:'Meeting Biagio.',past:'The whole episode is a flashback.',endState:'Episode 3 shows the "before."'},
+    {title:'4. That Was Fun',question:'What counts as consent?',a:'Two months later: therapy, and an assigned writing partner, Zain, who removes a condom during sex without telling her.',b:'Kwame is assaulted after a hookup.',c:'—',past:'—',endState:'Harmed again, without yet naming it.'},
+    {title:'5. …It Just Came Up',question:'Who gets to say it out loud?',a:'She exposes Zain at a literary festival and tells Biagio.',b:'The police don\'t take Kwame seriously.',c:'—',past:'—',endState:'She has a public voice.'},
+    {title:'6. The Alliance',question:'Who is believed?',a:'A survivor group run by Theo.',b:'A school flashback about Theo\'s accusation.',c:'—',past:'Mid-2000s school flashback.',endState:'Victim and villain get more complicated.'},
+    {title:'7. Happy Animals',question:'Can you perform being okay?',a:'She becomes an influencer for a vegan brand.',b:'Terry\'s birthday party. Terry keeps Simon away.',c:'Arabella matchmakes Kwame. Tension between Theo and Terry.',past:'—',endState:'Performing recovery.'},
+    {title:'8. Line Spectrum Border',question:'What happens when the system shuts the door?',a:'The police close the case, and Biagio refuses to see her.',b:'Kwame\'s hookup with Nilufer ends badly when he tells her he\'s gay.',c:'—',past:'—',endState:'Rejected on two fronts.'},
+    {title:'9. Social Media Is a Great Way to Connect',question:'Is an audience the same as a community?',a:'Her online presence drives a wedge between her and her friends.',b:'Kwame opens up about his experiment (Halloween).',c:'—',past:'—',endState:'Isolated inside her platform.'},
+    {title:'10. The Cause the Cure',question:'Where did the pattern start?',a:'Her mum\'s birthday brings back childhood memories.',b:'Kwame and Tyrone\'s relationship turns romantic.',c:'—',past:'Childhood between two parental homes.',endState:'She understands her roots.'},
+    {title:'11. Would You Like to Know the Sex?',question:'Who owns her story?',a:'The publisher drops her, and "Della" turns out to be Zain.',b:'Terry gets a role and dates Kai.',c:'—',past:'—',endState:'The professional bottom.'},
+    {title:'12. Ego Death',question:'What ending does she choose?',a:'Imagined confrontations with David, then letting go.',b:'Terry\'s redemption plays out inside the imagined versions.',c:'The book launch.',past:'Alternate versions of the same night.',endState:'Authorship reclaimed.'}
   ],
-  arcs:[{who:'His mother',from:'Open',to:'Open'}],
-  outlines:[{ep:'Episode 1 (pilot)',narrOpen:'Open: write last',cold:'Open',setup:'Draft: He arrives in New York to care for his mother.',complication:'Open',turn:'Open',crisis:'Open',resolution:'Open',narrClose:'Open: write last',scenes:'Open'}]
+  outlines:[{
+    ep:'Episode 1 (draft titled "Am I Bleeding?", 40 pages, 61 scenes)',
+    narrOpen:'No voiceover. The title card claiming the story is not based on true events does the framing work.',
+    cold:'Pages 1–5, Italy: she waits for an Uber with Biagio. She is competent and sweet, apologizes on reflex, and lies about her deadline. They agree to tell each other everything.',
+    setup:'Pages 6–14, London: she dodges the agency, then promises a draft by morning. A flatmate reunion, and pills. Turn: she commits to an all-nighter.',
+    complication:'Pages 14–24: a writing montage intercut with Simon and Kat\'s night out. Simon keeps calling to pull her in. Turn: the temptation builds as her progress stalls.',
+    turn:'Pages 24–32: she sets a 90-minute alarm and leaves. Karaoke triumph, strangers with a phone charger, then the blackout in her POV. Turn: the choice that costs her.',
+    crisis:'Pages 33–39: blood, a smashed phone, a page she doesn\'t remember writing. The feedback meeting falls apart. She\'s lost in Soho, a mirror of the competent Uber scene in Italy, and Simon is evasive on the phone.',
+    resolution:'Pages 39–40: at home, her hand on the door knob triggers the first memory fragment. It ends on an image, not an explanation.',
+    narrClose:'No voiceover. The final image, her trembling fist and near-smile, does the work.',
+    scenes:'The Italy street and the Uber: setup of her competence and the honesty pact\nLondon bathroom: she dodges messages\nAgency office and her flat, cross-cut phone call: she promises the draft\nFlat: flatmates, hash, pills\nSimon and Kat\'s house: the throuple negotiation\nStation to the office: she arrives to work\nWriting montage, first with music, then without\nThe bar: Simon, Kat, Derae, Alissa\nOffice: she sets the alarm and leaves\nKaraoke: her public triumph\nThe bar: strangers, the charger, the blackout\nOffice the next morning: blood, the page, the shower\nFeedback meeting: the draft she doesn\'t recognize\nSoho streets: lost\nTaxi and Simon cross-cut: his evasion\nFlat bedroom: door knob, flashback, trembling fist'
+  }]
 }};
 
 
@@ -605,14 +638,14 @@ function fieldHTML(f,val,exVal,attrs){
   const hasEx=filled(exVal);
   return `<div class="field"><label for="${id}">${esc(f.label)}</label>${f.hint?`<p class="hint">${esc(f.hint)}</p>`:''}${input}
     <div class="meta">${meta}${hasEx?'<button class="btn ghost" type="button" data-toggle-ex>Show example</button>':''}</div>
-    ${hasEx?`<div class="example" hidden><b>Worked example</b>${esc(exVal)}</div>`:''}</div>`;
+    ${hasEx?`<div class="example" hidden><b>Example: ${EX_SOURCE}</b>${esc(exVal)}</div>`:''}</div>`;
 }
 function renderMain(){
   const st=STAGES[stage], d=P.data;
   let h='';
   if(PREVIEW) h+=`<div class="banner"><b>Preview mode.</b> Work saves to this browser only. ${CONFIGURED?'The Supabase library didn\'t load, so check your connection.':'Add your Supabase URL and key at the top of the script to go live.'} Add <code>?lead=1</code> to the address to preview the lead view.</div>`;
   if(!canEdit) h+=`<div class="banner">You're viewing <b>${esc(P.owner_email||'a writer')}</b>'s project. Their text is read-only. You can leave coaching notes and approve stages below.</div>`;
-  else if(stage===0) h+=`<div class="banner">In the worked examples, <b>Draft:</b> marks a proposal to react to and <b>Open:</b> marks a decision still to make.</div>`;
+  else if(stage===0) h+=`<div class="banner">Worked examples come from <b>I May Destroy You</b> by Michaela Coel (BBC One and HBO, 2020). They are paraphrased analysis, with page references to the 12 March 2019 draft of episode 1 and the aired season. No script text is reproduced.</div>`;
   h+=`<p class="eyebrow">Stage ${stage+1} of ${STAGES.length}</p><h1 class="stage">${esc(st.title)}</h1>
     <p class="purpose">${esc(st.purpose)}</p>
     <details class="craft"><summary>HBO craft notes</summary><ul>${st.craft.map(c=>`<li>${esc(c)}</li>`).join('')}</ul></details>`;
@@ -707,7 +740,7 @@ document.addEventListener('click',async e=>{
   if(t.id==='newBtn'){$('#newName').value='';$('#newDlg').showModal();return}
   if(t.id==='newCancel'){$('#newDlg').close();return}
   if(t.id==='newCreate'){const name=$('#newName').value.trim(),seed=document.querySelector('input[name=seed]:checked').value;
-    $('#newDlg').close();await createProject(name||(seed==='example'?'Worked example copy':'Untitled series'),seed);return}
+    $('#newDlg').close();await createProject(name||(seed==='example'?'Study copy: I May Destroy You':'Untitled series'),seed);return}
   if(t.id==='exportBtn')return exportMd();
   if(t.id==='deleteBtn'){if(!confirm(`Delete "${P.title}" and all its notes? This cannot be undone.`))return;
     const {error}=await sb.from('sb_projects').delete().eq('id',P.id);if(error){alert('Project not deleted: '+error.message);return}
