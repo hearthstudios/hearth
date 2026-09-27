@@ -40,6 +40,7 @@
     }
   });
 
+<<<<<<< HEAD
   /* ---------------- homepage video hero (self-hosted muted loop) ---------------- */
   var hero = document.querySelector('[data-video-hero]');
   if (hero) {
@@ -72,6 +73,45 @@
           es.forEach(function (e) { if (btn && btn.getAttribute('aria-pressed') === 'true') return; if (e.isIntersecting) vid.play().catch(function () {}); else vid.pause(); });
         }, { threshold: 0.1 }).observe(hero);
       }
+=======
+  /* ---------------- homepage video hero (YouTube, muted loop) ---------------- */
+  var hero = document.querySelector('[data-video-hero]');
+  if (hero) {
+    var id = hero.getAttribute('data-youtube-id') || CFG.heroYouTubeId;
+    var holder = hero.querySelector('.yt');
+    var btn = hero.querySelector('.pause-btn');
+    var iframe = null;
+    var saveData = navigator.connection && navigator.connection.saveData;
+    function cmd(fn) {
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: fn, args: [] }), '*');
+      }
+    }
+    if (id && holder && !reduceMotion && !saveData) {
+      window.addEventListener('load', function () {
+        iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + id +
+          '?autoplay=1&mute=1&loop=1&playlist=' + id +
+          '&controls=0&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&enablejsapi=1';
+        iframe.title = 'Time Lock (background loop)';
+        iframe.setAttribute('tabindex', '-1');
+        iframe.setAttribute('aria-hidden', 'true');
+        iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+        iframe.addEventListener('load', function () {
+          setTimeout(function () { hero.classList.add('playing'); }, 900);
+        });
+        holder.appendChild(iframe);
+      });
+    } else if (btn) {
+      btn.hidden = true; // still image only
+    }
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var paused = btn.getAttribute('aria-pressed') === 'true';
+        if (paused) { cmd('playVideo'); btn.setAttribute('aria-pressed', 'false'); btn.setAttribute('aria-label', 'Pause background video'); }
+        else { cmd('pauseVideo'); btn.setAttribute('aria-pressed', 'true'); btn.setAttribute('aria-label', 'Play background video'); }
+      });
+>>>>>>> bdb0effb52f7a486f64191de66a4c0c84dbf7964
     }
   }
 
@@ -109,6 +149,7 @@
     return hp && hp.value;
   }
 
+<<<<<<< HEAD
   /* ---------------- conditional "other" fields ---------------- */
   function syncReveals(scope) {
     (scope || document).querySelectorAll('[data-reveal-when]').forEach(function (w) {
@@ -124,6 +165,8 @@
   document.addEventListener('reset', function (e) { setTimeout(function () { syncReveals(e.target); }, 0); });
   syncReveals();
 
+=======
+>>>>>>> bdb0effb52f7a486f64191de66a4c0c84dbf7964
   /* ---------------- The Glow signup ---------------- */
   document.querySelectorAll('[data-glow-form]').forEach(function (form) {
     var msg = form.querySelector('.glow-msg');
@@ -160,6 +203,7 @@
       if (counter) counter.textContent = String(n + 1);
       if (nameEl) nameEl.textContent = formSteps[n].getAttribute('data-name') || '';
       if (err) err.textContent = '';
+<<<<<<< HEAD
       stepErr().textContent = '';
     }
     function stepErr() {
@@ -172,11 +216,16 @@
       formSteps[i].querySelectorAll('input[type=url]').forEach(function (u) {
         var v = u.value.trim(); if (v && !/^[a-z][a-z0-9+.-]*:\/\//i.test(v)) u.value = 'https://' + v;
       });
+=======
+    }
+    function valid() {
+>>>>>>> bdb0effb52f7a486f64191de66a4c0c84dbf7964
       var ok = true, firstBad = null;
       formSteps[i].querySelectorAll('input,textarea,select').forEach(function (el) {
         if (!el.checkValidity()) { ok = false; if (!firstBad) firstBad = el; }
       });
       var need = formSteps[i].querySelector('[data-require-one]');
+<<<<<<< HEAD
       var msg = '';
       if (need && !need.querySelector('input:checked')) {
         ok = false; msg = need.getAttribute('data-require-one');
@@ -189,6 +238,14 @@
           : name ? 'Please complete “' + name.charAt(0) + name.slice(1).toLowerCase() + '”.' : 'Please fill in the required fields.';
       }
       stepErr().textContent = msg;
+=======
+      if (need && !need.querySelector('input:checked')) {
+        ok = false; if (err) err.textContent = need.getAttribute('data-require-one');
+        if (!firstBad) firstBad = need.querySelector('input');
+      } else if (!ok && err) {
+        err.textContent = 'Please fill in the required fields.';
+      }
+>>>>>>> bdb0effb52f7a486f64191de66a4c0c84dbf7964
       if (firstBad) firstBad.focus();
       return ok;
     }
@@ -209,7 +266,11 @@
       };
       if (before && Stepper.hooks[before]) {
         t.disabled = true;
+<<<<<<< HEAD
         Stepper.hooks[before](form).then(go).catch(function (x) { stepErr().textContent = x.message; })
+=======
+        Stepper.hooks[before](form).then(go).catch(function (x) { if (err) err.textContent = x.message; })
+>>>>>>> bdb0effb52f7a486f64191de66a4c0c84dbf7964
           .then(function () { t.disabled = false; });
       } else go();
     });
@@ -218,13 +279,21 @@
       if (!valid() || isBot(form)) return;
       var btn = form.querySelector('.step:not([hidden]) button[type=submit]');
       if (btn) btn.disabled = true;
+<<<<<<< HEAD
       stepErr().textContent = '';
+=======
+      if (err) err.textContent = '';
+>>>>>>> bdb0effb52f7a486f64191de66a4c0c84dbf7964
       onSubmit(collect(form)).then(function () {
         formSteps.forEach(function (s) { s.hidden = true; });
         if (progress) progress.hidden = true;
         if (done) { done.hidden = false; var h = done.querySelector('h3,.h3'); if (h) { h.setAttribute('tabindex', '-1'); h.focus(); } }
       }).catch(function (x) {
+<<<<<<< HEAD
         stepErr().textContent = x.message || 'Something went wrong. Try again, or email operations@buildyourhearth.studio.';
+=======
+        if (err) err.textContent = x.message || 'Something went wrong. Try again, or email operations@buildyourhearth.studio.';
+>>>>>>> bdb0effb52f7a486f64191de66a4c0c84dbf7964
       }).then(function () { if (btn) btn.disabled = false; });
     });
     form.addEventListener('reset', function () { setTimeout(function () { if (progress) progress.hidden = false; show(0); }, 0); });
@@ -347,8 +416,13 @@
             id: user.id,
             email: user.email,
             full_name: data.display_name,
+<<<<<<< HEAD
             location: (data.city === 'Elsewhere' ? data.city_other : data.city) || null,
             craft: list(data.roles).filter(function (r) { return r !== 'Other'; }).concat(data.roles_other ? [String(data.roles_other).trim()] : []),
+=======
+            location: data.city || null,
+            craft: list(data.roles),
+>>>>>>> bdb0effb52f7a486f64191de66a4c0c84dbf7964
             portfolio_url: data.portfolio_url || null,
             status: 'pending',
             updated_at: new Date().toISOString()
