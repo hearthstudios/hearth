@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&amp;family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/hearth.css?v=cdaae359">
+<link rel="stylesheet" href="assets/css/hearth.css?v=08b9ea3b">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -73,17 +73,34 @@
 </section>
 
 <section class="section">
-<div class="room room-home">
+<div class="room room-home" data-guest-only>
 <div class="copy">
 <span class="eyebrow">// The Circle · Free for every creator</span>
 <h2 class="room-title">There’s a room for you in <em>here</em><span class="dot">.</span></h2>
 <p style="margin:0;font-size:19px;line-height:1.6;max-width:520px">The Circle is where HEARTH creators find each other: a directory of filmmakers, writers, musicians, and crew, plus connections, and soon crew calls and the Series Builder.</p>
-<div class="btn-row"><a class="btn btn-dark" href="join.html">Join the Circle</a><a class="btn btn-outline-warm" href="the-circle.html" data-member-href="collab-hub.html#directory" data-member-text="Browse the directory">See what’s inside</a></div>
+<div class="btn-row"><a class="btn btn-dark" href="join.html">Join the Circle</a><a class="btn btn-outline-warm" href="the-circle.html">See what’s inside</a></div>
 </div>
 <div class="preview"><div class="room-card dir-preview">
 <div class="row-between" style="align-items:center"><span class="label">Creator directory</span><span class="tag-live">MEMBERS ONLY</span></div>
 <div class="dir-grid" aria-hidden="false"><div class="ph"><i></i><b></b><s></s></div><div class="ph"><i></i><b></b><s></s></div><div class="ph"><i></i><b></b><s></s></div><div class="ph"><i></i><b></b><s></s></div><div class="ph"><i></i><b></b><s></s></div><div class="ph"><i></i><b></b><s></s></div><div class="lock"><a href="join.html"><svg width="12" height="14" viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1" y="6" width="10" height="7" rx="1.5"></rect><path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2"></path></svg>Join to see who’s here</a></div></div>
 <div class="status-list"><div><span>Directory &amp; connections</span><span class="tag-live">LIVE</span></div><div><span>Crew calls &amp; events board</span><span class="tag-soon">COMING SOON</span></div><div><span>Series Builder</span><span class="tag-soon">COMING SOON</span></div></div>
+</div></div>
+</div>
+<div class="room room-home" data-member-only data-home-circle hidden>
+<div class="copy">
+<span class="eyebrow">// The Circle · Welcome back</span>
+<h2 class="room-title">Welcome back<em data-member-first></em><span class="dot">.</span></h2>
+<p style="margin:0;font-size:19px;line-height:1.6;max-width:520px" data-hc-line>Here’s who’s new in the Circle.</p>
+<div class="btn-row"><a class="btn btn-dark" href="collab-hub.html">Go to the Circle</a><a class="btn btn-outline-warm" href="collab-hub.html#directory">Browse the directory</a></div>
+</div>
+<div class="preview"><div class="room-card dir-preview">
+<div class="row-between" style="align-items:center"><span class="label">New in the directory</span><a class="tag-live" href="collab-hub.html#directory">SEE ALL →</a></div>
+<ul class="mem-list" data-hc-members aria-live="polite"><li class="mem skel"><span class="av sm"></span><span><b></b><s></s></span></li><li class="mem skel"><span class="av sm"></span><span><b></b><s></s></span></li><li class="mem skel"><span class="av sm"></span><span><b></b><s></s></span></li><li class="mem skel"><span class="av sm"></span><span><b></b><s></s></span></li></ul>
+<div class="status-list">
+<div><a href="collab-hub.html#connections">Requests waiting on you</a><span class="tag-live" data-hc-requests>–</span></div>
+<div><a href="collab-hub.html#profile">Your profile</a><span class="tag-live" data-hc-status>–</span></div>
+<div><span>Crew calls &amp; events board</span><span class="tag-soon">COMING SOON</span></div>
+</div>
 </div></div>
 </div>
 </section>
@@ -122,6 +139,6 @@
 <nav aria-label="Social"><a href="https://www.instagram.com/buildyourhearth" rel="noopener">Instagram</a><a href="https://www.youtube.com/@BuildYourHearth" rel="noopener">YouTube</a><a href="https://buildyourhearth.beehiiv.com/" rel="noopener">The Glow archive</a></nav>
 </footer>
 <script src="assets/js/config.js?v=54d73ebf"></script>
-<script src="assets/js/hearth.js?v=ec38e663"></script>
+<script src="assets/js/hearth.js?v=c8853d59"></script>
 </body>
 </html>

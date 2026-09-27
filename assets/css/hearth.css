@@ -627,3 +627,15 @@ html{scroll-padding-top:96px}
 /* signed-in header: initials badge */
 .header-cta.is-avatar{width:44px;height:44px;min-height:44px;padding:0;border-radius:999px;background:var(--terracotta);color:#FBF7F1;font-size:15px;font-weight:600;letter-spacing:.04em;justify-content:center}
 .header-cta.is-avatar:hover{background:var(--ember);color:var(--bg)}
+
+/* homepage Circle section — signed-in preview */
+.mem-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.mem-list .mem{display:flex;align-items:center;gap:14px;padding:12px 0;border-top:1px solid var(--bone-line)}
+.mem-list .mem:first-child{border-top:0}
+.mem-list .mem b{display:block;font-family:var(--serif);font-weight:400;font-size:19px;line-height:1.2}
+.mem-list .mem s{display:block;text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--room-accent);text-transform:uppercase;margin-top:4px}
+.mem-list .skel .av{background:#E9DFD0}
+.mem-list .skel b{width:140px;height:14px;border-radius:4px;background:#E0D4C2}
+.mem-list .skel s{width:90px;height:10px;border-radius:4px;background:#E9DFD0}
+.mem-list .empty{padding:14px 0;font-size:15px;color:var(--room-text-2)}
+.room-home .status-list a{text-decoration:underline;text-underline-offset:4px}

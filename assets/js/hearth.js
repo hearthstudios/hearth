@@ -55,6 +55,41 @@
     });
     document.querySelectorAll('[data-signin]').forEach(function (a) { if (!a.closest('[data-hub]')) a.hidden = true; });
   }
+  /* homepage: live Circle preview for signed-in members (loads Supabase only when needed) */
+  function loadHomeCircle() {
+    var box = document.querySelector('[data-home-circle]');
+    if (!box || !CFG.supabaseUrl || !CFG.supabaseAnonKey) return;
+    var run = function () {
+      if (!window.supabase) return;
+      var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
+      var list = box.querySelector('[data-hc-members]');
+      var initials = function (n) { return (n || '?').trim().split(/\s+/).slice(0, 2).map(function (w) { return w[0]; }).join('').toUpperCase(); };
+      sb.auth.getSession().then(function (r) {
+        var user = r.data && r.data.session && r.data.session.user;
+        if (!user) { list.innerHTML = '<li class="empty">Sign in again to see the directory. <a href="collab-hub.html" style="text-decoration:underline">Open the Circle</a></li>'; return; }
+        sb.from('profiles').select('id, full_name, location, craft').eq('status', 'approved').neq('id', user.id)
+          .order('created_at', { ascending: false }).limit(4).then(function (q) {
+            var rows = q.data || [];
+            list.innerHTML = rows.length ? rows.map(function (p) {
+              var meta = [(p.craft || [])[0], p.location].filter(Boolean).join(' · ');
+              return '<li class="mem"><span class="av sm" aria-hidden="true">' + escHTML(initials(p.full_name)) + '</span><span><b>' + escHTML(p.full_name || 'HEARTH member') + '</b>' + (meta ? '<s>' + escHTML(meta) + '</s>' : '') + '</span></li>';
+            }).join('') : '<li class="empty">New members appear here as profiles are approved.</li>';
+          });
+        sb.from('connections').select('id', { count: 'exact', head: true }).eq('recipient_id', user.id).eq('status', 'pending').then(function (q) {
+          var n = q.count || 0;
+          box.querySelector('[data-hc-requests]').textContent = n;
+          box.querySelector('[data-hc-line]').textContent = n ? (n === 1 ? 'One person wants to connect. ' : n + ' people want to connect. ') + 'Here’s who’s new in the Circle.' : 'Here’s who’s new in the Circle.';
+        });
+        sb.from('profiles').select('status, full_name').eq('id', user.id).maybeSingle().then(function (q) {
+          var st = q.data && q.data.status;
+          box.querySelector('[data-hc-status]').textContent = st === 'approved' ? 'LIVE' : st === 'rejected' ? 'NEEDS A REVISION' : st ? 'IN REVIEW' : 'FINISH IT';
+        });
+      });
+    };
+    if (window.supabase) run();
+    else { var sc = document.createElement('script'); sc.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2'; sc.onload = run; document.head.appendChild(sc); }
+  }
+
   window.HEARTH_applyMember = function (m) {
     try { if (m) localStorage.setItem('hearth_member', JSON.stringify({ id: m.id, name: m.name })); else localStorage.removeItem('hearth_member'); } catch (e) {}
     applyMember(m, true);
@@ -63,6 +98,7 @@
   // signed-in members never need the sign-up page: send them into the Circle
   if (MEMBER && document.querySelector('form[data-join]') && !/[?&]stay\b/.test(location.search)) { location.replace('collab-hub.html'); return; }
   applyMember(MEMBER);
+  if (MEMBER) loadHomeCircle();
 
   /* ---------------- menu overlay ---------------- */
   var menu = document.getElementById('site-menu');
