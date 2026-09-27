@@ -1,36 +1,41 @@
-# HEARTH™ — Cloudflare Pages Redirects
-# 200 = serve the target file at the requested URL (rewrite, no redirect)
+# HEARTH™ — Netlify redirects (new site, Oct 2026)
+# 301 = old URL permanently moved to the new page. 200 = rewrite (URL stays).
 
-/                       /index.html                 200
+# ---- Old pages → new pages ----
+/video-production.html         /video-content.html              301
+/cast-crew-access.html         /cast-crew.html                  301
+/work-live-events.html         /live-events.html                301
+/community-screenings.html     /live-events.html                301
+/storytelling-workshops.html   /media-education.html            301
+/prog-script-labs.html         /script-labs.html                301
+/prog-music-residencies.html   /programs.html#sync-camp         301
+/prog-film-producing.html      /programs.html#tv-producing-lab  301
+/prog-youth-in-film.html       /programs.html#youth-in-film     301
+/prog-mentoring.html           /programs.html#mentorship        301
+/prog-showcases.html           /programs.html                   301
+/evt-*                         /events.html                     301
+/schedule.html                 /events.html                     301
+/newsletter.html               /the-glow.html                   301
+/blog-founding-story.html      /founding-story.html             301
+/thankyou.html                 /thank-you.html                  301
+/old_single_page_backup.html   /                                301
+/check.html                    /                                301
+/image-test.html               /                                301
 
-/programs               /programs.html              200
-/events                 /events.html                200
-/media                  /media.html                 200
-/community              /community.html             200
-/about                  /about.html                 200
-/membership             /membership.html            200
-/work-with-us           /work-with-us.html          200
-/schedule               /schedule.html              200
-/newsletter             /newsletter.html            200
-/resources              /resources.html             200
-/collab-hub             /collab-hub.html            200
-/music-supervision      /music-supervision.html     200
-/sponsorship            /sponsorship.html           200
-/work/live-event-production     /work-live-events.html      200
+# ---- Old pretty URLs ----
+/programs/script-labs          /script-labs.html                301
+/programs/music-residencies    /programs.html#sync-camp         301
+/programs/film-producing       /programs.html#tv-producing-lab  301
+/programs/youth-in-film        /programs.html#youth-in-film     301
+/programs/mentoring            /programs.html#mentorship        301
+/programs/showcases            /programs.html                   301
+/events/*                      /events.html                     301
+/work/live-event-production    /live-events.html                301
+/schedule                      /events.html                     301
+/newsletter                    /the-glow.html                   301
 
-/programs/script-labs           /prog-script-labs.html          200
-/programs/music-residencies     /prog-music-residencies.html    200
-/programs/film-producing        /prog-film-producing.html       200
-/programs/youth-in-film         /prog-youth-in-film.html        200
-/programs/mentoring             /prog-mentoring.html            200
-/programs/showcases             /prog-showcases.html            200
-
-/events/new-voices-night        /evt-new-voices.html            200
-/events/songwriting-for-camera  /evt-songwriting.html           200
-/events/breaking-in             /evt-breaking-in.html           200
-/events/stand-up-be-counted     /evt-stand-up.html              200
-/events/film-pitch-night        /evt-film-pitch.html            200
-/events/acting-for-camera       /evt-acting-camera.html         200
-/events/annual-hearth           /evt-annual-hearth.html         200
-
-# Catch-all: any unmatched path → 404 page (CF Pages default)
+# ---- Clean URLs ----
+/circle                        /the-circle.html                 200
+/join                          /join.html                       200
+/glow                          /the-glow.html                   200
+/collab-hub                    /collab-hub.html                 200
