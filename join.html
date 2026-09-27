@@ -56,12 +56,18 @@
 </div>
 <main id="main">
 <div class="room join-shell">
-<div class="join-head">
+<div class="join-head" data-member-only hidden>
+<span class="eyebrow">// The Circle</span>
+<h1 class="serif" style="margin:0;font-size:clamp(48px,6vw,88px);line-height:1">You’re already in<span data-member-first></span><span class="dot">.</span></h1>
+<p style="margin:0;font-size:19px;line-height:1.6">You’re signed in, so there’s nothing to fill out. Head into the Circle to find collaborators and update your profile.</p>
+<a class="btn btn-dark" href="collab-hub.html">Go to the Circle</a>
+</div>
+<div class="join-head" data-guest-only>
 <span class="eyebrow">// The Circle</span>
 <h1 class="serif" style="margin:0;font-size:clamp(48px,6vw,88px);line-height:1">Pull up a chair<span class="dot">.</span></h1>
 <p style="margin:0;font-size:19px;line-height:1.6">Free for every creator. Find collaborators, post crew calls, join the TV Club, and get your work in front of the Circle.</p>
 </div>
-<form class="join-card" data-join novalidate>
+<form class="join-card" data-join data-guest-only novalidate>
 <div class="progress" aria-live="polite"><span class="eyebrow">Step <span data-step-count>1</span> of 3 · <span data-step-name>Your account</span></span><div class="bars" aria-hidden="true"><span></span><span></span><span></span></div></div>
 
 <div class="step" data-name="Your account">

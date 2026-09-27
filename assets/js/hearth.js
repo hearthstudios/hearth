@@ -4,6 +4,48 @@
   var CFG = window.HEARTH_CONFIG || {};
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------------- signed-in member state (site-wide) ---------------- */
+  function readMember() {
+    try {
+      var ref = (CFG.supabaseUrl || '').replace(/^https?:\/\//, '').split('.')[0];
+      var raw = ref && localStorage.getItem('sb-' + ref + '-auth-token');
+      if (!raw) return null;
+      var t = JSON.parse(raw), sess = t && (t.currentSession || t);
+      if (!sess || !sess.refresh_token || !sess.user) return null;
+      var u = sess.user, cached = JSON.parse(localStorage.getItem('hearth_member') || 'null');
+      var name = (cached && cached.id === u.id && cached.name) || (u.user_metadata && u.user_metadata.full_name) || '';
+      return { id: u.id, name: name, email: u.email };
+    } catch (e) { return null; }
+  }
+  function escHTML(x) { return String(x || '').replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function applyMember(m, keepPage) {
+    document.documentElement.classList.toggle('is-member', !!m);
+    if (!keepPage) { // on page load only; never swap out a form someone just finished
+      document.querySelectorAll('[data-guest-only]').forEach(function (el) { el.hidden = !!m; });
+      document.querySelectorAll('[data-member-only]').forEach(function (el) { el.hidden = !m; });
+    }
+    if (!m) return;
+    var first = (m.name || '').trim().split(/\s+/)[0] || '';
+    var ini = (m.name || m.email || '?').trim().split(/\s+/).slice(0, 2).map(function (w) { return w[0]; }).join('').toUpperCase();
+    document.querySelectorAll('[data-member-first]').forEach(function (el) { el.textContent = first ? ', ' + first : ''; });
+    document.querySelectorAll('.header-cta').forEach(function (a) {
+      a.setAttribute('href', 'collab-hub.html');
+      a.setAttribute('aria-label', 'The Circle, signed in as ' + (m.name || m.email || 'member'));
+      a.innerHTML = '<span aria-hidden="true" style="width:30px;height:30px;border-radius:999px;margin:-6px 4px -6px -12px;background:var(--terracotta);color:#FBF7F1;display:inline-flex;align-items:center;justify-content:center;font-size:12px">' + escHTML(ini) + '</span>' + escHTML(first || 'The Circle');
+    });
+    document.querySelectorAll('a[href="join.html"]:not(.header-cta)').forEach(function (a) {
+      if (/see who/i.test(a.textContent)) { a.setAttribute('href', 'collab-hub.html#directory'); a.textContent = 'Open the directory'; return; }
+      a.setAttribute('href', 'collab-hub.html');
+      if (!a.children.length || /join/i.test(a.textContent)) a.textContent = a.textContent.trim().charAt(0) === '→' ? '→ Go to the Circle' : 'Go to the Circle';
+    });
+    document.querySelectorAll('[data-signin]').forEach(function (a) { if (!a.closest('[data-hub]')) a.hidden = true; });
+  }
+  window.HEARTH_applyMember = function (m) {
+    try { if (m) localStorage.setItem('hearth_member', JSON.stringify({ id: m.id, name: m.name })); else localStorage.removeItem('hearth_member'); } catch (e) {}
+    applyMember(m, true);
+  };
+  applyMember(readMember());
+
   /* ---------------- menu overlay ---------------- */
   var menu = document.getElementById('site-menu');
   var openers = document.querySelectorAll('[data-menu-open]');
@@ -59,14 +101,13 @@
       if (pr && pr.then) pr.then(function () { setPaused(false); }).catch(function () { setPaused(true); });
     }
     if (vid) {
-      // pick the best file this browser can play: H.264 MP4 (Safari/iOS/Chrome/Edge), else VP9 WebM
-      var small = window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
-      var size = small ? 'small' : 'large';
-      var mp4 = vid.canPlayType('video/mp4; codecs="avc1.640028"') || vid.canPlayType('video/mp4');
-      var webm = vid.canPlayType('video/webm; codecs="vp9"');
-      vid.src = vid.getAttribute('data-' + ((mp4 === 'probably' || !webm) ? 'mp4' : 'webm') + '-' + size);
+      // the browser picks the first <source> it can play (MP4 for Safari/Chrome/Edge, WebM otherwise).
+      // Phones get the lighter 720p files.
+      if (window.matchMedia && window.matchMedia('(max-width: 900px)').matches) {
+        vid.querySelectorAll('source[data-small]').forEach(function (so) { so.src = so.getAttribute('data-small'); });
+        vid.load();
+      }
       vid.muted = true; vid.defaultMuted = true; vid.loop = true;
-      vid.setAttribute('muted', ''); vid.setAttribute('playsinline', ''); vid.setAttribute('webkit-playsinline', '');
       // belt and braces: restart at the end if a browser ignores loop
       vid.addEventListener('ended', function () { vid.currentTime = 0; tryPlay(); });
       if (reduceMotion || saveData) { userPaused = true; setPaused(true); }
@@ -366,7 +407,7 @@
             portfolio_url: data.portfolio_url || null,
             status: 'pending',
             updated_at: new Date().toISOString()
-          }).then(function (r) { if (r.error) throw new Error(r.error.message); });
+          }).then(function (r) { if (r.error) throw new Error(r.error.message); window.HEARTH_applyMember({ id: user.id, name: data.display_name, email: user.email }); });
         });
     });
     var enter = document.querySelector('[data-circle-app]');

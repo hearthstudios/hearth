@@ -241,7 +241,7 @@
     sb.from('profiles').upsert(d).then(function (r) {
       btn.disabled = false; btn.textContent = 'Save profile';
       if (r.error) { console.error(r.error); err.textContent = 'That didn’t save. Try again, or email operations@buildyourhearth.studio.'; return; }
-      S.profile = Object.assign({}, S.profile || {}, d); S.dirty = false;
+      S.profile = Object.assign({}, S.profile || {}, d); S.dirty = false; headerPill();
       $('[data-save-status]').textContent = 'Saved · in review';
       toast('Saved. Your profile is with our team for review.');
       loadDirectory().then(refreshAll);
@@ -327,14 +327,16 @@
       S.recovering = false; toast('Password updated'); start();
     });
   });
-  $('[data-signout]').addEventListener('click', function () { sb.auth.signOut().then(function () { location.hash = ''; }); });
+  $('[data-signout]').addEventListener('click', function () { sb.auth.signOut().then(function () { try { localStorage.removeItem('hearth_member'); } catch (e) {} location.replace('collab-hub.html'); }); });
 
+  // keeps the site-wide header (and every other page) in sync with who is signed in
   function headerPill() {
-    var cta = document.querySelectorAll('.header-cta');
-    cta.forEach(function (a) {
-      if (S.user) { a.setAttribute('href', '#profile'); a.innerHTML = '<span class="av sm" aria-hidden="true" style="width:30px;height:30px;font-size:12px;margin:-6px 4px -6px -12px;background:var(--terracotta);color:#FBF7F1;font-family:var(--sans)">' + esc(initials((S.profile && S.profile.full_name) || S.user.email)) + '</span>' + esc(first(S.profile && S.profile.full_name) || 'Your profile'); }
-      else { a.setAttribute('href', 'join.html'); a.innerHTML = 'Join<span class="cta-long"> the Circle</span>'; }
-    });
+    if (S.user) {
+      if (window.HEARTH_applyMember) window.HEARTH_applyMember({ id: S.user.id, name: (S.profile && S.profile.full_name) || (S.user.user_metadata && S.user.user_metadata.full_name) || '', email: S.user.email });
+    } else {
+      try { localStorage.removeItem('hearth_member'); } catch (e) {}
+      document.querySelectorAll('.header-cta').forEach(function (a) { a.setAttribute('href', 'join.html'); a.removeAttribute('aria-label'); a.innerHTML = 'Join<span class="cta-long"> the Circle</span>'; });
+    }
   }
 
   function start() {

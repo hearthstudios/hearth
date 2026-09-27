@@ -19,6 +19,7 @@ a{color:inherit;text-decoration:none}
 a:hover{color:var(--ember)}
 :focus-visible{outline:2px solid var(--ember);outline-offset:3px;border-radius:4px}
 button,input,textarea,select{font:inherit;color:inherit}
+[hidden]{display:none!important}
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .skip{position:absolute;left:12px;top:-60px;z-index:200;background:var(--text);color:var(--bg);padding:10px 16px;border-radius:999px;font-weight:600}
 .skip:focus{top:12px}
@@ -228,14 +229,17 @@ textarea.input{resize:vertical;min-height:96px}
 .site-footer a:hover{color:var(--ember)}
 
 /* ---------- home hero video ---------- */
-.video-hero{position:relative;height:min(82vh,780px);min-height:520px;background:var(--bg-deep);overflow:hidden}
+.video-hero{position:relative;width:100%;aspect-ratio:1920/814;max-height:86vh;background:var(--bg-deep);overflow:hidden}
 .video-hero .loop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.72)}
-.video-hero .poster{object-fit:cover;filter:brightness(.6)}
-.video-hero .yt{pointer-events:none;opacity:0;transition:opacity 1s}
-.video-hero.playing .yt{opacity:1}
-.video-hero .yt iframe{position:absolute;top:50%;left:50%;width:100vw;height:56.25vw;min-height:100%;min-width:177.78vh;transform:translate(-50%,-50%);border:0}
 .video-hero .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,10,9,.85) 0%,rgba(11,10,9,.15) 45%,rgba(11,10,9,.35) 100%)}
 .video-hero .overlay{position:absolute;left:0;right:0;bottom:0;padding:40px var(--gutter);display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+@media (max-width:820px){
+  /* phones & small tablets: show the whole frame, caption sits below it */
+  .video-hero{aspect-ratio:auto;max-height:none;display:flex;flex-direction:column;background:var(--bg)}
+  .video-hero .loop{position:relative;inset:auto;height:auto;aspect-ratio:1920/814;object-fit:contain;filter:none}
+  .video-hero .shade{display:none}
+  .video-hero .overlay{position:relative;padding:24px var(--gutter) 8px}
+}
 .video-hero .film-title{font-family:var(--serif);font-weight:300;font-size:clamp(44px,5vw,64px);letter-spacing:-.03em;line-height:1}
 .pause-btn{flex:none;width:48px;height:48px;border-radius:999px;border:1px solid var(--text);background:rgba(11,10,9,.3);color:var(--text);display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;padding:0}
 .pause-btn:hover{border-color:var(--ember);color:var(--ember)}
