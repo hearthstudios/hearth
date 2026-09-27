@@ -35,10 +35,23 @@
       a.classList.add('is-avatar');
       a.textContent = ini;
     });
+    // Resources: members download directly
+    document.querySelectorAll('.res-row[data-file]').forEach(function (row) {
+      row.setAttribute('href', row.getAttribute('data-file')); row.setAttribute('download', '');
+      var g = row.querySelector('.get'); if (g) g.textContent = 'DOWNLOAD ↓';
+    });
+    var rc = document.querySelector('[data-res-card]');
+    if (rc) rc.innerHTML = '<span class="eyebrow">// You’re in the Circle</span><span class="h4">Download anything on this page.</span><p class="body">New templates land here as we build them.</p><a class="btn btn-light" href="collab-hub.html" style="align-self:flex-start">Go to the Circle</a>';
+    // explicit member versions set in the page markup win
+    document.querySelectorAll('[data-member-href]').forEach(function (el) { el.setAttribute('href', el.getAttribute('data-member-href')); });
+    document.querySelectorAll('[data-member-text]').forEach(function (el) { el.textContent = el.getAttribute('data-member-text'); });
+    // every remaining "Join" link goes into the Circle; only its label changes, never the rest of a card
     document.querySelectorAll('a[href="join.html"]:not(.header-cta)').forEach(function (a) {
       if (/see who/i.test(a.textContent)) { a.setAttribute('href', 'collab-hub.html#directory'); a.textContent = 'Open the directory'; return; }
       a.setAttribute('href', 'collab-hub.html');
-      if (!a.children.length || /join/i.test(a.textContent)) a.textContent = a.textContent.trim().charAt(0) === '→' ? '→ Go to the Circle' : 'Go to the Circle';
+      var label = function (t) { return t.trim().charAt(0) === '→' ? '→ Go to the Circle' : 'Go to the Circle'; };
+      if (!a.children.length) { a.textContent = label(a.textContent); return; }
+      a.querySelectorAll('*').forEach(function (el) { if (!el.children.length && /join/i.test(el.textContent)) el.textContent = label(el.textContent); });
     });
     document.querySelectorAll('[data-signin]').forEach(function (a) { if (!a.closest('[data-hub]')) a.hidden = true; });
   }
