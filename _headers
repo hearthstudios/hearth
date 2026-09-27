@@ -1,4 +1,4 @@
-# HEARTH™ — Netlify Headers
+# HEARTH™ — Netlify headers
 
 /resources/*.xlsx
   Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
@@ -8,19 +8,28 @@
   Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
   Content-Disposition: attachment
 
-/resources/*.pdf
-  Content-Type: application/pdf
+/downloads/*.zip
+  Content-Type: application/zip
   Content-Disposition: attachment
 
-# Netlify functions — must be unrestricted so the browser can POST to them
+/assets/*
+  Cache-Control: public, max-age=604800
+
+# Netlify functions — unrestricted so the browser can POST to them
 /.netlify/functions/*
   Access-Control-Allow-Origin: *
   Access-Control-Allow-Headers: Content-Type
   Access-Control-Allow-Methods: POST, OPTIONS
 
-# Security headers for HTML pages only (not functions)
+# Security headers for HTML pages
 /*.html
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Content-Security-Policy: form-action 'self' https://docs.google.com; connect-src 'self' https://docs.google.com https://api.emailjs.com https://cdn.jsdelivr.net
+  Content-Security-Policy: form-action 'self' https://docs.google.com; connect-src 'self' https://docs.google.com https://cdn.jsdelivr.net https://ogxnqfensgdfjqaronsi.supabase.co wss://ogxnqfensgdfjqaronsi.supabase.co
+
+/
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: form-action 'self' https://docs.google.com; connect-src 'self' https://docs.google.com https://cdn.jsdelivr.net https://ogxnqfensgdfjqaronsi.supabase.co wss://ogxnqfensgdfjqaronsi.supabase.co
