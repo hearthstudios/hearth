@@ -94,6 +94,8 @@
     try { if (m) localStorage.setItem('hearth_member', JSON.stringify({ id: m.id, name: m.name })); else localStorage.removeItem('hearth_member'); } catch (e) {}
     applyMember(m, true);
   };
+  // a password-reset link that lands anywhere but the Circle gets forwarded there
+  if (/type=recovery/.test(location.hash) && !document.querySelector('[data-hub]')) { location.replace('collab-hub.html?reset=1' + location.hash); return; }
   var MEMBER = readMember();
   // signed-in members never need the sign-up page: send them into the Circle
   if (MEMBER && document.querySelector('form[data-join]') && !/[?&]stay\b/.test(location.search)) { location.replace('collab-hub.html'); return; }

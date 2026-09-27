@@ -639,3 +639,26 @@ html{scroll-padding-top:96px}
 .mem-list .skel s{width:90px;height:10px;border-radius:4px;background:#E9DFD0}
 .mem-list .empty{padding:14px 0;font-size:15px;color:var(--room-text-2)}
 .room-home .status-list a{text-decoration:underline;text-underline-offset:4px}
+
+/* homepage program rows: title and "Get notified" are separate links */
+.program-row .h-row:hover{color:var(--ember)}
+.program-row .notify-link{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;color:var(--text);text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--ember)}
+.program-row .notify-link:hover{color:var(--ember)}
+
+/* member profile view (Circle) */
+.name-btn{background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;text-align:left;cursor:pointer;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:5px;transition:text-decoration-color .15s}
+.name-btn:hover,.name-btn:focus-visible{text-decoration-color:var(--terracotta)}
+.req-row .name-btn.name{font-family:var(--serif);font-size:22px}
+.profile-dlg{width:min(560px,calc(100vw - 32px));max-height:calc(100vh - 48px);overflow:auto;border:0;border-radius:24px;padding:40px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.profile-dlg::backdrop{background:rgba(11,10,9,.7)}
+.profile-dlg .who{display:flex;gap:18px;align-items:center}
+.profile-dlg .dlg-name{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(28px,4vw,36px);letter-spacing:-.02em;line-height:1.1}
+.dlg-facts{margin:0;border-top:1px solid var(--bone-line)}
+.dlg-facts > div{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--bone-line)}
+.dlg-facts dt{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--room-muted);padding-top:3px}
+.dlg-facts dd{margin:0;font-size:16px}
+.dlg-actions{display:flex;flex-wrap:wrap;gap:10px}
+.dlg-actions a.hbtn{display:inline-flex;align-items:center}
+.dlg-close{position:absolute;top:14px;right:16px;width:44px;height:44px;border-radius:999px;border:0;background:transparent;font-size:26px;line-height:1;color:var(--charcoal);cursor:pointer}
+.dlg-close:hover{background:var(--bone-line)}
+@media (max-width:560px){.profile-dlg{padding:32px 22px}.dlg-facts > div{grid-template-columns:1fr;gap:4px}}

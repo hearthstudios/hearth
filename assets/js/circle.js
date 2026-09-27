@@ -14,7 +14,7 @@
   }
   var sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
   var PAGE = 12;
-  var S = { user: null, profile: null, conns: [], directory: [], craft: '', shown: PAGE, sub: 'incoming', recovering: false, dirty: false };
+  var S = { people: {}, user: null, profile: null, conns: [], directory: [], craft: '', shown: PAGE, sub: 'incoming', recovering: false, dirty: false };
 
   /* ---------- helpers ---------- */
   function $(sel, el) { return (el || root).querySelector(sel); }
@@ -58,7 +58,7 @@
     var pills = [skillShort(p.skill_level), p.availability].filter(Boolean).map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('');
     var port = safeUrl(p.portfolio_url);
     return '<article class="room-card mcard">' +
-      '<div class="who"><span class="av" aria-hidden="true">' + esc(initials(p.full_name)) + '</span><div class="stack gap-8"><h3>' + esc(p.full_name || 'HEARTH member') + '</h3>' + (meta ? '<span class="meta">' + esc(meta) + '</span>' : '') + '</div></div>' +
+      '<div class="who"><span class="av" aria-hidden="true">' + esc(initials(p.full_name)) + '</span><div class="stack gap-8"><h3>' + (opts.preview || !p.id ? esc(p.full_name || 'HEARTH member') : '<button type="button" class="name-btn" data-view-profile="' + esc(p.id) + '">' + esc(p.full_name || 'HEARTH member') + '</button>') + '</h3>' + (meta ? '<span class="meta">' + esc(meta) + '</span>' : '') + '</div></div>' +
       (pills ? '<div class="pills">' + pills + '</div>' : '') +
       '<div class="foot">' + (port ? '<a href="' + esc(port) + '" target="_blank" rel="noopener noreferrer">Portfolio ↗<span class="sr-only"> (opens in a new tab)</span></a>' : '<span style="font-size:14px;color:var(--room-muted)">No portfolio yet</span>') +
       (opts.preview ? '' : connectButton(p)) + '</div></article>';
@@ -73,14 +73,16 @@
       .then(function (r) { S.conns = r.data || []; });
   }
   function loadDirectory() {
-    return sb.from('profiles').select('id, full_name, location, craft, skill_level, availability, portfolio_url, created_at')
+    return sb.from('profiles').select('id, full_name, location, craft, skill_level, availability, portfolio_url, social_url, created_at')
       .eq('status', 'approved').order('created_at', { ascending: false })
-      .then(function (r) { S.directory = r.data || []; });
+      .then(function (r) { S.directory = r.data || []; S.directory.forEach(function (p) { S.people[p.id] = p; }); });
   }
   function profilesById(ids) {
     if (!ids.length) return Promise.resolve({});
-    return sb.from('profiles').select('id, full_name, location, craft, skill_level, availability, portfolio_url').in('id', ids).then(function (r) {
-      var m = {}; (r.data || []).forEach(function (p) { m[p.id] = p; }); return m;
+    return sb.from('profiles').select('id, full_name, location, craft, skill_level, availability, portfolio_url, social_url').in('id', ids).then(function (r) {
+      var m = {}; (r.data || []).forEach(function (p) { m[p.id] = p; S.people[p.id] = p; });
+      ids.forEach(function (id) { if (!m[id]) S.people[id] = S.people[id] || { id: id, hidden: true }; });
+      return m;
     });
   }
 
@@ -125,15 +127,18 @@
       '<div class="hub-empty" style="grid-column:1/-1">The directory is filling up. Check back soon.</div>';
   }
   function reqRow(c, p, kind) {
-    p = p || { full_name: 'HEARTH member' };
+    var otherId = c.requester_id === S.user.id ? c.recipient_id : c.requester_id;
+    var hidden = !p;
+    p = p || { id: otherId, full_name: '' };
     var meta = [crafts(p).join(', '), p.location].filter(Boolean).join(' · ');
     var port = safeUrl(p.portfolio_url);
     var actions = kind === 'incoming'
       ? '<button class="hbtn" type="button" data-act="accept" data-conn="' + esc(c.id) + '">Accept</button><button class="hbtn line" type="button" data-act="cancel" data-conn="' + esc(c.id) + '">Decline</button>'
       : kind === 'sent' ? '<button class="hbtn line" type="button" data-act="cancel" data-conn="' + esc(c.id) + '">Cancel request</button>'
       : (port ? '<a class="hbtn line" style="display:inline-flex;align-items:center" href="' + esc(port) + '" target="_blank" rel="noopener noreferrer">Portfolio ↗</a>' : '');
-    return '<div class="req-row"><span class="av sm" aria-hidden="true">' + esc(initials(p.full_name)) + '</span><div class="stack gap-8"><span class="name">' + esc(p.full_name || 'HEARTH member') + '</span>' +
-      (meta ? '<span class="tag-live">' + esc(meta.toUpperCase()) + '</span>' : '') + '</div><div class="actions">' + actions + '</div></div>';
+    var label = hidden ? 'Member in review' : (p.full_name || 'HEARTH member');
+    return '<div class="req-row"><span class="av sm" aria-hidden="true">' + esc(hidden ? '·' : initials(p.full_name)) + '</span><div class="stack gap-8"><button type="button" class="name-btn name" data-view-profile="' + esc(otherId) + '">' + esc(label) + '</button>' +
+      (meta ? '<span class="tag-live">' + esc(meta.toUpperCase()) + '</span>' : (hidden ? '<span style="font-size:14px;color:var(--room-muted)">Their profile isn’t visible until HEARTH approves it.</span>' : '')) + '</div><div class="actions">' + actions + '</div></div>';
   }
 
   /* ---------- render: directory ---------- */
@@ -297,6 +302,39 @@
   $('[data-filter="q"]').addEventListener('input', function () { S.shown = PAGE; renderDirectory(); });
   $('[data-more]').addEventListener('click', function () { S.shown += PAGE; renderDirectory(); });
 
+  /* ---------- profile view ---------- */
+  var dlg = document.querySelector('[data-profile-dialog]');
+  function openProfile(id) {
+    if (!dlg) return;
+    var p = S.people[id] || { id: id, hidden: true };
+    var body = dlg.querySelector('[data-dlg-body]');
+    if (p.hidden) {
+      body.innerHTML = '<div class="who"><span class="av" aria-hidden="true">·</span><div class="stack gap-8"><h2 class="dlg-name" id="dlg-title">Member in review</h2></div></div>' +
+        '<p class="body-lg" style="color:var(--room-text-2)">This member’s profile hasn’t been approved yet, so their details aren’t visible. You’ll see their name and work here once HEARTH approves it.</p>' +
+        '<div class="dlg-actions">' + connectButton({ id: id }) + '</div>';
+    } else {
+      var port = safeUrl(p.portfolio_url), soc = safeUrl(p.social_url);
+      var rows = [['Craft', crafts(p).join(', ')], ['Based in', p.location], ['Experience', skillShort(p.skill_level)], ['Availability', p.availability]]
+        .filter(function (r) { return r[1]; }).map(function (r) { return '<div><dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd></div>'; }).join('');
+      var links = (port ? '<a class="hbtn line" href="' + esc(port) + '" target="_blank" rel="noopener noreferrer">Portfolio ↗</a>' : '') + (soc ? '<a class="hbtn line" href="' + esc(soc) + '" target="_blank" rel="noopener noreferrer">Social ↗</a>' : '');
+      body.innerHTML = '<div class="who"><span class="av" aria-hidden="true">' + esc(initials(p.full_name)) + '</span><div class="stack gap-8"><h2 class="dlg-name" id="dlg-title">' + esc(p.full_name || 'HEARTH member') + '</h2>' +
+        (p.location ? '<span class="tag-live">' + esc(p.location.toUpperCase()) + '</span>' : '') + '</div></div>' +
+        (rows ? '<dl class="dlg-facts">' + rows + '</dl>' : '') +
+        '<div class="dlg-actions">' + links + connectButton(p) + '</div>';
+    }
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+  root.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-view-profile]'); if (!b) return;
+    var id = b.getAttribute('data-view-profile');
+    if (!S.people[id]) profilesById([id]).then(function () { openProfile(id); }); else openProfile(id);
+  });
+  if (dlg) {
+    dlg.querySelector('[data-dlg-close]').addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('click', function (e) { if (e.target.closest('[data-act]')) setTimeout(function () { if (dlg.open) dlg.close(); }, 50); });
+  }
+
   /* ---------- auth ---------- */
   var sif = $('[data-signin-form]');
   sif.addEventListener('submit', function (e) {
@@ -313,7 +351,7 @@
     var err = $('[data-signin-err]'), ok = $('[data-signin-ok]'); err.textContent = ''; ok.textContent = '';
     var email = sif.email.value.trim();
     if (!email) { err.textContent = 'Enter your email above, then choose “Forgot password?”'; sif.email.focus(); return; }
-    sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname }).then(function (r) {
+    sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname + '?reset=1' }).then(function (r) {
       if (r.error) err.textContent = r.error.message; else ok.textContent = 'Check your inbox for a link to reset your password.';
     });
   });
@@ -324,7 +362,7 @@
     if (!rcf.password.checkValidity()) { err.textContent = 'Use at least 8 characters.'; return; }
     sb.auth.updateUser({ password: rcf.password.value }).then(function (r) {
       if (r.error) { err.textContent = r.error.message; return; }
-      S.recovering = false; toast('Password updated'); start();
+      S.recovering = false; try { history.replaceState(null, '', location.pathname); } catch (x) {} toast('Password updated. You’re signed in.'); start();
     });
   });
   $('[data-signout]').addEventListener('click', function () { sb.auth.signOut().then(function () { try { localStorage.removeItem('hearth_member'); } catch (e) {} location.replace('collab-hub.html'); }); });
@@ -339,10 +377,21 @@
     }
   }
 
+  // arriving from a reset-password email: always ask for the new password first
+  if (/[?&]reset=1/.test(location.search) || /type=recovery/.test(location.hash)) S.recovering = true;
+
   function start() {
     sb.auth.getSession().then(function (r) {
       S.user = r.data && r.data.session ? r.data.session.user : null;
-      if (S.recovering) { showState('recovery'); return; }
+      if (S.recovering) {
+        if (!S.user) { // link expired, already used, or opened in a different browser
+          S.recovering = false; try { history.replaceState(null, '', location.pathname); } catch (x) {}
+          showState('signedout'); headerPill();
+          $('[data-signin-err]').textContent = 'That reset link has expired or was already used. Enter your email and choose “Forgot password?” to get a new one.';
+          return;
+        }
+        showState('recovery'); return;
+      }
       if (!S.user) { headerPill(); showState('signedout'); return; }
       return Promise.all([loadProfile(), loadConns(), loadDirectory()]).then(function () {
         headerPill(); showState('signedin'); refreshAll();
