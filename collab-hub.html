@@ -1531,7 +1531,7 @@ async function refreshAuthUI(){
     if(hasBasics){
       document.getElementById('authSignedInSummary').style.display = 'block';
       const status = profile.status === 'approved' ? "You're live in the directory."
-                    : profile.status === 'rejected' ? "Your profile needs a revision — reach out to hello@buildyourhearth.studio."
+                    : profile.status === 'rejected' ? "Your profile needs a revision — reach out to operations@buildyourhearth.studio."
                     : "Your profile is saved and pending HEARTH™ review.";
       document.getElementById('summaryStatus').textContent = status;
     } else {
@@ -1710,7 +1710,7 @@ document.getElementById('collabSubmitBtn').addEventListener('click', async funct
 
   if(error){
     console.error('Save error:', error);
-    document.getElementById('collabError').textContent = 'There was an issue saving your profile. Please try again or email hello@buildyourhearth.studio.';
+    document.getElementById('collabError').textContent = 'There was an issue saving your profile. Please try again or email operations@buildyourhearth.studio.';
     document.getElementById('collabError').style.display = 'block';
     btn.textContent = 'Save Profile →'; btn.disabled = false;
   } else {
@@ -1915,7 +1915,7 @@ sb.auth.onAuthStateChange(function(){ refreshAuthUI(); });
       } else {
         btn.textContent = 'Subscribe to The Glow →';
         btn.disabled = false;
-        alert('There was an issue subscribing you. Please try again or email hello@buildyourhearth.studio.');
+        alert('There was an issue subscribing you. Please try again or email operations@buildyourhearth.studio.');
       }
     });
   });
