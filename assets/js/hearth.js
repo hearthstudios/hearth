@@ -30,8 +30,10 @@
     document.querySelectorAll('[data-member-first]').forEach(function (el) { el.textContent = first ? ', ' + first : ''; });
     document.querySelectorAll('.header-cta').forEach(function (a) {
       a.setAttribute('href', 'collab-hub.html');
-      a.setAttribute('aria-label', 'The Circle, signed in as ' + (m.name || m.email || 'member'));
-      a.innerHTML = '<span aria-hidden="true" style="width:30px;height:30px;border-radius:999px;margin:-6px 4px -6px -12px;background:var(--terracotta);color:#FBF7F1;display:inline-flex;align-items:center;justify-content:center;font-size:12px">' + escHTML(ini) + '</span>' + escHTML(first || 'The Circle');
+      a.setAttribute('aria-label', 'Your Circle, signed in as ' + (m.name || m.email || 'member'));
+      a.setAttribute('title', 'Your Circle');
+      a.classList.add('is-avatar');
+      a.textContent = ini;
     });
     document.querySelectorAll('a[href="join.html"]:not(.header-cta)').forEach(function (a) {
       if (/see who/i.test(a.textContent)) { a.setAttribute('href', 'collab-hub.html#directory'); a.textContent = 'Open the directory'; return; }
@@ -44,7 +46,10 @@
     try { if (m) localStorage.setItem('hearth_member', JSON.stringify({ id: m.id, name: m.name })); else localStorage.removeItem('hearth_member'); } catch (e) {}
     applyMember(m, true);
   };
-  applyMember(readMember());
+  var MEMBER = readMember();
+  // signed-in members never need the sign-up page: send them into the Circle
+  if (MEMBER && document.querySelector('form[data-join]') && !/[?&]stay\b/.test(location.search)) { location.replace('collab-hub.html'); return; }
+  applyMember(MEMBER);
 
   /* ---------------- menu overlay ---------------- */
   var menu = document.getElementById('site-menu');

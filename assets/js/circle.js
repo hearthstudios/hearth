@@ -335,7 +335,7 @@
       if (window.HEARTH_applyMember) window.HEARTH_applyMember({ id: S.user.id, name: (S.profile && S.profile.full_name) || (S.user.user_metadata && S.user.user_metadata.full_name) || '', email: S.user.email });
     } else {
       try { localStorage.removeItem('hearth_member'); } catch (e) {}
-      document.querySelectorAll('.header-cta').forEach(function (a) { a.setAttribute('href', 'join.html'); a.removeAttribute('aria-label'); a.innerHTML = 'Join<span class="cta-long"> the Circle</span>'; });
+      document.querySelectorAll('.header-cta').forEach(function (a) { a.setAttribute('href', 'join.html'); a.removeAttribute('aria-label'); a.removeAttribute('title'); a.classList.remove('is-avatar'); a.innerHTML = 'Join<span class="cta-long"> the Circle</span>'; });
     }
   }
 

@@ -12,8 +12,18 @@
   Content-Type: application/zip
   Content-Disposition: attachment
 
-/assets/*
-  Cache-Control: public, max-age=604800
+# CSS/JS are versioned (?v=...) in every page, but always re-check them so updates show immediately
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/img/*
+  Cache-Control: public, max-age=86400
+
+/assets/video/*
+  Cache-Control: public, max-age=86400
 
 # Netlify functions — unrestricted so the browser can POST to them
 /.netlify/functions/*

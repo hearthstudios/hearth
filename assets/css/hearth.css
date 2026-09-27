@@ -623,3 +623,7 @@ html{scroll-padding-top:96px}
   .req-row{grid-template-columns:auto 1fr}
   .req-row .actions{grid-column:1/-1}
 }
+
+/* signed-in header: initials badge */
+.header-cta.is-avatar{width:44px;height:44px;min-height:44px;padding:0;border-radius:999px;background:var(--terracotta);color:#FBF7F1;font-size:15px;font-weight:600;letter-spacing:.04em;justify-content:center}
+.header-cta.is-avatar:hover{background:var(--ember);color:var(--bg)}
