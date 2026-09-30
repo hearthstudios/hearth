@@ -155,3 +155,11 @@ Every member's name is now clickable: in the directory, on Home, and in Connecti
 ## Still open
 
 - `game-night.html`: date, time and venue are TBD for now. Fill them in once they're set.
+
+## Music submissions, easier to find
+
+Before, artists could only reach the submission form through Music Supervision, then Music Artists. Now it's linked from:
+- **Menu:** a new "For artists" column on every page, with Submit your music, How placement works, Artist FAQ and Sync Camp.
+- **Homepage:** a "For artists · Free to submit" band just above Featured work.
+- **Footer:** a "Submit your music" link on every page.
+- **The Circle for artists:** the For artists menu column ends with "Join the Circle". The Music Artists page has a Circle band ("Directors, editors and producers in the Circle are looking for music"). After submitting music, artists are invited to join. Signed-in members see "Go to the Circle" and "Update your profile" instead.
