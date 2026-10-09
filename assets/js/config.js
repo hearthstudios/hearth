@@ -1,12 +1,12 @@
 /*
   HEARTH site configuration. Nothing secret goes in this file: it ships to
-  the browser. The Airtable token and Beehiiv key stay in Netlify environment
-  variables (AIRTABLE_PAT, BEEHIIV_API_KEY, BEEHIIV_PUBLICATION_ID), read by
-  netlify/functions/airtable.js and beehiiv.js.
+  the browser. The Airtable token and MailerLite key stay in Netlify environment
+  variables (AIRTABLE_PAT, MAILERLITE_API_KEY, MAILERLITE_GROUP_ID), read by
+  netlify/functions/airtable.js and mailerlite.js.
 */
 window.HEARTH_CONFIG = {
-  // The Glow signup → Beehiiv (netlify/functions/beehiiv.js)
-  glowEndpoint: '/.netlify/functions/beehiiv',
+  // The Glow signup → MailerLite (netlify/functions/mailerlite.js)
+  glowEndpoint: '/.netlify/functions/mailerlite',
 
   // Airtable proxy (netlify/functions/airtable.js). It expects { base, table, fields }.
   airtableEndpoint: '/.netlify/functions/airtable',
