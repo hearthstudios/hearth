@@ -18,8 +18,8 @@ window.HEARTH_CONFIG = {
     inquiry: { base: 'appyhjawc9vZ5DfWg', table: 'tbl0F7d1Sgor8ZZWj' },
     // Sync library / Music Catalog
     music:   { base: 'appKsSNFxrW7R8nfs', table: 'tblJzxn2bQag54qMD' },
-    // Spoken & Sung artist call. Replace both IDs once the table exists (see README).
-    spokenSung: { base: 'appXXXXXXXXXXXXXX', table: 'tblXXXXXXXXXXXXXX' },
+    // Spoken & Sung artist call (Talent CRM base)
+    spokenSung: { base: 'appCC6w69xdWwul2x', table: 'tblgYM1Tf5S7emBFp' },
     // Crew Call (Talent CRM base)
     crewCall: { base: 'appCC6w69xdWwul2x', table: 'tblgLGuKIvtbZdIt8' }
   },
