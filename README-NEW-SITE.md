@@ -218,3 +218,8 @@ The link in the email opens `collab-hub.html?invite=1`, which shows "Welcome to 
 - "Join the Circle" sends a Circle invite with the profile prefilled: craft, City + State, experience, rate, availability, union status and links.
 - Linked from the menu ("For artists"), the Circle page and the Cast & Crew page.
 - City + State is now on every form: Join, Work With Us, the five service pages, Spoken & Sung, crew call, and Circle "My Profile". Profiles are still saved as "City, State" in one field.
+
+## Spoken & Sung requirements + safer Airtable saves · October 23, 2026
+
+- Spoken & Sung is now live-band only and open to artists in NY, NJ, CT and PA. The State dropdown offers only those four states. "Stage Needs" was replaced by **Band** (Bringing my own band / House band / Either) and **Band Details**, and there's a new required **Live Band Confirmed** checkbox. Add those three columns to the Spoken & Sung table.
+- Forms no longer fail outright when an Airtable column name doesn't match. The answer is saved into that record's **Notes** field with a "could not file" note, and the browser console logs the column name. If a record's Notes say "Answers Airtable could not file", fix that column's name in Airtable.

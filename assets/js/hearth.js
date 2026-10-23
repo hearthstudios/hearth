@@ -348,9 +348,35 @@
   function clean(o) { Object.keys(o).forEach(function (k) { var v = o[k]; if (v === '' || v == null || (Array.isArray(v) && !v.length)) delete o[k]; }); return o; }
   function list(v) { return Array.isArray(v) ? v : (v ? [v] : []); }
   function yes(v) { return list(v).indexOf('yes') > -1; }
+  // Sends a record to Airtable. If Airtable rejects a field (a column that was renamed, deleted, or is a
+  // formula), that answer moves into the record's Notes instead of losing the whole submission, and the
+  // problem is logged to the browser console. Up to 8 fields can be rerouted this way.
   function airtable(target, fields) {
     if (!target) return Promise.reject(new Error('Form destination not configured'));
-    return postJSON(CFG.airtableEndpoint, { base: target.base, table: target.table, fields: clean(fields) });
+    var f = clean(fields), moved = [], useNotes = true;
+    function send(tries) {
+      var body = {}; Object.keys(f).forEach(function (k) { body[k] = f[k]; });
+      if (moved.length && useNotes) body['Notes'] = 'Answers Airtable could not file (check the column names):\n' + moved.join('\n');
+      return fetch(CFG.airtableEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ base: target.base, table: target.table, fields: body }) })
+        .then(function (r) {
+          if (r.ok) { if (moved.length) console.warn('[HEARTH] Airtable columns not found, saved to Notes:', moved); return r; }
+          return r.json().catch(function () { return {}; }).then(function (data) {
+            var e = (data && data.error) || {}, msg = String(e.message || e || '');
+            console.error('[HEARTH] Airtable error', r.status, e.type || '', msg);
+            var m = msg.match(/Unknown field name: "([^"]+)"/) || msg.match(/Field "([^"]+)" cannot accept/) || msg.match(/field "([^"]+)"/i);
+            if (m && tries < 8) {
+              var name = m[1];
+              if (name === 'Notes') { useNotes = false; return send(tries + 1); }
+              if ((name === 'First Name' || name === 'Last Name') && !('Full Name' in f) && (f['First Name'] || f['Last Name'])) {
+                f['Full Name'] = [f['First Name'], f['Last Name']].filter(Boolean).join(' '); delete f['First Name']; delete f['Last Name']; return send(tries + 1);
+              }
+              if (name in f) { var v = f[name]; moved.push(name + ': ' + (Array.isArray(v) ? v.join(', ') : v)); delete f[name]; return send(tries + 1); }
+            }
+            throw new Error('Request failed (' + r.status + ')');
+          });
+        });
+    }
+    return send(0);
   }
   function describe(d, extra) {
     var parts = [];
@@ -424,7 +450,8 @@
         'City': d.city, 'State': d.state, 'Instagram': d.instagram,
         'Performance Type': list(d.performance_type), 'Genre or Style': d.style,
         'Live Performance Video': d.live_video, 'Music or Writing Link': d.work_link,
-        'Number of Performers': d.performers, 'Stage Needs': list(d.stage_needs),
+        'Number of Performers': d.performers, 'Band': d.band, 'Band Details': d.band_details,
+        'Live Band Confirmed': yes(d.live_band_confirmed) ? true : null,
         'Availability': d.availability, 'Audience Draw': d.audience_draw,
         'Original Work Confirmed': yes(d.original_confirmed) ? true : null,
         'Release Acknowledged': yes(d.release_ack) ? true : null,
