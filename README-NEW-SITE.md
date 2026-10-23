@@ -182,4 +182,39 @@ When someone checks "Join the Circle" on the Spoken & Sung form (and the crew ca
 
 The link in the email opens `collab-hub.html?invite=1`, which shows "Welcome to the Circle" and a set-password box. People who are already members are skipped, and their profiles are never overwritten. If an invite fails, the form submission still goes through.
 
+### One-time setup
 
+**1. Resend: verify the domain**
+- In resend.com, go to Domains → Add domain and enter `buildyourhearth.studio`.
+- Add the DNS records Resend shows (an MX and a TXT record for the `send` subdomain, plus a DKIM TXT record) wherever the domain's DNS lives (Netlify DNS or your registrar). Then click Verify.
+- Go to API Keys → Create API key. Name it "Supabase SMTP", choose "Sending access", and limit it to buildyourhearth.studio. Copy the key.
+
+**2. Supabase: send through Resend**
+- Go to Authentication → Emails → SMTP Settings and turn on "Enable custom SMTP":
+  - Sender email `operations@buildyourhearth.studio`, sender name `HEARTH Studios`
+  - Host `smtp.resend.com`, port `465`, username `resend`, password = the Resend API key
+- Go to Authentication → Rate Limits and raise "emails sent per hour" (for example to 100).
+
+**3. Supabase: the invite email**
+- Go to Authentication → Emails → Templates → "Invite user".
+- Subject: `You're invited to the Circle`
+- Body: paste `circle-invite-email.html` (delivered alongside this zip).
+
+**4. Supabase: allowed links**
+- Go to Authentication → URL Configuration. Set the Site URL to `https://buildyourhearth.studio`.
+- Under Redirect URLs, add `https://buildyourhearth.studio/**`.
+
+**5. Netlify: the server key**
+- In Supabase, go to Project Settings → API Keys and create or copy a **Secret key** (`sb_secret_…`). The legacy `service_role` key also works.
+- In Netlify, go to Site configuration → Environment variables and add `SUPABASE_SERVICE_ROLE_KEY` = that key. Scope it to Functions. Then redeploy.
+- Never paste this key into any page or JS file. It can read and change every account.
+
+**Test:** submit the Spoken & Sung form with "Join the Circle" checked, using an email you can open. You should get the invite within a minute. Click it, set a password, and check that the profile shows up as pending in Supabase → Table Editor → profiles.
+
+## Crew call · October 23, 2026
+
+- `crew-call.html` posts to the Talent CRM base (`appCC6w69xdWwul2x`), Crew Call table (`tblgLGuKIvtbZdIt8`), through `airtable.crewCall` in `config.js`.
+- Fields written: First Name, Last Name, Email, Phone, Social, City, State, Roles, Other Role, Experience, Portfolio, Notable Credits, Day Rate, Rate Flexible, Availability, Union Status, Join the Circle, Subscribe to The Glow, Consent to Contact, Review Status (New). Full Name is a formula in Airtable, so the site doesn't write it.
+- "Join the Circle" sends a Circle invite with the profile prefilled: craft, City + State, experience, rate, availability, union status and links.
+- Linked from the menu ("For artists"), the Circle page and the Cast & Crew page.
+- City + State is now on every form: Join, Work With Us, the five service pages, Spoken & Sung, crew call, and Circle "My Profile". Profiles are still saved as "City, State" in one field.

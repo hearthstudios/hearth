@@ -19,7 +19,9 @@ window.HEARTH_CONFIG = {
     // Sync library / Music Catalog
     music:   { base: 'appKsSNFxrW7R8nfs', table: 'tblJzxn2bQag54qMD' },
     // Spoken & Sung artist call. Replace both IDs once the table exists (see README).
-    spokenSung: { base: 'appXXXXXXXXXXXXXX', table: 'tblXXXXXXXXXXXXXX' }
+    spokenSung: { base: 'appXXXXXXXXXXXXXX', table: 'tblXXXXXXXXXXXXXX' },
+    // Crew Call (Talent CRM base)
+    crewCall: { base: 'appCC6w69xdWwul2x', table: 'tblgLGuKIvtbZdIt8' }
   },
 
   // Program "Get notified" → the Google Form your program pages already use.

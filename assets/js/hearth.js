@@ -295,7 +295,8 @@
       } else if (!ok && firstBad) {
         var lab = firstBad.closest('fieldset') ? firstBad.closest('fieldset').querySelector('legend') : (firstBad.labels && firstBad.labels[0]);
         var name = lab ? lab.textContent.replace(/[*?]/g, '').replace(/pick any/i, '').trim() : '';
-        msg = firstBad.type === 'url' ? 'Check the link in “' + name + '”. It should look like https://yoursite.com.'
+        msg = firstBad.type === 'checkbox' ? 'Check the required box to continue.'
+          : firstBad.type === 'url' ? 'Check the link in “' + name + '”. It should look like https://yoursite.com.'
           : firstBad.type === 'email' && firstBad.value ? 'Enter a valid email address.'
           : name ? 'Please complete “' + name.charAt(0) + name.slice(1).toLowerCase() + '”.' : 'Please fill in the required fields.';
       }
@@ -446,6 +447,42 @@
         return r;
       });
     },
+    crew_call: function (d) {
+      var roles = list(d.roles);
+      var rate = d.day_rate ? parseInt(String(d.day_rate).replace(/[^0-9]/g, ''), 10) : null;
+      return airtable(CFG.airtable.crewCall, {
+        'First Name': d.first_name, 'Last Name': d.last_name, 'Email': d.email, 'Phone': d.phone,
+        'Social': d.social, 'City': d.city, 'State': d.state,
+        'Roles': roles, 'Other Role': d.other_role, 'Experience': d.experience,
+        'Portfolio': d.portfolio, 'Notable Credits': d.credits,
+        'Day Rate': isNaN(rate) ? null : rate, 'Rate Flexible': yes(d.rate_flexible) ? true : null,
+        'Availability': d.availability, 'Union Status': d.union_status,
+        'Join the Circle': yes(d.circle_opt_in) ? true : null,
+        'Subscribe to The Glow': yes(d.glow_opt_in) ? true : null,
+        'Consent to Contact': yes(d.consent) ? true : null,
+        'Review Status': 'New'
+      }).then(function (r) {
+        if (yes(d.glow_opt_in)) {
+          postJSON(CFG.glowEndpoint, { email: d.email, utm_medium: 'crew_call', utm_campaign: 'creative_all_call' }).catch(function () {});
+        }
+        if (yes(d.circle_opt_in)) {
+          var CRAFT = { 'Director': 'Director', 'Director of Photography (DP/Cinematographer)': 'Cinematographer', 'Camera Operator': 'Cinematographer',
+            'Producer': 'Producer', 'Screenwriter': 'Writer', 'Editor': 'Editor', 'Sound Designer': 'Sound', 'Boom Operator': 'Sound', 'Composer': 'Composer' };
+          var craft = [];
+          roles.forEach(function (x) { var c = CRAFT[x] || (x === 'Other' ? (d.other_role || '').trim() : 'Crew'); if (c && craft.indexOf(c) < 0) craft.push(c); });
+          var LEVEL = { 'Emerging (0–2 yrs)': 'Emerging — Just starting out (0–2 years), building portfolio', 'Skilled (2–5 yrs)': 'Skilled — 2–5 years, multiple credited projects',
+            'Veteran (5+ yrs)': 'Veteran — 5+ years, professional credits, crew leadership', 'Award-winning': 'Award-Winning — Festival wins, industry recognition' };
+          circleInvite('crew_call', d.email, {
+            full_name: [d.first_name, d.last_name].filter(Boolean).join(' '), city: d.city, state: d.state, craft: craft,
+            skill_level: LEVEL[d.experience] || null, day_rate: isNaN(rate) ? null : rate, flexible_rate: yes(d.rate_flexible),
+            availability: d.availability === 'Unavailable right now' ? 'Unavailable' : d.availability,
+            union_status: d.union_status === 'Union member' ? 'I am a union member' : d.union_status === 'Not a union member' ? 'I am not a union member' : null,
+            portfolio_url: d.portfolio, social_url: d.social && /^https?:/i.test(d.social) ? d.social : null
+          });
+        }
+        return r;
+      });
+    },
     program_notify: function (d) {
       if (CFG.airtable.notify) {
         return airtable(CFG.airtable.notify, { 'Name': d.name, 'Email': d.email, 'Role': d.role, 'Programs': list(d.programs).join(', '), 'Page': d.page });
@@ -496,7 +533,7 @@
             id: user.id,
             email: user.email,
             full_name: data.display_name,
-            location: (data.city === 'Elsewhere' ? data.city_other : data.city) || null,
+            location: [String(data.city || '').trim(), data.state].filter(Boolean).join(', ') || null,
             craft: list(data.roles).filter(function (r) { return r !== 'Other'; }).concat(data.roles_other ? [String(data.roles_other).trim()] : []),
             portfolio_url: data.portfolio_url || null,
             status: 'pending',

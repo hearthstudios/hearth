@@ -195,7 +195,11 @@
     var p = S.profile || {};
     form.reset();
     form.full_name.value = p.full_name || '';
-    form.location.value = p.location || '';
+    // location is stored as "City, State"; split it back into the two fields
+    var loc = (p.location || '').trim(), cut = loc.lastIndexOf(','), st = cut > -1 ? loc.slice(cut + 1).trim() : '';
+    var knownState = $$('option', form.state).some(function (o) { return o.value && o.value === st; });
+    form.city.value = knownState ? loc.slice(0, cut).trim() : loc;
+    form.state.value = knownState ? st : '';
     var known = $$('input[name="craft"]', form).map(function (i) { return i.value; });
     var custom = crafts(p).filter(function (c) { return known.indexOf(c) < 0; });
     $$('input[name="craft"]', form).forEach(function (i) { i.checked = crafts(p).indexOf(i.value) > -1 || (i.value === 'Other' && custom.length > 0); });
@@ -216,7 +220,7 @@
     var sel = function (n) { var i = form.querySelector('input[name="' + n + '"]:checked'); return i ? i.value : null; };
     return {
       id: S.user.id, email: S.user.email,
-      full_name: form.full_name.value.trim(), location: form.location.value.trim(),
+      full_name: form.full_name.value.trim(), location: [form.city.value.trim(), form.state.value].filter(Boolean).join(', '),
       craft: $$('input[name="craft"]:checked', form).map(function (i) { return i.value; }).filter(function (c) { return c !== 'Other'; })
         .concat(form.querySelector('input[name="craft"][value="Other"]:checked') && form.craft_other.value.trim() ? form.craft_other.value.split(',').map(function (x) { return x.trim(); }).filter(Boolean) : []),
       skill_level: sel('skill_level'),
@@ -236,7 +240,7 @@
   $('[data-save]').addEventListener('click', function () {
     var err = $('[data-save-err]'); err.textContent = '';
     var d = formData();
-    if (!d.full_name || !d.location) { err.textContent = 'Add your name and location.'; (d.full_name ? form.location : form.full_name).focus(); return; }
+    if (!d.full_name || !form.city.value.trim() || !form.state.value) { err.textContent = 'Add your name, city and state.'; (!d.full_name ? form.full_name : !form.city.value.trim() ? form.city : form.state).focus(); return; }
     if (form.querySelector('input[name="craft"][value="Other"]:checked') && !form.craft_other.value.trim()) { err.textContent = 'Tell us what your craft is.'; form.craft_other.focus(); return; }
     if (!d.craft.length) { err.textContent = 'Pick at least one craft.'; form.querySelector('input[name="craft"]').focus(); return; }
     ['portfolio_url', 'social_url'].forEach(function (k) { if (d[k] && !/^https?:\/\//i.test(d[k])) { d[k] = 'https://' + d[k]; form[k].value = d[k]; } });

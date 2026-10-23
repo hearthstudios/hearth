@@ -663,3 +663,19 @@ html{scroll-padding-top:96px}
 .dlg-close{position:absolute;top:14px;right:16px;width:44px;height:44px;border-radius:999px;border:0;background:transparent;font-size:26px;line-height:1;color:var(--charcoal);cursor:pointer}
 .dlg-close:hover{background:var(--bone-line)}
 @media (max-width:560px){.profile-dlg{padding:32px 22px}.dlg-facts > div{grid-template-columns:1fr;gap:4px}}
+
+/* State dropdowns (all forms) */
+select.input{cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%238D99AE' stroke-width='1.5'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 2px center;padding-right:24px}
+select.input option{background:#1d1a18;color:#F4ECE0}
+/* Open-call pages: opt-in cards and role lists */
+.optin{display:flex;gap:16px;align-items:flex-start;padding:24px 28px;border-radius:16px;cursor:pointer}
+.optin input{width:22px;height:22px;margin-top:4px;flex:none}
+.optin .k{font-family:var(--mono);font-size:12px;letter-spacing:.2em}
+.optin .t{font-family:var(--serif);font-size:26px;letter-spacing:-.02em;display:block;margin:6px 0}
+.optin .d{font-size:15px;line-height:1.6;display:block}
+.optin.warm{background:var(--bone);color:#1C1A19;border:1px solid var(--bone)}
+.optin.warm input{accent-color:#C25A3C}.optin.warm .k{color:#A8472C}.optin.warm .d{color:#4a4440}
+.optin.dark{border:1px solid var(--line)}.optin.dark input{accent-color:var(--ember)}.optin.dark .k{color:var(--ember)}.optin.dark .d{color:var(--text-3)}
+.ss-kinds{font-family:var(--serif);font-weight:300;font-size:clamp(36px,4.4vw,64px);line-height:1.12;letter-spacing:-.03em;padding-top:28px;border-top:1px solid var(--line-strong)}
+.ss-kinds span:nth-child(even){color:var(--text-3)}
+.crew-kinds{font-size:clamp(26px,2.8vw,40px);line-height:1.25}
